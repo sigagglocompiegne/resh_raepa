@@ -8,3 +8,7 @@
  
  * **résumé fonctionnel** :
  
+## Dépendances
+
+
+## Classes d'objets
