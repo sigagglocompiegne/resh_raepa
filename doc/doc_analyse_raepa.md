@@ -1,4 +1,4 @@
-# commentaires geostandard 1.1
+# Commentaires geostandard 1.1
 
 ## partie B
 
