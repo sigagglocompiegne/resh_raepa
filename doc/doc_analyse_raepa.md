@@ -14,6 +14,10 @@
 
 - filGen : pourquoi cet attribut est considéré comme spécifique d'un réseau ae ?
 
+#### super classe noeud
+
+- choix de modélisation sur le fait qu'un noeud est obligatoirement un appareillage et/ou un ouvrage. Cette classe ne peut pas gérer des noeuds de raccord "fictifs" pour faire des jonctions hors présence d'ouvrage ou d'appareillage (ex noeud fictif de raccord entre 2 communes pour besoin de la base de données)
+
 ### partie C
 
 - de manière générale, le choix de l'ordre des attributs des classes implémentées mérite d'être explicité ...
