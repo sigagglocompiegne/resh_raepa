@@ -35,6 +35,7 @@
 #### table apparaep
 
 - DIAMETRE : d'où vient cet attribut par rapport au MCD ? à priori, devrait être placer au niveau de classe appareillage car l'attribut est présent dans les tables d'appareillage ae et ass et absent pour les tables d'ouvrages
+- IDCANAVAL et IDCANAMONT : voir dans quelle mesure ces info peuvent être héritées des propriétés relationnelles plutot que saisie manuellement ... a priori cela devrait dépendre du sens d'écoulement de la cana.
 
 ## Problématiques d'implémentation
 
