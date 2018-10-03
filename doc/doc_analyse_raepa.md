@@ -35,7 +35,7 @@
 
 - DIAMETRE : d'où vient cet attribut par rapport au MCD ? à priori, devrait être placer au niveau de classe appareillage car l'attribut est présent dans les tables d'appareillage ae et ass et absent pour les tables d'ouvrages
 
-## problématique d'implémentation
+## Problématiques d'implémentation
 
 - des sous classes spécialisées à prévoir pour porter des attributs spécifiques (ex : différents type d'avaloir)
 - besoin de classe d'habillage (ex : emprise de bassin)
