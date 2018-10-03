@@ -28,6 +28,7 @@
 
 #### table canalisation
 
+- IDCANPPALE : ne semble présenter un interet que dans le cas d'un branchement avec un piquage sur une cana maitresse (cad, par la présence d'un noeud de piquage "non coupant" 
 - LONGCANA : pourquoi simplifier en déclarant de l'entier (mètre) ? cela correspond il a un calcul ou une longueur réelle ?
 - CONTCANAEP/CONTCANASS : pourquoi "CONT" alors que cela fait référence à un domaine de valeur parlant de "catégorie" donc plutôt "CAT" ?
 
