@@ -1,4 +1,4 @@
-# Analyse standard et problématique d'implémentation locale
+# Analyse du géostandard et problématiques d'implémentation locale
 
 ## Analyse geostandard RAEPA 1.1
 
