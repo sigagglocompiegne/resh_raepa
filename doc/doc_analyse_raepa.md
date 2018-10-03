@@ -33,7 +33,7 @@
 
 #### table apparaep
 
-- DIAMETRE : d'où vient cet attribut par rapport au MCD ?
+- DIAMETRE : d'où vient cet attribut par rapport au MCD ? à priori, devrait être placer au niveau de classe appareillage car l'attribut est présent dans les tables d'appareillage ae et ass et absent pour les tables d'ouvrages
 
 ## problématique d'implémentation
 
