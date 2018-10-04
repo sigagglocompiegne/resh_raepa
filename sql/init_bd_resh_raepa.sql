@@ -1028,7 +1028,7 @@ CREATE TABLE m_reseau_humide.an_raepa_appar
 (
   idappareil character varying(254) NOT NULL,
   idnoeud character varying(254) NOT NULL,
-  idouvrage character varying(254) NOT NULL, 
+  idouvrage character varying(254), 
 -- diametre integer, -- A PRIORI attribut manquant dans la modélisation à ce niveau car présent dans les tables d'appareillage ae et ass et absent pour les ouvrages
   z numeric(6,2),
   CONSTRAINT an_raepa_appar_pkey PRIMARY KEY (idappareil) 
@@ -1046,7 +1046,7 @@ COMMENT ON TABLE m_reseau_humide.an_raepa_appar
   IS 'Classe décrivant un appareillage abrité dans un ouvrage ou non';
 COMMENT ON COLUMN m_reseau_humide.an_raepa_appar.idappareil IS 'Identifiant de l''appareillage';
 COMMENT ON COLUMN m_reseau_humide.an_raepa_appar.idnoeud IS 'Identifiant du noeud';
-COMMENT ON COLUMN m_reseau_humide.an_raepa_appar.idouvrage IS 'Identifiant de l''ouvrage d''accueil';
+COMMENT ON COLUMN m_reseau_humide.an_raepa_appar.idouvrage IS 'Identifiant de l''éventuel ouvrage d''accueil';
 COMMENT ON COLUMN m_reseau_humide.an_raepa_appar.z IS 'Altitude du noeud (en mètres, Référentiel NGFIGN69)';  
   
 -- Sequence: m_reseau_humide.an_raepa_appar_id_seq
