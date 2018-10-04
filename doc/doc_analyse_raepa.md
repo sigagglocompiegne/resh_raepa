@@ -4,6 +4,8 @@
 
 ### partie B - Modèle conceptuel de données
 
+- ensemble des id est de type char(254)
+
 #### classe canalisation
 
 - maitreOuvrage : prévoir des domaines de valeurs
@@ -37,8 +39,14 @@
 - DIAMETRE : d'où vient cet attribut par rapport au MCD ? à priori, devrait être placer au niveau de classe appareillage car l'attribut est présent dans les tables d'appareillage ae et ass et absent pour les tables d'ouvrages
 - IDCANAVAL et IDCANAMONT : voir dans quelle mesure ces info peuvent être héritées des propriétés relationnelles plutot que saisie manuellement ... a priori cela devrait dépendre du sens d'écoulement de la cana.
 
+#### table reparation
+
+- IDSUPREPAR : voir comment gérer la vérification de l'id (fkey) en fonction de l'attribut qui dit le type de support. en fonction, il faudra vérifier soit l'idcana, soit l'idappareil, soit l'idouvrage.
+
+
 ## Problématiques d'implémentation
 
+- id de type char(254) alors que nous utilisons classiquement des entiers
 - des sous classes spécialisées à prévoir pour porter des attributs spécifiques (ex : différents type d'avaloir)
 - besoin de classe d'habillage (ex : emprise de bassin)
 - besoin attribut "insee" pour filtrer et gestion des droits ==> implication sur la modélisation globale. Attention au cas de réseau sur voie entre 2 communes (ex : verberie/St Vaast), comment traiter le sujet ?
