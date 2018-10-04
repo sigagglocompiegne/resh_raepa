@@ -53,6 +53,7 @@ __ REPARATION
 
 TO DO :
 
+-- gérer les valeurs par défaut pour les différents domaines de valeur
 -- prévoir d'étendre les domaines de valeur pour gérer les sscat ouvrage et appareillage ae/ass pour gérer les spécificités
 -- prévoir les sous-sous-classes très spécialisées (ex : avaloir par sous type dans le cadre du SDGEP)
 -- gérer les fkey sur les id entre classes
@@ -80,6 +81,7 @@ DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_apparass;
 DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_ouvraep;
 DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_ouvrass;
 -- fkey
+ALTER TABLE m_reseau_humide.geo_raepa_repar DROP CONSTRAINT IF EXISTS an_raepa_id_fkey;
 ALTER TABLE m_reseau_humide.an_raepa_canalae DROP CONSTRAINT IF EXISTS idcana_fkey;
 ALTER TABLE m_reseau_humide.an_raepa_canalass DROP CONSTRAINT IF EXISTS idcana_fkey;
 ALTER TABLE m_reseau_humide.an_raepa_appar DROP CONSTRAINT IF EXISTS idnoeud_fkey;
@@ -131,10 +133,11 @@ DROP SEQUENCE IF EXISTS m_reseau_humide.an_raepa_ouvr_id_seq;
 -- DROP SCHEMA m_reseau_humide;
 
 CREATE SCHEMA m_reseau_humide
-  AUTHORIZATION postgres;
+  AUTHORIZATION sig_create;
 
-GRANT ALL ON SCHEMA r_objet TO postgres;
-GRANT ALL ON SCHEMA r_objet TO groupe_sig WITH GRANT OPTION;
+GRANT ALL ON TABLE m_reseau_humide.lt_raepa_materiau TO sig_create;
+GRANT SELECT ON TABLE m_reseau_humide.lt_raepa_materiau TO read_sig;
+GRANT SELECT, UPDATE, INSERT, DELETE ON TABLE m_reseau_humide.lt_raepa_materiau TO edit_sig;
 COMMENT ON SCHEMA m_reseau_humide
   IS 'Données géographiques métiers sur le thème des réseaux humides';
 
@@ -755,8 +758,8 @@ Cette classe constitue une table contrainte pour l'implémentation d'afin d'assu
 
 CREATE TABLE m_reseau_humide.an_raepa_id
 (
-  idraepa bigint NOT NULL,
-  idexterne bigint,
+  idraepa character varying(254) NOT NULL,
+  idexterne character varying(254),
   CONSTRAINT an_raepa_id_pkey PRIMARY KEY (idraepa)  
 )
 WITH (
@@ -784,7 +787,7 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_id.idexterne IS 'Identifiant externe 
 
 CREATE TABLE m_reseau_humide.geo_raepa_canal
 (
-  idcana bigint NOT NULL,
+  idcana character varying(254) NOT NULL,
   mouvrage character varying(100), -- *******  voir pour privilégier des domaines de valeur  *******
   gexploit character varying(100), -- *******  voir pour privilégier des domaines de valeur  ******* 
   enservice character varying(1),
@@ -793,8 +796,8 @@ CREATE TABLE m_reseau_humide.geo_raepa_canal
   diametre integer,  
   anfinpose character varying(4),
   modecircu character varying(2) NOT NULL,     
-  idnini bigint NOT NULL,
-  idnterm bigint NOT NULL,
+  idnini character varying(254),
+  idnterm character varying(254),
   idcanppale bigint,
   andebpose character varying(4),
   longcana integer,    -- unité en mètre et de type entier, pourquoi cette simplification  ?
@@ -863,7 +866,7 @@ ALTER SEQUENCE m_reseau_humide.geo_raepa_canal_id_seq
 GRANT ALL ON SEQUENCE m_reseau_humide.geo_raepa_canal_id_seq TO sig_create;
 GRANT SELECT, USAGE ON SEQUENCE m_reseau_humide.geo_raepa_canal_id_seq TO public;
 
-ALTER TABLE m_reseau_humide.geo_raepa_canal ALTER COLUMN idcana SET DEFAULT nextval('m_reseau_humide.geo_raepa_canal_id_seq'::regclass);
+ALTER TABLE m_reseau_humide.geo_raepa_canal ALTER COLUMN idcana SET DEFAULT concat('cana',nextval('m_reseau_humide.geo_raepa_canal_id_seq'::regclass));
 
 -- index spatial
 
@@ -879,7 +882,7 @@ CREATE INDEX geo_raepa_canal_geom_gist ON m_reseau_humide.geo_raepa_canal USING 
 
 CREATE TABLE m_reseau_humide.an_raepa_canalae
 (
-  idcana bigint NOT NULL,
+  idcana character varying(254) NOT NULL,
   contcanaep character varying(2) NOT NULL,
   fonccanaep character varying(2) NOT NULL,
   profgen numeric (3,2) -- pourquoi dans le standard ceci est placé sur la sous classe cana AE ???
@@ -909,7 +912,7 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_canalae.profgen IS 'Profondeur moyenn
 
 CREATE TABLE m_reseau_humide.an_raepa_canalass
 (
-  idcana bigint NOT NULL,
+  idcana character varying(254) NOT NULL,
   typreseau character varying(2) NOT NULL,
   contcanass character varying(2) NOT NULL, 
   fonccanass character varying(2) NOT NULL,
@@ -945,7 +948,7 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_canalass.sensecoul IS 'Sens de l''éc
 
 CREATE TABLE m_reseau_humide.geo_raepa_noeud
 (
-  idnoeud bigint NOT NULL,
+  idnoeud character varying(254) NOT NULL,
 --  x
 --  y  
   mouvrage character varying(100), -- *******  voir pour privilégier des domaines de valeur  *******
@@ -991,6 +994,7 @@ COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.sourgeoloc IS 'Auteur de la g�
 COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.sourattrib IS 'Auteur de la saisie des données attributaires (lorsque différent de l''auteur de la géolocalisation)';
 COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.geom IS 'Géométrie ponctuelle de l''objet';
 
+
 -- Sequence: m_reseau_humide.geo_raepa_noeud_id_seq
 
 -- DROP SEQUENCE m_reseau_humide.geo_raepa_noeud_id_seq;
@@ -1006,7 +1010,8 @@ ALTER SEQUENCE m_reseau_humide.geo_raepa_noeud_id_seq
 GRANT ALL ON SEQUENCE m_reseau_humide.geo_raepa_noeud_id_seq TO sig_create;
 GRANT SELECT, USAGE ON SEQUENCE m_reseau_humide.geo_raepa_noeud_id_seq TO public;
 
-ALTER TABLE m_reseau_humide.geo_raepa_noeud ALTER COLUMN idnoeud SET DEFAULT nextval('m_reseau_humide.geo_raepa_noeud_id_seq'::regclass);
+ALTER TABLE m_reseau_humide.geo_raepa_noeud ALTER COLUMN idnoeud SET DEFAULT concat('noeud',nextval('m_reseau_humide.geo_raepa_noeud_id_seq'::regclass));
+
 
 -- index spatial
 
@@ -1021,9 +1026,9 @@ CREATE INDEX geo_raepa_noeud_geom_gist ON m_reseau_humide.geo_raepa_noeud USING 
 
 CREATE TABLE m_reseau_humide.an_raepa_appar
 (
-  idappareil bigint NOT NULL,
-  idnoeud bigint NOT NULL,
-  idouvrage bigint NOT NULL, 
+  idappareil character varying(254) NOT NULL,
+  idnoeud character varying(254) NOT NULL,
+  idouvrage character varying(254) NOT NULL, 
 -- diametre integer, -- A PRIORI attribut manquant dans la modélisation à ce niveau car présent dans les tables d'appareillage ae et ass et absent pour les ouvrages
   z numeric(6,2),
   CONSTRAINT an_raepa_appar_pkey PRIMARY KEY (idappareil) 
@@ -1059,7 +1064,7 @@ ALTER SEQUENCE m_reseau_humide.an_raepa_appar_id_seq
 GRANT ALL ON SEQUENCE m_reseau_humide.an_raepa_appar_id_seq TO sig_create;
 GRANT SELECT, USAGE ON SEQUENCE m_reseau_humide.an_raepa_appar_id_seq TO public;
 
-ALTER TABLE m_reseau_humide.an_raepa_appar ALTER COLUMN idappareil SET DEFAULT nextval('m_reseau_humide.an_raepa_appar_id_seq'::regclass);
+ALTER TABLE m_reseau_humide.an_raepa_appar ALTER COLUMN idappareil SET DEFAULT concat('appar',nextval('m_reseau_humide.an_raepa_appar_id_seq'::regclass));
 
 
 -- #################################################################### SSCLASSE APPAREILLAGE AE ###############################################
@@ -1070,7 +1075,7 @@ ALTER TABLE m_reseau_humide.an_raepa_appar ALTER COLUMN idappareil SET DEFAULT n
 
 CREATE TABLE m_reseau_humide.an_raepa_apparaep
 (
-  idappareil bigint NOT NULL,
+  idappareil character varying(254) NOT NULL,
   fnappaep character varying(2) NOT NULL
 )
 WITH (
@@ -1096,7 +1101,7 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_apparaep.fnappaep IS 'Fonction de l''
 
 CREATE TABLE m_reseau_humide.an_raepa_apparass
 (
-  idappareil bigint NOT NULL,
+  idappareil character varying(254) NOT NULL,
   typreseau character varying(2) NOT NULL,
   fnappass character varying(2) NOT NULL
 )
@@ -1124,8 +1129,8 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_apparass.fnappass IS 'Fonction de l''
 
 CREATE TABLE m_reseau_humide.an_raepa_ouvr
 (
-  idouvrage bigint NOT NULL,
-  idnoeud bigint NOT NULL,
+  idouvrage character varying(254) NOT NULL,
+  idnoeud character varying(254) NOT NULL,
   z numeric(6,2),
   CONSTRAINT an_raepa_ouvr_pkey PRIMARY KEY (idouvrage) 
 )
@@ -1159,7 +1164,7 @@ ALTER SEQUENCE m_reseau_humide.an_raepa_ouvr_id_seq
 GRANT ALL ON SEQUENCE m_reseau_humide.an_raepa_ouvr_id_seq TO sig_create;
 GRANT SELECT, USAGE ON SEQUENCE m_reseau_humide.an_raepa_ouvr_id_seq TO public;
 
-ALTER TABLE m_reseau_humide.an_raepa_ouvr ALTER COLUMN idouvrage SET DEFAULT nextval('m_reseau_humide.an_raepa_ouvr_id_seq'::regclass);
+ALTER TABLE m_reseau_humide.an_raepa_ouvr ALTER COLUMN idouvrage SET DEFAULT concat('ouvr',nextval('m_reseau_humide.an_raepa_ouvr_id_seq'::regclass));
 
 
 -- #################################################################### SSCLASSE OUVRAGE AE ###############################################
@@ -1170,7 +1175,7 @@ ALTER TABLE m_reseau_humide.an_raepa_ouvr ALTER COLUMN idouvrage SET DEFAULT nex
 
 CREATE TABLE m_reseau_humide.an_raepa_ouvraep
 (
-  idouvrage bigint NOT NULL,
+  idouvrage character varying(254) NOT NULL,
   fnouvaep character varying(2) NOT NULL
 )
 WITH (
@@ -1196,7 +1201,7 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_ouvraep.fnouvaep IS 'Fonction de l''o
 
 CREATE TABLE m_reseau_humide.an_raepa_ouvrass
 (
-  idouvrage bigint NOT NULL,
+  idouvrage character varying(254) NOT NULL,
   typreseau character varying(2) NOT NULL,
   fnouvass character varying(2) NOT NULL
 )
@@ -1221,12 +1226,12 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_ouvrass.fnouvass IS 'Fonction de l''o
 
 CREATE TABLE m_reseau_humide.geo_raepa_repar
 (
-  idrepar bigint NOT NULL,
+  idrepar character varying(254) NOT NULL,
 --  x
 --  y
   supprepare character varying(2) NOT NULL,
   defreparee character varying(2) NOT NULL,
-  idsuprepar bigint NOT NULL,
+  idsuprepar character varying(254) NOT NULL,
   daterepart date,
   mouvrage character varying(100), -- *******  voir pour privilégier des domaines de valeur  *******
   geom geometry(Point,2154),
@@ -1268,7 +1273,7 @@ ALTER SEQUENCE m_reseau_humide.geo_raepa_repar_id_seq
 GRANT ALL ON SEQUENCE m_reseau_humide.geo_raepa_repar_id_seq TO sig_create;
 GRANT SELECT, USAGE ON SEQUENCE m_reseau_humide.geo_raepa_repar_id_seq TO public;
 
-ALTER TABLE m_reseau_humide.geo_raepa_repar ALTER COLUMN idrepar SET DEFAULT nextval('m_reseau_humide.geo_raepa_repar_id_seq'::regclass);
+ALTER TABLE m_reseau_humide.geo_raepa_repar ALTER COLUMN idrepar SET DEFAULT concat('repar',nextval('m_reseau_humide.geo_raepa_repar_id_seq'::regclass));
 
 -- index spatial
 
