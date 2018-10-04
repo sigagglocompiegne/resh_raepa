@@ -5,6 +5,7 @@
 ### partie B - Modèle conceptuel de données
 
 - ensemble des id est de type char(254)
+- a priori, la précision x,y,z est au millimètre
 
 #### classe canalisation
 
