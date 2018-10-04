@@ -41,7 +41,7 @@
 
 #### table reparation
 
-- IDSUPREPAR : voir comment gérer la vérification de l'id (fkey) en fonction de l'attribut qui dit le type de support. en fonction, il faudra vérifier soit l'idcana, soit l'idappareil, soit l'idouvrage ??? en passant l'id en type texte comme attendu, on doit pouvoir préfixer l'id par le type de classe puis un numero de sequence. de cette façon, pas de doublon de numero d'ordre pour l'id possible entre plusieurs classes.
+- IDSUPREPAR : voir comment gérer la vérification de l'id (fkey) en fonction de l'attribut qui dit le type de support. en fonction, il faudra vérifier soit l'idcana, soit l'idappareil, soit l'idouvrage ??? en passant l'id en type texte comme attendu, on doit pouvoir préfixer l'id par le type de classe puis un numero de sequence. de cette façon, pas de doublon de numero d'ordre pour l'id possible entre plusieurs classes. Si cela n'est pas fait, le controle ne se fera pas par le biais d'une fkey mais par un trigger en cas de mise à jour. Ceci est autant que possible à proscrire.
 
 
 ## Problématiques d'implémentation
