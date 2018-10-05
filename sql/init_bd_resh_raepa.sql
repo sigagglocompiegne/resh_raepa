@@ -84,6 +84,7 @@ DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_ouvrass;
 ALTER TABLE m_reseau_humide.geo_raepa_repar DROP CONSTRAINT IF EXISTS an_raepa_id_fkey;
 ALTER TABLE m_reseau_humide.an_raepa_canalae DROP CONSTRAINT IF EXISTS idcana_fkey;
 ALTER TABLE m_reseau_humide.an_raepa_canalass DROP CONSTRAINT IF EXISTS idcana_fkey;
+ALTER TABLE m_reseau_humide.geo_raepa_noeud DROP CONSTRAINT IF EXISTS idcanppale_fkey;
 ALTER TABLE m_reseau_humide.an_raepa_appar DROP CONSTRAINT IF EXISTS idnoeud_fkey;
 ALTER TABLE m_reseau_humide.an_raepa_ouvr DROP CONSTRAINT IF EXISTS idnoeud_fkey;
 --ALTER TABLE m_reseau_humide.an_raepa_apparaep DROP CONSTRAINT IF EXISTS lt_raepa_cat_app_aep_fkey;
@@ -758,7 +759,7 @@ Cette classe constitue une table contrainte pour l'implémentation d'afin d'assu
 
 CREATE TABLE m_reseau_humide.an_raepa_id
 (
-  idraepa character varying(254) NOT NULL,
+  idraepa character varying(254) NOT NULL, -- cumul des id des classes canalisation, noeud, appareillage, ouvrage afin de permettre de servir de référence à une fkey pour la classe réparation
   idexterne character varying(254),
   CONSTRAINT an_raepa_id_pkey PRIMARY KEY (idraepa)  
 )
@@ -792,21 +793,21 @@ CREATE TABLE m_reseau_humide.geo_raepa_canal
   gexploit character varying(100), -- *******  voir pour privilégier des domaines de valeur  ******* 
   enservice character varying(1),
   branchemnt character varying(1),  
-  materiau character varying(2) NOT NULL,
+  materiau character varying(2) NOT NULL, -- fkey vers domaine de valeur
   diametre integer,  
   anfinpose character varying(4),
-  modecircu character varying(2) NOT NULL,     
+  modecircu character varying(2) NOT NULL, -- fkey vers domaine de valeur    
   idnini character varying(254),
   idnterm character varying(254),
   idcanppale bigint,
   andebpose character varying(4),
   longcana integer,    -- unité en mètre et de type entier, pourquoi cette simplification  ?
   nbranche integer,
-  qualglocxy character varying(2) NOT NULL,
-  qualglocz character varying(2) NOT NULL, 
+  qualglocxy character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  qualglocz character varying(2) NOT NULL, -- fkey vers domaine de valeur
   datemaj date, -- faut il conserver ce champ si il peut simplement être déduit de date_maj ??
   sourcemaj character varying(100),
-  qualannee character varying(2) NOT NULL,
+  qualannee character varying(2) NOT NULL, -- fkey vers domaine de valeur
   dategeoloc date,
   sourgeoloc character varying(100),
   sourattrib character varying(100),
@@ -882,9 +883,9 @@ CREATE INDEX geo_raepa_canal_geom_gist ON m_reseau_humide.geo_raepa_canal USING 
 
 CREATE TABLE m_reseau_humide.an_raepa_canalae
 (
-  idcana character varying(254) NOT NULL,
-  contcanaep character varying(2) NOT NULL,
-  fonccanaep character varying(2) NOT NULL,
+  idcana character varying(254) NOT NULL, -- fkey vers attribut idcana de la classe canalisation
+  contcanaep character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  fonccanaep character varying(2) NOT NULL, -- fkey vers domaine de valeur
   profgen numeric (3,2) -- pourquoi dans le standard ceci est placé sur la sous classe cana AE ???
 )
 WITH (
@@ -912,10 +913,10 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_canalae.profgen IS 'Profondeur moyenn
 
 CREATE TABLE m_reseau_humide.an_raepa_canalass
 (
-  idcana character varying(254) NOT NULL,
-  typreseau character varying(2) NOT NULL,
-  contcanass character varying(2) NOT NULL, 
-  fonccanass character varying(2) NOT NULL,
+  idcana character varying(254) NOT NULL, -- fkey vers attribut idcana de la classe canalisation
+  typreseau character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  contcanass character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  fonccanass character varying(2) NOT NULL, -- fkey vers domaine de valeur
   zamont numeric (6,2),
   zaval numeric (6,2),
   sensecoul character varying(1)
@@ -954,12 +955,13 @@ CREATE TABLE m_reseau_humide.geo_raepa_noeud
   mouvrage character varying(100), -- *******  voir pour privilégier des domaines de valeur  *******
   gexploit character varying(100), -- *******  voir pour privilégier des domaines de valeur  *******
   anfinpose character varying(4),
+  idcanppale character varying(254), -- fkey vers attribut idcana de la classe canalisation. Valeur NULL admise car ne sert à renseigner la cana principale pour noeud de raccord avec un branchement
   andebpose character varying(4),      
-  qualglocxy character varying(2) NOT NULL,
-  qualglocz character varying(2) NOT NULL, 
+  qualglocxy character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  qualglocz character varying(2) NOT NULL, -- fkey vers domaine de valeur
   datemaj date, -- faut il conserver ce champ si il peut simplement être déduit de date_maj ??
   sourcemaj character varying(100),
-  qualannee character varying(2) NOT NULL,
+  qualannee character varying(2) NOT NULL, -- fkey vers domaine de valeur
   dategeoloc date,
   sourgeoloc character varying(100),
   sourattrib character varying(100),
@@ -983,6 +985,7 @@ COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.idnoeud IS 'Identifiant de la 
 COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.mouvrage IS 'Maître d''ouvrage du réseau';
 COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.gexploit IS 'Gestionnaire exploitant du réseau';
 COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.anfinpose IS 'Année marquant la fin de la période de mise en service de l''appareillage et/ou de l''ouvrage';
+COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.idcanppale IS 'Identifiant de la canalisation principale en cas de piquage';
 COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.andebpose IS 'Année marquant le début de la période de mise en service de l''appareillage et/ou de l''ouvrage';
 COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.qualglocxy IS 'Qualité de la géolocalisation planimétrique (XY)';
 COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.qualglocz IS 'Qualité de la géolocalisation altimétrique (Z)';
@@ -1027,8 +1030,8 @@ CREATE INDEX geo_raepa_noeud_geom_gist ON m_reseau_humide.geo_raepa_noeud USING 
 CREATE TABLE m_reseau_humide.an_raepa_appar
 (
   idappareil character varying(254) NOT NULL,
-  idnoeud character varying(254) NOT NULL,
-  idouvrage character varying(254), 
+  idnoeud character varying(254) NOT NULL, -- fkey vers attribut idnoeud de la classe noeud
+  idouvrage character varying(254), -- fkey vers attribut idouvrage de la classe ouvrage. Valeur NULL admise car il n'y a pas forcement un ouvrage qui accueille l'appareillage
 -- diametre integer, -- A PRIORI attribut manquant dans la modélisation à ce niveau car présent dans les tables d'appareillage ae et ass et absent pour les ouvrages
   z numeric(6,2),
   CONSTRAINT an_raepa_appar_pkey PRIMARY KEY (idappareil) 
@@ -1075,8 +1078,8 @@ ALTER TABLE m_reseau_humide.an_raepa_appar ALTER COLUMN idappareil SET DEFAULT c
 
 CREATE TABLE m_reseau_humide.an_raepa_apparaep
 (
-  idappareil character varying(254) NOT NULL,
-  fnappaep character varying(2) NOT NULL
+  idappareil character varying(254) NOT NULL, -- fkey vers attribut idappareil de la classe appareillage
+  fnappaep character varying(2) NOT NULL -- fkey vers domaine de valeur
 )
 WITH (
   OIDS=FALSE
@@ -1101,9 +1104,9 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_apparaep.fnappaep IS 'Fonction de l''
 
 CREATE TABLE m_reseau_humide.an_raepa_apparass
 (
-  idappareil character varying(254) NOT NULL,
-  typreseau character varying(2) NOT NULL,
-  fnappass character varying(2) NOT NULL
+  idappareil character varying(254) NOT NULL, -- fkey vers attribut idappareil de la classe appareillage
+  typreseau character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  fnappass character varying(2) NOT NULL -- fkey vers domaine de valeur
 )
 WITH (
   OIDS=FALSE
@@ -1130,7 +1133,7 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_apparass.fnappass IS 'Fonction de l''
 CREATE TABLE m_reseau_humide.an_raepa_ouvr
 (
   idouvrage character varying(254) NOT NULL,
-  idnoeud character varying(254) NOT NULL,
+  idnoeud character varying(254) NOT NULL, -- fkey vers attribut idnoeud de la classe noeud
   z numeric(6,2),
   CONSTRAINT an_raepa_ouvr_pkey PRIMARY KEY (idouvrage) 
 )
@@ -1175,8 +1178,8 @@ ALTER TABLE m_reseau_humide.an_raepa_ouvr ALTER COLUMN idouvrage SET DEFAULT con
 
 CREATE TABLE m_reseau_humide.an_raepa_ouvraep
 (
-  idouvrage character varying(254) NOT NULL,
-  fnouvaep character varying(2) NOT NULL
+  idouvrage character varying(254) NOT NULL, -- fkey vers attribut idouvrage de la classe ouvrage
+  fnouvaep character varying(2) NOT NULL -- fkey vers domaine de valeur
 )
 WITH (
   OIDS=FALSE
@@ -1201,9 +1204,9 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_ouvraep.fnouvaep IS 'Fonction de l''o
 
 CREATE TABLE m_reseau_humide.an_raepa_ouvrass
 (
-  idouvrage character varying(254) NOT NULL,
-  typreseau character varying(2) NOT NULL,
-  fnouvass character varying(2) NOT NULL
+  idouvrage character varying(254) NOT NULL, -- fkey vers attribut idouvrage de la classe ouvrage
+  typreseau character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  fnouvass character varying(2) NOT NULL -- fkey vers domaine de valeur
 )
 WITH (
   OIDS=FALSE
@@ -1229,9 +1232,9 @@ CREATE TABLE m_reseau_humide.geo_raepa_repar
   idrepar character varying(254) NOT NULL,
 --  x
 --  y
-  supprepare character varying(2) NOT NULL,
-  defreparee character varying(2) NOT NULL,
-  idsuprepar character varying(254) NOT NULL,
+  supprepare character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  defreparee character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  idsuprepar character varying(254) NOT NULL, -- fkey vers attribut idraepa de la classe raepa_id
   daterepart date,
   mouvrage character varying(100), -- *******  voir pour privilégier des domaines de valeur  *******
   geom geometry(Point,2154),
@@ -1355,6 +1358,9 @@ ALTER TABLE m_reseau_humide.an_raepa_canalass
       
 ALTER TABLE m_reseau_humide.geo_raepa_noeud
 
+  ADD CONSTRAINT idcanppale_fkey FOREIGN KEY (idcanppale)
+      REFERENCES m_reseau_humide.geo_raepa_canal (idcana) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
   ADD CONSTRAINT lt_raepa_qualite_anpose_fkey FOREIGN KEY (qualannee)
       REFERENCES m_reseau_humide.lt_raepa_qualite_anpose (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -1371,11 +1377,11 @@ ALTER TABLE m_reseau_humide.geo_raepa_noeud
 
 ALTER TABLE m_reseau_humide.an_raepa_appar
 
-  ADD CONSTRAINT idnoeud_fkey FOREIGN KEY (idnoeud)
-      REFERENCES m_reseau_humide.geo_raepa_noeud (idnoeud) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
   ADD CONSTRAINT idouvrage_fkey FOREIGN KEY (idouvrage)
       REFERENCES m_reseau_humide.an_raepa_ouvr (idouvrage) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  ADD CONSTRAINT idnoeud_fkey FOREIGN KEY (idnoeud)
+      REFERENCES m_reseau_humide.geo_raepa_noeud (idnoeud) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;
 
 -- ************ AN_RAEPA_APPAR_AEP ************  
@@ -1567,6 +1573,9 @@ CREATE OR REPLACE VIEW m_reseau_humide.geo_v_raepa_apparaep AS
   p.fnappaep,
   g.anfinpose,
 -- diametre integer, -- A PRIORI soit : attribut manquant dans la modélisation à ce niveau car présent dans les tables implémentées d'appareillage ae et ass et absent pour les ouvrages / soit : attribut implémenté et qui ne devrait pas l'être / MCD
+-- idcanamont,
+-- idcanaval,  
+  g.idcanppale,
   a.idouvrage,
   a.z,
   g.andebpose,      
@@ -1611,6 +1620,9 @@ CREATE OR REPLACE VIEW m_reseau_humide.geo_v_raepa_apparass AS
   p.fnappass,
   g.anfinpose,
 -- diametre integer, -- A PRIORI soit : attribut manquant dans la modélisation à ce niveau car présent dans les tables implémentées d'appareillage ae et ass et absent pour les ouvrages / soit : attribut implémenté et qui ne devrait pas l'être / MCD
+-- idcanamont,
+-- idcanaval,  
+  g.idcanppale,
   a.idouvrage,
   a.z,
   g.andebpose,      
@@ -1654,6 +1666,9 @@ CREATE OR REPLACE VIEW m_reseau_humide.geo_v_raepa_ouvraep AS
   g.gexploit,
   p.fnouvaep,
   g.anfinpose,
+-- idcanamont,
+-- idcanaval,  
+  g.idcanppale,  
   a.z,
   g.andebpose,      
   g.qualglocxy,
@@ -1695,6 +1710,9 @@ CREATE OR REPLACE VIEW m_reseau_humide.geo_v_raepa_ouvrass AS
   g.gexploit,
   p.fnouvass,
   g.anfinpose,
+-- idcanamont,
+-- idcanaval,  
+  g.idcanppale, 
   a.z,
   g.andebpose,      
   g.qualglocxy,
