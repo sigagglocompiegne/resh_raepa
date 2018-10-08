@@ -45,9 +45,15 @@
 
 ## Problématiques d'implémentation
 
+### modélisation
+
 - id de type char(254) alors que nous utilisons classiquement des entiers
 - des sous classes spécialisées à prévoir pour porter des attributs spécifiques (ex : différents type d'avaloir)
 - besoin de classe d'habillage (ex : emprise de bassin)
 - besoin attribut "insee" pour filtrer et gestion des droits ==> implication sur la modélisation globale. Attention au cas de réseau sur voie entre 2 communes (ex : verberie/St Vaast), comment traiter le sujet ?
 - urbanisation geom entre pcrs et base métier raepa ??? ==> complexe à ce stade (absence de base topo locale)
 - IDSUPREPAR : voir comment gérer la vérification de l'id (fkey) en fonction de l'attribut qui dit le type de support. en fonction, il faudra vérifier soit l'idcana, soit l'idappareil, soit l'idouvrage ??? en passant l'id en type texte comme attendu, on doit pouvoir préfixer l'id par le type de classe puis un numero de sequence. de cette façon, pas de doublon de numero d'ordre pour l'id possible entre plusieurs classes. A cela s'ajoute l'obligation d'avoir une table de passage contenant l'ensemble des id des différentes classes du réseaux (cana, noeud, appar, ouvr) pour pouvoir placer la fkey sur celle-ci. Si cela n'est pas fait, le controle ne se fera pas par le biais d'une fkey mais par un trigger en cas de mise à jour. Ceci est autant que possible à proscrire. Cette table des id pourrait peut être également servir de table de correspondance et accueillir l'id externe du producteur de la donnée.
+
+### reprise de données
+
+- le domaine de valeur "materiau" est trop fin et n'a pas été conçu pour gérer des logiques d'emboitment (ex : 10 pour du PVC dont 11 pour du PVC ancien, 12 pour du PVC BO etc ...). Il en resulte une incapacité de migration d'information entre les sources et le domaine cible en raepa. Ceci induit une perte importante d'information ou un ajout inconsidéré d'attributs optionnels locaux. Voir dans quelle mesure une adaptation n'est pas possible (domaine local reconstruit avec table de passage pour export RAEPA ...)
