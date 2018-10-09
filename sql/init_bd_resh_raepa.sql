@@ -322,7 +322,7 @@ INSERT INTO m_reseau_humide.lt_raepa_qualite_geoloc(
     VALUES
 ('01','Classe A','Classe de précision inférieure 40 cm'),
 ('02','Classe B','Classe de précision supérieure à 40 cm et inférieure à 1,50 m'),
-('03','Classe C','Classe de précision supérieure à 1,50 m')
+('03','Classe C','Classe de précision supérieure à 1,50 m');
 --(('03','Classe C','Classe de précision supérieure à 1,50 m ou précision inconnue') -- voir si nécessaire de préciser que si la qualite de geoloc n'est pas connue, alors on classe en C;
 
 
