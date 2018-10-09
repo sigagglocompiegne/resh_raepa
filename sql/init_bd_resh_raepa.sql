@@ -322,7 +322,8 @@ INSERT INTO m_reseau_humide.lt_raepa_qualite_geoloc(
     VALUES
 ('01','Classe A','Classe de précision inférieure 40 cm'),
 ('02','Classe B','Classe de précision supérieure à 40 cm et inférieure à 1,50 m'),
-('03','Classe C','Classe de précision supérieure à 1,50 m');
+('03','Classe C','Classe de précision supérieure à 1,50 m')
+--(('03','Classe C','Classe de précision supérieure à 1,50 m ou précision inconnue') -- voir si nécessaire de préciser que si la qualite de geoloc n'est pas connue, alors on classe en C;
 
 
 -- Table: m_reseau_humide.lt_raepa_support_incident
@@ -793,10 +794,10 @@ CREATE TABLE m_reseau_humide.geo_raepa_canal
   gexploit character varying(100), -- *******  voir pour privilégier des domaines de valeur  ******* 
   enservice character varying(1),
   branchemnt character varying(1),  
-  materiau character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  materiau character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
   diametre integer,  
   anfinpose character varying(4),
-  modecircu character varying(2) NOT NULL, -- fkey vers domaine de valeur    
+  modecircu character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur    
   idnini character varying(254),
   idnterm character varying(254),
   idcanppale bigint,
@@ -807,7 +808,7 @@ CREATE TABLE m_reseau_humide.geo_raepa_canal
   qualglocz character varying(2) NOT NULL, -- fkey vers domaine de valeur
   datemaj date, -- faut il conserver ce champ si il peut simplement être déduit de date_maj ??
   sourcemaj character varying(100),
-  qualannee character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  qualannee character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
   dategeoloc date,
   sourgeoloc character varying(100),
   sourattrib character varying(100),
@@ -884,8 +885,8 @@ CREATE INDEX geo_raepa_canal_geom_gist ON m_reseau_humide.geo_raepa_canal USING 
 CREATE TABLE m_reseau_humide.an_raepa_canalae
 (
   idcana character varying(254) NOT NULL, -- fkey vers attribut idcana de la classe canalisation
-  contcanaep character varying(2) NOT NULL, -- fkey vers domaine de valeur
-  fonccanaep character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  contcanaep character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
+  fonccanaep character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
   profgen numeric (3,2) -- pourquoi dans le standard ceci est placé sur la sous classe cana AE ???
 )
 WITH (
@@ -901,7 +902,7 @@ COMMENT ON TABLE m_reseau_humide.an_raepa_canalae
   IS 'Sous classe décrivant les propriétés spécifiques d''une canalisation pour un réseau d''adduction d''eau';
 COMMENT ON COLUMN m_reseau_humide.an_raepa_canalae.idcana IS 'Identifiant de la canalisation';
 COMMENT ON COLUMN m_reseau_humide.an_raepa_canalae.contcanaep IS 'Catégorie de la canalisation d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.an_raepa_canalae.fonccanaep IS 'Catégorie de la canalisation d''adduction d''eau';
+COMMENT ON COLUMN m_reseau_humide.an_raepa_canalae.fonccanaep IS 'Fonction de la canalisation d''adduction d''eau';
 COMMENT ON COLUMN m_reseau_humide.an_raepa_canalae.profgen IS 'Profondeur moyenne de la génératrice supérieure de la canalisation (en mètres)';
 
 
@@ -914,9 +915,9 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_canalae.profgen IS 'Profondeur moyenn
 CREATE TABLE m_reseau_humide.an_raepa_canalass
 (
   idcana character varying(254) NOT NULL, -- fkey vers attribut idcana de la classe canalisation
-  typreseau character varying(2) NOT NULL, -- fkey vers domaine de valeur
-  contcanass character varying(2) NOT NULL, -- fkey vers domaine de valeur
-  fonccanass character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  typreseau character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
+  contcanass character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
+  fonccanass character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
   zamont numeric (6,2),
   zaval numeric (6,2),
   sensecoul character varying(1)
@@ -935,7 +936,7 @@ COMMENT ON TABLE m_reseau_humide.an_raepa_canalass
 COMMENT ON COLUMN m_reseau_humide.an_raepa_canalass.idcana IS 'Identifiant de la canalisation';
 COMMENT ON COLUMN m_reseau_humide.an_raepa_canalass.typreseau IS 'Type du réseau d''assainissement collectif';
 COMMENT ON COLUMN m_reseau_humide.an_raepa_canalass.contcanass IS 'Catégorie de la canalisation d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.an_raepa_canalass.fonccanass IS 'Catégorie de la canalisation d''assainissement collectif';
+COMMENT ON COLUMN m_reseau_humide.an_raepa_canalass.fonccanass IS 'Fonction de la canalisation d''assainissement collectif';
 COMMENT ON COLUMN m_reseau_humide.an_raepa_canalass.zamont IS 'Altitude à l''extrémité amont (en mètres, référentiel NGF-IGN69)';  
 COMMENT ON COLUMN m_reseau_humide.an_raepa_canalass.zaval IS 'Altitude à l''extrémité aval (en mètres, référentiel NGF-IGN69)';   
 COMMENT ON COLUMN m_reseau_humide.an_raepa_canalass.sensecoul IS 'Sens de l''écoulement dans la canalisation d''assainissement collectif';  
@@ -961,7 +962,7 @@ CREATE TABLE m_reseau_humide.geo_raepa_noeud
   qualglocz character varying(2) NOT NULL, -- fkey vers domaine de valeur
   datemaj date, -- faut il conserver ce champ si il peut simplement être déduit de date_maj ??
   sourcemaj character varying(100),
-  qualannee character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  qualannee character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
   dategeoloc date,
   sourgeoloc character varying(100),
   sourattrib character varying(100),
@@ -1079,7 +1080,7 @@ ALTER TABLE m_reseau_humide.an_raepa_appar ALTER COLUMN idappareil SET DEFAULT c
 CREATE TABLE m_reseau_humide.an_raepa_apparaep
 (
   idappareil character varying(254) NOT NULL, -- fkey vers attribut idappareil de la classe appareillage
-  fnappaep character varying(2) NOT NULL -- fkey vers domaine de valeur
+  fnappaep character varying(2) NOT NULL DEFAULT '00' -- fkey vers domaine de valeur
 )
 WITH (
   OIDS=FALSE
@@ -1105,8 +1106,8 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_apparaep.fnappaep IS 'Fonction de l''
 CREATE TABLE m_reseau_humide.an_raepa_apparass
 (
   idappareil character varying(254) NOT NULL, -- fkey vers attribut idappareil de la classe appareillage
-  typreseau character varying(2) NOT NULL, -- fkey vers domaine de valeur
-  fnappass character varying(2) NOT NULL -- fkey vers domaine de valeur
+  typreseau character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
+  fnappass character varying(2) NOT NULL DEFAULT '00' -- fkey vers domaine de valeur
 )
 WITH (
   OIDS=FALSE
@@ -1179,7 +1180,7 @@ ALTER TABLE m_reseau_humide.an_raepa_ouvr ALTER COLUMN idouvrage SET DEFAULT con
 CREATE TABLE m_reseau_humide.an_raepa_ouvraep
 (
   idouvrage character varying(254) NOT NULL, -- fkey vers attribut idouvrage de la classe ouvrage
-  fnouvaep character varying(2) NOT NULL -- fkey vers domaine de valeur
+  fnouvaep character varying(2) NOT NULL DEFAULT '00' -- fkey vers domaine de valeur
 )
 WITH (
   OIDS=FALSE
@@ -1205,8 +1206,8 @@ COMMENT ON COLUMN m_reseau_humide.an_raepa_ouvraep.fnouvaep IS 'Fonction de l''o
 CREATE TABLE m_reseau_humide.an_raepa_ouvrass
 (
   idouvrage character varying(254) NOT NULL, -- fkey vers attribut idouvrage de la classe ouvrage
-  typreseau character varying(2) NOT NULL, -- fkey vers domaine de valeur
-  fnouvass character varying(2) NOT NULL -- fkey vers domaine de valeur
+  typreseau character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
+  fnouvass character varying(2) NOT NULL DEFAULT '00' -- fkey vers domaine de valeur
 )
 WITH (
   OIDS=FALSE
@@ -1232,8 +1233,8 @@ CREATE TABLE m_reseau_humide.geo_raepa_repar
   idrepar character varying(254) NOT NULL,
 --  x
 --  y
-  supprepare character varying(2) NOT NULL, -- fkey vers domaine de valeur
-  defreparee character varying(2) NOT NULL, -- fkey vers domaine de valeur
+  supprepare character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
+  defreparee character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
   idsuprepar character varying(254) NOT NULL, -- fkey vers attribut idraepa de la classe raepa_id
   daterepart date,
   mouvrage character varying(100), -- *******  voir pour privilégier des domaines de valeur  *******
