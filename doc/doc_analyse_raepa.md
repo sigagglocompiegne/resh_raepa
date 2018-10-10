@@ -58,3 +58,4 @@
 
 - le domaine de valeur "materiau" est trop fin et n'a pas été conçu pour gérer des logiques d'emboitement (ex : 10 pour du PVC dont 11 pour du PVC ancien, 12 pour du PVC BO etc ...). Il en resulte une incapacité de migration d'information entre les sources et le domaine cible en raepa. Ceci induit une perte importante d'information ou un ajout inconsidéré d'attributs optionnels locaux. Voir dans quelle mesure une adaptation n'est pas possible (domaine local reconstruit avec table de passage pour export RAEPA ...)
 - absence attribut date_pose alors que cette information est parfois connue. Si pas d'ajout d'un champ optionnel, perte d'info
+- absent attribut hauteur, largeur qui permettrait de gérer les formes de "cana" type dalot rectangulaire en plus de l'attribut diametre
