@@ -82,13 +82,12 @@ DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_ouvraep;
 DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_ouvrass;
 -- fkey
 ALTER TABLE m_reseau_humide.geo_raepa_repar DROP CONSTRAINT IF EXISTS an_raepa_id_fkey;
+ALTER TABLE m_reseau_humide.geo_raepa_canal DROP CONSTRAINT IF EXISTS an_raepa_id_fkey;
 ALTER TABLE m_reseau_humide.an_raepa_canalae DROP CONSTRAINT IF EXISTS idcana_fkey;
 ALTER TABLE m_reseau_humide.an_raepa_canalass DROP CONSTRAINT IF EXISTS idcana_fkey;
 ALTER TABLE m_reseau_humide.geo_raepa_noeud DROP CONSTRAINT IF EXISTS idcanppale_fkey;
 ALTER TABLE m_reseau_humide.an_raepa_appar DROP CONSTRAINT IF EXISTS idnoeud_fkey;
 ALTER TABLE m_reseau_humide.an_raepa_ouvr DROP CONSTRAINT IF EXISTS idnoeud_fkey;
---ALTER TABLE m_reseau_humide.an_raepa_apparaep DROP CONSTRAINT IF EXISTS lt_raepa_cat_app_aep_fkey;
---ALTER TABLE m_reseau_humide.an_raepa_apparass DROP CONSTRAINT IF EXISTS lt_raepa_cat_app_ass_fkey;
 -- classe
 DROP TABLE IF EXISTS m_reseau_humide.an_raepa_id;
 DROP TABLE IF EXISTS m_reseau_humide.geo_raepa_canal;
@@ -1300,6 +1299,9 @@ CREATE INDEX geo_raepa_repar_geom_gist ON m_reseau_humide.geo_raepa_repar USING 
 
 ALTER TABLE m_reseau_humide.geo_raepa_canal
 
+  ADD CONSTRAINT an_raepa_id_fkey FOREIGN KEY (idcana)
+      REFERENCES m_reseau_humide.an_raepa_id (idraepa) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,  
   ADD CONSTRAINT idnini_fkey FOREIGN KEY (idnini)
       REFERENCES m_reseau_humide.geo_raepa_noeud (idnoeud) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
@@ -1746,10 +1748,130 @@ COMMENT ON VIEW m_reseau_humide.geo_v_raepa_ouvrass
 
 
 
+-- #################################################################### FONCTION TRIGGER - GEO_V_RAEPA_CANALAE ###################################################
+
+-- Function: m_reseau_humide.ft_geo_v_raepa_canalae()
+
+-- DROP FUNCTION m_reseau_humide.ft_geo_v_raepa_canalae();
+
+CREATE OR REPLACE FUNCTION m_reseau_humide.ft_geo_v_raepa_canalae()
+  RETURNS trigger AS
+$BODY$
+
+DECLARE v_idcana_raepa character varying(254);
+
+BEGIN
+
+-- INSERT
+IF (TG_OP = 'INSERT') THEN
+
+v_idcana_raepa := concat('cana',nextval('m_reseau_humide.geo_raepa_canal_id_seq'::regclass));
+
+INSERT INTO m_reseau_humide.an_raepa_id (idraepa,idexterne)
+SELECT v_idcana_raepa,
+NULL;
+
+INSERT INTO m_reseau_humide.geo_raepa_canal (idcana,mouvrage,gexploit,enservice,branchemnt,materiau,diametre,anfinpose,modecircu,idnini,idnterm,idcanppale,andebpose,longcana,nbranche,qualglocxy,qualglocz,datemaj,sourcemaj,qualannee,dategeoloc,sourgeoloc,sourattrib,geom)
+SELECT v_idcana_raepa,
+CASE WHEN NEW.mouvrage = '' THEN NULL ELSE NEW.mouvrage END, -- voir si on gère pas aussi la casse
+CASE WHEN NEW.gexploit = '' THEN NULL ELSE NEW.gexploit END, -- voir si on gère pas aussi la casse
+CASE WHEN NEW.enservice = '' THEN NULL ELSE NEW.enservice END, -- voir domaine de valeur type faux booleen à créer
+CASE WHEN NEW.branchemnt = '' THEN NULL ELSE NEW.branchemnt END, -- voir domaine de valeur type faux booleen à créer
+CASE WHEN NEW.materiau IS NULL THEN '00' ELSE NEW.materiau END,
+CASE WHEN NEW.diametre IS NULL THEN 0 ELSE NEW.diametre END,
+CASE WHEN NEW.anfinpose IS NULL THEN '0000' ELSE NEW.anfinpose END,
+CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.anfinpose END,
+NEW.idnini, -- voir par jointure graphique à aller chercher le numéro du noeud
+NEW.idnterm, -- voir par jointure graphique à aller chercher le numéro du noeud
+CASE WHEN NEW.branchemnt = 'N' THEN NULL ELSE NEW.idcanppale END, -- lorsque la cana est déclarée de type non branchement, alors idcanppale est NULL, dans le cas inverse
+NEW.andebpose,
+st_length(NEW.geom),
+NEW.nbranche, -- voir si capacité à calculer en automatique par références d'id liés
+CASE WHEN NEW.qualglocxy IS NULL THEN '03' ELSE NEW.qualglocxy END,
+CASE WHEN NEW.qualglocz IS NULL THEN '03' ELSE NEW.qualglocz END,
+NEW.datemaj,
+NEW.sourcemaj,
+CASE WHEN NEW.qualannee IS NULL THEN '00' ELSE NEW.qualannee END,
+NEW.dategeoloc,
+CASE WHEN NEW.sourgeoloc = '' THEN NULL ELSE NEW.sourgeoloc END,
+CASE WHEN NEW.sourattrib = '' THEN NULL ELSE NEW.sourattrib END,
+NEW.geom;
+
+INSERT INTO m_reseau_humide.an_raepa_canalae (idcana,contcanaep,fonccanaep,profgen)
+SELECT v_idcana_raepa,
+CASE WHEN NEW.contcanaep IS NULL THEN '00' ELSE NEW.contcanaep END,
+CASE WHEN NEW.fonccanaep IS NULL THEN '00' ELSE NEW.fonccanaep END,
+NEW.profgen;
+
+
+RETURN NEW;
+
+
+-- UPDATE
+ELSIF (TG_OP = 'UPDATE') THEN
+
+-- pas d'update sur la table des an_raepa_id (sauf si on gère à ce niveau la référence du tiers producteur "idexterne")
+
+UPDATE
+m_reseau_humide.geo_raepa_canal
+SET
+idcana=OLD.idcana,
+mouvrage=CASE WHEN NEW.mouvrage = '' THEN NULL ELSE NEW.mouvrage END, -- voir si on gère pas aussi la casse
+gexploit=CASE WHEN NEW.gexploit = '' THEN NULL ELSE NEW.gexploit END, -- voir si on gère pas aussi la casse
+enservice=CASE WHEN NEW.enservice = '' THEN NULL ELSE NEW.enservice END, -- voir domaine de valeur type faux booleen à créer
+branchemnt=CASE WHEN NEW.branchemnt = '' THEN NULL ELSE NEW.branchemnt END, -- voir domaine de valeur type faux booleen à créer
+materiau=CASE WHEN NEW.materiau IS NULL THEN '00' ELSE NEW.materiau END,
+diametre=CASE WHEN NEW.diametre IS NULL THEN 0 ELSE NEW.diametre END,
+anfinpose=CASE WHEN NEW.anfinpose IS NULL THEN '0000' ELSE NEW.anfinpose END,
+modecircu=CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.anfinpose END,
+idnini=NEW.idnini, -- voir par jointure graphique à aller chercher le numéro du noeud
+idnterm=NEW.idnterm, -- voir par jointure graphique à aller chercher le numéro du noeud
+idcanppale=CASE WHEN NEW.branchemnt = 'N' THEN NULL ELSE NEW.idcanppale END, -- lorsque la cana est déclarée de type non branchement, alors idcanppale est NULL, dans le cas inverse
+andebpose=NEW.andebpose,
+longcana=st_length(NEW.geom),
+nbranche=NEW.nbranche, -- voir si capacité à calculer en automatique par références d'id liés
+qualglocxy=CASE WHEN NEW.qualglocxy IS NULL THEN '03' ELSE NEW.qualglocxy END,
+qualglocz=CASE WHEN NEW.qualglocz IS NULL THEN '03' ELSE NEW.qualglocz END,
+datemaj=NEW.datemaj,
+sourcemaj=NEW.sourcemaj,
+qualannee=CASE WHEN NEW.qualannee IS NULL THEN '00' ELSE NEW.qualannee END,
+dategeoloc=NEW.dategeoloc,
+sourgeoloc=CASE WHEN NEW.sourgeoloc = '' THEN NULL ELSE NEW.sourgeoloc END,
+sourattrib=CASE WHEN NEW.sourattrib = '' THEN NULL ELSE NEW.sourattrib END,
+geom=NEW.geom;
+
+UPDATE
+m_reseau_humide.an_raepa_canalae
+SET
+idcana=OLD.idcana,
+contcanaep=CASE WHEN NEW.contcanaep IS NULL THEN '00' ELSE NEW.contcanaep END,
+fonccanaep=CASE WHEN NEW.fonccanaep IS NULL THEN '00' ELSE NEW.fonccanaep END,
+profgen=NEW.profgen;
+
+
+END IF;
+
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION m_reseau_humide.ft_geo_v_raepa_canalae()
+  OWNER TO postgres;
+COMMENT ON FUNCTION m_reseau_humide.ft_geo_v_raepa_canalae() IS 'Fonction trigger pour mise à jour de la vue de gestion des canalisations d''adduction d''eau';
 
 
 
+-- Trigger: t_t1_geo_v_raepa_canalae on m_reseau_humide.geo_v_raepa_canalae
 
+-- DROP TRIGGER t_t1_geo_v_pei_ctr ON m_reseau_humide.geo_v_raepa_canalae;
+
+CREATE TRIGGER t_t1_geo_v_raepa_canalae
+  INSTEAD OF INSERT OR UPDATE --OR DELETE
+  ON m_reseau_humide.geo_v_raepa_canalae
+  FOR EACH ROW
+  EXECUTE PROCEDURE m_reseau_humide.ft_geo_v_raepa_canalae();
+
+ 
 
 -- ####################################################################################################################################################
 -- ###                                                                                                                                              ###
@@ -1757,11 +1879,3 @@ COMMENT ON VIEW m_reseau_humide.geo_v_raepa_ouvrass
 -- ###                                                                                                                                              ###
 -- ####################################################################################################################################################
 
-/*
-
-INSERT INTO m_reseau_humide.an_raepa_canalass(
-            idcana, typreseau, contcanass,fonccanass,zamont,zaval,sensecoul)
-    VALUES
-('1','00','00','00',125.75,124.52,'0');
-
-*/
