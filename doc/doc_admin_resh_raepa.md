@@ -64,7 +64,7 @@ Valeurs possibles :
 
 ---
 
-`lt_raepa_mode_circulation` : Liste permettant de décrire le mode de circualtion de l'eau dans une canalisation 
+`lt_raepa_mode_circulation` : Liste permettant de décrire le mode de circulation de l'eau dans une canalisation 
 
 |Nom attribut | Définition | Type  | Valeurs par défaut |
 |:---|:---|:---|:---|
