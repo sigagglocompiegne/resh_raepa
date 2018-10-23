@@ -5,7 +5,7 @@
 ## Principes
   * **généralité** :
 
-Description détaillée du géostandard est disponible ici http://www.geoinformations.developpement-durable.gouv.fr/geostandard-reseaux-d-adduction-d-eau-potable-et-d-a3478.html
+Description détaillée du géostandard est disponible sur http://www.geoinformations.developpement-durable.gouv.fr/geostandard-reseaux-d-adduction-d-eau-potable-et-d-a3478.html
  
  * **résumé fonctionnel** :
  
