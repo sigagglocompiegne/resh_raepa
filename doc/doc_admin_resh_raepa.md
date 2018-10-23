@@ -62,3 +62,25 @@ Valeurs possibles :
 |28|Tôle galvanisée|Canalisation construite en tôle galvanisée|
 |99|Autre|Canalisation composée de tuyaux dont le matériau ne figure pas dans la liste ci-dessus|
 
+---
+
+`lt_raepa_mode_circulation` : Liste permettant de décrire le mode de circualtion de l'eau dans une canalisation 
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|
+|code|Code de la liste énumérée relative au mode de circualtion de l'eau dans une canalisation|character varying(2)| |
+|valeur|Valeur de la liste énumérée relative au mode de circualtion de l'eau dans une canalisation|character varying(80)| |
+|definition|Définition de la liste énumérée relative au mode de circualtion de l'eau dans une canalisation|character varying(255)| |
+
+Valeurs possibles :
+
+|Code | Valeur | Définition |
+|:---|:---|:---|  
+|00|Indéterminé|Mode de circulation inconnu|
+|01|Gravitaire|L'eau s'écoule par l'effet de la pesanteur dans la canalisation en pente|
+|02|Forcé|L'eau circule sous pression dans la canalisation grâce à un système de pompage|
+|03|Sous-vide|L'eau circule par l'effet de la mise sous vide de la canalisation par une centrale d'aspiration|
+|99|Autre|L'eau circule tantôt dans un des modes ci-dessus tantôt dans un autre|
+
+---
+
