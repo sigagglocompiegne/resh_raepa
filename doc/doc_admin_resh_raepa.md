@@ -29,6 +29,6 @@ Description détaillée du géostandard est disponible sur http://www.geoinforma
 
 Valeurs possibles :
 
-|Code | Valeur |
-|:---|:---| 
+|Code | Valeur | Définition |
+|:---|:---|:---|  
 
