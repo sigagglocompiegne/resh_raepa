@@ -21,11 +21,11 @@ Description détaillée du géostandard est disponible sur http://www.geoinforma
 
 `lt_raepa_materiau` : Liste permettant de décrire le matériau constitutif des tuyaux composant une canalisation 
 
-|Nom attribut | Définition | Type  | Valeurs par défaut |
-|:---|:---|:---|:---|
-|code|Code de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation|character varying(2)| |
-|valeur|Valeur de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation|character varying(80)| |
-|definition|Définition de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation|character varying(255)| |
+|Nom attribut | Définition | Type | 
+|:---|:---|:---|
+|code|Code de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation|character varying(2)|
+|valeur|Valeur de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation|character varying(80)|
+|definition|Définition de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation|character varying(255)|
 
 Valeurs possibles :
 
@@ -66,11 +66,11 @@ Valeurs possibles :
 
 `lt_raepa_mode_circulation` : Liste permettant de décrire le mode de circulation de l'eau dans une canalisation 
 
-|Nom attribut | Définition | Type  | Valeurs par défaut |
-|:---|:---|:---|:---|
-|code|Code de la liste énumérée relative au mode de circualtion de l'eau dans une canalisation|character varying(2)| |
-|valeur|Valeur de la liste énumérée relative au mode de circualtion de l'eau dans une canalisation|character varying(80)| |
-|definition|Définition de la liste énumérée relative au mode de circualtion de l'eau dans une canalisation|character varying(255)| |
+|Nom attribut | Définition | Type  |
+|:---|:---|:---|
+|code|Code de la liste énumérée relative au mode de circualtion de l'eau dans une canalisation|character varying(2)|
+|valeur|Valeur de la liste énumérée relative au mode de circualtion de l'eau dans une canalisation|character varying(80)|
+|definition|Définition de la liste énumérée relative au mode de circualtion de l'eau dans une canalisation|character varying(255)|
 
 Valeurs possibles :
 
