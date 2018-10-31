@@ -160,6 +160,12 @@ COMMENT ON SCHEMA m_reseau_humide
 
 -- DROP TABLE m_reseau_humide.lt_raepa_materiau;
 
+
+/*
+domaine de valeur trop fin, voir pour créer un système de nomenclature emboité (ex : 10=béton, 11=béton âme tôle ...) permettant également de servir de table de passage vers les codes RAEPA
+*/
+
+
 CREATE TABLE m_reseau_humide.lt_raepa_materiau
 (
   code character varying(2) NOT NULL,
@@ -238,7 +244,7 @@ GRANT SELECT ON TABLE m_reseau_humide.lt_raepa_mode_circulation TO read_sig;
 GRANT SELECT, UPDATE, INSERT, DELETE ON TABLE m_reseau_humide.lt_raepa_mode_circulation TO edit_sig;
 
 COMMENT ON TABLE m_reseau_humide.lt_raepa_mode_circulation
-  IS 'Code permettant de décrire le mode de circualtion de l''eau dans une canalisation';
+  IS 'Code permettant de décrire le mode de circulation de l''eau dans une canalisation';
 COMMENT ON COLUMN m_reseau_humide.lt_raepa_mode_circulation.code IS 'Code de la liste énumérée relative au mode de circualtion de l''eau dans une canalisation';
 COMMENT ON COLUMN m_reseau_humide.lt_raepa_mode_circulation.valeur IS 'Valeur de la liste énumérée relative au mode de circualtion de l''eau dans une canalisation';
 COMMENT ON COLUMN m_reseau_humide.lt_raepa_mode_circulation.definition IS 'Définition de la liste énumérée relative au mode de circualtion de l''eau dans une canalisation';
@@ -397,7 +403,9 @@ VALUES
 ('05','Joint','Joint défectueux'),
 ('06','Percement','Canalisation percée'),
 ('99','Autre','Défaillance dont le type ne figure pas dans la liste ci-dessus');
-
+/*
+voir si la liste est suffisante et assez détaillée
+*/
 
 -- ###################
 -- ##      AEP      ##
@@ -511,7 +519,9 @@ INSERT INTO m_reseau_humide.lt_raepa_cat_app_ae(
 ('07','Compteur','Appareil de mesure des volumes transités'),
 ('08','Débitmètre','Appareil de mesure des débits transit'),
 ('99','Autre','Appareillage dont le type ne figure pas dans la liste ci-dessus');
-
+/*
+voir si la liste est suffisante et assez détaillée
+*/
 
 -- Table: m_reseau_humide.lt_raepa_cat_ouv_ae
 
@@ -549,7 +559,9 @@ INSERT INTO m_reseau_humide.lt_raepa_cat_ouv_ae(
 ('04','Chambre de comptage','Chambre de comptage'),
 ('05','Captage','Captage'),
 ('99','Autre','Ouvrage dont le type ne figure pas dans la liste ci-dessus');
-
+/*
+voir si la liste est suffisante et assez détaillée
+*/
 
 
 -- ###################
@@ -696,7 +708,9 @@ INSERT INTO m_reseau_humide.lt_raepa_cat_app_ass(
 ('03','Vanne','Vanne d''assainissement'),
 ('04','Débitmètre','Appareil de mesure des débits transités'),
 ('99','Autre','Appareillage dont le type ne figure pas dans la liste ci-dessus');
-
+/*
+voir si la liste est suffisante et assez détaillée
+*/
 
 -- Table: m_reseau_humide.lt_raepa_cat_ouv_ass
 
@@ -736,7 +750,9 @@ INSERT INTO m_reseau_humide.lt_raepa_cat_ouv_ass(
 ('06','Regard','Regard'),
 ('07','Avaloir','Avaloir'),
 ('99','Autre','Ouvrage dont le type ne figure pas dans la liste ci-dessus');
-
+/*
+voir si la liste est suffisante et assez détaillée
+*/
 
 
 
@@ -1759,6 +1775,7 @@ CREATE OR REPLACE FUNCTION m_reseau_humide.ft_geo_v_raepa_canalae()
 $BODY$
 
 DECLARE v_idcana_raepa character varying(254);
+DECLARE v_idnoeud_raepa character varying(254);
 
 BEGIN
 
@@ -1780,9 +1797,9 @@ CASE WHEN NEW.branchemnt = '' THEN NULL ELSE NEW.branchemnt END, -- voir domaine
 CASE WHEN NEW.materiau IS NULL THEN '00' ELSE NEW.materiau END,
 CASE WHEN NEW.diametre IS NULL THEN 0 ELSE NEW.diametre END,
 CASE WHEN NEW.anfinpose IS NULL THEN '0000' ELSE NEW.anfinpose END,
-CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.anfinpose END,
-NEW.idnini, -- voir par jointure graphique à aller chercher le numéro du noeud
-NEW.idnterm, -- voir par jointure graphique à aller chercher le numéro du noeud
+CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.modecircu END,
+(SELECT idnoeud FROM m_reseau_humide.geo_raepa_noeud WHERE ST_Contains(st_startpoint(NEW.geom),geom) IS TRUE), -- par jointure graphique on va chercher le numéro du noeud pour le NEW.idnini
+(SELECT idnoeud FROM m_reseau_humide.geo_raepa_noeud WHERE ST_Contains(st_endpoint(NEW.geom),geom) IS TRUE), -- par jointure graphique on va chercher le numéro du noeud pour le NEW.idnterm
 CASE WHEN NEW.branchemnt = 'N' THEN NULL ELSE NEW.idcanppale END, -- lorsque la cana est déclarée de type non branchement, alors idcanppale est NULL, dans le cas inverse
 NEW.andebpose,
 st_length(NEW.geom),
@@ -1803,7 +1820,6 @@ CASE WHEN NEW.contcanaep IS NULL THEN '00' ELSE NEW.contcanaep END,
 CASE WHEN NEW.fonccanaep IS NULL THEN '00' ELSE NEW.fonccanaep END,
 NEW.profgen;
 
-
 RETURN NEW;
 
 
@@ -1823,9 +1839,9 @@ branchemnt=CASE WHEN NEW.branchemnt = '' THEN NULL ELSE NEW.branchemnt END, -- v
 materiau=CASE WHEN NEW.materiau IS NULL THEN '00' ELSE NEW.materiau END,
 diametre=CASE WHEN NEW.diametre IS NULL THEN 0 ELSE NEW.diametre END,
 anfinpose=CASE WHEN NEW.anfinpose IS NULL THEN '0000' ELSE NEW.anfinpose END,
-modecircu=CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.anfinpose END,
-idnini=NEW.idnini, -- voir par jointure graphique à aller chercher le numéro du noeud
-idnterm=NEW.idnterm, -- voir par jointure graphique à aller chercher le numéro du noeud
+modecircu=CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.modecircu END,
+idnini=(SELECT idnoeud FROM m_reseau_humide.geo_raepa_noeud WHERE ST_Contains(st_startpoint(NEW.geom),geom) IS TRUE), -- par jointure graphique on va chercher le numéro du noeud pour le NEW.idnini
+idnterm=(SELECT idnoeud FROM m_reseau_humide.geo_raepa_noeud WHERE ST_Contains(st_endpoint(NEW.geom),geom) IS TRUE), -- par jointure graphique on va chercher le numéro du noeud pour le NEW.idnterm
 idcanppale=CASE WHEN NEW.branchemnt = 'N' THEN NULL ELSE NEW.idcanppale END, -- lorsque la cana est déclarée de type non branchement, alors idcanppale est NULL, dans le cas inverse
 andebpose=NEW.andebpose,
 longcana=st_length(NEW.geom),
@@ -1848,6 +1864,7 @@ contcanaep=CASE WHEN NEW.contcanaep IS NULL THEN '00' ELSE NEW.contcanaep END,
 fonccanaep=CASE WHEN NEW.fonccanaep IS NULL THEN '00' ELSE NEW.fonccanaep END,
 profgen=NEW.profgen;
 
+RETURN NEW;
 
 END IF;
 
