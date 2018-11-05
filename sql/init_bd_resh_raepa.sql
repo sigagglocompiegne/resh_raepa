@@ -1900,7 +1900,7 @@ CREATE TRIGGER t_t1_geo_v_raepa_canalae
 
 -- données fictives pour test
 
-### NOEUD ###
+-- ### NOEUD ###
 
 INSERT INTO m_reseau_humide.geo_raepa_noeud(
             idnoeud, mouvrage, gexploit, anfinpose, idcanppale, andebpose, qualglocxy, qualglocz, datemaj, sourcemaj, qualannee, dategeoloc, sourgeoloc, sourattrib, geom)
@@ -1908,7 +1908,7 @@ INSERT INTO m_reseau_humide.geo_raepa_noeud(
 (concat('noeud',nextval('m_reseau_humide.geo_raepa_noeud_id_seq'::regclass)), NULL, NULL, NULL, NULL, NULL, '03', '03', NULL, NULL, '00', NULL, NULL, NULL, ST_GeomFromText('POINT(681028 6918030)', 2154)),
 (concat('noeud',nextval('m_reseau_humide.geo_raepa_noeud_id_seq'::regclass)), NULL, NULL, NULL, NULL, NULL, '03', '03', NULL, NULL, '00', NULL, NULL, NULL, ST_GeomFromText('POINT(681047 6918043)', 2154));
 
-### CANALISATION AE ###
+-- ### CANALISATION AE ###
 
 INSERT INTO m_reseau_humide.geo_v_raepa_canalae(
             idcana, mouvrage, gexploit, enservice, branchemnt, materiau, diametre, anfinpose, modecircu, contcanaep, fonccanaep, idnini, idnterm, idcanppale, profgen, andebpose, longcana, nbranche, qualglocxy, qualglocz, datemaj, sourcemaj, qualannee, dategeoloc, sourgeoloc, sourattrib, geom)
