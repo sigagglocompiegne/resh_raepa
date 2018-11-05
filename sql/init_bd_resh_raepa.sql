@@ -135,9 +135,8 @@ DROP SEQUENCE IF EXISTS m_reseau_humide.an_raepa_ouvr_id_seq;
 CREATE SCHEMA m_reseau_humide
   AUTHORIZATION sig_create;
 
-GRANT ALL ON TABLE m_reseau_humide.lt_raepa_materiau TO sig_create;
-GRANT SELECT ON TABLE m_reseau_humide.lt_raepa_materiau TO read_sig;
-GRANT SELECT, UPDATE, INSERT, DELETE ON TABLE m_reseau_humide.lt_raepa_materiau TO edit_sig;
+GRANT ALL ON SCHEMA m_reseau_humide TO postgres;
+GRANT ALL ON SCHEMA m_reseau_humide TO groupe_sig WITH GRANT OPTION;
 COMMENT ON SCHEMA m_reseau_humide
   IS 'Données géographiques métiers sur le thème des réseaux humides';
 
@@ -1913,6 +1912,6 @@ INSERT INTO m_reseau_humide.geo_raepa_noeud(
 INSERT INTO m_reseau_humide.geo_v_raepa_canalae(
             idcana, mouvrage, gexploit, enservice, branchemnt, materiau, diametre, anfinpose, modecircu, contcanaep, fonccanaep, idnini, idnterm, idcanppale, profgen, andebpose, longcana, nbranche, qualglocxy, qualglocz, datemaj, sourcemaj, qualannee, dategeoloc, sourgeoloc, sourattrib, geom)
     VALUES
-(concat('cana',nextval('m_reseau_humide.geo_raepa_canal_id_seq'::regclass)), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ST_GeomFromText('LINESTRING(681028 6918030, 681047 6918043)', 2154));
+(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ST_GeomFromText('LINESTRING(681028 6918030, 681047 6918043)', 2154));
 
 */
