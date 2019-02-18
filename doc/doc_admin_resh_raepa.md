@@ -15,7 +15,6 @@ Description détaillée du géostandard est disponible sur http://www.geoinforma
 
 ## Classes d'objets
 
-Par convention, il a été retenu par la collectivité que les identifiants imposés par le géostandard RAEPA relèvent du système de base de données de la collectivité en tant que producteur. Ils se distinguent donc de l'identifiant géré par le(s) concessionnaire(s) délégué(s). En complément, afin de maintenir un appariement essentiel à la base gestion de la base de données, un attribut optionnel est prévu pour permettre au concessionnaire d'ajouter son information.
 
 ## Liste de valeurs
 
