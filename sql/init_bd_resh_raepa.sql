@@ -5,47 +5,31 @@
 
 principes généraux : implémentation en base au plus proche du modèle conceptuel des données, la reconstruction de classe fine plus proche d'un mode fichier à plat, est assurée par des vues
 
-- les classes sont communes AEP, ASS et sont au nombre de:
+- les classes sont communes AEP, ASS et sont au nombre de 3 :
   - canalisation
   - noeud
   - reparation  
- des sous classes appareillage et ouvrage hèritent de la géométrie de la classe noeud
- la classe noeud est elle même dépendante d'une surclasse AffleurantSymbolePCRS. tout noeud du réseau poosède les mêmes coordonnées x et y que le centre d'un affleurant symbolisé dans le PCRS d'angle de rotation 0, de longueur et de largeur 1
+ Les sous classes "appareillage" et "ouvrage" hèritent de la géométrie de la classe noeud
+ la classe noeud est elle même dépendante d'une surclasse AffleurantSymbolePCRS. Ainsi, tout noeud du réseau possède les mêmes coordonnées x et y que le centre d'un affleurant symbolisé dans le PCRS d'angle de rotation 0, de longueur et de largeur 1
  
 
 
 __ CANALISATION
-  |
   |__ CANA AEP
-  |
   |__ CANA ASS
-     |
      |__ CANA EU
-     |
      |__ CANA EP
-     |
      |__ CANA UN ???   
       
 __ NOEUD
-  |
   |__ NOEUD ( autre) ==> voir si prévu par le MCD
-  |
   |__ OUVRAGE
-  |  |
   |  |__ OUVRAGE AEP
-  |  |
   |  |__ OUVRAGE ASS
-  |     |
   |     |__ OUVRAGE specialise ...
-  |
-  |  
-  |
   |__ APPAREILLAGE
-     |
      |__ APPAREILLAGE AEP
-     |
      |__ APPAREILLAGE ASS
-        |
         |__ APPAREILLAGE specialise ...
 
 __ REPARATION
