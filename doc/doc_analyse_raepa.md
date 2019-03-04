@@ -9,6 +9,8 @@
 
 #### classe canalisation
 
+- contraintes : canalisation sont des noeuds aux 2 extrémités sauf pour une canalisation de branchement individuel ...
+Ceci semble diverger avec les règles, même adaptées pour les branchements, qui sont posées en B.1.3. Le reste du document donne plutôt l'impression qu'au noeud non coupant sur une canalisation, on place à minima un noeud appareillage de type piquage non sécant.
 - maitreOuvrage : prévoir des domaines de valeurs
 - exploitant : prévoir des domaines de valeurs
 - longueur : réelle ou calculée ??
