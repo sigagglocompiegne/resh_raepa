@@ -2,6 +2,7 @@
 
 # Documentation d'administration pour la validation des données de production
 
+chk list
 * superposition d'ouvrage entre eux
 * superposition d'appareillage entre eux
 * corrélation entre la géométrie et les coordonnées attributaire
