@@ -5,6 +5,7 @@
 chk list
 * superposition d'ouvrage entre eux
 * superposition d'appareillage entre eux
+* erreur de topologie intraclasse pour les canalisation (papillon etc ...)
 * corrélation entre la géométrie et les coordonnées attributaires (app,ouv,cana)
 * noeud (ouv/app) non connecté à au moins une canalisation
 * canalisation non connectée à des noeuds
