@@ -11,4 +11,4 @@ chk list
   * 2 noeuds dans le cas d'une canalisation principale
   * au moins 1 noeud dans le cas d'un branchement et dans le cas où le point de jonction n'est pas sécant
 * canalisation sécante
- * à l'exception du cas d'une canalisation ASS de type refoulement avec une canalisation d'un autre type ou d'un branchement
+  * à l'exception du cas d'une canalisation ASS de type refoulement avec une canalisation d'un autre type ou d'un branchement
