@@ -5,7 +5,7 @@
 chk list
 * superposition d'ouvrage entre eux
 * superposition d'appareillage entre eux
-* corrélation entre la géométrie et les coordonnées attributaire
+* corrélation entre la géométrie et les coordonnées attributaires (app,ouv,cana)
 * noeud (ouv/app) non connecté à au moins une canalisation
 * canalisation non connectée à des noeuds
   * 2 noeuds dans le cas d'une canalisation principale
