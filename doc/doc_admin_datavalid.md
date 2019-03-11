@@ -16,3 +16,4 @@ chk list d'interdit
   * à l'exception d'une canalisation qui n'est plus en service (enservice=N)
 * de base, le sens d'écoulement dans une canalisation correspond au noeud amont pour le point de départ et au noeud aval pour le point d'arrivée, éventuellement au cas inverse si le sens d'écoulement de la canalisation le précise (attribut sensecoul=0)
 * canalisation de branchement sur un ouvrage autre qu'un regard (avaloir ?, NR et autre)
+* canalisation de refoulement dont le point terminal est une station de pompage
