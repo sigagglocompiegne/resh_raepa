@@ -4,24 +4,18 @@
 
 `lt_raepa_cat_ouv_ass` : Liste des valeurs de l'attribut type d'ouvrage assainissement
 
-|Code RAEPA|Valeur RAEPA|Code ARC|Valeur ARC|Code EXP1|Valeur EXP1|Commentaire|
+|Code RAEPA|Valeur RAEPA|Code ARC|Valeur ARC|Classe EXP1|Code EXP1|Commentaire|
 |:---|:---|:---|:---|:---|:---|:---|
 |00|Non renseigné|00|Non renseigné|||RAS|
-|01|Station de pompage|||A-POMPAG||<=> poste de relevage ??|
-|02|Station d'épuration|02|Station d'épuration|A-STEP|Station d'épuration|RAS|
+|01|Station de pompage|||A-POMPAG|REFOUL|<=> poste de relevage ??|
+|02|Station d'épuration|02|Station d'épuration|A-STEP||RAS|
 |03|Bassin de stockage|||||<=> bassin de rétention ??|
 |04|Déversoir d'orage|04|Déversoir d'orage|||RAS|
 |05|Rejet|||||<=> trop plein ??|
-|06|Regard|06|Regard|A-REGARD|Regard|Sous type à prévoir|
+|06|Regard|06|Regard|A-REGARD|SIM|Regard|Sous type à prévoir|
 |07|Avaloir|07|Avaloir|||Sous type à prévoir|
 |99|Autre|99|Autre|||RAS|
-|??|??|??|Dégrilleur||||
-|??|??|??|Dessableur||||
-|??|??|??|Brise charge, canal de mesure||||
-|??|??|??|Traitement sur réseau||||
-|??|??|??|Centrale sous vide||||
-|??|??|??|Chambre de détente||||
-
+|??|??|??|Dégrilleur|||||
 ## Analyse geostandard RAEPA 1.1
 
 ### partie B - Modèle conceptuel de données
