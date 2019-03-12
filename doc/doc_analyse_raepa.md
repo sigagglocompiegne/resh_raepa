@@ -8,9 +8,9 @@
 |:---|:---|:---|:---|:---|
 |00|Non renseigné|00|Non renseigné|RAS|
 |01|Station de pompage|||<=> poste de relevage ??|
-|02|Station d'épuration||||
+|02|Station d'épuration|02|Station d'épuration|RAS|
 |03|Bassin de stockage||||
-|04|Déversoir d'orage||||
+|04|Déversoir d'orage|04|Déversoir d'orage|RAS|
 |05|Rejet||||
 |06|Regard||||
 |07|Avaloir||||
