@@ -2,16 +2,20 @@
 
 ## Typologie
 
-|Nom attribut | Définition | Type | Valeurs par défaut |
+
+Correspondance 
+
+`lt_toto` : Liste des valeurs de l'attribut toto
+
+|Nom attribut | Définition | Type  | Valeurs par défaut |
+|:---|:---|:---|:---|    
+|code|Code|character(4)| |
+|valeur|Valeur|character varying(80)| |
+
+|Nom attribut RAEPA| Définition | Type | Valeurs par défaut |
 |:---|:---|:---|:---|
 |idurba|Identifiant du document d'urbanisme|character varying(30)| |
-|typedoc|Type du document concerné|character varying(4)| |
-|etat|Etat juridique du document|character varying(2)| |
-|nomproc|Codage de la version du document concerné|character varying(10)| |
-|l_nomprocn|N° d'ordre de la procédure|integer| |
-|datappro|Date d'approbation|character varying(8)| |
-|datefin|date de fin de validité|character varying(8)| |
-|siren|Code SIREN de l'intercommunalité|character varying(9)| |
+
 
 ## Analyse geostandard RAEPA 1.1
 
