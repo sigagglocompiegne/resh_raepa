@@ -2,14 +2,14 @@
 
 ## Typologie
 
-`lt_toto` : Liste des valeurs de l'attribut type d'ouvrage (
+`lt_toto` : Liste des valeurs de l'attribut type d'ouvrage assainissement
 
 |Code RAEPA|Valeur RAEPA|Code ARC|Valeur ARC|Commentaire|
 |:---|:---|:---|:---|:---|
 |00|Non renseigné|00|Non renseigné|RAS|
 |01|Station de pompage|||<=> poste de relevage ??|
 |02|Station d'épuration|02|Station d'épuration|RAS|
-|03|Bassin de stockage||||
+|03|Bassin de stockage|||<=> bassin de rétention ??|
 |04|Déversoir d'orage|04|Déversoir d'orage|RAS|
 |05|Rejet|||<=> trop plein ??|
 |06|Regard|06|Regard|Sous type à prévoir|
