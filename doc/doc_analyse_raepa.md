@@ -12,6 +12,17 @@ Correspondance
 |code|Code|character(4)| |
 |valeur|Valeur|character varying(80)| |
 
+Valeurs possibles :
+
+|Code|Valeur|
+|:---|:---|
+|RNU|Règlement national de l'urbanisme|
+|PLU|Plan local d'urbanisme|
+|PLUI|Plan local d'urbanisme intercommunal|
+|POS|Plan d'occupation des sols|
+|CC|Carte communale|
+|PSMV|Plan de sauvegarde et de mise en valeur|
+
 |Nom attribut RAEPA| Définition | Type | Valeurs par défaut |
 |:---|:---|:---|:---|
 |idurba|Identifiant du document d'urbanisme|character varying(30)| |
