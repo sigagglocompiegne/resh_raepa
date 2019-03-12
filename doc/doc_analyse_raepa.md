@@ -4,23 +4,23 @@
 
 `lt_toto` : Liste des valeurs de l'attribut type d'ouvrage assainissement
 
-|Code RAEPA|Valeur RAEPA|Code ARC|Valeur ARC|Code EXPLOIT1|Valeur EXPLOIT1|Commentaire|
+|Code RAEPA|Valeur RAEPA|Code ARC|Valeur ARC|Code EXP1|Valeur EXP1|Commentaire|
 |:---|:---|:---|:---|:---|:---|:---|
-|00|Non renseigné|00|Non renseigné|RAS|
-|01|Station de pompage|||<=> poste de relevage ??|
-|02|Station d'épuration|02|Station d'épuration|RAS|
-|03|Bassin de stockage|||<=> bassin de rétention ??|
-|04|Déversoir d'orage|04|Déversoir d'orage|RAS|
-|05|Rejet|||<=> trop plein ??|
-|06|Regard|06|Regard|Sous type à prévoir|
-|07|Avaloir|07|Avaloir|Sous type à prévoir|
-|99|Autre|99|Autre|RAS|
-|??|??|??|Dégrilleur||
-|??|??|??|Dessableur||
-|??|??|??|Brise charge, canal de mesure||
-|??|??|??|Traitement sur réseau||
-|??|??|??|Centrale sous vide||
-|??|??|??|Chambre de détente||
+|00|Non renseigné|00|Non renseigné|||RAS|
+|01|Station de pompage|||||<=> poste de relevage ??|
+|02|Station d'épuration|02|Station d'épuration|||RAS|
+|03|Bassin de stockage|||||<=> bassin de rétention ??|
+|04|Déversoir d'orage|04|Déversoir d'orage|||RAS|
+|05|Rejet|||||<=> trop plein ??|
+|06|Regard|06|Regard|||Sous type à prévoir|
+|07|Avaloir|07|Avaloir|||Sous type à prévoir|
+|99|Autre|99|Autre|||RAS|
+|??|??|??|Dégrilleur||||
+|??|??|??|Dessableur||||
+|??|??|??|Brise charge, canal de mesure||||
+|??|??|??|Traitement sur réseau||||
+|??|??|??|Centrale sous vide||||
+|??|??|??|Chambre de détente||||
 
 ## Analyse geostandard RAEPA 1.1
 
