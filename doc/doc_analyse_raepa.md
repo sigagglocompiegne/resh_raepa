@@ -4,12 +4,12 @@
 
 `lt_toto` : Liste des valeurs de l'attribut type d'ouvrage (
 
-|Code RAEPA|Valeur RAEPA|Code ARC|Valeur ARC|
-|:---|:---|:---|:---|
-|00|Non renseigné|00|Non renseigné|
-||||
-||||
-||||
+|Code RAEPA|Valeur RAEPA|Code ARC|Valeur ARC|Commentaire|
+|:---|:---|:---|:---|:---|
+|00|Non renseigné|00|Non renseigné|RAS|
+|||||
+|||||
+|||||
 
 
 
