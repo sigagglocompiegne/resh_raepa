@@ -2,30 +2,15 @@
 
 ## Typologie
 
+`lt_toto` : Liste des valeurs de l'attribut type d'ouvrage (
 
-Correspondance 
-
-`lt_toto` : Liste des valeurs de l'attribut toto
-
-|Nom attribut | Définition | Type  | Valeurs par défaut |
-|:---|:---|:---|:---|    
-|code|Code|character(4)| |
-|valeur|Valeur|character varying(80)| |
-
-Valeurs possibles :
-
-|Code|Valeur|
-|:---|:---|
-|RNU|Règlement national de l'urbanisme|
-|PLU|Plan local d'urbanisme|
-|PLUI|Plan local d'urbanisme intercommunal|
-|POS|Plan d'occupation des sols|
-|CC|Carte communale|
-|PSMV|Plan de sauvegarde et de mise en valeur|
-
-|Nom attribut RAEPA| Définition | Type | Valeurs par défaut |
+|Code RAEPA|Valeur RAEPA|Code ARC|Valeur ARC|
 |:---|:---|:---|:---|
-|idurba|Identifiant du document d'urbanisme|character varying(30)| |
+|00|Non renseigné|00|Non renseigné|
+||||
+||||
+||||
+
 
 
 ## Analyse geostandard RAEPA 1.1
