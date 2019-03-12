@@ -12,8 +12,8 @@
 |03|Bassin de stockage||||
 |04|Déversoir d'orage|04|Déversoir d'orage|RAS|
 |05|Rejet|||<=> trop plein ??|
-|06|Regard||||
-|07|Avaloir||||
+|06|Regard|06|Regard|Sous type à prévoir|
+|07|Avaloir|07|Avaloir|Sous type à prévoir|
 |99|Autre|99|Autre|RAS|
 |??|??|??|Dégrilleur||
 |??|??|??|Dessableur||
