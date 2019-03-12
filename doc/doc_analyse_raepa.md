@@ -4,8 +4,8 @@
 
 `lt_toto` : Liste des valeurs de l'attribut type d'ouvrage assainissement
 
-|Code RAEPA|Valeur RAEPA|Code ARC|Valeur ARC|Commentaire|
-|:---|:---|:---|:---|:---|
+|Code RAEPA|Valeur RAEPA|Code ARC|Valeur ARC|Code EXPLOIT1|Valeur EXPLOIT1|Commentaire|
+|:---|:---|:---|:---|:---|:---|:---|
 |00|Non renseigné|00|Non renseigné|RAS|
 |01|Station de pompage|||<=> poste de relevage ??|
 |02|Station d'épuration|02|Station d'épuration|RAS|
