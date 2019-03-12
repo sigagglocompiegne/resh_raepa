@@ -1,6 +1,6 @@
 # Analyse du géostandard et problématiques d'implémentation locale
 
-## Typologie
+## Elaboration des reclassements des typologies des données exploitant / collectivité / raepa
 
 `lt_toto` : Liste des valeurs de l'attribut type d'ouvrage assainissement
 
