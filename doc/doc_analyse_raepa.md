@@ -2,7 +2,7 @@
 
 ## Elaboration des reclassements des typologies des données exploitant / collectivité / raepa
 
-`lt_toto` : Liste des valeurs de l'attribut type d'ouvrage assainissement
+`lt_raepa_cat_ouv_ass` : Liste des valeurs de l'attribut type d'ouvrage assainissement
 
 |Code RAEPA|Valeur RAEPA|Code ARC|Valeur ARC|Code EXP1|Valeur EXP1|Commentaire|
 |:---|:---|:---|:---|:---|:---|:---|
