@@ -11,13 +11,16 @@
 |02|Station d'épuration|02|Station d'épuration|RAS|
 |03|Bassin de stockage||||
 |04|Déversoir d'orage|04|Déversoir d'orage|RAS|
-|05|Rejet||||
+|05|Rejet|||<=> trop plein ??|
 |06|Regard||||
 |07|Avaloir||||
 |99|Autre|99|Autre|RAS|
-|99|Autre|??|Dégrilleur||
-|99|Autre|??|Dessableur||
-
+|??|??|??|Dégrilleur||
+|??|??|??|Dessableur||
+|??|??|??|Brise charge, canal de mesure||
+|??|??|??|Traitement sur réseau||
+|??|??|??|Centrale sous vide||
+|??|??|??|Chambre de détente||
 
 ## Analyse geostandard RAEPA 1.1
 
