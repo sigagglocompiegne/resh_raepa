@@ -12,7 +12,8 @@
 |03|Bassin de stockage|||||<=> bassin de rétention ??|
 |04|Déversoir d'orage|04|Déversoir d'orage|||RAS|
 |05|Rejet|||||<=> trop plein ??|
-|06|Regard|06|Regard|A-REGARD|SIM|Regard|Sous type à prévoir|
+|06|Regard|06|Regard|A-REGARD|SIM|Regard|Regard|
+|06|Regard|06|Regard|A-REGARD|BOR|Regard|Regard borgne (sous type)|
 |07|Avaloir|07|Avaloir|||Sous type à prévoir|
 |99|Autre|99|Autre|||RAS|
 |??|??|??|Dégrilleur|||||
