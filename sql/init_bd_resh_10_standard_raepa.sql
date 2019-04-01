@@ -28,24 +28,24 @@ DROP VIEW IF EXISTS m_reseau_humide.raepa_reparass_p;
 
 -- fkey
 
-ALTER TABLE m_reseau_humide.raepa_metadonnees DROP CONSTRAINT IF EXISTS val_raepa_qualite_anpose_fkey;
-ALTER TABLE m_reseau_humide.raepa_metadonnees DROP CONSTRAINT IF EXISTS val_raepa_qualite_geoloc_xy_fkey;
-ALTER TABLE m_reseau_humide.raepa_metadonnees DROP CONSTRAINT IF EXISTS val_raepa_qualite_geoloc_z_fkey;
-ALTER TABLE m_reseau_humide.raepa_canal DROP CONSTRAINT IF EXISTS val_raepa_materiau_fkey;
-ALTER TABLE m_reseau_humide.raepa_canal DROP CONSTRAINT IF EXISTS val_raepa_mode_circulation_fkey;
-ALTER TABLE m_reseau_humide.raepa_canalaep DROP CONSTRAINT IF EXISTS val_raepa_cat_canal_ae_fkey;
-ALTER TABLE m_reseau_humide.raepa_canalaep DROP CONSTRAINT IF EXISTS val_raepa_fonc_canal_ae_fkey;
-ALTER TABLE m_reseau_humide.raepa_canalass DROP CONSTRAINT IF EXISTS val_raepa_cat_reseau_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_canalass DROP CONSTRAINT IF EXISTS val_raepa_cat_canal_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_canalass DROP CONSTRAINT IF EXISTS val_raepa_fonc_canal_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_apparaep DROP CONSTRAINT IF EXISTS val_raepa_cat_app_ae_fkey;
-ALTER TABLE m_reseau_humide.raepa_apparass DROP CONSTRAINT IF EXISTS val_raepa_cat_reseau_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_apparass DROP CONSTRAINT IF EXISTS val_raepa_cat_app_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_ouvraep DROP CONSTRAINT IF EXISTS val_raepa_cat_ouv_ae_fkey;
-ALTER TABLE m_reseau_humide.raepa_ouvrass DROP CONSTRAINT IF EXISTS val_raepa_cat_reseau_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_ouvrass DROP CONSTRAINT IF EXISTS val_raepa_cat_ouv_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_repar DROP CONSTRAINT IF EXISTS val_raepa_support_incident_fkey;
-ALTER TABLE m_reseau_humide.raepa_repar DROP CONSTRAINT IF EXISTS val_raepa_defaillance_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_metadonnees DROP CONSTRAINT IF EXISTS val_raepa_qualite_anpose_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_metadonnees DROP CONSTRAINT IF EXISTS val_raepa_qualite_geoloc_xy_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_metadonnees DROP CONSTRAINT IF EXISTS val_raepa_qualite_geoloc_z_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_canal DROP CONSTRAINT IF EXISTS val_raepa_materiau_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_canal DROP CONSTRAINT IF EXISTS val_raepa_mode_circulation_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_canalaep DROP CONSTRAINT IF EXISTS val_raepa_cat_canal_ae_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_canalaep DROP CONSTRAINT IF EXISTS val_raepa_fonc_canal_ae_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_canalass DROP CONSTRAINT IF EXISTS val_raepa_cat_reseau_ass_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_canalass DROP CONSTRAINT IF EXISTS val_raepa_cat_canal_ass_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_canalass DROP CONSTRAINT IF EXISTS val_raepa_fonc_canal_ass_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_apparaep DROP CONSTRAINT IF EXISTS val_raepa_cat_app_ae_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_apparass DROP CONSTRAINT IF EXISTS val_raepa_cat_reseau_ass_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_apparass DROP CONSTRAINT IF EXISTS val_raepa_cat_app_ass_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_ouvraep DROP CONSTRAINT IF EXISTS val_raepa_cat_ouv_ae_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_ouvrass DROP CONSTRAINT IF EXISTS val_raepa_cat_reseau_ass_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_ouvrass DROP CONSTRAINT IF EXISTS val_raepa_cat_ouv_ass_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_repar DROP CONSTRAINT IF EXISTS val_raepa_support_incident_fkey;
+ALTER TABLE IF EXISTS m_reseau_humide.raepa_repar DROP CONSTRAINT IF EXISTS val_raepa_defaillance_fkey;
 
 -- classe
 
@@ -817,8 +817,8 @@ COMMENT ON COLUMN m_reseau_humide.raepa_canalass.sensecoul IS 'Sens de l''écoul
 CREATE TABLE m_reseau_humide.raepa_noeud
 (
   idnoeud character varying(254) NOT NULL,
---  x
---  y  
+  x numeric(10,3) NOT NULL,
+  y numeric(11,3) NOT NULL,
   mouvrage character varying(100),
   gexploit character varying(100),
   anfinpose character varying(4),
@@ -834,8 +834,8 @@ WITH (
 COMMENT ON TABLE m_reseau_humide.raepa_noeud
   IS 'Lieu de jonction de plusieurs tronçons de conduite ou de percement d''un tronçon de conduite';
 COMMENT ON COLUMN m_reseau_humide.raepa_noeud.idnoeud IS 'Identifiant du noeud';
---  x
---  y 
+COMMENT ON COLUMN m_reseau_humide.raepa_noeud.x IS 'Coordonnée X Lambert 93 (en mètres)';
+COMMENT ON COLUMN m_reseau_humide.raepa_noeud.y IS 'Coordonnée X Lambert 93 (en mètres)';
 COMMENT ON COLUMN m_reseau_humide.raepa_noeud.mouvrage IS 'Maître d''ouvrage du réseau';
 COMMENT ON COLUMN m_reseau_humide.raepa_noeud.gexploit IS 'Gestionnaire exploitant du réseau';
 COMMENT ON COLUMN m_reseau_humide.raepa_noeud.anfinpose IS 'Année marquant la fin de la période de mise en service de l''appareillage et/ou de l''ouvrage';
@@ -992,8 +992,8 @@ COMMENT ON COLUMN m_reseau_humide.raepa_ouvrass.fnouvass IS 'Fonction de l''ouvr
 CREATE TABLE m_reseau_humide.raepa_repar
 (
   idrepar character varying(254) NOT NULL,
---  x
---  y
+  x numeric(10,3) NOT NULL,
+  y numeric(11,3) NOT NULL,
   supprepare character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
   defreparee character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
   idsuprepar character varying(254) NOT NULL, -- fkey vers attribut idraepa de la classe raepa_id
@@ -1009,8 +1009,8 @@ WITH (
 COMMENT ON TABLE m_reseau_humide.raepa_repar
   IS 'Lieu d''une intervention sur le réseau effectuée suite à une défaillance dudit réseau';
 COMMENT ON COLUMN m_reseau_humide.raepa_repar.idrepar IS 'Identifiant de la réparation effectuée';
--- COMMENT ON COLUMN m_reseau_humide.raepa_repar.x ;
--- COMMENT ON COLUMN m_reseau_humide.raepa_repar.y ;
+COMMENT ON COLUMN m_reseau_humide.raepa_repar.x IS 'Coordonnée X Lambert 93 (en mètres)';
+COMMENT ON COLUMN m_reseau_humide.raepa_repar.y IS 'Coordonnée X Lambert 93 (en mètres)';
 COMMENT ON COLUMN m_reseau_humide.raepa_repar.supprepare IS 'Type de support de la réparation';
 COMMENT ON COLUMN m_reseau_humide.raepa_repar.defreparee IS 'Type de défaillance';
 COMMENT ON COLUMN m_reseau_humide.raepa_repar.idsuprepar IS 'Identifiant du support de la réparation';
@@ -1260,8 +1260,8 @@ COMMENT ON VIEW m_reseau_humide.raepa_canalass_l
 CREATE OR REPLACE VIEW m_reseau_humide.raepa_apparaep_p AS 
  SELECT
   g.idnoeud as idappareil,
---  x
---  y
+  g.x,
+  g.y,
   g.mouvrage,
   g.gexploit,
   p.fnappaep,
@@ -1303,8 +1303,8 @@ COMMENT ON VIEW m_reseau_humide.raepa_apparaep_p
 CREATE OR REPLACE VIEW m_reseau_humide.raepa_apparass_p AS 
  SELECT
   g.idnoeud as idappareil,
---  x
---  y
+  g.x,
+  g.y,
   g.mouvrage,
   g.gexploit,
   p.typreseau,
@@ -1347,8 +1347,8 @@ COMMENT ON VIEW m_reseau_humide.raepa_apparass_p
 CREATE OR REPLACE VIEW m_reseau_humide.raepa_ouvraep_p AS 
  SELECT
   g.idnoeud as idouvrage,
---  x
---  y
+  g.x,
+  g.y,
   g.mouvrage,
   g.gexploit,
   p.fnouvaep,
@@ -1387,8 +1387,8 @@ COMMENT ON VIEW m_reseau_humide.raepa_apparaep_p
 CREATE OR REPLACE VIEW m_reseau_humide.raepa_ouvrass_p AS 
  SELECT
   g.idnoeud as idouvrage,
---  x
---  y
+  g.x,
+  g.y,
   g.mouvrage,
   g.gexploit,
   p.typreseau,
@@ -1429,13 +1429,12 @@ COMMENT ON VIEW m_reseau_humide.raepa_apparass_p
 CREATE OR REPLACE VIEW m_reseau_humide.raepa_reparaep_p AS 
  SELECT
   g.idrepar,
---  x
---  y
+  g.x,
+  g.y,
   g.supprepare,
   g.defreparee,
   g.idsuprepar,
   g.daterepar,
-  g.anfinpose,
   g.mouvrage,
   g.geom
 
@@ -1455,13 +1454,12 @@ COMMENT ON VIEW m_reseau_humide.raepa_apparaep_p
 CREATE OR REPLACE VIEW m_reseau_humide.raepa_reparass_p AS 
  SELECT
   g.idrepar,
---  x
---  y
+  g.x,
+  g.y,
   g.supprepare,
   g.defreparee,
   g.idsuprepar,
   g.daterepar,
-  g.anfinpose,
   g.mouvrage,
   g.geom
 
@@ -1524,12 +1522,12 @@ INSERT INTO m_reseau_humide.raepa_canalass(
 -- ### NOEUD ###
 
 INSERT INTO m_reseau_humide.raepa_noeud(
-            idnoeud, mouvrage, gexploit, anfinpose, idcanppale, andebpose, geom)
+            idnoeud, x, y, mouvrage, gexploit, anfinpose, idcanppale, andebpose, geom)
     VALUES
-('3', 'Collectivité 1', 'Exploitant A', NULL, NULL, NULL, ST_GeomFromText('POINT(689315 6920280)', 2154)),
-('4', 'Collectivité 1', 'Exploitant A', NULL, NULL, NULL, ST_GeomFromText('POINT(689330 6920285)', 2154)),
-('5', 'Collectivité 1', 'Exploitant B', NULL, NULL, NULL, ST_GeomFromText('POINT(689310 6920276)', 2154)),
-('6', 'Collectivité 1', 'Exploitant B', NULL, NULL, NULL, ST_GeomFromText('POINT(689325 6920281)', 2154));
+('3', 689315, 6920280, 'Collectivité 1', 'Exploitant A', NULL, NULL, NULL, ST_GeomFromText('POINT(689315 6920280)', 2154)),
+('4', 689330, 6920285, 'Collectivité 1', 'Exploitant A', NULL, NULL, NULL, ST_GeomFromText('POINT(689330 6920285)', 2154)),
+('5', 689310, 6920276, 'Collectivité 1', 'Exploitant B', NULL, NULL, NULL, ST_GeomFromText('POINT(689310 6920276)', 2154)),
+('6', 689325, 6920281, 'Collectivité 1', 'Exploitant B', NULL, NULL, NULL, ST_GeomFromText('POINT(689325 6920281)', 2154));
 
 
 -- ### APPAREILLAGE ###
@@ -1580,12 +1578,12 @@ INSERT INTO m_reseau_humide.raepa_ouvrass(
 -- ### REPARATION ###
 
 INSERT INTO m_reseau_humide.raepa_repar(
-            idrepar, supprepare, defreparee, idsuprepar, daterepar, mouvrage, geom)
+            idrepar, x, y, supprepare, defreparee, idsuprepar, daterepar, mouvrage, geom)
     VALUES
-('1', '01','04','01','15/02/2019','Collectivité 1', ST_GeomFromText('POINT(689318 6920282)', 2154)),
-('2', '01','02','02','22/01/2019','Collectivité 1', ST_GeomFromText('POINT(689320 6920278)', 2154)),
-('3', '02','05','03','17/10/2018','Collectivité 1', ST_GeomFromText('POINT(689315 6920280)', 2154)),
-('4', '03','03','06','01/01/2017','Collectivité 1', ST_GeomFromText('POINT(689325 6920281)', 2154));
+('1', 689318, 6920282, '01','04','01','15/02/2019','Collectivité 1', ST_GeomFromText('POINT(689318 6920282)', 2154)),
+('2', 689320, 6920278, '01','02','02','22/01/2019','Collectivité 1', ST_GeomFromText('POINT(689320 6920278)', 2154)),
+('3', 689315, 6920280, '02','05','03','17/10/2018','Collectivité 1', ST_GeomFromText('POINT(689315 6920280)', 2154)),
+('4', 689325, 6920281, '03','03','06','01/01/2017','Collectivité 1', ST_GeomFromText('POINT(689325 6920281)', 2154));
 
 /*
 
