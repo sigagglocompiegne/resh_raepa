@@ -1,4 +1,4 @@
-/*RAEPA V1.0*/
+/*RAEPA V1.1*/
 /*Creation du squelette de la structure des données (table, séquence, trigger,...) au standard RAEPA */
 /*init_bd_resh_10_standard_raepa.sql */
 /*PostGIS*/
