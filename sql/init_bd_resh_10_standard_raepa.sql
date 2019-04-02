@@ -858,7 +858,7 @@ CREATE TABLE m_reseau_humide.raepa_appar
   idappareil character varying(254) NOT NULL,
 --  idnoeud character varying(254) NOT NULL, -- fkey vers attribut idnoeud de la classe noeud
 --  idouvrage character varying(254), -- fkey vers attribut idouvrage de la classe ouvrage. Valeur NULL admise car il n'y a pas forcement un ouvrage qui accueille l'appareillage
--- diametre integer, -- A PRIORI attribut manquant dans la modélisation à ce niveau car présent dans les gabartis des livrables d'appareillage ae et ass et absent pour les ouvrages
+-- diametre integer, -- A PRIORI attribut manquant dans la modélisation à ce niveau car présent dans les gabarits des livrables d'appareillage ae et ass et absent pour les ouvrages
   z numeric(6,2),
   CONSTRAINT raepa_appar_pkey PRIMARY KEY (idappareil) 
 )
