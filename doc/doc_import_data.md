@@ -22,7 +22,7 @@ Les données au standard RAEPA (v1.1) (corrigées des erreurs des gabarits COVAD
 
 Des données complémentaires enrichies, au format (? tabulaire à définir txt, dbf, cvs, json ?), afin de maintenir l'exhaustivité et la précision de l'état de connaissance patrimoniale de l'exploitant à la collectivité
 * Adduction d'eau
-  * raepa_ext_
+  * ext_raepa
 * Assainissement
-  * raepa_ext_regardass
-  * raepa_ext_avaloirass
+  * ext_raepa_regardass
+  * ext_raepa_avaloirass
