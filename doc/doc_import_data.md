@@ -2,7 +2,7 @@
 
 # Livrables
 
-Les livrables auprès de la collectivé doivent intégrer fournis à la collectivité doivent intégrer :
+Les livrables transmis auprès ou par la collectivé comprennent :
 
 ## RAEPA
 
@@ -20,7 +20,7 @@ Les données au standard RAEPA (v1.1) (corrigées des erreurs des gabarits COVAD
 
 ## Extensions locales
 
-Des données complémentaires enrichies, au format (? tabulaire à définir txt, dbf, cvs, json ?), afin de maintenir l'exhaustivité et la précision de l'état de connaissance patrimoniale de l'exploitant à la collectivité
+Des données complémentaires enrichies, au format (? tabulaire à définir txt, dbf, cvs, json ?), afin de maintenir l'exhaustivité et la précision de l'état de connaissance patrimoniale entre intervenants (exploitant, collectivité ...).
 * Adduction d'eau
   * ext_raepa
 * Assainissement
