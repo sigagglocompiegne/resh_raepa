@@ -4,7 +4,7 @@
 
 Les livrables transmis auprès ou par la collectivé comprennent :
 
-## RAEPA
+## Les données standardisées RAEPA
 
 Les données au standard RAEPA (v1.1) (corrigées des erreurs des gabarits COVADIS) et au format ESRI Shape (SHP) :
 * Adduction d'eau
@@ -18,7 +18,7 @@ Les données au standard RAEPA (v1.1) (corrigées des erreurs des gabarits COVAD
   * raepa_ouvrass_p
   * raepa_reparass_p
 
-## Extensions locales
+## Les données enrichies par des extensions locales du RAEPA
 
 Des données complémentaires enrichies, au format (? tabulaire à définir txt, dbf, cvs, json ?), afin de maintenir l'exhaustivité et la précision de l'état de connaissance patrimoniale entre intervenants (exploitant, collectivité ...).
 * Adduction d'eau
