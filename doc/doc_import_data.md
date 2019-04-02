@@ -6,7 +6,7 @@ Les livrables auprès de la collectivé doivent intégrer fournis à la collecti
 
 ## RAEPA
 
-Les données au standard RAEPA (v1.1) (corrigées des erreurs des gabarits COVADIS) et au format ESRI Shape (SHP):
+Les données au standard RAEPA (v1.1) (corrigées des erreurs des gabarits COVADIS) et au format ESRI Shape (SHP) :
 * Adduction d'eau
   * raepa_canalaep_l
   * raepa_apparaep_p
