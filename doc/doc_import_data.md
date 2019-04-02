@@ -18,11 +18,11 @@ Les données au standard RAEPA (v1.1) (corrigées des erreurs des gabarits COVAD
   * raepa_ouvrass_p
   * raepa_reparass_p
 
-## Les données enrichies par des extensions locales du RAEPA
+## Les données riches issues des extensions locales du RAEPA
 
 Des données complémentaires enrichies, au format (? tabulaire à définir txt, dbf, cvs, json ?), afin de maintenir l'exhaustivité et la précision de l'état de connaissance patrimoniale entre intervenants (exploitant, collectivité ...).
 
-*liste à construire*
+*(à construire)*
 
 * Adduction d'eau
   * ext_raepa
