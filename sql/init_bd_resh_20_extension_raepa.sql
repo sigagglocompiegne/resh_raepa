@@ -9,10 +9,10 @@
 
 
 /*
+* modification de commentaires
 * modifier nom des tables, sequences, domaine de valeur ...
 * restructuration liste
 * complétude liste
-* modification de commentaires
 * création d'attribut nouveau
 * NULL autorisé
 * valeur par défaut
@@ -22,11 +22,6 @@ Cela permettra de garantir à la fois une livraison RAEPA et une livraison adapt
 --
 
 gérer les id
-
-
--- Table: m_reseau_humide.raepa_qualite_geoloc
-
---(('03','Classe C','Classe de précision supérieure à 1,50 m ou précision inconnue') -- voir si nécessaire de préciser que si la qualite de geoloc n'est pas connue, alors on classe en C;
 
 
 -- Table: m_reseau_humide.raepa_defaillance
@@ -117,3 +112,26 @@ ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_cat_ouv_ass RENAME TO lt_raepa_c
 
 ALTER SEQUENCE IF EXISTS m_reseau_humide.raepa_idraepa RENAME TO raepa_idraepa_seq;
 ALTER SEQUENCE IF EXISTS m_reseau_humide.raepa_idrepar RENAME TO raepa_idrepar_seq;
+
+
+
+
+-- ####################################################################################################################################################
+-- ###                                                                                                                                              ###
+-- ###                                                                    COMMENTAIRES                                                              ###
+-- ###                                                                                                                                              ###
+-- ####################################################################################################################################################
+
+
+-- domaine de valeur
+
+-- lt_raepa_qualite_geoloc
+
+UPDATE m_reseau_humide.lt_raepa_qualite_geoloc SET definition = 'Classe de précision supérieure à 1,50 m ou précision inconnue' WHERE code = '03'; -- précision que si la qualite de geoloc n'est pas connue, alors on classe en C
+
+
+/*
+
+
+
+*/
