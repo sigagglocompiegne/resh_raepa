@@ -1,6 +1,6 @@
 # Analyse du géostandard et problématiques d'implémentation locale
 
-## Analyse geostandar RAEPA 1.2
+## Analyse geostandard RAEPA 1.2
 
 
 
