@@ -9,28 +9,8 @@
 
 
 /*
-* modification de commentaires
-* modifier nom des tables, sequences, domaine de valeur ...
-* restructuration liste
-* complétude liste
-* création d'attribut nouveau
-* NULL autorisé
-* valeur par défaut
-hypothèse : ne pas altérer les attributs ou liste mais ajouter des attributs, voir recréer le même attribut avec une liste adaptée.
+Principe : ne pas altérer les attributs ou liste mais ajouter des attributs, voir recréer le même attribut avec une liste adaptée.
 Cela permettra de garantir à la fois une livraison RAEPA et une livraison adaptative RAEPA étendu
-
---
-
-gérer les id
-
-
--- Table: m_reseau_humide.raepa_defaillance
-
-voir si la liste est suffisante et assez détaillée
-
- ouvrage :
-* attribut z à renommer en zrad (pour bien signifier la côte radier et éviter les incompréhension avec cote tampon)
-
 */
 
 
