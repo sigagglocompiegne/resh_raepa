@@ -1,9 +1,9 @@
-/*RAEPA V1.1*/
+/*RAEPA V1.2*/
 /*Creation du squelette de la structure des données (table, séquence, trigger,...) au standard RAEPA */
 /*init_bd_resh_10_standard_raepa.sql */
 /*PostGIS*/
 
-/* Propriétaire : GeoCompiegnois - http://geo.compiegnois.fr/ */
+/* GeoCompiegnois - http://geo.compiegnois.fr/ */
 /* Auteur : Florent Vanhoutte */
 
 
