@@ -1,9 +1,9 @@
-/*RAEPA V1.1*/
+/*RAEPA V1.2*/
 /*Revision et extension locale du squelette de la structure des données (table, séquence, trigger,...) du standard RAEPA */
 /*init_bd_resh_99_drop_raepa_arc.sql */
 /*PostGIS*/
 
-/* Propriétaire : GeoCompiegnois - http://geo.compiegnois.fr/ */
+/* GeoCompiegnois - http://geo.compiegnois.fr/ */
 /* Auteur : Florent Vanhoutte */
 
 
