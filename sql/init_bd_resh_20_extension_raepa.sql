@@ -1,9 +1,9 @@
 /*RAEPA V1.2*/
-/*Revision et extension locale du squelette de la structure des données (table, séquence, trigger,...) du standard RAEPA */
+/*Extension locale de la structure des données (table, séquence, trigger,...) sur la base du pivot du standard RAEPA */
 /*init_bd_resh_20_extension_raepa.sql */
 /*PostGIS*/
 
-/* PGeoCompiegnois - http://geo.compiegnois.fr/ */
+/* GeoCompiegnois - http://geo.compiegnois.fr/ */
 /* Auteur : Florent Vanhoutte */
 
 
