@@ -1,5 +1,5 @@
 /*RAEPA V1.2*/
-/*Extension locale de la structure des données (table, séquence, trigger,...) sur la base du pivot du standard RAEPA */
+/*Implémentation locale du RAEPA et extension de la structure des données (table, séquence, trigger,...) sur la base du pivot du standard RAEPA */
 /*init_bd_resh_20_extension_raepa.sql */
 /*PostGIS*/
 
