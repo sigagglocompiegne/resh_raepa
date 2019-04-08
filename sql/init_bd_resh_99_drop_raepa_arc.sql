@@ -79,7 +79,9 @@ DROP TABLE IF EXISTS m_reseau_humide.lt_raepa_cat_canal_ass;
 DROP TABLE IF EXISTS m_reseau_humide.lt_raepa_fonc_canal_ass;
 DROP TABLE IF EXISTS m_reseau_humide.lt_raepa_cat_app_ass;
 DROP TABLE IF EXISTS m_reseau_humide.lt_raepa_cat_ouv_ass;
-
+-- extention arc
+DROP TABLE IF EXISTS m_reseau_humide.lt_raepa_materiau2;
+DROP TABLE IF EXISTS m_reseau_humide.lt_raepa_forme_canal;
 
 -- sequence
 -- implementation arc
