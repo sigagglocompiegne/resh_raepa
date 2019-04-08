@@ -243,7 +243,11 @@ INSERT INTO m_reseau_humide.lt_raepa_forme_canal(
 
 
 ALTER TABLE m_reseau_humide.geo_raepa_canal
-  ADD COLUMN materiau2 character varying(5) NOT NULL;
+  ADD COLUMN materiau2 character varying(5) NOT NULL DEFAULT '00-00',
+  ADD COLUMN forme character varying(2) NOT NULL DEFAULT '00';
+
+COMMENT ON COLUMN m_reseau_humide.geo_raepa_canal.materiau2 IS 'Matériau de la canalisation';  
+COMMENT ON COLUMN m_reseau_humide.geo_raepa_canal.forme IS 'Forme de la section de la canalisation';  
 
 /*
 
