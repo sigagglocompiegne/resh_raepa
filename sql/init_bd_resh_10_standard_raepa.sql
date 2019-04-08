@@ -147,7 +147,7 @@ INSERT INTO m_reseau_humide.val_raepa_materiau(
 ('03','Béton âme tôle','Canalisation composée de tuyaux de béton âme tôle'),
 ('04','Béton armé','Canalisation composée de tuyaux de béton armé'),
 ('05','Béton fibré','Canalisation composée de tuyaux de béton fibré'),
-('06','Béton non armé','Canalisation composée de tuyaux d''amiante-ciment'),
+('06','Béton non armé','Canalisation composée de tuyaux de béton non armé'),
 ('07','Cuivre','Canalisation composée de tuyaux de cuivre'),
 ('08','Fibre ciment','Canalisation composée de tuyaux de fibre ciment'),
 ('09','Fibre de verre','Canalisation composée de tuyaux de fibre de verre'),
