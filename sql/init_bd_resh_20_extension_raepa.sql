@@ -258,6 +258,7 @@ INSERT INTO m_raepa.lt_raepa_forme_canal(
 
 
 
+
 -- #################################################################### CLASSE CANALISATION ###############################################
 
 ALTER TABLE m_raepa.geo_raepa_canal
@@ -270,15 +271,72 @@ COMMENT ON COLUMN m_raepa.geo_raepa_canal.forme IS 'Forme de la section de la ca
 COMMENT ON COLUMN m_raepa.geo_raepa_canal.zgensup IS 'Côte NGF moyennne de la génératrice supérieure';
 
 
+
 -- #################################################################### CLASSE NOEUD ###############################################
 
 ALTER TABLE m_raepa.geo_raepa_noeud
-  ADD COLUMN symbole character varying(254), -- ajout d'un attribut commun AEP/ASS pour gérer le symbole à utiliser pour la représentation cartographique, celui-ci dépend du type/ss type d'ouvrage/appareillage
-  ADD COLUMN angle numeric(5,2) NOT NULL DEFAULT 0; -- ajout d'un attribut commun AEP/ASS pour gérer l'angle de rotation du symbole ponctuel utilisé pour la représentation
+  ADD COLUMN symbole character varying(254), -- ajout d'un attribut commun AEP/ASS pour gérer le symbole à utiliser pour la représentation cartographique. !!!!! voir si pas définit par une table de passage celui-ci dépend du type/ss type d'ouvrage/appareillage
+  ADD COLUMN angle numeric(5,2) NOT NULL DEFAULT 0; -- ajout d'un attribut commun AEP/ASS pour gérer l'angle de rotation du symbole ponctuel utilisé pour la représentation. !!!!!!! il faut définir le sens trigo ou inverse !!!!!
  
 COMMENT ON COLUMN m_raepa.geo_raepa_noeud.symbole IS 'Symbole utilisé pour la représentation cartographique';  
 COMMENT ON COLUMN m_raepa.geo_raepa_noeud.angle IS 'Angle en degré décimaux utilisé pour la rotation du symbole';  
 
+
+
+
+-- ####################################################################################################################################################
+-- ###                                                                                                                                              ###
+-- ###                                                                        VUES                                                                  ###
+-- ###                                                                                                                                              ###
+-- ####################################################################################################################################################
+
+
+-- #################################################################### VUE CANALISATION AEP ###############################################
+        
+-- View: m_raepa.geo_v_raepa_canalaep_l
+
+-- DROP VIEW m_raepa.geo_v_raepa_canalaep_l;
+
+CREATE OR REPLACE VIEW m_raepa.geo_v_raepa_canalaep_l AS 
+ SELECT 
+  g.idcana,
+  g.mouvrage,
+  g.gexploit, 
+  g.enservice,
+  g.branchemnt,
+  g.materiau,
+  g.materiau2,
+  g.diametre,
+  g.forme,  
+  g.anfinpose,
+  g.modecircu,
+  a.contcanaep,
+  a.fonccanaep,     
+  g.idnini,
+  g.idnterm,
+  g.idcanppale,
+  g.zgensup,
+  a.profgen,
+  g.andebpose,
+  g.longcana,
+  g.nbranche,
+  m.qualglocxy,
+  m.qualglocz, 
+  m.datemaj,
+  m.sourmaj,
+  m.qualannee,
+  m.dategeoloc,
+  m.sourgeoloc,
+  m.sourattrib,
+  g.geom
+  
+FROM m_raepa.geo_raepa_canal g
+RIGHT JOIN m_raepa.an_raepa_canalaep a ON g.idcana = a.idcana
+RIGHT JOIN m_raepa.an_raepa_metadonnees m ON g.idcana = m.idraepa
+ORDER BY g.idcana;
+
+COMMENT ON VIEW m_raepa.geo_v_raepa_canalaep_l
+  IS 'Canalisation d''adduction d''eau';
 
 /*
 
