@@ -763,7 +763,7 @@ CREATE TABLE m_reseau_humide.raepa_canalaep
   idcana character varying(254) NOT NULL, -- fkey vers attribut idcana de la classe canalisation
   contcanaep character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
   fonccanaep character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
-  profgen numeric (3,2) -- !!!!!! usage pour le DT-DICT qui n'a pas sa spécificité sur un réseau d'ae. L'emploi de la profondeur par rapport à la côté NGF est par ailleurs dangereuse
+  profgen numeric (3,2) -- !!!!!! usage pour le DT-DICT qui n'a pas sa spécificité sur un réseau d'ae. L'emploi de la profondeur par rapport à la côte NGF est par ailleurs dangereuse et il aurait été plus pertinent d'utiliser la côte de la génératrice supérieure
 )
 WITH (
   OIDS=FALSE
