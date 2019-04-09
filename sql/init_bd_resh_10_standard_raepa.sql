@@ -1374,7 +1374,7 @@ RIGHT JOIN m_reseau_humide.raepa_ouvraep p ON p.idouvrage = a.idouvrage
 RIGHT JOIN m_reseau_humide.raepa_metadonnees m ON g.idnoeud = m.idraepa
 ORDER BY g.idnoeud;
 
-COMMENT ON VIEW m_reseau_humide.raepa_apparaep_p
+COMMENT ON VIEW m_reseau_humide.raepa_ouvraep_p
   IS 'Ouvrage d''adduction d''eau';
 
 
@@ -1415,7 +1415,7 @@ RIGHT JOIN m_reseau_humide.raepa_ouvrass p ON p.idouvrage = a.idouvrage
 RIGHT JOIN m_reseau_humide.raepa_metadonnees m ON g.idnoeud = m.idraepa
 ORDER BY g.idnoeud;
 
-COMMENT ON VIEW m_reseau_humide.raepa_apparass_p
+COMMENT ON VIEW m_reseau_humide.raepa_ouvrass_p
   IS 'Ouvrage d''assainissement collectif';
 
 
@@ -1442,7 +1442,7 @@ FROM m_reseau_humide.raepa_repar g
 -- voir comment gérer le WHERE pour récup uniquement AEP
 ORDER BY g.idrepar;
 
-COMMENT ON VIEW m_reseau_humide.raepa_apparaep_p
+COMMENT ON VIEW m_reseau_humide.raepa_reparaep_p
   IS 'Reparation du réseau d''adduction d''eau';
 
 -- #################################################################### VUE REPARATION ASS ###############################################
@@ -1467,5 +1467,5 @@ FROM m_reseau_humide.raepa_repar g
 -- voir comment gérer le WHERE pour récup uniquement ASS
 ORDER BY g.idrepar;
 
-COMMENT ON VIEW m_reseau_humide.raepa_apparass_p
+COMMENT ON VIEW m_reseau_humide.raepa_reparass_p
   IS 'Reparation du réseau d''assainissement collectif';
