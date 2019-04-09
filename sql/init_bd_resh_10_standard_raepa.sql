@@ -17,74 +17,76 @@
 
 -- vue
 
-DROP VIEW IF EXISTS m_reseau_humide.raepa_canalaep_l;
-DROP VIEW IF EXISTS m_reseau_humide.raepa_canalass_l;
-DROP VIEW IF EXISTS m_reseau_humide.raepa_apparaep_p;
-DROP VIEW IF EXISTS m_reseau_humide.raepa_apparass_p;
-DROP VIEW IF EXISTS m_reseau_humide.raepa_ouvraep_p;
-DROP VIEW IF EXISTS m_reseau_humide.raepa_ouvrass_p;
-DROP VIEW IF EXISTS m_reseau_humide.raepa_reparaep_p;
-DROP VIEW IF EXISTS m_reseau_humide.raepa_reparass_p;
+DROP VIEW IF EXISTS raepa.raepa_canalaep_l;
+DROP VIEW IF EXISTS raepa.raepa_canalass_l;
+DROP VIEW IF EXISTS raepa.raepa_apparaep_p;
+DROP VIEW IF EXISTS raepa.raepa_apparass_p;
+DROP VIEW IF EXISTS raepa.raepa_ouvraep_p;
+DROP VIEW IF EXISTS raepa.raepa_ouvrass_p;
+DROP VIEW IF EXISTS raepa.raepa_reparaep_p;
+DROP VIEW IF EXISTS raepa.raepa_reparass_p;
 
 -- fkey
 
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_metadonnees DROP CONSTRAINT IF EXISTS val_raepa_qualite_anpose_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_metadonnees DROP CONSTRAINT IF EXISTS val_raepa_qualite_geoloc_xy_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_metadonnees DROP CONSTRAINT IF EXISTS val_raepa_qualite_geoloc_z_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_canal DROP CONSTRAINT IF EXISTS val_raepa_materiau_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_canal DROP CONSTRAINT IF EXISTS val_raepa_mode_circulation_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_canalaep DROP CONSTRAINT IF EXISTS val_raepa_cat_canal_ae_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_canalaep DROP CONSTRAINT IF EXISTS val_raepa_fonc_canal_ae_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_canalass DROP CONSTRAINT IF EXISTS val_raepa_cat_reseau_ass_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_canalass DROP CONSTRAINT IF EXISTS val_raepa_cat_canal_ass_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_canalass DROP CONSTRAINT IF EXISTS val_raepa_fonc_canal_ass_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_apparaep DROP CONSTRAINT IF EXISTS val_raepa_cat_app_ae_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_apparass DROP CONSTRAINT IF EXISTS val_raepa_cat_reseau_ass_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_apparass DROP CONSTRAINT IF EXISTS val_raepa_cat_app_ass_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_ouvraep DROP CONSTRAINT IF EXISTS val_raepa_cat_ouv_ae_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_ouvrass DROP CONSTRAINT IF EXISTS val_raepa_cat_reseau_ass_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_ouvrass DROP CONSTRAINT IF EXISTS val_raepa_cat_ouv_ass_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_repar DROP CONSTRAINT IF EXISTS val_raepa_support_incident_fkey;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_repar DROP CONSTRAINT IF EXISTS val_raepa_defaillance_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_metadonnees DROP CONSTRAINT IF EXISTS val_raepa_qualite_anpose_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_metadonnees DROP CONSTRAINT IF EXISTS val_raepa_qualite_geoloc_xy_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_metadonnees DROP CONSTRAINT IF EXISTS val_raepa_qualite_geoloc_z_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_canal DROP CONSTRAINT IF EXISTS val_raepa_materiau_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_canal DROP CONSTRAINT IF EXISTS val_raepa_mode_circulation_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_canalaep DROP CONSTRAINT IF EXISTS val_raepa_cat_canal_ae_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_canalaep DROP CONSTRAINT IF EXISTS val_raepa_fonc_canal_ae_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_canalass DROP CONSTRAINT IF EXISTS val_raepa_cat_reseau_ass_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_canalass DROP CONSTRAINT IF EXISTS val_raepa_cat_canal_ass_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_canalass DROP CONSTRAINT IF EXISTS val_raepa_fonc_canal_ass_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_apparaep DROP CONSTRAINT IF EXISTS val_raepa_cat_app_ae_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_apparass DROP CONSTRAINT IF EXISTS val_raepa_cat_reseau_ass_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_apparass DROP CONSTRAINT IF EXISTS val_raepa_cat_app_ass_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_ouvraep DROP CONSTRAINT IF EXISTS val_raepa_cat_ouv_ae_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_ouvrass DROP CONSTRAINT IF EXISTS val_raepa_cat_reseau_ass_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_ouvrass DROP CONSTRAINT IF EXISTS val_raepa_cat_ouv_ass_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_repar DROP CONSTRAINT IF EXISTS val_raepa_support_incident_fkey;
+ALTER TABLE IF EXISTS raepa.raepa_repar DROP CONSTRAINT IF EXISTS val_raepa_defaillance_fkey;
 
 -- classe
 
-DROP TABLE IF EXISTS m_reseau_humide.raepa_metadonnees;
-DROP TABLE IF EXISTS m_reseau_humide.raepa_canal;
-DROP TABLE IF EXISTS m_reseau_humide.raepa_canalaep;
-DROP TABLE IF EXISTS m_reseau_humide.raepa_canalass;
-DROP TABLE IF EXISTS m_reseau_humide.raepa_noeud;
-DROP TABLE IF EXISTS m_reseau_humide.raepa_appar;
-DROP TABLE IF EXISTS m_reseau_humide.raepa_apparaep;
-DROP TABLE IF EXISTS m_reseau_humide.raepa_apparass;
-DROP TABLE IF EXISTS m_reseau_humide.raepa_ouvr;
-DROP TABLE IF EXISTS m_reseau_humide.raepa_ouvraep;
-DROP TABLE IF EXISTS m_reseau_humide.raepa_ouvrass;
-DROP TABLE IF EXISTS m_reseau_humide.raepa_repar;
+DROP TABLE IF EXISTS raepa.raepa_metadonnees;
+DROP TABLE IF EXISTS raepa.raepa_canal;
+DROP TABLE IF EXISTS raepa.raepa_canalaep;
+DROP TABLE IF EXISTS raepa.raepa_canalass;
+DROP TABLE IF EXISTS raepa.raepa_noeud;
+DROP TABLE IF EXISTS raepa.raepa_appar;
+DROP TABLE IF EXISTS raepa.raepa_apparaep;
+DROP TABLE IF EXISTS raepa.raepa_apparass;
+DROP TABLE IF EXISTS raepa.raepa_ouvr;
+DROP TABLE IF EXISTS raepa.raepa_ouvraep;
+DROP TABLE IF EXISTS raepa.raepa_ouvrass;
+DROP TABLE IF EXISTS raepa.raepa_repar;
 
 -- domaine de valeur
 
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_materiau;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_mode_circulation;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_qualite_anpose;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_qualite_geoloc;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_support_incident;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_defaillance;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_cat_canal_ae;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_fonc_canal_ae;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_cat_app_ae;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_cat_ouv_ae;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_cat_reseau_ass;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_cat_canal_ass;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_fonc_canal_ass;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_cat_app_ass;
-DROP TABLE IF EXISTS m_reseau_humide.val_raepa_cat_ouv_ass;
+DROP TABLE IF EXISTS raepa.val_raepa_materiau;
+DROP TABLE IF EXISTS raepa.val_raepa_mode_circulation;
+DROP TABLE IF EXISTS raepa.val_raepa_qualite_anpose;
+DROP TABLE IF EXISTS raepa.val_raepa_qualite_geoloc;
+DROP TABLE IF EXISTS raepa.val_raepa_support_incident;
+DROP TABLE IF EXISTS raepa.val_raepa_defaillance;
+DROP TABLE IF EXISTS raepa.val_raepa_cat_canal_ae;
+DROP TABLE IF EXISTS raepa.val_raepa_fonc_canal_ae;
+DROP TABLE IF EXISTS raepa.val_raepa_cat_app_ae;
+DROP TABLE IF EXISTS raepa.val_raepa_cat_ouv_ae;
+DROP TABLE IF EXISTS raepa.val_raepa_cat_reseau_ass;
+DROP TABLE IF EXISTS raepa.val_raepa_cat_canal_ass;
+DROP TABLE IF EXISTS raepa.val_raepa_fonc_canal_ass;
+DROP TABLE IF EXISTS raepa.val_raepa_cat_app_ass;
+DROP TABLE IF EXISTS raepa.val_raepa_cat_ouv_ass;
 
 -- sequence
-DROP SEQUENCE IF EXISTS m_reseau_humide.raepa_idraepa;
-DROP SEQUENCE IF EXISTS m_reseau_humide.raepa_idrepar;
+DROP SEQUENCE IF EXISTS raepa.raepa_idraepa;
+DROP SEQUENCE IF EXISTS raepa.raepa_idrepar;
 
-/*
+-- schema
+DROP SCHEMA IF EXISTS raepa;
+
 
 -- ####################################################################################################################################################
 -- ###                                                                                                                                              ###
@@ -92,16 +94,15 @@ DROP SEQUENCE IF EXISTS m_reseau_humide.raepa_idrepar;
 -- ###                                                                                                                                              ###
 -- ####################################################################################################################################################
 
--- Schema: m_reseau_humide
+-- Schema: raepa
 
--- DROP SCHEMA m_reseau_humide;
+-- DROP SCHEMA raepa;
 
-CREATE SCHEMA m_reseau_humide
+CREATE SCHEMA raepa;
 
-COMMENT ON SCHEMA m_reseau_humide
-  IS 'Données géographiques métiers sur le thème des réseaux humides';
+COMMENT ON SCHEMA raepa
+  IS 'Réseaux humides au standard RAEPA';
 
-*/
 
 
 -- ####################################################################################################################################################
@@ -116,12 +117,12 @@ COMMENT ON SCHEMA m_reseau_humide
 -- ################### 
 
 
--- Table: m_reseau_humide.val_raepa_materiau
+-- Table: raepa.val_raepa_materiau
 
--- DROP TABLE m_reseau_humide.val_raepa_materiau;
+-- DROP TABLE raepa.val_raepa_materiau;
 
 
-CREATE TABLE m_reseau_humide.val_raepa_materiau
+CREATE TABLE raepa.val_raepa_materiau
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -132,13 +133,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_materiau
+COMMENT ON TABLE raepa.val_raepa_materiau
   IS 'Matériau constitutif des tuyaux composant une canalisation';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_materiau.code IS 'Code de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_materiau.valeur IS 'Valeur de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_materiau.definition IS 'Définition de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
+COMMENT ON COLUMN raepa.val_raepa_materiau.code IS 'Code de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
+COMMENT ON COLUMN raepa.val_raepa_materiau.valeur IS 'Valeur de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
+COMMENT ON COLUMN raepa.val_raepa_materiau.definition IS 'Définition de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
 
-INSERT INTO m_reseau_humide.val_raepa_materiau(
+INSERT INTO raepa.val_raepa_materiau(
             code, valeur, definition)
     VALUES
 ('00','Indéterminé','Canalisation composée de tuyaux dont le matériau est inconnu'),
@@ -174,11 +175,11 @@ INSERT INTO m_reseau_humide.val_raepa_materiau(
 
 
 
--- Table: m_reseau_humide.val_raepa_mode_circulation
+-- Table: raepa.val_raepa_mode_circulation
 
--- DROP TABLE m_reseau_humide.val_raepa_mode_circulation;
+-- DROP TABLE raepa.val_raepa_mode_circulation;
 
-CREATE TABLE m_reseau_humide.val_raepa_mode_circulation
+CREATE TABLE raepa.val_raepa_mode_circulation
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -189,13 +190,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_mode_circulation
+COMMENT ON TABLE raepa.val_raepa_mode_circulation
   IS 'Modalité de circulation de l''eau dans une canalisation';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_mode_circulation.code IS 'Code de la liste énumérée relative au mode de circualtion de l''eau dans une canalisation';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_mode_circulation.valeur IS 'Valeur de la liste énumérée relative au mode de circualtion de l''eau dans une canalisation';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_mode_circulation.definition IS 'Définition de la liste énumérée relative au mode de circualtion de l''eau dans une canalisation';
+COMMENT ON COLUMN raepa.val_raepa_mode_circulation.code IS 'Code de la liste énumérée relative au mode de circualtion de l''eau dans une canalisation';
+COMMENT ON COLUMN raepa.val_raepa_mode_circulation.valeur IS 'Valeur de la liste énumérée relative au mode de circualtion de l''eau dans une canalisation';
+COMMENT ON COLUMN raepa.val_raepa_mode_circulation.definition IS 'Définition de la liste énumérée relative au mode de circualtion de l''eau dans une canalisation';
 
-INSERT INTO m_reseau_humide.val_raepa_mode_circulation(
+INSERT INTO raepa.val_raepa_mode_circulation(
             code, valeur, definition)
     VALUES
 ('00','Indéterminé','Mode de circulation inconnu'),
@@ -205,11 +206,11 @@ INSERT INTO m_reseau_humide.val_raepa_mode_circulation(
 ('99','Autre','L''eau circule tantôt dans un des modes ci-dessus tantôt dans un autre');
 
 
--- Table: m_reseau_humide.val_raepa_qualite_anpose
+-- Table: raepa.val_raepa_qualite_anpose
 
--- DROP TABLE m_reseau_humide.val_raepa_qualite_anpose;
+-- DROP TABLE raepa.val_raepa_qualite_anpose;
 
-CREATE TABLE m_reseau_humide.val_raepa_qualite_anpose
+CREATE TABLE raepa.val_raepa_qualite_anpose
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -220,13 +221,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_qualite_anpose
+COMMENT ON TABLE raepa.val_raepa_qualite_anpose
   IS 'Qualité de l''information "année de pose" ou "année de mise en service" d''un équipement';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_qualite_anpose.code IS 'Code de la liste énumérée relative à la qualité de l''information "année de pose" ou "année de mise en service" d''un équipement';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_qualite_anpose.valeur IS 'Valeur de la liste énumérée relative à la qualité de l''information "année de pose" ou "année de mise en service" d''un équipement';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_qualite_anpose.definition IS 'Définition de la liste énumérée relative à la qualité de l''information "année de pose" ou "année de mise en service" d''un équipement';
+COMMENT ON COLUMN raepa.val_raepa_qualite_anpose.code IS 'Code de la liste énumérée relative à la qualité de l''information "année de pose" ou "année de mise en service" d''un équipement';
+COMMENT ON COLUMN raepa.val_raepa_qualite_anpose.valeur IS 'Valeur de la liste énumérée relative à la qualité de l''information "année de pose" ou "année de mise en service" d''un équipement';
+COMMENT ON COLUMN raepa.val_raepa_qualite_anpose.definition IS 'Définition de la liste énumérée relative à la qualité de l''information "année de pose" ou "année de mise en service" d''un équipement';
 
-INSERT INTO m_reseau_humide.val_raepa_qualite_anpose(
+INSERT INTO raepa.val_raepa_qualite_anpose(
             code, valeur, definition)
     VALUES
 ('00','Indéterminé','Information ou qualité de l''information inconnue'),
@@ -237,11 +238,11 @@ INSERT INTO m_reseau_humide.val_raepa_qualite_anpose(
 ('05','Déduite','Année déduite du matériau ou de l''état de l''équipement');
 
 
--- Table: m_reseau_humide.val_raepa_qualite_geoloc
+-- Table: raepa.val_raepa_qualite_geoloc
 
--- DROP TABLE m_reseau_humide.val_raepa_qualite_geoloc;
+-- DROP TABLE raepa.val_raepa_qualite_geoloc;
 
-CREATE TABLE m_reseau_humide.val_raepa_qualite_geoloc
+CREATE TABLE raepa.val_raepa_qualite_geoloc
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -252,13 +253,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_qualite_geoloc
+COMMENT ON TABLE raepa.val_raepa_qualite_geoloc
   IS 'Classe de précision au sens de l''arrêté interministériel du 15 février 2012 modifié (DT-DICT)';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_qualite_geoloc.code IS 'Code de la liste énumérée relative à la classe de précision au sens de l''arrêté interministériel du 15 février 2012 modifié (DT-DICT)';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_qualite_geoloc.valeur IS 'Valeur de la liste énumérée relative à la classe de précision au sens de l''arrêté interministériel du 15 février 2012 modifié (DT-DICT)';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_qualite_geoloc.definition IS 'Définition de la liste énumérée relative à la classe de précision au sens de l''arrêté interministériel du 15 février 2012 modifié (DT-DICT)';
+COMMENT ON COLUMN raepa.val_raepa_qualite_geoloc.code IS 'Code de la liste énumérée relative à la classe de précision au sens de l''arrêté interministériel du 15 février 2012 modifié (DT-DICT)';
+COMMENT ON COLUMN raepa.val_raepa_qualite_geoloc.valeur IS 'Valeur de la liste énumérée relative à la classe de précision au sens de l''arrêté interministériel du 15 février 2012 modifié (DT-DICT)';
+COMMENT ON COLUMN raepa.val_raepa_qualite_geoloc.definition IS 'Définition de la liste énumérée relative à la classe de précision au sens de l''arrêté interministériel du 15 février 2012 modifié (DT-DICT)';
 
-INSERT INTO m_reseau_humide.val_raepa_qualite_geoloc(
+INSERT INTO raepa.val_raepa_qualite_geoloc(
             code, valeur, definition)
     VALUES
 ('01','Classe A','Classe de précision inférieure 40 cm'),
@@ -266,11 +267,11 @@ INSERT INTO m_reseau_humide.val_raepa_qualite_geoloc(
 ('03','Classe C','Classe de précision supérieure à 1,50 m');
 
 
--- Table: m_reseau_humide.val_raepa_support_incident
+-- Table: raepa.val_raepa_support_incident
 
--- DROP TABLE m_reseau_humide.val_raepa_support_incident;
+-- DROP TABLE raepa.val_raepa_support_incident;
 
-CREATE TABLE m_reseau_humide.val_raepa_support_incident
+CREATE TABLE raepa.val_raepa_support_incident
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -281,13 +282,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_support_incident
+COMMENT ON TABLE raepa.val_raepa_support_incident
   IS 'Type d''élément de réseau concerné par un incident';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_support_incident.code IS 'Code de la liste énumérée relative au type d''élément de réseau concerné par une réparation';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_support_incident.valeur IS 'Valeur de la liste énumérée relative au type d''élément de réseau concerné par une réparation';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_support_incident.definition IS 'Définition de la liste énumérée relative au type d''élément de réseau concerné par une réparation';
+COMMENT ON COLUMN raepa.val_raepa_support_incident.code IS 'Code de la liste énumérée relative au type d''élément de réseau concerné par une réparation';
+COMMENT ON COLUMN raepa.val_raepa_support_incident.valeur IS 'Valeur de la liste énumérée relative au type d''élément de réseau concerné par une réparation';
+COMMENT ON COLUMN raepa.val_raepa_support_incident.definition IS 'Définition de la liste énumérée relative au type d''élément de réseau concerné par une réparation';
 
-INSERT INTO m_reseau_humide.val_raepa_support_incident(
+INSERT INTO raepa.val_raepa_support_incident(
             code, valeur, definition)
     VALUES
 ('01','Canalisation','Réparation sur une canalisation'),
@@ -296,11 +297,11 @@ INSERT INTO m_reseau_humide.val_raepa_support_incident(
 
  
 
--- Table: m_reseau_humide.val_raepa_defaillance
+-- Table: raepa.val_raepa_defaillance
 
--- DROP TABLE m_reseau_humide.val_raepa_defaillance;
+-- DROP TABLE raepa.val_raepa_defaillance;
 
-CREATE TABLE m_reseau_humide.val_raepa_defaillance
+CREATE TABLE raepa.val_raepa_defaillance
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -311,13 +312,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_defaillance
+COMMENT ON TABLE raepa.val_raepa_defaillance
   IS 'Type de défaillance ayant rendu nécessaire une réparation';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_defaillance.code IS 'Code de la liste énumérée relative au type de défaillance';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_defaillance.valeur IS 'Valeur de la liste énumérée relative au type de défaillance';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_defaillance.definition IS 'Définition de la liste énumérée relative au type de défaillance';
+COMMENT ON COLUMN raepa.val_raepa_defaillance.code IS 'Code de la liste énumérée relative au type de défaillance';
+COMMENT ON COLUMN raepa.val_raepa_defaillance.valeur IS 'Valeur de la liste énumérée relative au type de défaillance';
+COMMENT ON COLUMN raepa.val_raepa_defaillance.definition IS 'Définition de la liste énumérée relative au type de défaillance';
 
-INSERT INTO m_reseau_humide.val_raepa_defaillance(
+INSERT INTO raepa.val_raepa_defaillance(
             code, valeur, definition)
 VALUES
 ('00','Indéterminé','Défaillance de type inconnu'),
@@ -334,11 +335,11 @@ VALUES
 -- ##      AEP      ##
 -- ################### 
 
--- Table: m_reseau_humide.val_raepa_cat_canal_ae
+-- Table: raepa.val_raepa_cat_canal_ae
 
--- DROP TABLE m_reseau_humide.val_raepa_cat_canal_ae;
+-- DROP TABLE raepa.val_raepa_cat_canal_ae;
 
-CREATE TABLE m_reseau_humide.val_raepa_cat_canal_ae
+CREATE TABLE raepa.val_raepa_cat_canal_ae
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -349,13 +350,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_cat_canal_ae
+COMMENT ON TABLE raepa.val_raepa_cat_canal_ae
   IS 'Nature des eaux véhiculées par une canalisation d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_canal_ae.code IS 'Code de la liste énumérée relative à la nature des eaux véhiculées par une canalisation d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_canal_ae.valeur IS 'Valeur de la liste énumérée relative à la nature des eaux véhiculées par une canalisation d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_canal_ae.definition IS 'Définition de la liste énumérée relative à la nature des eaux véhiculées par une canalisation d''adduction d''eau';
+COMMENT ON COLUMN raepa.val_raepa_cat_canal_ae.code IS 'Code de la liste énumérée relative à la nature des eaux véhiculées par une canalisation d''adduction d''eau';
+COMMENT ON COLUMN raepa.val_raepa_cat_canal_ae.valeur IS 'Valeur de la liste énumérée relative à la nature des eaux véhiculées par une canalisation d''adduction d''eau';
+COMMENT ON COLUMN raepa.val_raepa_cat_canal_ae.definition IS 'Définition de la liste énumérée relative à la nature des eaux véhiculées par une canalisation d''adduction d''eau';
 
-INSERT INTO m_reseau_humide.val_raepa_cat_canal_ae(
+INSERT INTO raepa.val_raepa_cat_canal_ae(
             code, valeur, definition)
     VALUES
 ('00','Indéterminée','Nature des eaux véhiculées par la canalisation inconnue'),
@@ -363,11 +364,11 @@ INSERT INTO m_reseau_humide.val_raepa_cat_canal_ae(
 ('02','Eau potable','Canalisation véhiculant de l''eau potable'),
 ('99','Autre','Canalisation véhiculant tantôt de l''eau brute, tantôt de l''eau potable');
 
--- Table: m_reseau_humide.val_raepa_fonc_canal_ae
+-- Table: raepa.val_raepa_fonc_canal_ae
 
--- DROP TABLE m_reseau_humide.val_raepa_fonc_canal_ae;
+-- DROP TABLE raepa.val_raepa_fonc_canal_ae;
 
-CREATE TABLE m_reseau_humide.val_raepa_fonc_canal_ae
+CREATE TABLE raepa.val_raepa_fonc_canal_ae
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -378,13 +379,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_fonc_canal_ae
+COMMENT ON TABLE raepa.val_raepa_fonc_canal_ae
   IS 'Fonction dans le réseau d''une canalisation d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_fonc_canal_ae.code IS 'Code de la liste énumérée relative à la fonction dans le réseau d''une canalisation d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_fonc_canal_ae.valeur IS 'Valeur de la liste énumérée relative à la fonction dans le réseau d''une canalisation d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_fonc_canal_ae.definition IS 'Définition de la liste énumérée relative à la fonction dans le réseau d''une canalisation d''adduction d''eau';
+COMMENT ON COLUMN raepa.val_raepa_fonc_canal_ae.code IS 'Code de la liste énumérée relative à la fonction dans le réseau d''une canalisation d''adduction d''eau';
+COMMENT ON COLUMN raepa.val_raepa_fonc_canal_ae.valeur IS 'Valeur de la liste énumérée relative à la fonction dans le réseau d''une canalisation d''adduction d''eau';
+COMMENT ON COLUMN raepa.val_raepa_fonc_canal_ae.definition IS 'Définition de la liste énumérée relative à la fonction dans le réseau d''une canalisation d''adduction d''eau';
 
-INSERT INTO m_reseau_humide.val_raepa_fonc_canal_ae(
+INSERT INTO raepa.val_raepa_fonc_canal_ae(
             code, valeur, definition)
     VALUES
 ('00','Indéterminée','Fonction de la canalisation dans le réseau inconnue'),
@@ -393,11 +394,11 @@ INSERT INTO m_reseau_humide.val_raepa_fonc_canal_ae(
 ('99','Autre','Canalisation dont la fonction dans le réseau ne figure pas dans la liste ci-dessus');
 
 
--- Table: m_reseau_humide.val_raepa_cat_app_ae
+-- Table: raepa.val_raepa_cat_app_ae
 
--- DROP TABLE m_reseau_humide.val_raepa_cat_app_ae;
+-- DROP TABLE raepa.val_raepa_cat_app_ae;
 
-CREATE TABLE m_reseau_humide.val_raepa_cat_app_ae
+CREATE TABLE raepa.val_raepa_cat_app_ae
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -408,13 +409,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_cat_app_ae
+COMMENT ON TABLE raepa.val_raepa_cat_app_ae
   IS 'Type d''un appareillage d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_app_ae.code IS 'Code de la liste énumérée relative au type d''un appareillage d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_app_ae.valeur IS 'Valeur de la liste énumérée relative au type d''un appareillage d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_app_ae.definition IS 'Définition de la liste énumérée relative au type d''un appareillage d''adduction d''eau';
+COMMENT ON COLUMN raepa.val_raepa_cat_app_ae.code IS 'Code de la liste énumérée relative au type d''un appareillage d''adduction d''eau';
+COMMENT ON COLUMN raepa.val_raepa_cat_app_ae.valeur IS 'Valeur de la liste énumérée relative au type d''un appareillage d''adduction d''eau';
+COMMENT ON COLUMN raepa.val_raepa_cat_app_ae.definition IS 'Définition de la liste énumérée relative au type d''un appareillage d''adduction d''eau';
 
-INSERT INTO m_reseau_humide.val_raepa_cat_app_ae(
+INSERT INTO raepa.val_raepa_cat_app_ae(
             code, valeur, definition)
     VALUES
 ('00','Indéterminé','Type d''appareillage inconnu'),
@@ -429,11 +430,11 @@ INSERT INTO m_reseau_humide.val_raepa_cat_app_ae(
 ('99','Autre','Appareillage dont le type ne figure pas dans la liste ci-dessus');
 
 
--- Table: m_reseau_humide.val_raepa_cat_ouv_ae
+-- Table: raepa.val_raepa_cat_ouv_ae
 
--- DROP TABLE m_reseau_humide.val_raepa_cat_ouv_ae;
+-- DROP TABLE raepa.val_raepa_cat_ouv_ae;
 
-CREATE TABLE m_reseau_humide.val_raepa_cat_ouv_ae
+CREATE TABLE raepa.val_raepa_cat_ouv_ae
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -444,13 +445,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_cat_ouv_ae
+COMMENT ON TABLE raepa.val_raepa_cat_ouv_ae
   IS 'Type d''un ouvrage d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_ouv_ae.code IS 'Code de la liste énumérée relative au type d''un ouvrage d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_ouv_ae.valeur IS 'Valeur de la liste énumérée relative au type d''un ouvrage d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_ouv_ae.definition IS 'Définition de la liste énumérée relative au type d''un ouvrage d''adduction d''eau';
+COMMENT ON COLUMN raepa.val_raepa_cat_ouv_ae.code IS 'Code de la liste énumérée relative au type d''un ouvrage d''adduction d''eau';
+COMMENT ON COLUMN raepa.val_raepa_cat_ouv_ae.valeur IS 'Valeur de la liste énumérée relative au type d''un ouvrage d''adduction d''eau';
+COMMENT ON COLUMN raepa.val_raepa_cat_ouv_ae.definition IS 'Définition de la liste énumérée relative au type d''un ouvrage d''adduction d''eau';
 
-INSERT INTO m_reseau_humide.val_raepa_cat_ouv_ae(
+INSERT INTO raepa.val_raepa_cat_ouv_ae(
             code, valeur, definition)
     VALUES
 ('00','Indéterminé','Type d''ouvrage inconnu'),
@@ -466,11 +467,11 @@ INSERT INTO m_reseau_humide.val_raepa_cat_ouv_ae(
 -- ##      ASS      ##
 -- ################### 
 
--- Table: m_reseau_humide.val_raepa_cat_reseau_ass
+-- Table: raepa.val_raepa_cat_reseau_ass
 
--- DROP TABLE m_reseau_humide.val_raepa_cat_reseau_ass;
+-- DROP TABLE raepa.val_raepa_cat_reseau_ass;
 
-CREATE TABLE m_reseau_humide.val_raepa_cat_reseau_ass
+CREATE TABLE raepa.val_raepa_cat_reseau_ass
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -482,13 +483,13 @@ WITH (
 );
 
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_cat_reseau_ass
+COMMENT ON TABLE raepa.val_raepa_cat_reseau_ass
   IS 'Type de réseau d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_reseau_ass.code IS 'Code de la liste énumérée relative au type de réseau d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_reseau_ass.valeur IS 'Valeur de la liste énumérée relative au type de réseau d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_reseau_ass.definition IS 'Définition de la liste énumérée relative au type de réseau d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_cat_reseau_ass.code IS 'Code de la liste énumérée relative au type de réseau d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_cat_reseau_ass.valeur IS 'Valeur de la liste énumérée relative au type de réseau d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_cat_reseau_ass.definition IS 'Définition de la liste énumérée relative au type de réseau d''assainissement collectif';
 
-INSERT INTO m_reseau_humide.val_raepa_cat_reseau_ass(
+INSERT INTO raepa.val_raepa_cat_reseau_ass(
             code, valeur, definition)
     VALUES
 ('01','Pluvial','Réseau de collecte de seules eaux pluviales'),
@@ -496,11 +497,11 @@ INSERT INTO m_reseau_humide.val_raepa_cat_reseau_ass(
 ('03','Unitaire','Réseau de collecte des eaux usées et des eaux pluviales');
 
 
--- Table: m_reseau_humide.val_raepa_cat_canal_ass
+-- Table: raepa.val_raepa_cat_canal_ass
 
--- DROP TABLE m_reseau_humide.val_raepa_cat_canal_ass;
+-- DROP TABLE raepa.val_raepa_cat_canal_ass;
 
-CREATE TABLE m_reseau_humide.val_raepa_cat_canal_ass
+CREATE TABLE raepa.val_raepa_cat_canal_ass
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -512,13 +513,13 @@ WITH (
 );
 
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_cat_canal_ass
+COMMENT ON TABLE raepa.val_raepa_cat_canal_ass
   IS 'Nature des eaux véhiculées par une canalisation d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_canal_ass.code IS 'Code de la liste énumérée relative à la nature des eaux véhiculées par une canalisation d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_canal_ass.valeur IS 'Valeur de la liste énumérée relative à la nature des eaux véhiculées par une canalisation d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_canal_ass.definition IS 'Définition de la liste énumérée relative à la nature des eaux véhiculées par une canalisation d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_cat_canal_ass.code IS 'Code de la liste énumérée relative à la nature des eaux véhiculées par une canalisation d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_cat_canal_ass.valeur IS 'Valeur de la liste énumérée relative à la nature des eaux véhiculées par une canalisation d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_cat_canal_ass.definition IS 'Définition de la liste énumérée relative à la nature des eaux véhiculées par une canalisation d''assainissement collectif';
 
-INSERT INTO m_reseau_humide.val_raepa_cat_canal_ass(
+INSERT INTO raepa.val_raepa_cat_canal_ass(
             code, valeur, definition)
     VALUES
 ('00','Indéterminée','Nature des eaux véhiculées par la canalisation inconnue'),
@@ -528,11 +529,11 @@ INSERT INTO m_reseau_humide.val_raepa_cat_canal_ass(
 ('99','Autre','Canalisation véhiculant tantôt des eaux pluviales, tantôt des eaux usées');
 
 
--- Table: m_reseau_humide.val_raepa_fonc_canal_ass
+-- Table: raepa.val_raepa_fonc_canal_ass
 
--- DROP TABLE m_reseau_humide.val_raepa_fonc_canal_ass;
+-- DROP TABLE raepa.val_raepa_fonc_canal_ass;
 
-CREATE TABLE m_reseau_humide.val_raepa_fonc_canal_ass
+CREATE TABLE raepa.val_raepa_fonc_canal_ass
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -543,13 +544,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_fonc_canal_ass
+COMMENT ON TABLE raepa.val_raepa_fonc_canal_ass
   IS 'Fonction dans le réseau d''une canalisation d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_fonc_canal_ass.code IS 'Code de la liste énumérée relative à la fonction dans le réseau d''une canalisation d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_fonc_canal_ass.valeur IS 'Valeur de la liste énumérée relative à la fonction dans le réseau d''une canalisation d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_fonc_canal_ass.definition IS 'Définition de la liste énumérée relative à la fonction dans le réseau d''une canalisation d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_fonc_canal_ass.code IS 'Code de la liste énumérée relative à la fonction dans le réseau d''une canalisation d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_fonc_canal_ass.valeur IS 'Valeur de la liste énumérée relative à la fonction dans le réseau d''une canalisation d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_fonc_canal_ass.definition IS 'Définition de la liste énumérée relative à la fonction dans le réseau d''une canalisation d''assainissement collectif';
 
-INSERT INTO m_reseau_humide.val_raepa_fonc_canal_ass(
+INSERT INTO raepa.val_raepa_fonc_canal_ass(
             code, valeur, definition)
     VALUES
 ('00','Indéterminée','Fonction de la canalisation dans le réseau inconnue'),
@@ -558,11 +559,11 @@ INSERT INTO m_reseau_humide.val_raepa_fonc_canal_ass(
 ('99','Autre','Canalisation dont la fonction dans le réseau ne figure pas dans la liste ci-dessus');
 
 
--- Table: m_reseau_humide.val_raepa_cat_app_ass
+-- Table: raepa.val_raepa_cat_app_ass
 
--- DROP TABLE m_reseau_humide.val_raepa_cat_app_ass;
+-- DROP TABLE raepa.val_raepa_cat_app_ass;
 
-CREATE TABLE m_reseau_humide.val_raepa_cat_app_ass
+CREATE TABLE raepa.val_raepa_cat_app_ass
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -573,13 +574,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_cat_app_ass
+COMMENT ON TABLE raepa.val_raepa_cat_app_ass
   IS 'Type d''un appareillage d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_app_ass.code IS 'Code de la liste énumérée relative au type d''un appareillage d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_app_ass.valeur IS 'Valeur de la liste énumérée relative au type d''un appareillage d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_app_ass.definition IS 'Définition de la liste énumérée relative au type d''un appareillage d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_cat_app_ass.code IS 'Code de la liste énumérée relative au type d''un appareillage d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_cat_app_ass.valeur IS 'Valeur de la liste énumérée relative au type d''un appareillage d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_cat_app_ass.definition IS 'Définition de la liste énumérée relative au type d''un appareillage d''assainissement collectif';
 
-INSERT INTO m_reseau_humide.val_raepa_cat_app_ass(
+INSERT INTO raepa.val_raepa_cat_app_ass(
             code, valeur, definition)
     VALUES
 ('00','Indéterminé','Type d''appareillage inconnu'),
@@ -590,11 +591,11 @@ INSERT INTO m_reseau_humide.val_raepa_cat_app_ass(
 ('99','Autre','Appareillage dont le type ne figure pas dans la liste ci-dessus');
 
 
--- Table: m_reseau_humide.val_raepa_cat_ouv_ass
+-- Table: raepa.val_raepa_cat_ouv_ass
 
--- DROP TABLE m_reseau_humide.val_raepa_cat_ouv_ass;
+-- DROP TABLE raepa.val_raepa_cat_ouv_ass;
 
-CREATE TABLE m_reseau_humide.val_raepa_cat_ouv_ass
+CREATE TABLE raepa.val_raepa_cat_ouv_ass
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -605,13 +606,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.val_raepa_cat_ouv_ass
+COMMENT ON TABLE raepa.val_raepa_cat_ouv_ass
   IS 'Type d''un ouvrage d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_ouv_ass.code IS 'Code de la liste énumérée relative au type d''un ouvrage d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_ouv_ass.valeur IS 'Valeur de la liste énumérée relative au type d''un ouvrage d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.val_raepa_cat_ouv_ass.definition IS 'Définition de la liste énumérée relative au type d''un ouvrage d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_cat_ouv_ass.code IS 'Code de la liste énumérée relative au type d''un ouvrage d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_cat_ouv_ass.valeur IS 'Valeur de la liste énumérée relative au type d''un ouvrage d''assainissement collectif';
+COMMENT ON COLUMN raepa.val_raepa_cat_ouv_ass.definition IS 'Définition de la liste énumérée relative au type d''un ouvrage d''assainissement collectif';
 
-INSERT INTO m_reseau_humide.val_raepa_cat_ouv_ass(
+INSERT INTO raepa.val_raepa_cat_ouv_ass(
             code, valeur, definition)
     VALUES
 ('00','Indéterminé','Type d''ouvrage inconnu'),
@@ -633,22 +634,22 @@ INSERT INTO m_reseau_humide.val_raepa_cat_ouv_ass(
 -- ###                                                                                                                                              ###
 -- ####################################################################################################################################################
 
--- Sequence: m_reseau_humide.raepa_idraepa
+-- Sequence: raepa.raepa_idraepa
 
--- DROP SEQUENCE m_reseau_humide.raepa_idraepa;
+-- DROP SEQUENCE raepa.raepa_idraepa;
 
-CREATE SEQUENCE m_reseau_humide.raepa_idraepa
+CREATE SEQUENCE raepa.raepa_idraepa
   INCREMENT 1
   MINVALUE 0
   MAXVALUE 9223372036854775807
   START 1
   CACHE 1;
 
--- Sequence: m_reseau_humide.raepa_idrepar
+-- Sequence: raepa.raepa_idrepar
 
--- DROP SEQUENCE m_reseau_humide.raepa_idrepar;
+-- DROP SEQUENCE raepa.raepa_idrepar;
 
-CREATE SEQUENCE m_reseau_humide.raepa_idrepar
+CREATE SEQUENCE raepa.raepa_idrepar
   INCREMENT 1
   MINVALUE 0
   MAXVALUE 9223372036854775807
@@ -666,11 +667,11 @@ CREATE SEQUENCE m_reseau_humide.raepa_idrepar
 
 -- ################################################################ CLASSE METADONNEES RAEPA ##############################################
 
--- Table: m_reseau_humide.raepa_metadonnees
+-- Table: raepa.raepa_metadonnees
 
--- DROP TABLE m_reseau_humide.raepa_metadonnees;
+-- DROP TABLE raepa.raepa_metadonnees;
 
-CREATE TABLE m_reseau_humide.raepa_metadonnees
+CREATE TABLE raepa.raepa_metadonnees
 (
   idraepa character varying(254) NOT NULL,
   qualglocxy character varying(2) NOT NULL, -- fkey vers domaine de valeur
@@ -687,26 +688,26 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.raepa_metadonnees
+COMMENT ON TABLE raepa.raepa_metadonnees
   IS 'Classe décrivant les métadonnées d''un objet du réseau humide';
-COMMENT ON COLUMN m_reseau_humide.raepa_metadonnees.qualglocxy IS 'Qualité de la géolocalisation planimétrique (XY)';
-COMMENT ON COLUMN m_reseau_humide.raepa_metadonnees.qualglocz IS 'Qualité de la géolocalisation altimétrique (Z)';
-COMMENT ON COLUMN m_reseau_humide.raepa_metadonnees.datemaj IS 'Date de la dernière mise à jour des informations';
-COMMENT ON COLUMN m_reseau_humide.raepa_metadonnees.sourmaj IS 'Source de la mise à jour';
-COMMENT ON COLUMN m_reseau_humide.raepa_metadonnees.dategeoloc IS 'Date de la géolocalisation';
-COMMENT ON COLUMN m_reseau_humide.raepa_metadonnees.sourgeoloc IS 'Auteur de la géolocalisation';
-COMMENT ON COLUMN m_reseau_humide.raepa_metadonnees.sourattrib IS 'Auteur de la saisie des données attributaires (lorsque différent de l''auteur de la géolocalisation)';
-COMMENT ON COLUMN m_reseau_humide.raepa_metadonnees.qualannee IS 'Fiabilité de l''année de pose ou de mise en service';
+COMMENT ON COLUMN raepa.raepa_metadonnees.qualglocxy IS 'Qualité de la géolocalisation planimétrique (XY)';
+COMMENT ON COLUMN raepa.raepa_metadonnees.qualglocz IS 'Qualité de la géolocalisation altimétrique (Z)';
+COMMENT ON COLUMN raepa.raepa_metadonnees.datemaj IS 'Date de la dernière mise à jour des informations';
+COMMENT ON COLUMN raepa.raepa_metadonnees.sourmaj IS 'Source de la mise à jour';
+COMMENT ON COLUMN raepa.raepa_metadonnees.dategeoloc IS 'Date de la géolocalisation';
+COMMENT ON COLUMN raepa.raepa_metadonnees.sourgeoloc IS 'Auteur de la géolocalisation';
+COMMENT ON COLUMN raepa.raepa_metadonnees.sourattrib IS 'Auteur de la saisie des données attributaires (lorsque différent de l''auteur de la géolocalisation)';
+COMMENT ON COLUMN raepa.raepa_metadonnees.qualannee IS 'Fiabilité de l''année de pose ou de mise en service';
 
 
 
 -- #################################################################### CLASSE CANALISATION ###############################################
 
--- Table: m_reseau_humide.raepa_canal
+-- Table: raepa.raepa_canal
 
--- DROP TABLE m_reseau_humide.raepa_canal;
+-- DROP TABLE raepa.raepa_canal;
 
-CREATE TABLE m_reseau_humide.raepa_canal
+CREATE TABLE raepa.raepa_canal
 (
   idcana character varying(254) NOT NULL,
   mouvrage character varying(100), 
@@ -730,35 +731,35 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.raepa_canal
+COMMENT ON TABLE raepa.raepa_canal
   IS 'Tronçon de conduite';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.idcana IS 'Identifiant de la canalisation';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.mouvrage IS 'Maître d''ouvrage du réseau';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.gexploit IS 'Gestionnaire exploitant du réseau';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.enservice IS 'Canalisation en service (O/N)';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.branchemnt IS 'Canalisation de branchement individuel (O/N)';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.materiau IS 'Matériau de la canalisation';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.diametre IS 'Diamètre nominal de la canalisation (en millimètres)';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.anfinpose IS 'Année marquant la fin de la période de pose de la canalisation';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.modecircu IS 'Mode de circulation de l''eau à l''intérieur de la canalisation';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.idnini IS 'Identifiant du noeud de début de la canalisation';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.idnterm IS 'Identifiant du noeud de fin de la canalisation';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.idcanppale IS 'Identifiant de la canalisation principale';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.andebpose IS 'Année marquant le début de la période de pose de la canalisation';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.longcana IS 'Longueur mesurée de la canalisation (en mètres)';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.nbranche IS 'Nombre de branchements individuels sur la canalisation';
-COMMENT ON COLUMN m_reseau_humide.raepa_canal.geom IS 'Géométrie linéaire de l''objet';
+COMMENT ON COLUMN raepa.raepa_canal.idcana IS 'Identifiant de la canalisation';
+COMMENT ON COLUMN raepa.raepa_canal.mouvrage IS 'Maître d''ouvrage du réseau';
+COMMENT ON COLUMN raepa.raepa_canal.gexploit IS 'Gestionnaire exploitant du réseau';
+COMMENT ON COLUMN raepa.raepa_canal.enservice IS 'Canalisation en service (O/N)';
+COMMENT ON COLUMN raepa.raepa_canal.branchemnt IS 'Canalisation de branchement individuel (O/N)';
+COMMENT ON COLUMN raepa.raepa_canal.materiau IS 'Matériau de la canalisation';
+COMMENT ON COLUMN raepa.raepa_canal.diametre IS 'Diamètre nominal de la canalisation (en millimètres)';
+COMMENT ON COLUMN raepa.raepa_canal.anfinpose IS 'Année marquant la fin de la période de pose de la canalisation';
+COMMENT ON COLUMN raepa.raepa_canal.modecircu IS 'Mode de circulation de l''eau à l''intérieur de la canalisation';
+COMMENT ON COLUMN raepa.raepa_canal.idnini IS 'Identifiant du noeud de début de la canalisation';
+COMMENT ON COLUMN raepa.raepa_canal.idnterm IS 'Identifiant du noeud de fin de la canalisation';
+COMMENT ON COLUMN raepa.raepa_canal.idcanppale IS 'Identifiant de la canalisation principale';
+COMMENT ON COLUMN raepa.raepa_canal.andebpose IS 'Année marquant le début de la période de pose de la canalisation';
+COMMENT ON COLUMN raepa.raepa_canal.longcana IS 'Longueur mesurée de la canalisation (en mètres)';
+COMMENT ON COLUMN raepa.raepa_canal.nbranche IS 'Nombre de branchements individuels sur la canalisation';
+COMMENT ON COLUMN raepa.raepa_canal.geom IS 'Géométrie linéaire de l''objet';
 
-ALTER TABLE m_reseau_humide.raepa_canal ALTER COLUMN idcana SET DEFAULT nextval('m_reseau_humide.raepa_idraepa'::regclass);
+ALTER TABLE raepa.raepa_canal ALTER COLUMN idcana SET DEFAULT nextval('raepa.raepa_idraepa'::regclass);
 
 
 -- #################################################################### SSCLASSE CANALISATION AEP ###############################################
 
--- Table: m_reseau_humide.raepa_canalaep
+-- Table: raepa.raepa_canalaep
 
--- DROP TABLE m_reseau_humide.raepa_canalaep;
+-- DROP TABLE raepa.raepa_canalaep;
 
-CREATE TABLE m_reseau_humide.raepa_canalaep
+CREATE TABLE raepa.raepa_canalaep
 (
   idcana character varying(254) NOT NULL, -- fkey vers attribut idcana de la classe canalisation
   contcanaep character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
@@ -769,21 +770,21 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.raepa_canalaep
+COMMENT ON TABLE raepa.raepa_canalaep
   IS 'Tronçon de conduite d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.raepa_canalaep.idcana IS 'Identifiant de la canalisation';
-COMMENT ON COLUMN m_reseau_humide.raepa_canalaep.contcanaep IS 'Catégorie de la canalisation d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.raepa_canalaep.fonccanaep IS 'Fonction de la canalisation d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.raepa_canalaep.profgen IS 'Profondeur moyenne de la génératrice supérieure de la canalisation (en mètres)';
+COMMENT ON COLUMN raepa.raepa_canalaep.idcana IS 'Identifiant de la canalisation';
+COMMENT ON COLUMN raepa.raepa_canalaep.contcanaep IS 'Catégorie de la canalisation d''adduction d''eau';
+COMMENT ON COLUMN raepa.raepa_canalaep.fonccanaep IS 'Fonction de la canalisation d''adduction d''eau';
+COMMENT ON COLUMN raepa.raepa_canalaep.profgen IS 'Profondeur moyenne de la génératrice supérieure de la canalisation (en mètres)';
 
 
 -- #################################################################### SSCLASSE CANALISATION ASS ###############################################
 
--- Table: m_reseau_humide.raepa_canalass
+-- Table: raepa.raepa_canalass
 
--- DROP TABLE m_reseau_humide.raepa_canalass;
+-- DROP TABLE raepa.raepa_canalass;
 
-CREATE TABLE m_reseau_humide.raepa_canalass
+CREATE TABLE raepa.raepa_canalass
 (
   idcana character varying(254) NOT NULL, -- fkey vers attribut idcana de la classe canalisation
   typreseau character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
@@ -797,24 +798,24 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.raepa_canalass
+COMMENT ON TABLE raepa.raepa_canalass
   IS 'Tronçon de conduite d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.raepa_canalass.idcana IS 'Identifiant de la canalisation';
-COMMENT ON COLUMN m_reseau_humide.raepa_canalass.typreseau IS 'Type du réseau d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.raepa_canalass.contcanass IS 'Catégorie de la canalisation d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.raepa_canalass.fonccanass IS 'Fonction de la canalisation d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.raepa_canalass.zamont IS 'Altitude à l''extrémité amont (en mètres, référentiel NGF-IGN69)';  
-COMMENT ON COLUMN m_reseau_humide.raepa_canalass.zaval IS 'Altitude à l''extrémité aval (en mètres, référentiel NGF-IGN69)';   
-COMMENT ON COLUMN m_reseau_humide.raepa_canalass.sensecoul IS 'Sens de l''écoulement dans la canalisation d''assainissement collectif';  
+COMMENT ON COLUMN raepa.raepa_canalass.idcana IS 'Identifiant de la canalisation';
+COMMENT ON COLUMN raepa.raepa_canalass.typreseau IS 'Type du réseau d''assainissement collectif';
+COMMENT ON COLUMN raepa.raepa_canalass.contcanass IS 'Catégorie de la canalisation d''assainissement collectif';
+COMMENT ON COLUMN raepa.raepa_canalass.fonccanass IS 'Fonction de la canalisation d''assainissement collectif';
+COMMENT ON COLUMN raepa.raepa_canalass.zamont IS 'Altitude à l''extrémité amont (en mètres, référentiel NGF-IGN69)';  
+COMMENT ON COLUMN raepa.raepa_canalass.zaval IS 'Altitude à l''extrémité aval (en mètres, référentiel NGF-IGN69)';   
+COMMENT ON COLUMN raepa.raepa_canalass.sensecoul IS 'Sens de l''écoulement dans la canalisation d''assainissement collectif';  
 
 
 -- #################################################################### SUPER CLASSE NOEUD ###############################################
 
--- Table: m_reseau_humide.raepa_noeud
+-- Table: raepa.raepa_noeud
 
--- DROP TABLE m_reseau_humide.raepa_noeud;
+-- DROP TABLE raepa.raepa_noeud;
 
-CREATE TABLE m_reseau_humide.raepa_noeud
+CREATE TABLE raepa.raepa_noeud
 (
   idnoeud character varying(254) NOT NULL,
   x numeric(10,3) NOT NULL,
@@ -831,29 +832,29 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.raepa_noeud
+COMMENT ON TABLE raepa.raepa_noeud
   IS 'Lieu de jonction de plusieurs tronçons de conduite ou de percement d''un tronçon de conduite';
-COMMENT ON COLUMN m_reseau_humide.raepa_noeud.idnoeud IS 'Identifiant du noeud';
-COMMENT ON COLUMN m_reseau_humide.raepa_noeud.x IS 'Coordonnée X Lambert 93 (en mètres)';
-COMMENT ON COLUMN m_reseau_humide.raepa_noeud.y IS 'Coordonnée X Lambert 93 (en mètres)';
-COMMENT ON COLUMN m_reseau_humide.raepa_noeud.mouvrage IS 'Maître d''ouvrage du réseau';
-COMMENT ON COLUMN m_reseau_humide.raepa_noeud.gexploit IS 'Gestionnaire exploitant du réseau';
-COMMENT ON COLUMN m_reseau_humide.raepa_noeud.anfinpose IS 'Année marquant la fin de la période de mise en service de l''appareillage et/ou de l''ouvrage';
-COMMENT ON COLUMN m_reseau_humide.raepa_noeud.idcanppale IS 'Identifiant de la canalisation principale en cas de piquage';
-COMMENT ON COLUMN m_reseau_humide.raepa_noeud.andebpose IS 'Année marquant le début de la période de mise en service de l''appareillage et/ou de l''ouvrage';
-COMMENT ON COLUMN m_reseau_humide.raepa_noeud.geom IS 'Géométrie ponctuelle de l''objet';
+COMMENT ON COLUMN raepa.raepa_noeud.idnoeud IS 'Identifiant du noeud';
+COMMENT ON COLUMN raepa.raepa_noeud.x IS 'Coordonnée X Lambert 93 (en mètres)';
+COMMENT ON COLUMN raepa.raepa_noeud.y IS 'Coordonnée X Lambert 93 (en mètres)';
+COMMENT ON COLUMN raepa.raepa_noeud.mouvrage IS 'Maître d''ouvrage du réseau';
+COMMENT ON COLUMN raepa.raepa_noeud.gexploit IS 'Gestionnaire exploitant du réseau';
+COMMENT ON COLUMN raepa.raepa_noeud.anfinpose IS 'Année marquant la fin de la période de mise en service de l''appareillage et/ou de l''ouvrage';
+COMMENT ON COLUMN raepa.raepa_noeud.idcanppale IS 'Identifiant de la canalisation principale en cas de piquage';
+COMMENT ON COLUMN raepa.raepa_noeud.andebpose IS 'Année marquant le début de la période de mise en service de l''appareillage et/ou de l''ouvrage';
+COMMENT ON COLUMN raepa.raepa_noeud.geom IS 'Géométrie ponctuelle de l''objet';
 
 
-ALTER TABLE m_reseau_humide.raepa_noeud ALTER COLUMN idnoeud SET DEFAULT nextval('m_reseau_humide.raepa_idraepa'::regclass);
+ALTER TABLE raepa.raepa_noeud ALTER COLUMN idnoeud SET DEFAULT nextval('raepa.raepa_idraepa'::regclass);
 
 
 -- #################################################################### CLASSE APPAREILLAGE ###############################################
 
--- Table: m_reseau_humide.raepa_appar
+-- Table: raepa.raepa_appar
 
--- DROP TABLE m_reseau_humide.raepa_appar;
+-- DROP TABLE raepa.raepa_appar;
 
-CREATE TABLE m_reseau_humide.raepa_appar
+CREATE TABLE raepa.raepa_appar
 (
   idappareil character varying(254) NOT NULL,
 --  idnoeud character varying(254) NOT NULL, -- fkey vers attribut idnoeud de la classe noeud
@@ -866,20 +867,20 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.raepa_appar
+COMMENT ON TABLE raepa.raepa_appar
   IS 'Appareillage';
-COMMENT ON COLUMN m_reseau_humide.raepa_appar.idappareil IS 'Identifiant de l''appareillage';
--- COMMENT ON COLUMN m_reseau_humide.raepa_appar.idnoeud IS 'Identifiant du noeud';
--- COMMENT ON COLUMN m_reseau_humide.raepa_appar.idouvrage IS 'Identifiant de l''éventuel ouvrage d''accueil';
-COMMENT ON COLUMN m_reseau_humide.raepa_appar.z IS 'Altitude du noeud (en mètres, Référentiel NGFIGN69)';  
+COMMENT ON COLUMN raepa.raepa_appar.idappareil IS 'Identifiant de l''appareillage';
+-- COMMENT ON COLUMN raepa.raepa_appar.idnoeud IS 'Identifiant du noeud';
+-- COMMENT ON COLUMN raepa.raepa_appar.idouvrage IS 'Identifiant de l''éventuel ouvrage d''accueil';
+COMMENT ON COLUMN raepa.raepa_appar.z IS 'Altitude du noeud (en mètres, Référentiel NGFIGN69)';  
   
 -- #################################################################### SSCLASSE APPAREILLAGE AEP ###############################################
 
--- Table: m_reseau_humide.raepa_apparaep
+-- Table: raepa.raepa_apparaep
 
--- DROP TABLE m_reseau_humide.raepa_apparaep;
+-- DROP TABLE raepa.raepa_apparaep;
 
-CREATE TABLE m_reseau_humide.raepa_apparaep
+CREATE TABLE raepa.raepa_apparaep
 (
   idappareil character varying(254) NOT NULL, -- fkey vers attribut idappareil de la classe appareillage
   fnappaep character varying(2) NOT NULL DEFAULT '00' -- fkey vers domaine de valeur
@@ -888,19 +889,19 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.raepa_apparaep
+COMMENT ON TABLE raepa.raepa_apparaep
   IS 'Appareillage d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.raepa_apparaep.idappareil IS 'Identifiant de l''appareillage';
-COMMENT ON COLUMN m_reseau_humide.raepa_apparaep.fnappaep IS 'Fonction de l''appareillage d''adduction d''eau potable';
+COMMENT ON COLUMN raepa.raepa_apparaep.idappareil IS 'Identifiant de l''appareillage';
+COMMENT ON COLUMN raepa.raepa_apparaep.fnappaep IS 'Fonction de l''appareillage d''adduction d''eau potable';
 
   
 -- #################################################################### SSCLASSE APPAREILLAGE ASS ###############################################
 
--- Table: m_reseau_humide.raepa_apparass
+-- Table: raepa.raepa_apparass
 
--- DROP TABLE m_reseau_humide.raepa_apparass;
+-- DROP TABLE raepa.raepa_apparass;
 
-CREATE TABLE m_reseau_humide.raepa_apparass
+CREATE TABLE raepa.raepa_apparass
 (
   idappareil character varying(254) NOT NULL, -- fkey vers attribut idappareil de la classe appareillage
   typreseau character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
@@ -910,20 +911,20 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.raepa_apparass
+COMMENT ON TABLE raepa.raepa_apparass
   IS 'Appareillage d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.raepa_apparass.idappareil IS 'Identifiant de l''appareillage';
-COMMENT ON COLUMN m_reseau_humide.raepa_apparass.typreseau IS 'Type du réseau d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.raepa_apparass.fnappass IS 'Fonction de l''appareillage d''assainissement collectif';
+COMMENT ON COLUMN raepa.raepa_apparass.idappareil IS 'Identifiant de l''appareillage';
+COMMENT ON COLUMN raepa.raepa_apparass.typreseau IS 'Type du réseau d''assainissement collectif';
+COMMENT ON COLUMN raepa.raepa_apparass.fnappass IS 'Fonction de l''appareillage d''assainissement collectif';
   
 
 -- #################################################################### CLASSE OUVRAGE ###############################################
 
--- Table: m_reseau_humide.raepa_ouvr
+-- Table: raepa.raepa_ouvr
 
--- DROP TABLE m_reseau_humide.raepa_ouvr;
+-- DROP TABLE raepa.raepa_ouvr;
 
-CREATE TABLE m_reseau_humide.raepa_ouvr
+CREATE TABLE raepa.raepa_ouvr
 (
   idouvrage character varying(254) NOT NULL,
 --  idnoeud character varying(254) NOT NULL, -- fkey vers attribut idnoeud de la classe noeud
@@ -934,21 +935,21 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.raepa_ouvr
+COMMENT ON TABLE raepa.raepa_ouvr
   IS 'Ouvrage';
-COMMENT ON COLUMN m_reseau_humide.raepa_ouvr.idouvrage IS 'Identifiant de l''ouvrage';
--- COMMENT ON COLUMN m_reseau_humide.raepa_ouvr.idnoeud IS 'Identifiant du noeud';
-COMMENT ON COLUMN m_reseau_humide.raepa_ouvr.z IS 'Altitude radier de l''ouvrage (en mètres, Référentiel NGFIGN69)';  
+COMMENT ON COLUMN raepa.raepa_ouvr.idouvrage IS 'Identifiant de l''ouvrage';
+-- COMMENT ON COLUMN raepa.raepa_ouvr.idnoeud IS 'Identifiant du noeud';
+COMMENT ON COLUMN raepa.raepa_ouvr.z IS 'Altitude radier de l''ouvrage (en mètres, Référentiel NGFIGN69)';  
   
 
 
 -- #################################################################### SSCLASSE OUVRAGE AE ###############################################
 
--- Table: m_reseau_humide.raepa_ouvraep
+-- Table: raepa.raepa_ouvraep
 
--- DROP TABLE m_reseau_humide.raepa_ouvraep;
+-- DROP TABLE raepa.raepa_ouvraep;
 
-CREATE TABLE m_reseau_humide.raepa_ouvraep
+CREATE TABLE raepa.raepa_ouvraep
 (
   idouvrage character varying(254) NOT NULL, -- fkey vers attribut idouvrage de la classe ouvrage
   fnouvaep character varying(2) NOT NULL DEFAULT '00' -- fkey vers domaine de valeur
@@ -957,19 +958,19 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.raepa_ouvraep
+COMMENT ON TABLE raepa.raepa_ouvraep
   IS 'Ouvrage d''adduction d''eau';
-COMMENT ON COLUMN m_reseau_humide.raepa_ouvraep.idouvrage IS 'Identifiant de l''ouvrage';
-COMMENT ON COLUMN m_reseau_humide.raepa_ouvraep.fnouvaep IS 'Fonction de l''ouvrage d''adduction d''eau potable';
+COMMENT ON COLUMN raepa.raepa_ouvraep.idouvrage IS 'Identifiant de l''ouvrage';
+COMMENT ON COLUMN raepa.raepa_ouvraep.fnouvaep IS 'Fonction de l''ouvrage d''adduction d''eau potable';
 
 
 -- #################################################################### SSCLASSE OUVRAGE ASS ###############################################
 
--- Table: m_reseau_humide.raepa_ouvrass
+-- Table: raepa.raepa_ouvrass
 
--- DROP TABLE m_reseau_humide.raepa_ouvrass;
+-- DROP TABLE raepa.raepa_ouvrass;
 
-CREATE TABLE m_reseau_humide.raepa_ouvrass
+CREATE TABLE raepa.raepa_ouvrass
 (
   idouvrage character varying(254) NOT NULL, -- fkey vers attribut idouvrage de la classe ouvrage
   typreseau character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
@@ -979,17 +980,17 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.raepa_ouvrass
+COMMENT ON TABLE raepa.raepa_ouvrass
   IS 'Ouvrage d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.raepa_ouvrass.idouvrage IS 'Identifiant de l''ouvrage';
-COMMENT ON COLUMN m_reseau_humide.raepa_ouvrass.typreseau IS 'Type du réseau d''assainissement collectif';
-COMMENT ON COLUMN m_reseau_humide.raepa_ouvrass.fnouvass IS 'Fonction de l''ouvrage d''assainissement collectif';
+COMMENT ON COLUMN raepa.raepa_ouvrass.idouvrage IS 'Identifiant de l''ouvrage';
+COMMENT ON COLUMN raepa.raepa_ouvrass.typreseau IS 'Type du réseau d''assainissement collectif';
+COMMENT ON COLUMN raepa.raepa_ouvrass.fnouvass IS 'Fonction de l''ouvrage d''assainissement collectif';
 
 
 -- #################################################################### CLASSE REPARATION ###############################################
 
 
-CREATE TABLE m_reseau_humide.raepa_repar
+CREATE TABLE raepa.raepa_repar
 (
   idrepar character varying(254) NOT NULL,
   x numeric(10,3) NOT NULL,
@@ -1006,20 +1007,20 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.raepa_repar
+COMMENT ON TABLE raepa.raepa_repar
   IS 'Lieu d''une intervention sur le réseau effectuée suite à une défaillance dudit réseau';
-COMMENT ON COLUMN m_reseau_humide.raepa_repar.idrepar IS 'Identifiant de la réparation effectuée';
-COMMENT ON COLUMN m_reseau_humide.raepa_repar.x IS 'Coordonnée X Lambert 93 (en mètres)';
-COMMENT ON COLUMN m_reseau_humide.raepa_repar.y IS 'Coordonnée X Lambert 93 (en mètres)';
-COMMENT ON COLUMN m_reseau_humide.raepa_repar.supprepare IS 'Type de support de la réparation';
-COMMENT ON COLUMN m_reseau_humide.raepa_repar.defreparee IS 'Type de défaillance';
-COMMENT ON COLUMN m_reseau_humide.raepa_repar.idsuprepar IS 'Identifiant du support de la réparation';
-COMMENT ON COLUMN m_reseau_humide.raepa_repar.daterepar IS 'Date de l''intervention en réparation';
-COMMENT ON COLUMN m_reseau_humide.raepa_repar.mouvrage IS 'Maître d''ouvrage de la réparation';
-COMMENT ON COLUMN m_reseau_humide.raepa_repar.geom IS 'Géométrie ponctuelle de l''objet';
+COMMENT ON COLUMN raepa.raepa_repar.idrepar IS 'Identifiant de la réparation effectuée';
+COMMENT ON COLUMN raepa.raepa_repar.x IS 'Coordonnée X Lambert 93 (en mètres)';
+COMMENT ON COLUMN raepa.raepa_repar.y IS 'Coordonnée X Lambert 93 (en mètres)';
+COMMENT ON COLUMN raepa.raepa_repar.supprepare IS 'Type de support de la réparation';
+COMMENT ON COLUMN raepa.raepa_repar.defreparee IS 'Type de défaillance';
+COMMENT ON COLUMN raepa.raepa_repar.idsuprepar IS 'Identifiant du support de la réparation';
+COMMENT ON COLUMN raepa.raepa_repar.daterepar IS 'Date de l''intervention en réparation';
+COMMENT ON COLUMN raepa.raepa_repar.mouvrage IS 'Maître d''ouvrage de la réparation';
+COMMENT ON COLUMN raepa.raepa_repar.geom IS 'Géométrie ponctuelle de l''objet';
 
 
-ALTER TABLE m_reseau_humide.raepa_repar ALTER COLUMN idrepar SET DEFAULT nextval('m_reseau_humide.raepa_idrepar'::regclass);
+ALTER TABLE raepa.raepa_repar ALTER COLUMN idrepar SET DEFAULT nextval('raepa.raepa_idrepar'::regclass);
 
 
 
@@ -1038,16 +1039,16 @@ ALTER TABLE m_reseau_humide.raepa_repar ALTER COLUMN idrepar SET DEFAULT nextval
 
 -- ############ METADONNEES RAEPA ############
 
-ALTER TABLE m_reseau_humide.raepa_metadonnees
+ALTER TABLE raepa.raepa_metadonnees
 
   ADD CONSTRAINT val_raepa_qualite_anpose_fkey FOREIGN KEY (qualannee)
-      REFERENCES m_reseau_humide.val_raepa_qualite_anpose (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_qualite_anpose (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   ADD CONSTRAINT val_raepa_qualite_geoloc_xy_fkey FOREIGN KEY (qualglocxy)
-      REFERENCES m_reseau_humide.val_raepa_qualite_geoloc (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_qualite_geoloc (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,         
   ADD CONSTRAINT val_raepa_qualite_geoloc_z_fkey FOREIGN KEY (qualglocz)
-      REFERENCES m_reseau_humide.val_raepa_qualite_geoloc (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_qualite_geoloc (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;   
 
 
@@ -1055,38 +1056,38 @@ ALTER TABLE m_reseau_humide.raepa_metadonnees
 
 -- ************ RAEPA_CANAL ************  
 
-ALTER TABLE m_reseau_humide.raepa_canal
+ALTER TABLE raepa.raepa_canal
 
   ADD CONSTRAINT val_raepa_materiau_fkey FOREIGN KEY (materiau)
-      REFERENCES m_reseau_humide.val_raepa_materiau (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_materiau (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   ADD CONSTRAINT val_raepa_mode_circulation_fkey FOREIGN KEY (modecircu)
-      REFERENCES m_reseau_humide.val_raepa_mode_circulation (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_mode_circulation (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;
     
 -- ************ RAEPA_CANAL_AEP ************       
            
-ALTER TABLE m_reseau_humide.raepa_canalaep
+ALTER TABLE raepa.raepa_canalaep
 
   ADD CONSTRAINT val_raepa_cat_canal_ae_fkey FOREIGN KEY (contcanaep)
-      REFERENCES m_reseau_humide.val_raepa_cat_canal_ae (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_cat_canal_ae (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,           
   ADD CONSTRAINT val_raepa_fonc_canal_ae_fkey FOREIGN KEY (fonccanaep)
-      REFERENCES m_reseau_humide.val_raepa_fonc_canal_ae (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_fonc_canal_ae (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;
       
 -- ************ RAEPA_CANAL_ASS ************   
 
-ALTER TABLE m_reseau_humide.raepa_canalass
+ALTER TABLE raepa.raepa_canalass
 
   ADD CONSTRAINT val_raepa_cat_reseau_ass_fkey FOREIGN KEY (typreseau)
-      REFERENCES m_reseau_humide.val_raepa_cat_reseau_ass (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_cat_reseau_ass (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   ADD CONSTRAINT val_raepa_cat_canal_ass_fkey FOREIGN KEY (contcanass)
-      REFERENCES m_reseau_humide.val_raepa_cat_canal_ass (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_cat_canal_ass (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,           
   ADD CONSTRAINT val_raepa_fonc_canal_ass_fkey FOREIGN KEY (fonccanass)
-      REFERENCES m_reseau_humide.val_raepa_fonc_canal_ass (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_fonc_canal_ass (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;
 
 
@@ -1094,21 +1095,21 @@ ALTER TABLE m_reseau_humide.raepa_canalass
 
 -- ************ RAEPA_APPAR_AEP ************  
 
-ALTER TABLE m_reseau_humide.raepa_apparaep
+ALTER TABLE raepa.raepa_apparaep
 
   ADD CONSTRAINT val_raepa_cat_app_ae_fkey FOREIGN KEY (fnappaep)
-      REFERENCES m_reseau_humide.val_raepa_cat_app_ae (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_cat_app_ae (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;   
 
 -- ************ RAEPA_APPAR_ASS ************  
 
-ALTER TABLE m_reseau_humide.raepa_apparass
+ALTER TABLE raepa.raepa_apparass
 
   ADD CONSTRAINT val_raepa_cat_reseau_ass_fkey FOREIGN KEY (typreseau)
-      REFERENCES m_reseau_humide.val_raepa_cat_reseau_ass (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_cat_reseau_ass (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,        
   ADD CONSTRAINT val_raepa_cat_app_ass_fkey FOREIGN KEY (fnappass)
-      REFERENCES m_reseau_humide.val_raepa_cat_app_ass (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_cat_app_ass (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;                     
 
  
@@ -1116,21 +1117,21 @@ ALTER TABLE m_reseau_humide.raepa_apparass
 
 -- ************ RAEPA_OUVR_AEP ************  
 
-ALTER TABLE m_reseau_humide.raepa_ouvraep
+ALTER TABLE raepa.raepa_ouvraep
 
   ADD CONSTRAINT val_raepa_cat_ouv_ae_fkey FOREIGN KEY (fnouvaep)
-      REFERENCES m_reseau_humide.val_raepa_cat_ouv_ae (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_cat_ouv_ae (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;   
 
 -- ************ RAEPA_APPAR_ASS ************  
 
-ALTER TABLE m_reseau_humide.raepa_ouvrass
+ALTER TABLE raepa.raepa_ouvrass
 
   ADD CONSTRAINT val_raepa_cat_reseau_ass_fkey FOREIGN KEY (typreseau)
-      REFERENCES m_reseau_humide.val_raepa_cat_reseau_ass (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_cat_reseau_ass (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,        
   ADD CONSTRAINT val_raepa_cat_ouv_ass_fkey FOREIGN KEY (fnouvass)
-      REFERENCES m_reseau_humide.val_raepa_cat_ouv_ass (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_cat_ouv_ass (code) MATCH SIMPLE
 
       ON UPDATE NO ACTION ON DELETE NO ACTION;  
 
@@ -1139,13 +1140,13 @@ ALTER TABLE m_reseau_humide.raepa_ouvrass
 
 -- ************ RAEPA_REPAR ************       
 
-ALTER TABLE m_reseau_humide.raepa_repar
+ALTER TABLE raepa.raepa_repar
 
   ADD CONSTRAINT val_raepa_support_incident_fkey FOREIGN KEY (supprepare)
-      REFERENCES m_reseau_humide.val_raepa_support_incident (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_support_incident (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,        
   ADD CONSTRAINT val_raepa_defaillance_fkey FOREIGN KEY (defreparee)
-      REFERENCES m_reseau_humide.val_raepa_defaillance (code) MATCH SIMPLE
+      REFERENCES raepa.val_raepa_defaillance (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;
 
       
@@ -1159,11 +1160,11 @@ ALTER TABLE m_reseau_humide.raepa_repar
 
 -- #################################################################### VUE CANALISATION AEP ###############################################
         
--- View: m_reseau_humide.raepa_canalaep_l
+-- View: raepa.raepa_canalaep_l
 
--- DROP VIEW m_reseau_humide.raepa_canalaep_l;
+-- DROP VIEW raepa.raepa_canalaep_l;
 
-CREATE OR REPLACE VIEW m_reseau_humide.raepa_canalaep_l AS 
+CREATE OR REPLACE VIEW raepa.raepa_canalaep_l AS 
  SELECT 
   g.idcana,
   g.mouvrage,
@@ -1193,22 +1194,22 @@ CREATE OR REPLACE VIEW m_reseau_humide.raepa_canalaep_l AS
   m.sourattrib,
   g.geom
   
-FROM m_reseau_humide.raepa_canal g
-RIGHT JOIN m_reseau_humide.raepa_canalaep a ON g.idcana = a.idcana
-RIGHT JOIN m_reseau_humide.raepa_metadonnees m ON g.idcana = m.idraepa
+FROM raepa.raepa_canal g
+RIGHT JOIN raepa.raepa_canalaep a ON g.idcana = a.idcana
+RIGHT JOIN raepa.raepa_metadonnees m ON g.idcana = m.idraepa
 ORDER BY g.idcana;
 
-COMMENT ON VIEW m_reseau_humide.raepa_canalaep_l
+COMMENT ON VIEW raepa.raepa_canalaep_l
   IS 'Canalisation d''adduction d''eau';
   
   
 -- #################################################################### VUE CANALISATION ASS ###############################################
 
--- View: m_reseau_humide.raepa_canalass_l
+-- View: raepa.raepa_canalass_l
 
--- DROP VIEW m_reseau_humide.raepa_canalass_l;
+-- DROP VIEW raepa.raepa_canalass_l;
 
-CREATE OR REPLACE VIEW m_reseau_humide.raepa_canalass_l AS 
+CREATE OR REPLACE VIEW raepa.raepa_canalass_l AS 
  SELECT 
   g.idcana,
   g.mouvrage,
@@ -1241,23 +1242,23 @@ CREATE OR REPLACE VIEW m_reseau_humide.raepa_canalass_l AS
   m.sourattrib,
   g.geom
   
-FROM m_reseau_humide.raepa_canal g
-RIGHT JOIN m_reseau_humide.raepa_canalass a ON g.idcana = a.idcana
-RIGHT JOIN m_reseau_humide.raepa_metadonnees m ON g.idcana = m.idraepa
+FROM raepa.raepa_canal g
+RIGHT JOIN raepa.raepa_canalass a ON g.idcana = a.idcana
+RIGHT JOIN raepa.raepa_metadonnees m ON g.idcana = m.idraepa
 ORDER BY g.idcana;
 
-COMMENT ON VIEW m_reseau_humide.raepa_canalass_l
+COMMENT ON VIEW raepa.raepa_canalass_l
   IS 'Canalisation d''assainissement collectif';
 
 
 -- #################################################################### VUE APPAREILLAGE AEP ###############################################
 
 
--- View: m_reseau_humide.raepa_apparaep_p
+-- View: raepa.raepa_apparaep_p
 
--- DROP VIEW m_reseau_humide.raepa_apparaep_p;
+-- DROP VIEW raepa.raepa_apparaep_p;
 
-CREATE OR REPLACE VIEW m_reseau_humide.raepa_apparaep_p AS 
+CREATE OR REPLACE VIEW raepa.raepa_apparaep_p AS 
  SELECT
   g.idnoeud as idappareil,
   g.x,
@@ -1283,24 +1284,24 @@ CREATE OR REPLACE VIEW m_reseau_humide.raepa_apparaep_p AS
   m.sourattrib,
   g.geom
 
-FROM m_reseau_humide.raepa_noeud g
-RIGHT JOIN m_reseau_humide.raepa_appar a ON g.idnoeud = a.idappareil
-RIGHT JOIN m_reseau_humide.raepa_apparaep p ON p.idappareil = a.idappareil
-RIGHT JOIN m_reseau_humide.raepa_metadonnees m ON g.idnoeud = m.idraepa
+FROM raepa.raepa_noeud g
+RIGHT JOIN raepa.raepa_appar a ON g.idnoeud = a.idappareil
+RIGHT JOIN raepa.raepa_apparaep p ON p.idappareil = a.idappareil
+RIGHT JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
 ORDER BY g.idnoeud;
 
-COMMENT ON VIEW m_reseau_humide.raepa_apparaep_p
+COMMENT ON VIEW raepa.raepa_apparaep_p
   IS 'Appareillage d''adduction d''eau';
 
 
 -- #################################################################### VUE APPAREILLAGE ASS ###############################################
 
 
--- View: m_reseau_humide.raepa_apparass_p
+-- View: raepa.raepa_apparass_p
 
--- DROP VIEW m_reseau_humide.raepa_apparass_p;
+-- DROP VIEW raepa.raepa_apparass_p;
 
-CREATE OR REPLACE VIEW m_reseau_humide.raepa_apparass_p AS 
+CREATE OR REPLACE VIEW raepa.raepa_apparass_p AS 
  SELECT
   g.idnoeud as idappareil,
   g.x,
@@ -1327,24 +1328,24 @@ CREATE OR REPLACE VIEW m_reseau_humide.raepa_apparass_p AS
   m.sourattrib,
   g.geom
 
-FROM m_reseau_humide.raepa_noeud g
-RIGHT JOIN m_reseau_humide.raepa_appar a ON g.idnoeud = a.idappareil
-RIGHT JOIN m_reseau_humide.raepa_apparass p ON p.idappareil = a.idappareil
-RIGHT JOIN m_reseau_humide.raepa_metadonnees m ON g.idnoeud = m.idraepa
+FROM raepa.raepa_noeud g
+RIGHT JOIN raepa.raepa_appar a ON g.idnoeud = a.idappareil
+RIGHT JOIN raepa.raepa_apparass p ON p.idappareil = a.idappareil
+RIGHT JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
 ORDER BY g.idnoeud;
 
-COMMENT ON VIEW m_reseau_humide.raepa_apparass_p
+COMMENT ON VIEW raepa.raepa_apparass_p
   IS 'Appareillage d''assanissement collectif';
 
 
 
 -- #################################################################### VUE OUVRAGE AEP ###############################################
 
--- View: m_reseau_humide.raepa_ouvraep_p
+-- View: raepa.raepa_ouvraep_p
 
--- DROP VIEW m_reseau_humide.raepa_ouvraep_p;
+-- DROP VIEW raepa.raepa_ouvraep_p;
 
-CREATE OR REPLACE VIEW m_reseau_humide.raepa_ouvraep_p AS 
+CREATE OR REPLACE VIEW raepa.raepa_ouvraep_p AS 
  SELECT
   g.idnoeud as idouvrage,
   g.x,
@@ -1368,23 +1369,23 @@ CREATE OR REPLACE VIEW m_reseau_humide.raepa_ouvraep_p AS
   m.sourattrib,
   g.geom
 
-FROM m_reseau_humide.raepa_noeud g
-RIGHT JOIN m_reseau_humide.raepa_ouvr a ON g.idnoeud = a.idouvrage
-RIGHT JOIN m_reseau_humide.raepa_ouvraep p ON p.idouvrage = a.idouvrage
-RIGHT JOIN m_reseau_humide.raepa_metadonnees m ON g.idnoeud = m.idraepa
+FROM raepa.raepa_noeud g
+RIGHT JOIN raepa.raepa_ouvr a ON g.idnoeud = a.idouvrage
+RIGHT JOIN raepa.raepa_ouvraep p ON p.idouvrage = a.idouvrage
+RIGHT JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
 ORDER BY g.idnoeud;
 
-COMMENT ON VIEW m_reseau_humide.raepa_ouvraep_p
+COMMENT ON VIEW raepa.raepa_ouvraep_p
   IS 'Ouvrage d''adduction d''eau';
 
 
 -- #################################################################### VUE OUVRAGE ASS ###############################################
 
--- View: m_reseau_humide.raepa_ouvrass_p
+-- View: raepa.raepa_ouvrass_p
 
--- DROP VIEW m_reseau_humide.raepa_ouvrass_p;
+-- DROP VIEW raepa.raepa_ouvrass_p;
 
-CREATE OR REPLACE VIEW m_reseau_humide.raepa_ouvrass_p AS 
+CREATE OR REPLACE VIEW raepa.raepa_ouvrass_p AS 
  SELECT
   g.idnoeud as idouvrage,
   g.x,
@@ -1409,24 +1410,24 @@ CREATE OR REPLACE VIEW m_reseau_humide.raepa_ouvrass_p AS
   m.sourattrib,
   g.geom
 
-FROM m_reseau_humide.raepa_noeud g
-RIGHT JOIN m_reseau_humide.raepa_ouvr a ON g.idnoeud = a.idouvrage
-RIGHT JOIN m_reseau_humide.raepa_ouvrass p ON p.idouvrage = a.idouvrage
-RIGHT JOIN m_reseau_humide.raepa_metadonnees m ON g.idnoeud = m.idraepa
+FROM raepa.raepa_noeud g
+RIGHT JOIN raepa.raepa_ouvr a ON g.idnoeud = a.idouvrage
+RIGHT JOIN raepa.raepa_ouvrass p ON p.idouvrage = a.idouvrage
+RIGHT JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
 ORDER BY g.idnoeud;
 
-COMMENT ON VIEW m_reseau_humide.raepa_ouvrass_p
+COMMENT ON VIEW raepa.raepa_ouvrass_p
   IS 'Ouvrage d''assainissement collectif';
 
 
 
 -- #################################################################### VUE REPARATION AEP ###############################################
 
--- View: m_reseau_humide.raepa_reparaep_p
+-- View: raepa.raepa_reparaep_p
 
--- DROP VIEW m_reseau_humide.raepa_reparaep_p;
+-- DROP VIEW raepa.raepa_reparaep_p;
 
-CREATE OR REPLACE VIEW m_reseau_humide.raepa_reparaep_p AS 
+CREATE OR REPLACE VIEW raepa.raepa_reparaep_p AS 
  SELECT
   g.idrepar,
   g.x,
@@ -1438,20 +1439,20 @@ CREATE OR REPLACE VIEW m_reseau_humide.raepa_reparaep_p AS
   g.mouvrage,
   g.geom
 
-FROM m_reseau_humide.raepa_repar g
+FROM raepa.raepa_repar g
 -- voir comment gérer le WHERE pour récup uniquement AEP
 ORDER BY g.idrepar;
 
-COMMENT ON VIEW m_reseau_humide.raepa_reparaep_p
+COMMENT ON VIEW raepa.raepa_reparaep_p
   IS 'Reparation du réseau d''adduction d''eau';
 
 -- #################################################################### VUE REPARATION ASS ###############################################
 
--- View: m_reseau_humide.raepa_reparass_p
+-- View: raepa.raepa_reparass_p
 
--- DROP VIEW m_reseau_humide.raepa_reparass_p;
+-- DROP VIEW raepa.raepa_reparass_p;
 
-CREATE OR REPLACE VIEW m_reseau_humide.raepa_reparass_p AS 
+CREATE OR REPLACE VIEW raepa.raepa_reparass_p AS 
  SELECT
   g.idrepar,
   g.x,
@@ -1463,9 +1464,9 @@ CREATE OR REPLACE VIEW m_reseau_humide.raepa_reparass_p AS
   g.mouvrage,
   g.geom
 
-FROM m_reseau_humide.raepa_repar g
+FROM raepa.raepa_repar g
 -- voir comment gérer le WHERE pour récup uniquement ASS
 ORDER BY g.idrepar;
 
-COMMENT ON VIEW m_reseau_humide.raepa_reparass_p
+COMMENT ON VIEW raepa.raepa_reparass_p
   IS 'Reparation du réseau d''assainissement collectif';
