@@ -1195,8 +1195,8 @@ CREATE OR REPLACE VIEW raepa.raepa_canalaep_l AS
   g.geom
   
 FROM raepa.raepa_canal g
-RIGHT JOIN raepa.raepa_canalaep a ON g.idcana = a.idcana
-RIGHT JOIN raepa.raepa_metadonnees m ON g.idcana = m.idraepa
+INNER JOIN raepa.raepa_canalaep a ON g.idcana = a.idcana
+INNER JOIN raepa.raepa_metadonnees m ON g.idcana = m.idraepa
 ORDER BY g.idcana;
 
 COMMENT ON VIEW raepa.raepa_canalaep_l
@@ -1243,8 +1243,8 @@ CREATE OR REPLACE VIEW raepa.raepa_canalass_l AS
   g.geom
   
 FROM raepa.raepa_canal g
-RIGHT JOIN raepa.raepa_canalass a ON g.idcana = a.idcana
-RIGHT JOIN raepa.raepa_metadonnees m ON g.idcana = m.idraepa
+INNER JOIN raepa.raepa_canalass a ON g.idcana = a.idcana
+INNER JOIN raepa.raepa_metadonnees m ON g.idcana = m.idraepa
 ORDER BY g.idcana;
 
 COMMENT ON VIEW raepa.raepa_canalass_l
@@ -1285,9 +1285,9 @@ CREATE OR REPLACE VIEW raepa.raepa_apparaep_p AS
   g.geom
 
 FROM raepa.raepa_noeud g
-RIGHT JOIN raepa.raepa_appar a ON g.idnoeud = a.idappareil
-RIGHT JOIN raepa.raepa_apparaep p ON p.idappareil = a.idappareil
-RIGHT JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
+INNER JOIN raepa.raepa_appar a ON g.idnoeud = a.idappareil
+INNER JOIN raepa.raepa_apparaep p ON p.idappareil = a.idappareil
+INNER JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
 ORDER BY g.idnoeud;
 
 COMMENT ON VIEW raepa.raepa_apparaep_p
@@ -1329,9 +1329,9 @@ CREATE OR REPLACE VIEW raepa.raepa_apparass_p AS
   g.geom
 
 FROM raepa.raepa_noeud g
-RIGHT JOIN raepa.raepa_appar a ON g.idnoeud = a.idappareil
-RIGHT JOIN raepa.raepa_apparass p ON p.idappareil = a.idappareil
-RIGHT JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
+INNER JOIN raepa.raepa_appar a ON g.idnoeud = a.idappareil
+INNER JOIN raepa.raepa_apparass p ON p.idappareil = a.idappareil
+INNER JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
 ORDER BY g.idnoeud;
 
 COMMENT ON VIEW raepa.raepa_apparass_p
@@ -1370,9 +1370,9 @@ CREATE OR REPLACE VIEW raepa.raepa_ouvraep_p AS
   g.geom
 
 FROM raepa.raepa_noeud g
-RIGHT JOIN raepa.raepa_ouvr a ON g.idnoeud = a.idouvrage
-RIGHT JOIN raepa.raepa_ouvraep p ON p.idouvrage = a.idouvrage
-RIGHT JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
+INNER JOIN raepa.raepa_ouvr a ON g.idnoeud = a.idouvrage
+INNER JOIN raepa.raepa_ouvraep p ON p.idouvrage = a.idouvrage
+INNER JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
 ORDER BY g.idnoeud;
 
 COMMENT ON VIEW raepa.raepa_ouvraep_p
@@ -1411,14 +1411,13 @@ CREATE OR REPLACE VIEW raepa.raepa_ouvrass_p AS
   g.geom
 
 FROM raepa.raepa_noeud g
-RIGHT JOIN raepa.raepa_ouvr a ON g.idnoeud = a.idouvrage
-RIGHT JOIN raepa.raepa_ouvrass p ON p.idouvrage = a.idouvrage
-RIGHT JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
+INNER JOIN raepa.raepa_ouvr a ON g.idnoeud = a.idouvrage
+INNER JOIN raepa.raepa_ouvrass p ON p.idouvrage = a.idouvrage
+INNER JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
 ORDER BY g.idnoeud;
 
 COMMENT ON VIEW raepa.raepa_ouvrass_p
   IS 'Ouvrage d''assainissement collectif';
-
 
 
 -- #################################################################### VUE REPARATION AEP ###############################################
@@ -1445,6 +1444,7 @@ ORDER BY g.idrepar;
 
 COMMENT ON VIEW raepa.raepa_reparaep_p
   IS 'Reparation du réseau d''adduction d''eau';
+
 
 -- #################################################################### VUE REPARATION ASS ###############################################
 
