@@ -17,14 +17,14 @@
 
 -- vue
 -- implémentation arc
-DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_canalaep_l;
-DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_canalass_l;
-DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_apparaep_p;
-DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_apparass_p;
-DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_ouvraep_p;
-DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_ouvrass_p;
-DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_reparaep_p;
-DROP VIEW IF EXISTS m_reseau_humide.geo_v_raepa_reparass_p;
+DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_canalaep_l;
+DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_canalass_l;
+DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_apparaep_p;
+DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_apparass_p;
+DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_ouvraep_p;
+DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_ouvrass_p;
+DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_reparaep_p;
+DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_reparass_p;
 
 -- fkey
 -- implémentation arc
