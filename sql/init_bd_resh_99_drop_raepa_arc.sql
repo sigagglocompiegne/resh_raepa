@@ -17,6 +17,7 @@
 
 -- vue
 -- implémentation arc
+-- opendata RAEPA
 DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_canalaep_l;
 DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_canalass_l;
 DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_apparaep_p;
@@ -25,7 +26,15 @@ DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_ouvraep_p;
 DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_ouvrass_p;
 DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_reparaep_p;
 DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_reparass_p;
+-- vue de gestion
 DROP VIEW IF EXISTS m_raepa.geo_v_raepa_canalaep_l;
+DROP VIEW IF EXISTS m_raepa.geo_v_raepa_canalass_l;
+
+
+-- fonction trigger
+DROP FUNCTION IF EXISTS m_raepa.ft_m_geo_v_raepa_canalaep_l();
+DROP FUNCTION IF EXISTS m_raepa.ft_m_geo_v_raepa_canalass_l();
+
 
 -- fkey
 -- implémentation arc
