@@ -21,14 +21,26 @@ Cela permet de garantir à la fois une livraison RAEPA et des livrables complém
 
 -- vue
 
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_canalaep_l RENAME TO geo_v_raepa_canalaep_l;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_canalass_l RENAME TO geo_v_raepa_canalass_l;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_apparaep_p RENAME TO geo_v_raepa_apparaep_p;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_apparass_p RENAME TO geo_v_raepa_apparass_p;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_ouvraep_p RENAME TO geo_v_raepa_ouvraep_p;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_ouvrass_p RENAME TO geo_v_raepa_ouvrass_p;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_reparaep_p RENAME TO geo_v_raepa_reparaep_p;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_reparass_p RENAME TO geo_v_raepa_reparass_p;
+ALTER VIEW IF EXISTS m_reseau_humide.raepa_canalaep_l SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS x_opendata.raepa_canalaep_l RENAME TO xopendata_geo_v_raepa_canalaep_l; 
+ALTER VIEW IF EXISTS m_reseau_humide.raepa_canalass_l SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS x_opendata.raepa_canalass_l RENAME TO xopendata_geo_v_raepa_canalass_l;
+ALTER VIEW IF EXISTS m_reseau_humide.raepa_apparaep_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS x_opendata.raepa_apparaep_p RENAME TO xopendata_geo_v_raepa_apparaep_p;
+ALTER VIEW IF EXISTS m_reseau_humide.raepa_apparass_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS x_opendata.raepa_apparass_p RENAME TO xopendata_geo_v_raepa_apparass_p;
+ALTER VIEW IF EXISTS m_reseau_humide.raepa_ouvraep_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS x_opendata.raepa_ouvraep_p RENAME TO xopendata_geo_v_raepa_ouvraep_p;
+ALTER VIEW IF EXISTS m_reseau_humide.raepa_ouvraep_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS x_opendata.raepa_ouvraep_p RENAME TO xopendata_geo_v_raepa_ouvraep_p;
+ALTER VIEW IF EXISTS m_reseau_humide.raepa_ouvrass_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS x_opendata.raepa_ouvrass_p RENAME TO xopendata_geo_v_raepa_ouvrass_p;
+ALTER VIEW IF EXISTS m_reseau_humide.raepa_ouvrass_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS x_opendata.raepa_ouvrass_p RENAME TO xopendata_geo_v_raepa_ouvrass_p;
+ALTER VIEW IF EXISTS m_reseau_humide.raepa_reparaep_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS x_opendata.raepa_reparaep_p RENAME TO xopendata_geo_v_raepa_reparaep_p;
+ALTER VIEW IF EXISTS m_reseau_humide.raepa_reparass_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS x_opendata.raepa_reparass_p RENAME TO xopendata_geo_v_raepa_reparass_p;
 
 
 -- fkey
@@ -105,7 +117,8 @@ ALTER SEQUENCE IF EXISTS m_reseau_humide.raepa_idrepar RENAME TO raepa_idrepar_s
 
 -- lt_raepa_qualite_geoloc
 
-UPDATE m_reseau_humide.lt_raepa_qualite_geoloc SET definition = 'Classe de précision supérieure à 1,50 m ou précision inconnue' WHERE code = '03'; -- précision que si la qualite de geoloc n'est pas connue, alors on classe en C
+UPDATE m_reseau_humide.lt_raepa_qualite_geoloc
+  SET definition = 'Classe de précision supérieure à 1,50 m ou précision inconnue' WHERE code = '03'; -- précision que si la qualite de geoloc n'est pas connue, alors on classe en C
 
 
 
@@ -200,8 +213,7 @@ INSERT INTO m_reseau_humide.lt_raepa_materiau2(
 ('99-00','99','Autre','Canalisation composée de tuyaux dont le matériau ne figure pas dans la liste ci-dessus');
 
 
--- création d'un nouveau domaine de valeur pour géré la forme de la section de la canalisation
-
+-- création d'un nouveau domaine de valeur pour gérer la forme de la section de la canalisation
 
 -- Table: m_reseau_humide.lt_raepa_forme_canal
 
@@ -242,12 +254,28 @@ INSERT INTO m_reseau_humide.lt_raepa_forme_canal(
 -- ####################################################################################################################################################
 
 
+
+-- #################################################################### CLASSE CANALISATION ###############################################
+
 ALTER TABLE m_reseau_humide.geo_raepa_canal
-  ADD COLUMN materiau2 character varying(5) NOT NULL DEFAULT '00-00',
-  ADD COLUMN forme character varying(2) NOT NULL DEFAULT '00';
+  ADD COLUMN materiau2 character varying(5) NOT NULL DEFAULT '00-00', -- nouveau domaine de valeur adapté pour une saisie d'un type et d'un sosu-type de matériau,
+  ADD COLUMN forme character varying(2) NOT NULL DEFAULT '00', -- ajout d'un attribut commun AEP/ASS pour décrire la forme de la section d'une canalisation
+  ADD COLUMN zgensup numeric(6,2); -- ajout d'un attribut commun AEP/ASS pour obtenir la côte NGF moyenne sur le troncon de canalisation de la génératrice supérieure (idéalement, il faudrait plutôt des points de détection sur une longueur importante du segment de canalisation)
 
 COMMENT ON COLUMN m_reseau_humide.geo_raepa_canal.materiau2 IS 'Matériau de la canalisation';  
 COMMENT ON COLUMN m_reseau_humide.geo_raepa_canal.forme IS 'Forme de la section de la canalisation';  
+COMMENT ON COLUMN m_reseau_humide.geo_raepa_canal.zgensup IS 'Côte NGF moyennne de la génératrice supérieure';
+
+
+-- #################################################################### CLASSE NOEUD ###############################################
+
+ALTER TABLE m_reseau_humide.geo_raepa_noeud
+  ADD COLUMN symbole character varying(254), -- ajout d'un attribut commun AEP/ASS pour gérer le symbole à utiliser pour la représentation cartographique, celui-ci dépend du type/ss type d'ouvrage/appareillage
+  ADD COLUMN angle numeric(5,2) NOT NULL DEFAULT 0; -- ajout d'un attribut commun AEP/ASS pour gérer l'angle de rotation du symbole ponctuel utilisé pour la représentation
+ 
+COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.symbole IS 'Symbole utilisé pour la représentation cartographique';  
+COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.angle IS 'Angle en degré décimaux utilisé pour la rotation du symbole';  
+
 
 /*
 
