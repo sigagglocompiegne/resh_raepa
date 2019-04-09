@@ -21,89 +21,92 @@ Cela permet de garantir à la fois une livraison RAEPA et des livrables complém
 
 -- vue
 
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_canalaep_l SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS raepa.raepa_canalaep_l SET SCHEMA x_opendata;
 ALTER VIEW IF EXISTS x_opendata.raepa_canalaep_l RENAME TO xopendata_geo_v_raepa_canalaep_l; 
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_canalass_l SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS raepa.raepa_canalass_l SET SCHEMA x_opendata;
 ALTER VIEW IF EXISTS x_opendata.raepa_canalass_l RENAME TO xopendata_geo_v_raepa_canalass_l;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_apparaep_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS raepa.raepa_apparaep_p SET SCHEMA x_opendata;
 ALTER VIEW IF EXISTS x_opendata.raepa_apparaep_p RENAME TO xopendata_geo_v_raepa_apparaep_p;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_apparass_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS raepa.raepa_apparass_p SET SCHEMA x_opendata;
 ALTER VIEW IF EXISTS x_opendata.raepa_apparass_p RENAME TO xopendata_geo_v_raepa_apparass_p;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_ouvraep_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS raepa.raepa_ouvraep_p SET SCHEMA x_opendata;
 ALTER VIEW IF EXISTS x_opendata.raepa_ouvraep_p RENAME TO xopendata_geo_v_raepa_ouvraep_p;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_ouvraep_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS raepa.raepa_ouvraep_p SET SCHEMA x_opendata;
 ALTER VIEW IF EXISTS x_opendata.raepa_ouvraep_p RENAME TO xopendata_geo_v_raepa_ouvraep_p;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_ouvrass_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS raepa.raepa_ouvrass_p SET SCHEMA x_opendata;
 ALTER VIEW IF EXISTS x_opendata.raepa_ouvrass_p RENAME TO xopendata_geo_v_raepa_ouvrass_p;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_ouvrass_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS raepa.raepa_ouvrass_p SET SCHEMA x_opendata;
 ALTER VIEW IF EXISTS x_opendata.raepa_ouvrass_p RENAME TO xopendata_geo_v_raepa_ouvrass_p;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_reparaep_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS raepa.raepa_reparaep_p SET SCHEMA x_opendata;
 ALTER VIEW IF EXISTS x_opendata.raepa_reparaep_p RENAME TO xopendata_geo_v_raepa_reparaep_p;
-ALTER VIEW IF EXISTS m_reseau_humide.raepa_reparass_p SET SCHEMA x_opendata;
+ALTER VIEW IF EXISTS raepa.raepa_reparass_p SET SCHEMA x_opendata;
 ALTER VIEW IF EXISTS x_opendata.raepa_reparass_p RENAME TO xopendata_geo_v_raepa_reparass_p;
 
 
 -- fkey
 
-ALTER TABLE m_reseau_humide.raepa_metadonnees RENAME CONSTRAINT val_raepa_qualite_anpose_fkey TO lt_raepa_qualite_anpose_fkey;
-ALTER TABLE m_reseau_humide.raepa_metadonnees RENAME CONSTRAINT val_raepa_qualite_geoloc_xy_fkey TO lt_raepa_qualite_geoloc_xy_fkey;
-ALTER TABLE m_reseau_humide.raepa_metadonnees RENAME CONSTRAINT val_raepa_qualite_geoloc_z_fkey TO lt_raepa_qualite_geoloc_z_fkey;
-ALTER TABLE m_reseau_humide.raepa_canal RENAME CONSTRAINT val_raepa_materiau_fkey TO lt_raepa_materiau_fkey;
-ALTER TABLE m_reseau_humide.raepa_canal RENAME CONSTRAINT val_raepa_mode_circulation_fkey TO lt_raepa_mode_circulation_fkey;
-ALTER TABLE m_reseau_humide.raepa_canalaep RENAME CONSTRAINT val_raepa_cat_canal_ae_fkey TO lt_raepa_cat_canal_ae_fkey;
-ALTER TABLE m_reseau_humide.raepa_canalaep RENAME CONSTRAINT val_raepa_fonc_canal_ae_fkey TO lt_raepa_fonc_canal_ae_fkey;
-ALTER TABLE m_reseau_humide.raepa_canalass RENAME CONSTRAINT val_raepa_cat_reseau_ass_fkey TO lt_raepa_cat_reseau_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_canalass RENAME CONSTRAINT val_raepa_cat_canal_ass_fkey TO lt_raepa_cat_canal_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_canalass RENAME CONSTRAINT val_raepa_fonc_canal_ass_fkey TO lt_raepa_fonc_canal_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_apparaep RENAME CONSTRAINT val_raepa_cat_app_ae_fkey TO lt_raepa_cat_app_ae_fkey;
-ALTER TABLE m_reseau_humide.raepa_apparass RENAME CONSTRAINT val_raepa_cat_reseau_ass_fkey TO lt_raepa_cat_reseau_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_apparass RENAME CONSTRAINT val_raepa_cat_app_ass_fkey TO lt_raepa_cat_app_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_ouvraep RENAME CONSTRAINT val_raepa_cat_ouv_ae_fkey TO lt_raepa_cat_ouv_ae_fkey;
-ALTER TABLE m_reseau_humide.raepa_ouvrass RENAME CONSTRAINT val_raepa_cat_reseau_ass_fkey TO lt_raepa_cat_reseau_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_ouvrass RENAME CONSTRAINT val_raepa_cat_ouv_ass_fkey TO lt_raepa_cat_ouv_ass_fkey;
-ALTER TABLE m_reseau_humide.raepa_repar RENAME CONSTRAINT val_raepa_support_incident_fkey TO lt_raepa_support_incident_fkey;
-ALTER TABLE m_reseau_humide.raepa_repar RENAME CONSTRAINT val_raepa_defaillance_fkey TO lt_raepa_defaillance_fkey;
+ALTER TABLE raepa.raepa_metadonnees RENAME CONSTRAINT val_raepa_qualite_anpose_fkey TO lt_raepa_qualite_anpose_fkey;
+ALTER TABLE raepa.raepa_metadonnees RENAME CONSTRAINT val_raepa_qualite_geoloc_xy_fkey TO lt_raepa_qualite_geoloc_xy_fkey;
+ALTER TABLE raepa.raepa_metadonnees RENAME CONSTRAINT val_raepa_qualite_geoloc_z_fkey TO lt_raepa_qualite_geoloc_z_fkey;
+ALTER TABLE raepa.raepa_canal RENAME CONSTRAINT val_raepa_materiau_fkey TO lt_raepa_materiau_fkey;
+ALTER TABLE raepa.raepa_canal RENAME CONSTRAINT val_raepa_mode_circulation_fkey TO lt_raepa_mode_circulation_fkey;
+ALTER TABLE raepa.raepa_canalaep RENAME CONSTRAINT val_raepa_cat_canal_ae_fkey TO lt_raepa_cat_canal_ae_fkey;
+ALTER TABLE raepa.raepa_canalaep RENAME CONSTRAINT val_raepa_fonc_canal_ae_fkey TO lt_raepa_fonc_canal_ae_fkey;
+ALTER TABLE raepa.raepa_canalass RENAME CONSTRAINT val_raepa_cat_reseau_ass_fkey TO lt_raepa_cat_reseau_ass_fkey;
+ALTER TABLE raepa.raepa_canalass RENAME CONSTRAINT val_raepa_cat_canal_ass_fkey TO lt_raepa_cat_canal_ass_fkey;
+ALTER TABLE raepa.raepa_canalass RENAME CONSTRAINT val_raepa_fonc_canal_ass_fkey TO lt_raepa_fonc_canal_ass_fkey;
+ALTER TABLE raepa.raepa_apparaep RENAME CONSTRAINT val_raepa_cat_app_ae_fkey TO lt_raepa_cat_app_ae_fkey;
+ALTER TABLE raepa.raepa_apparass RENAME CONSTRAINT val_raepa_cat_reseau_ass_fkey TO lt_raepa_cat_reseau_ass_fkey;
+ALTER TABLE raepa.raepa_apparass RENAME CONSTRAINT val_raepa_cat_app_ass_fkey TO lt_raepa_cat_app_ass_fkey;
+ALTER TABLE raepa.raepa_ouvraep RENAME CONSTRAINT val_raepa_cat_ouv_ae_fkey TO lt_raepa_cat_ouv_ae_fkey;
+ALTER TABLE raepa.raepa_ouvrass RENAME CONSTRAINT val_raepa_cat_reseau_ass_fkey TO lt_raepa_cat_reseau_ass_fkey;
+ALTER TABLE raepa.raepa_ouvrass RENAME CONSTRAINT val_raepa_cat_ouv_ass_fkey TO lt_raepa_cat_ouv_ass_fkey;
+ALTER TABLE raepa.raepa_repar RENAME CONSTRAINT val_raepa_support_incident_fkey TO lt_raepa_support_incident_fkey;
+ALTER TABLE raepa.raepa_repar RENAME CONSTRAINT val_raepa_defaillance_fkey TO lt_raepa_defaillance_fkey;
 
 
 -- classe
 
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_metadonnees RENAME TO an_raepa_metadonnees;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_canal RENAME TO geo_raepa_canal;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_canalaep RENAME TO an_raepa_canalaep;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_canalass RENAME TO an_raepa_canalass;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_noeud RENAME TO geo_raepa_noeud;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_appar RENAME TO an_raepa_appar;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_apparaep RENAME TO an_raepa_apparaep;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_apparass RENAME TO an_raepa_apparass;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_ouvr RENAME TO an_raepa_ouvr;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_ouvraep RENAME TO an_raepa_ouvraep;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_ouvrass RENAME TO an_raepa_ouvrass;
-ALTER TABLE IF EXISTS m_reseau_humide.raepa_repar RENAME TO geo_raepa_repar;
+ALTER TABLE IF EXISTS raepa.raepa_metadonnees RENAME TO an_raepa_metadonnees;
+ALTER TABLE IF EXISTS raepa.raepa_canal RENAME TO geo_raepa_canal;
+ALTER TABLE IF EXISTS raepa.raepa_canalaep RENAME TO an_raepa_canalaep;
+ALTER TABLE IF EXISTS raepa.raepa_canalass RENAME TO an_raepa_canalass;
+ALTER TABLE IF EXISTS raepa.raepa_noeud RENAME TO geo_raepa_noeud;
+ALTER TABLE IF EXISTS raepa.raepa_appar RENAME TO an_raepa_appar;
+ALTER TABLE IF EXISTS raepa.raepa_apparaep RENAME TO an_raepa_apparaep;
+ALTER TABLE IF EXISTS raepa.raepa_apparass RENAME TO an_raepa_apparass;
+ALTER TABLE IF EXISTS raepa.raepa_ouvr RENAME TO an_raepa_ouvr;
+ALTER TABLE IF EXISTS raepa.raepa_ouvraep RENAME TO an_raepa_ouvraep;
+ALTER TABLE IF EXISTS raepa.raepa_ouvrass RENAME TO an_raepa_ouvrass;
+ALTER TABLE IF EXISTS raepa.raepa_repar RENAME TO geo_raepa_repar;
 
 -- domaine de valeur
 
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_materiau RENAME TO lt_raepa_materiau;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_mode_circulation RENAME TO lt_raepa_mode_circulation;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_qualite_anpose RENAME TO lt_raepa_qualite_anpose;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_qualite_geoloc RENAME TO lt_raepa_qualite_geoloc;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_support_incident RENAME TO lt_raepa_support_incident;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_defaillance RENAME TO lt_raepa_defaillance;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_cat_canal_ae RENAME TO lt_raepa_cat_canal_ae;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_fonc_canal_ae RENAME TO lt_raepa_fonc_canal_ae;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_cat_app_ae RENAME TO lt_raepa_cat_app_ae;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_cat_ouv_ae RENAME TO lt_raepa_cat_ouv_ae;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_cat_reseau_ass RENAME TO lt_raepa_cat_reseau_ass;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_cat_canal_ass RENAME TO lt_raepa_cat_canal_ass;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_fonc_canal_ass RENAME TO lt_raepa_fonc_canal_ass;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_cat_app_ass RENAME TO lt_raepa_cat_app_ass;
-ALTER TABLE IF EXISTS m_reseau_humide.val_raepa_cat_ouv_ass RENAME TO lt_raepa_cat_ouv_ass;
+ALTER TABLE IF EXISTS raepa.val_raepa_materiau RENAME TO lt_raepa_materiau;
+ALTER TABLE IF EXISTS raepa.val_raepa_mode_circulation RENAME TO lt_raepa_mode_circulation;
+ALTER TABLE IF EXISTS raepa.val_raepa_qualite_anpose RENAME TO lt_raepa_qualite_anpose;
+ALTER TABLE IF EXISTS raepa.val_raepa_qualite_geoloc RENAME TO lt_raepa_qualite_geoloc;
+ALTER TABLE IF EXISTS raepa.val_raepa_support_incident RENAME TO lt_raepa_support_incident;
+ALTER TABLE IF EXISTS raepa.val_raepa_defaillance RENAME TO lt_raepa_defaillance;
+ALTER TABLE IF EXISTS raepa.val_raepa_cat_canal_ae RENAME TO lt_raepa_cat_canal_ae;
+ALTER TABLE IF EXISTS raepa.val_raepa_fonc_canal_ae RENAME TO lt_raepa_fonc_canal_ae;
+ALTER TABLE IF EXISTS raepa.val_raepa_cat_app_ae RENAME TO lt_raepa_cat_app_ae;
+ALTER TABLE IF EXISTS raepa.val_raepa_cat_ouv_ae RENAME TO lt_raepa_cat_ouv_ae;
+ALTER TABLE IF EXISTS raepa.val_raepa_cat_reseau_ass RENAME TO lt_raepa_cat_reseau_ass;
+ALTER TABLE IF EXISTS raepa.val_raepa_cat_canal_ass RENAME TO lt_raepa_cat_canal_ass;
+ALTER TABLE IF EXISTS raepa.val_raepa_fonc_canal_ass RENAME TO lt_raepa_fonc_canal_ass;
+ALTER TABLE IF EXISTS raepa.val_raepa_cat_app_ass RENAME TO lt_raepa_cat_app_ass;
+ALTER TABLE IF EXISTS raepa.val_raepa_cat_ouv_ass RENAME TO lt_raepa_cat_ouv_ass;
 
 -- sequence
 
-ALTER SEQUENCE IF EXISTS m_reseau_humide.raepa_idraepa RENAME TO raepa_idraepa_seq;
-ALTER SEQUENCE IF EXISTS m_reseau_humide.raepa_idrepar RENAME TO raepa_idrepar_seq;
+ALTER SEQUENCE IF EXISTS raepa.raepa_idraepa RENAME TO raepa_idraepa_seq;
+ALTER SEQUENCE IF EXISTS raepa.raepa_idrepar RENAME TO raepa_idrepar_seq;
 
 
+-- schema
+
+ALTER SCHEMA raepa RENAME TO m_raepa;
 
 
 -- ####################################################################################################################################################
@@ -117,7 +120,7 @@ ALTER SEQUENCE IF EXISTS m_reseau_humide.raepa_idrepar RENAME TO raepa_idrepar_s
 
 -- lt_raepa_qualite_geoloc
 
-UPDATE m_reseau_humide.lt_raepa_qualite_geoloc
+UPDATE m_raepa.lt_raepa_qualite_geoloc
   SET definition = 'Classe de précision supérieure à 1,50 m ou précision inconnue' WHERE code = '03'; -- précision que si la qualite de geoloc n'est pas connue, alors on classe en C
 
 
@@ -136,12 +139,12 @@ UPDATE m_reseau_humide.lt_raepa_qualite_geoloc
 
 -- création d'un nouveau domaine de valeur pour la gestion des matériaux et intégrant l'appariemment avec le domaine correspondant dans le standard RAEPA
 
--- Table: m_reseau_humide.lt_raepa_materiau2
+-- Table: m_raepa.lt_raepa_materiau2
 
--- DROP TABLE m_reseau_humide.lt_raepa_materiau2;
+-- DROP TABLE m_raepa.lt_raepa_materiau2;
 
 
-CREATE TABLE m_reseau_humide.lt_raepa_materiau2
+CREATE TABLE m_raepa.lt_raepa_materiau2
 (
   code character varying(5) NOT NULL,
   code_open character varying(2) NOT NULL,
@@ -153,14 +156,14 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.lt_raepa_materiau2
+COMMENT ON TABLE m_raepa.lt_raepa_materiau2
   IS 'Matériau constitutif des tuyaux composant une canalisation';
-COMMENT ON COLUMN m_reseau_humide.lt_raepa_materiau2.code IS 'Code de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
-COMMENT ON COLUMN m_reseau_humide.lt_raepa_materiau2.code_open IS 'Equivalence du code au standard RAEPA pour la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
-COMMENT ON COLUMN m_reseau_humide.lt_raepa_materiau2.valeur IS 'Valeur de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
-COMMENT ON COLUMN m_reseau_humide.lt_raepa_materiau2.definition IS 'Définition de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
+COMMENT ON COLUMN m_raepa.lt_raepa_materiau2.code IS 'Code de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
+COMMENT ON COLUMN m_raepa.lt_raepa_materiau2.code_open IS 'Equivalence du code au standard RAEPA pour la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
+COMMENT ON COLUMN m_raepa.lt_raepa_materiau2.valeur IS 'Valeur de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
+COMMENT ON COLUMN m_raepa.lt_raepa_materiau2.definition IS 'Définition de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
 
-INSERT INTO m_reseau_humide.lt_raepa_materiau2(
+INSERT INTO m_raepa.lt_raepa_materiau2(
             code, code_open, valeur, definition)
     VALUES
 ('00-00','00','Indéterminé','Canalisation composée de tuyaux dont le matériau est inconnu'),
@@ -215,11 +218,11 @@ INSERT INTO m_reseau_humide.lt_raepa_materiau2(
 
 -- création d'un nouveau domaine de valeur pour gérer la forme de la section de la canalisation
 
--- Table: m_reseau_humide.lt_raepa_forme_canal
+-- Table: m_raepa.lt_raepa_forme_canal
 
--- DROP TABLE m_reseau_humide.lt_raepa_forme_canal;
+-- DROP TABLE m_raepa.lt_raepa_forme_canal;
 
-CREATE TABLE m_reseau_humide.lt_raepa_forme_canal
+CREATE TABLE m_raepa.lt_raepa_forme_canal
 (
   code character varying(2) NOT NULL,
   valeur character varying(80) NOT NULL,
@@ -230,13 +233,13 @@ WITH (
   OIDS=FALSE
 );
 
-COMMENT ON TABLE m_reseau_humide.lt_raepa_forme_canal
+COMMENT ON TABLE m_raepa.lt_raepa_forme_canal
   IS 'Forme de la section d''une canalisation d''eau';
-COMMENT ON COLUMN m_reseau_humide.lt_raepa_forme_canal.code IS 'Code de la liste énumérée relative au type de forme de la section d''une canalisation d''eau';
-COMMENT ON COLUMN m_reseau_humide.lt_raepa_forme_canal.valeur IS 'Valeur de la liste énumérée relative au type de forme de la section d''une canalisation d''eau';
-COMMENT ON COLUMN m_reseau_humide.lt_raepa_forme_canal.definition IS 'Définition de la liste énumérée relative au type de forme de la section d''une canalisation d''eau';
+COMMENT ON COLUMN m_raepa.lt_raepa_forme_canal.code IS 'Code de la liste énumérée relative au type de forme de la section d''une canalisation d''eau';
+COMMENT ON COLUMN m_raepa.lt_raepa_forme_canal.valeur IS 'Valeur de la liste énumérée relative au type de forme de la section d''une canalisation d''eau';
+COMMENT ON COLUMN m_raepa.lt_raepa_forme_canal.definition IS 'Définition de la liste énumérée relative au type de forme de la section d''une canalisation d''eau';
 
-INSERT INTO m_reseau_humide.lt_raepa_forme_canal(
+INSERT INTO m_raepa.lt_raepa_forme_canal(
             code, valeur, definition)
     VALUES
 ('00','Indéterminé','Type de forme d''une section de canalisation inconnu'),
@@ -257,24 +260,24 @@ INSERT INTO m_reseau_humide.lt_raepa_forme_canal(
 
 -- #################################################################### CLASSE CANALISATION ###############################################
 
-ALTER TABLE m_reseau_humide.geo_raepa_canal
+ALTER TABLE m_raepa.geo_raepa_canal
   ADD COLUMN materiau2 character varying(5) NOT NULL DEFAULT '00-00', -- nouveau domaine de valeur adapté pour une saisie d'un type et d'un sosu-type de matériau,
   ADD COLUMN forme character varying(2) NOT NULL DEFAULT '00', -- ajout d'un attribut commun AEP/ASS pour décrire la forme de la section d'une canalisation
   ADD COLUMN zgensup numeric(6,2); -- ajout d'un attribut commun AEP/ASS pour obtenir la côte NGF moyenne sur le troncon de canalisation de la génératrice supérieure (idéalement, il faudrait plutôt des points de détection sur une longueur importante du segment de canalisation)
 
-COMMENT ON COLUMN m_reseau_humide.geo_raepa_canal.materiau2 IS 'Matériau de la canalisation';  
-COMMENT ON COLUMN m_reseau_humide.geo_raepa_canal.forme IS 'Forme de la section de la canalisation';  
-COMMENT ON COLUMN m_reseau_humide.geo_raepa_canal.zgensup IS 'Côte NGF moyennne de la génératrice supérieure';
+COMMENT ON COLUMN m_raepa.geo_raepa_canal.materiau2 IS 'Matériau de la canalisation';  
+COMMENT ON COLUMN m_raepa.geo_raepa_canal.forme IS 'Forme de la section de la canalisation';  
+COMMENT ON COLUMN m_raepa.geo_raepa_canal.zgensup IS 'Côte NGF moyennne de la génératrice supérieure';
 
 
 -- #################################################################### CLASSE NOEUD ###############################################
 
-ALTER TABLE m_reseau_humide.geo_raepa_noeud
+ALTER TABLE m_raepa.geo_raepa_noeud
   ADD COLUMN symbole character varying(254), -- ajout d'un attribut commun AEP/ASS pour gérer le symbole à utiliser pour la représentation cartographique, celui-ci dépend du type/ss type d'ouvrage/appareillage
   ADD COLUMN angle numeric(5,2) NOT NULL DEFAULT 0; -- ajout d'un attribut commun AEP/ASS pour gérer l'angle de rotation du symbole ponctuel utilisé pour la représentation
  
-COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.symbole IS 'Symbole utilisé pour la représentation cartographique';  
-COMMENT ON COLUMN m_reseau_humide.geo_raepa_noeud.angle IS 'Angle en degré décimaux utilisé pour la rotation du symbole';  
+COMMENT ON COLUMN m_raepa.geo_raepa_noeud.symbole IS 'Symbole utilisé pour la représentation cartographique';  
+COMMENT ON COLUMN m_raepa.geo_raepa_noeud.angle IS 'Angle en degré décimaux utilisé pour la rotation du symbole';  
 
 
 /*
