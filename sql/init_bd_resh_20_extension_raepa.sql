@@ -280,12 +280,3 @@ ALTER TABLE m_raepa.geo_raepa_noeud
  
 COMMENT ON COLUMN m_raepa.geo_raepa_noeud.symbole IS 'Symbole utilisé pour la représentation cartographique';  
 COMMENT ON COLUMN m_raepa.geo_raepa_noeud.angle IS 'Angle en degré décimaux utilisé pour la rotation du symbole';  
-
-
-
-
-/*
-
-
-
-*/
