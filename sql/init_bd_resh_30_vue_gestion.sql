@@ -145,7 +145,7 @@ IF (TG_OP = 'INSERT') THEN
 v_idcana := nextval('m_raepa.raepa_idraepa_seq'::regclass);
 
 -- geo_raepa_canal
-INSERT INTO m_raepa.geo_raepa_canal (idcana, mouvrage, gexploit, enservice, branchemnt, materiau, materiau2, diametre, forme, anfinpose, modecircu, idnini, idnterm, idcanppale, zgensup, profgen, andebpose, longcana, nbranche, geom)
+INSERT INTO m_raepa.geo_raepa_canal (idcana, mouvrage, gexploit, enservice, branchemnt, materiau, materiau2, diametre, forme, anfinpose, modecircu, idnini, idnterm, idcanppale, zgensup, andebpose, longcana, nbranche, geom)
 SELECT v_idcana,
 NEW.mouvrage,
 NEW.gexploit, 
@@ -174,17 +174,17 @@ CASE WHEN NEW.fonccanaep IS NULL THEN '00' ELSE NEW.fonccanaep END,
 NEW.profgen;
 
 -- an_raepa_metadonnees
-INSERT INTO m_raepa.an_raepa_canalaep (idraepa, qualglocxy, qualglocz, datemaj, sourmaj, dategeoloc, sourgeoloc, sourattrib, qualannee)
+INSERT INTO m_raepa.an_raepa_metadonnees (idraepa, qualglocxy, qualglocz, datemaj, sourmaj, dategeoloc, sourgeoloc, sourattrib, qualannee)
 SELECT v_idcana,
 CASE WHEN NEW.qualglocxy IS NULL THEN '03' ELSE NEW.qualglocxy END,
 CASE WHEN NEW.qualglocz IS NULL THEN '03' ELSE NEW.qualglocz END,
 -- now(), -- datesai
-NULL, -- datemaj
+now(), -- datemaj si date de sai existe alors datemaj peut être NULL (voir init_resh_20) et ici la valeur doit donc être NULL
 NEW.sourmaj,
 NEW.dategeoloc,
 NEW.sourgeoloc,
 NEW.sourattrib,
-CASE WHEN NEW.qualannee IS NULL THEN '03' ELSE NEW.qualglocxz END;
+CASE WHEN NEW.qualannee IS NULL THEN '03' ELSE NEW.qualannee END;
 
 RETURN NEW;
 
