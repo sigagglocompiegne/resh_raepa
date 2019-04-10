@@ -124,6 +124,8 @@ COMMENT ON VIEW m_raepa.geo_v_raepa_canalass_l
 -- ####################################################################################################################################################
 
 
+-- !!!! pour les canalisations, prévoir de vérifier des contraintes topologiques (noeud, cana sécante ...) et métiers (incompatibilité de valeur d'attribut)
+
 -- #################################################################### FONCTION TRIGGER - GEO_V_CANALAEP_L ###################################################
 
 -- Function: m_raepa.ft_m_geo_v_raepa_canalaep_l()
@@ -151,7 +153,7 @@ CASE WHEN NEW.qualglocxy IS NULL THEN '03' ELSE NEW.qualglocxy END,
 CASE WHEN NEW.qualglocz IS NULL THEN '03' ELSE NEW.qualglocz END,
 -- now(), -- datesai
 now(), -- datemaj si date de sai existe alors datemaj peut être NULL (voir init_resh_20) et ici la valeur doit donc être NULL
-NEW.sourmaj,
+CASE WHEN NEW.sourmaj IS NULL THEN 'Non renseigné' ELSE NEW.sourmaj END,
 NEW.dategeoloc,
 NEW.sourgeoloc,
 NEW.sourattrib,
@@ -202,7 +204,7 @@ qualglocxy=CASE WHEN NEW.qualglocxy IS NULL THEN '03' ELSE NEW.qualglocxy END,
 qualglocz=CASE WHEN NEW.qualglocz IS NULL THEN '03' ELSE NEW.qualglocz END,
 -- datesau=OLD.datesai, -- datesai
 datemaj=now(),
-sourmaj=NEW.sourmaj,
+sourmaj=CASE WHEN NEW.sourmaj IS NULL THEN 'Non renseigné' ELSE NEW.sourmaj END,
 dategeoloc=NEW.dategeoloc,
 sourgeoloc=NEW.sourgeoloc,
 sourattrib=NEW.sourattrib,
@@ -272,7 +274,7 @@ $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
 
-COMMENT ON FUNCTION m_raepa.ft_m_geo_v_raepa_canalaep_l() IS 'Fonction trigger pour mise à jour de la vue de gestion des canalisations d''eau potable';
+COMMENT ON FUNCTION m_raepa.ft_m_geo_v_raepa_canalaep_l() IS 'Fonction trigger pour mise à jour des entités depuis la vue de gestion des canalisations d''eau potable';
 
 
 -- Trigger: t_t1_geo_v_raepa_canalaep_l on m_raepa.geo_v_raepa_canalaep_l
