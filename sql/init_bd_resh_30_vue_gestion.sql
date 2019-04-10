@@ -144,35 +144,6 @@ IF (TG_OP = 'INSERT') THEN
 
 v_idcana := nextval('m_raepa.raepa_idraepa_seq'::regclass);
 
--- geo_raepa_canal
-INSERT INTO m_raepa.geo_raepa_canal (idcana, mouvrage, gexploit, enservice, branchemnt, materiau, materiau2, diametre, forme, anfinpose, modecircu, idnini, idnterm, idcanppale, zgensup, andebpose, longcana, nbranche, geom)
-SELECT v_idcana,
-NEW.mouvrage,
-NEW.gexploit, 
-NEW.enservice,
-NEW.branchemnt,
-LEFT(NEW.materiau2,2), -- revoir c'est pas bon
-CASE WHEN NEW.materiau2 IS NULL THEN '00-00' ELSE NEW.materiau2 END,
-NEW.diametre,
-CASE WHEN NEW.forme IS NULL THEN '00' ELSE NEW.forme END,
-NEW.anfinpose,
-CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.modecircu END, 
-NEW.idnini,
-NEW.idnterm,
-NEW.idcanppale,
-NEW.zgensup,
-NEW.andebpose,
-NEW.longcana,
-NEW.nbranche,
-NEW.geom;
-
--- an_raepa_canalaep
-INSERT INTO m_raepa.an_raepa_canalaep (idcana, contcanaep, fonccanaep, profgen)
-SELECT v_idcana,
-CASE WHEN NEW.contcanaep IS NULL THEN '00' ELSE NEW.contcanaep END,
-CASE WHEN NEW.fonccanaep IS NULL THEN '00' ELSE NEW.fonccanaep END,
-NEW.profgen;
-
 -- an_raepa_metadonnees
 INSERT INTO m_raepa.an_raepa_metadonnees (idraepa, qualglocxy, qualglocz, datemaj, sourmaj, dategeoloc, sourgeoloc, sourattrib, qualannee)
 SELECT v_idcana,
@@ -186,46 +157,41 @@ NEW.sourgeoloc,
 NEW.sourattrib,
 CASE WHEN NEW.qualannee IS NULL THEN '03' ELSE NEW.qualannee END;
 
+-- geo_raepa_canal
+INSERT INTO m_raepa.geo_raepa_canal (idcana, mouvrage, gexploit, enservice, branchemnt, materiau, materiau2, diametre, forme, anfinpose, modecircu, idnini, idnterm, idcanppale, zgensup, andebpose, longcana, nbranche, geom)
+SELECT v_idcana,
+NEW.mouvrage,
+NEW.gexploit, 
+NEW.enservice,
+NEW.branchemnt,
+(SELECT code_open FROM m_raepa.lt_raepa_materiau2 m WHERE NEW.materiau2 = m.code),
+CASE WHEN NEW.materiau2 IS NULL THEN '00-00' ELSE NEW.materiau2 END,
+NEW.diametre,
+CASE WHEN NEW.forme IS NULL THEN '00' ELSE NEW.forme END,
+NEW.anfinpose,
+CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.modecircu END, 
+NEW.idnini,
+NEW.idnterm,
+NEW.idcanppale,
+NEW.zgensup,
+NEW.andebpose,
+ST_Length(NEW.geom),
+NEW.nbranche,
+NEW.geom;
+
+-- an_raepa_canalaep
+INSERT INTO m_raepa.an_raepa_canalaep (idcana, contcanaep, fonccanaep, profgen)
+SELECT v_idcana,
+CASE WHEN NEW.contcanaep IS NULL THEN '00' ELSE NEW.contcanaep END,
+CASE WHEN NEW.fonccanaep IS NULL THEN '00' ELSE NEW.fonccanaep END,
+NEW.profgen;
+
+
 RETURN NEW;
 
 
 -- UPDATE
 ELSIF (TG_OP = 'UPDATE') THEN
-
--- geo_raepa_canal
-UPDATE
-m_raepa.geo_raepa_canal
-SET
-idcana=OLD.idcana,
-mouvrage=NEW.mouvrage,
-gexploit=NEW.gexploit, 
-enservice=NEW.enservice,
-branchemnt=NEW.branchemnt,
-materiau=LEFT(NEW.materiau2,2), -- revoir c'est pas bon
-materiau2=CASE WHEN NEW.materiau2 IS NULL THEN '00-00' ELSE NEW.materiau2 END,
-diametre=NEW.diametre,
-forme=CASE WHEN NEW.forme IS NULL THEN '00' ELSE NEW.forme END,
-anfinpose=NEW.anfinpose,
-modecircu=CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.modecircu END, 
-idnini=NEW.idnini,
-idnterm=NEW.idnterm,
-idcanppale=NEW.idcanppale,
-zgensup=NEW.zgensup,
-andebpose=NEW.andebpose,
-longcana=NEW.longcana,
-nbranche=NEW.nbranche,
-geom=NEW.geom
-WHERE m_raepa.geo_raepa_canal.idcana = OLD.idcana;
-
--- an_raepa_canalaep
-UPDATE
-m_raepa.an_raepa_canalaep
-SET
-idcana=OLD.idcana,
-contcanaep=CASE WHEN NEW.contcanaep IS NULL THEN '00' ELSE NEW.contcanaep END,
-fonccanaep=CASE WHEN NEW.fonccanaep IS NULL THEN '00' ELSE NEW.fonccanaep END,
-profgen=NEW.profgen
-WHERE m_raepa.an_raepa_canalaep.idcana = OLD.idcana;
 
 -- an_raepa_metadonnees
 UPDATE
@@ -243,9 +209,47 @@ sourattrib=NEW.sourattrib,
 qualannee=CASE WHEN NEW.qualannee IS NULL THEN '03' ELSE NEW.qualannee END
 WHERE m_raepa.an_raepa_metadonnees.idraepa = OLD.idcana;
 
+-- geo_raepa_canal
+UPDATE
+m_raepa.geo_raepa_canal
+SET
+idcana=OLD.idcana,
+mouvrage=NEW.mouvrage,
+gexploit=NEW.gexploit, 
+enservice=NEW.enservice,
+branchemnt=NEW.branchemnt,
+materiau=(SELECT code_open FROM m_raepa.lt_raepa_materiau2 m WHERE NEW.materiau2 = m.code),
+materiau2=CASE WHEN NEW.materiau2 IS NULL THEN '00-00' ELSE NEW.materiau2 END,
+diametre=NEW.diametre,
+forme=CASE WHEN NEW.forme IS NULL THEN '00' ELSE NEW.forme END,
+anfinpose=NEW.anfinpose,
+modecircu=CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.modecircu END, 
+idnini=NEW.idnini,
+idnterm=NEW.idnterm,
+idcanppale=NEW.idcanppale,
+zgensup=NEW.zgensup,
+andebpose=NEW.andebpose,
+longcana=ST_Length(NEW.geom),
+nbranche=NEW.nbranche,
+geom=NEW.geom
+WHERE m_raepa.geo_raepa_canal.idcana = OLD.idcana;
+
+-- an_raepa_canalaep
+UPDATE
+m_raepa.an_raepa_canalaep
+SET
+idcana=OLD.idcana,
+contcanaep=CASE WHEN NEW.contcanaep IS NULL THEN '00' ELSE NEW.contcanaep END,
+fonccanaep=CASE WHEN NEW.fonccanaep IS NULL THEN '00' ELSE NEW.fonccanaep END,
+profgen=NEW.profgen
+WHERE m_raepa.an_raepa_canalaep.idcana = OLD.idcana;
+
+
 RETURN NEW;
 
 /*
+
+-- manque un attribut etat pour gérer la "suppression"
 
 -- DELETE
 ELSIF (TG_OP = 'DELETE') THEN
