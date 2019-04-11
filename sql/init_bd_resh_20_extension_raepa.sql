@@ -258,17 +258,33 @@ INSERT INTO m_raepa.lt_raepa_forme_canal(
 
 
 
+-- ################################################################ CLASSE METADONNEES RAEPA ##############################################
+
+
+ALTER TABLE m_raepa.an_raepa_metadonnees
+  ADD COLUMN idexploit character varying(254); -- nouvel attribut contenant l'id de l'exploitant afin de maintenir un appariemment des données
+
+COMMENT ON COLUMN m_raepa.an_raepa_metadonnees.idexploit IS 'Identifiant de l''exploitant'; 
+/*
+  ADD COLUMN date_sai timestamp without time zone NOT NULL DEFAULT now(), -- ajout attribut horodatage de l'intégration dans la base,
+  ADD COLUMN date_maj timestamp without time zone; -- ajout attribut horodatage de la mise à jour dans la base,
+  
+COMMENT ON COLUMN m_raepa.an_raepa_metadonnees.date_sai IS 'Horodatage de l''intégration en base de l''objet';  
+COMMENT ON COLUMN m_raepa.an_raepa_metadonnees.date_maj IS 'Horodatage de la mise à jour en base de l''objet';  
+*/
 
 -- #################################################################### CLASSE CANALISATION ###############################################
 
 ALTER TABLE m_raepa.geo_raepa_canal
-  ADD COLUMN materiau2 character varying(5) NOT NULL DEFAULT '00-00', -- nouveau domaine de valeur adapté pour une saisie d'un type et d'un sosu-type de matériau,
+--  ADD COLUMN etat character varying NOT NULL DEFAULT '00', -- ajout attribut et domaine de valeur pour géré les suppressions
+  ADD COLUMN materiau2 character varying(5) NOT NULL DEFAULT '00-00', -- nouveau domaine de valeur adapté pour une saisie d'un type et d'un sous-type de matériau,
   ADD COLUMN forme character varying(2) NOT NULL DEFAULT '00', -- ajout d'un attribut commun AEP/ASS pour décrire la forme de la section d'une canalisation
-  ADD COLUMN zgensup numeric(6,2); -- ajout d'un attribut commun AEP/ASS pour obtenir la côte NGF moyenne sur le troncon de canalisation de la génératrice supérieure (idéalement, il faudrait plutôt des points de détection sur une longueur importante du segment de canalisation)
+  ADD COLUMN zgensup numeric(6,2); -- ajout d'un attribut commun AEP/ASS pour obtenir la cote NGF moyenne sur le troncon de canalisation de la génératrice supérieure (idéalement, il faudrait plutôt des points de détection sur une longueur importante du segment de canalisation)
 
+-- COMMENT ON COLUMN m_raepa.geo_raepa_canal.etat IS 'Etat d''actualité'
 COMMENT ON COLUMN m_raepa.geo_raepa_canal.materiau2 IS 'Matériau de la canalisation';  
 COMMENT ON COLUMN m_raepa.geo_raepa_canal.forme IS 'Forme de la section de la canalisation';  
-COMMENT ON COLUMN m_raepa.geo_raepa_canal.zgensup IS 'Côte NGF moyennne de la génératrice supérieure';
+COMMENT ON COLUMN m_raepa.geo_raepa_canal.zgensup IS 'Cote NGF moyennne de la génératrice supérieure';
 
 
 
@@ -280,3 +296,12 @@ ALTER TABLE m_raepa.geo_raepa_noeud
  
 COMMENT ON COLUMN m_raepa.geo_raepa_noeud.symbole IS 'Symbole utilisé pour la représentation cartographique';  
 COMMENT ON COLUMN m_raepa.geo_raepa_noeud.angle IS 'Angle en degré décimaux utilisé pour la rotation du symbole';  
+
+
+
+
+/*
+
+
+
+*/
