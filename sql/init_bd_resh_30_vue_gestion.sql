@@ -176,13 +176,13 @@ NEW.branchemnt,
 CASE WHEN NEW.materiau2 IS NULL THEN '00-00' ELSE NEW.materiau2 END,
 NEW.diametre,
 CASE WHEN NEW.forme IS NULL THEN '00' ELSE NEW.forme END,
-CASE WHEN (TO_DATE(NEW.anfinpose,'YYYY') > now()) THEN NULL ELSE NEW.anfinpose END,
+CASE WHEN (TO_DATE(NEW.anfinpose,'YYYY') > now()) THEN NULL ELSE NEW.anfinpose END, -- vérifier que l'annnée de fin n'est pas supérieure à date du jour
 CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.modecircu END, 
 NEW.idnini,
 NEW.idnterm,
 NEW.idcanppale,
 NEW.zgensup,
-CASE WHEN ((TO_DATE(NEW.andebpose,'YYYY') > now()) OR (TO_DATE(NEW.andebpose,'YYYY') > TO_DATE(NEW.anfinpose,'YYYY'))) THEN NULL ELSE NEW.andebpose END,
+CASE WHEN ((TO_DATE(NEW.andebpose,'YYYY') > now()) OR (TO_DATE(NEW.andebpose,'YYYY') > TO_DATE(NEW.anfinpose,'YYYY'))) THEN NULL ELSE NEW.andebpose END, -- vérifier que l'année de début n'est pas supérieure à l'année de fin ou à la date du jour
 ST_Length(NEW.geom),
 NEW.nbranche,
 NEW.geom;
@@ -231,13 +231,13 @@ materiau=(SELECT code_open FROM m_raepa.lt_raepa_materiau2 m WHERE NEW.materiau2
 materiau2=CASE WHEN NEW.materiau2 IS NULL THEN '00-00' ELSE NEW.materiau2 END,
 diametre=NEW.diametre,
 forme=CASE WHEN NEW.forme IS NULL THEN '00' ELSE NEW.forme END,
-anfinpose=CASE WHEN (TO_DATE(NEW.anfinpose,'YYYY') > now()) THEN NULL ELSE NEW.anfinpose END,
+anfinpose=CASE WHEN (TO_DATE(NEW.anfinpose,'YYYY') > now()) THEN NULL ELSE NEW.anfinpose END, -- vérifier que l'annnée de fin n'est pas supérieure à date du jour
 modecircu=CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.modecircu END, 
 idnini=NEW.idnini,
 idnterm=NEW.idnterm,
 idcanppale=NEW.idcanppale,
 zgensup=NEW.zgensup,
-andebpose=CASE WHEN ((TO_DATE(NEW.andebpose,'YYYY') > now()) OR (TO_DATE(NEW.andebpose,'YYYY') > TO_DATE(NEW.anfinpose,'YYYY'))) THEN NULL ELSE NEW.andebpose END,
+andebpose=CASE WHEN ((TO_DATE(NEW.andebpose,'YYYY') > now()) OR (TO_DATE(NEW.andebpose,'YYYY') > TO_DATE(NEW.anfinpose,'YYYY'))) THEN NULL ELSE NEW.andebpose END, -- vérifier que l'année de début n'est pas supérieure à l'année de fin ou à la date du jour
 longcana=ST_Length(NEW.geom),
 nbranche=NEW.nbranche,
 geom=NEW.geom
