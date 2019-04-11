@@ -16,6 +16,9 @@
 -- ####################################################################################################################################################
 
 
+-- !!!! penser à récup code insee et nom com dans les vues et incidences dans les triggers, sauf si possibilité de récup d'une extension pour la gestions des contrats_resh
+-- !!! voir si code insee et nom com à gérer dans la base (stockage dans un attribut) ou pas simplement dans les "vues d'exploitation / applicatives"
+
 -- #################################################################### VUE CANALISATION AEP ###############################################
         
 -- View: m_raepa.geo_v_raepa_canalaep_l
@@ -25,6 +28,7 @@
 CREATE OR REPLACE VIEW m_raepa.geo_v_raepa_canalaep_l AS 
  SELECT 
   g.idcana,
+  m.idexploit,
   g.mouvrage,
   g.gexploit, 
   g.enservice,
@@ -74,6 +78,7 @@ COMMENT ON VIEW m_raepa.geo_v_raepa_canalaep_l
 CREATE OR REPLACE VIEW m_raepa.geo_v_raepa_canalass_l AS 
  SELECT 
   g.idcana,
+  m.idexploit,  
   g.mouvrage,
   g.gexploit, 
   g.enservice,
@@ -147,7 +152,7 @@ IF (TG_OP = 'INSERT') THEN
 v_idcana := nextval('m_raepa.raepa_idraepa_seq'::regclass);
 
 -- an_raepa_metadonnees
-INSERT INTO m_raepa.an_raepa_metadonnees (idraepa, qualglocxy, qualglocz, datemaj, sourmaj, dategeoloc, sourgeoloc, sourattrib, qualannee)
+INSERT INTO m_raepa.an_raepa_metadonnees (idraepa, qualglocxy, qualglocz, datemaj, sourmaj, dategeoloc, sourgeoloc, sourattrib, qualannee, idexploit)
 SELECT v_idcana,
 CASE WHEN NEW.qualglocxy IS NULL THEN '03' ELSE NEW.qualglocxy END,
 CASE WHEN NEW.qualglocz IS NULL THEN '03' ELSE NEW.qualglocz END,
@@ -157,7 +162,8 @@ CASE WHEN NEW.sourmaj IS NULL THEN 'Non renseigné' ELSE NEW.sourmaj END,
 NEW.dategeoloc,
 NEW.sourgeoloc,
 NEW.sourattrib,
-CASE WHEN NEW.qualannee IS NULL THEN '03' ELSE NEW.qualannee END;
+CASE WHEN NEW.qualannee IS NULL THEN '03' ELSE NEW.qualannee END,
+NEW.idexploit;
 
 -- geo_raepa_canal
 INSERT INTO m_raepa.geo_raepa_canal (idcana, mouvrage, gexploit, enservice, branchemnt, materiau, materiau2, diametre, forme, anfinpose, modecircu, idnini, idnterm, idcanppale, zgensup, andebpose, longcana, nbranche, geom)
@@ -208,7 +214,8 @@ sourmaj=CASE WHEN NEW.sourmaj IS NULL THEN 'Non renseigné' ELSE NEW.sourmaj END
 dategeoloc=NEW.dategeoloc,
 sourgeoloc=NEW.sourgeoloc,
 sourattrib=NEW.sourattrib,
-qualannee=CASE WHEN NEW.qualannee IS NULL THEN '03' ELSE NEW.qualannee END
+qualannee=CASE WHEN NEW.qualannee IS NULL THEN '03' ELSE NEW.qualannee END,
+idexploit=NEW.idexploit
 WHERE m_raepa.an_raepa_metadonnees.idraepa = OLD.idcana;
 
 -- geo_raepa_canal
