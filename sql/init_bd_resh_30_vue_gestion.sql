@@ -162,7 +162,7 @@ CASE WHEN NEW.sourmaj IS NULL THEN 'Non renseigné' ELSE NEW.sourmaj END,
 NEW.dategeoloc,
 NEW.sourgeoloc,
 NEW.sourattrib,
-CASE WHEN NEW.qualannee IS NULL THEN '03' ELSE NEW.qualannee END,
+CASE WHEN (NEW.andebpose = NEW.anfinpose) THEN NEW.qualannee ELSE NULL END,
 NEW.idexploit;
 
 -- geo_raepa_canal
@@ -176,13 +176,13 @@ NEW.branchemnt,
 CASE WHEN NEW.materiau2 IS NULL THEN '00-00' ELSE NEW.materiau2 END,
 NEW.diametre,
 CASE WHEN NEW.forme IS NULL THEN '00' ELSE NEW.forme END,
-NEW.anfinpose,
+CASE WHEN (TO_DATE(NEW.anfinpose,'YYYY') > now()) THEN NULL ELSE NEW.anfinpose END,
 CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.modecircu END, 
 NEW.idnini,
 NEW.idnterm,
 NEW.idcanppale,
 NEW.zgensup,
-NEW.andebpose,
+CASE WHEN ((TO_DATE(NEW.andebpose,'YYYY') > now()) OR (TO_DATE(NEW.andebpose,'YYYY') > TO_DATE(NEW.anfinpose,'YYYY'))) THEN NULL ELSE NEW.andebpose END,
 ST_Length(NEW.geom),
 NEW.nbranche,
 NEW.geom;
@@ -214,7 +214,7 @@ sourmaj=CASE WHEN NEW.sourmaj IS NULL THEN 'Non renseigné' ELSE NEW.sourmaj END
 dategeoloc=NEW.dategeoloc,
 sourgeoloc=NEW.sourgeoloc,
 sourattrib=NEW.sourattrib,
-qualannee=CASE WHEN NEW.qualannee IS NULL THEN '03' ELSE NEW.qualannee END,
+qualannee=CASE WHEN (NEW.andebpose = NEW.anfinpose) THEN NEW.qualannee ELSE NULL END,
 idexploit=NEW.idexploit
 WHERE m_raepa.an_raepa_metadonnees.idraepa = OLD.idcana;
 
@@ -231,13 +231,13 @@ materiau=(SELECT code_open FROM m_raepa.lt_raepa_materiau2 m WHERE NEW.materiau2
 materiau2=CASE WHEN NEW.materiau2 IS NULL THEN '00-00' ELSE NEW.materiau2 END,
 diametre=NEW.diametre,
 forme=CASE WHEN NEW.forme IS NULL THEN '00' ELSE NEW.forme END,
-anfinpose=NEW.anfinpose,
+anfinpose=CASE WHEN (TO_DATE(NEW.anfinpose,'YYYY') > now()) THEN NULL ELSE NEW.anfinpose END,
 modecircu=CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.modecircu END, 
 idnini=NEW.idnini,
 idnterm=NEW.idnterm,
 idcanppale=NEW.idcanppale,
 zgensup=NEW.zgensup,
-andebpose=NEW.andebpose,
+andebpose=CASE WHEN ((TO_DATE(NEW.andebpose,'YYYY') > now()) OR (TO_DATE(NEW.andebpose,'YYYY') > TO_DATE(NEW.anfinpose,'YYYY'))) THEN NULL ELSE NEW.andebpose END,
 longcana=ST_Length(NEW.geom),
 nbranche=NEW.nbranche,
 geom=NEW.geom
