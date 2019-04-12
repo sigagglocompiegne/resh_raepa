@@ -690,6 +690,7 @@ WITH (
 
 COMMENT ON TABLE raepa.raepa_metadonnees
   IS 'Classe décrivant les métadonnées d''un objet du réseau humide';
+COMMENT ON COLUMN raepa.raepa_metadonnees.idraepa IS 'identifiant de l''entité RAEPA';  
 COMMENT ON COLUMN raepa.raepa_metadonnees.qualglocxy IS 'Qualité de la géolocalisation planimétrique (XY)';
 COMMENT ON COLUMN raepa.raepa_metadonnees.qualglocz IS 'Qualité de la géolocalisation altimétrique (Z)';
 COMMENT ON COLUMN raepa.raepa_metadonnees.datemaj IS 'Date de la dernière mise à jour des informations';
@@ -764,7 +765,7 @@ CREATE TABLE raepa.raepa_canalaep
   idcana character varying(254) NOT NULL, -- fkey vers attribut idcana de la classe canalisation
   contcanaep character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
   fonccanaep character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
-  profgen numeric (3,2) -- !!!!!! usage pour le DT-DICT qui n'a pas sa spécificité sur un réseau d'ae. L'emploi de la profondeur par rapport à la côte NGF est par ailleurs dangereuse et il aurait été plus pertinent d'utiliser la côte de la génératrice supérieure
+  profgen numeric (3,2) -- !!!!!! usage pour le DT-DICT qui n'a pas sa spécificité sur un réseau d'ae. L'emploi de la profondeur par rapport à la cote NGF est par ailleurs dangereuse et il aurait été plus pertinent d'utiliser la côte de la génératrice supérieure
 )
 WITH (
   OIDS=FALSE
