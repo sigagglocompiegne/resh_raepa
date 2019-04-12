@@ -42,6 +42,7 @@ DROP FUNCTION IF EXISTS m_raepa.ft_m_geo_v_raepa_apparaep_p();
 DROP FUNCTION IF EXISTS m_raepa.ft_m_geo_v_raepa_apparass_p();
 DROP FUNCTION IF EXISTS m_raepa.ft_m_geo_v_raepa_ouvraep_p();
 DROP FUNCTION IF EXISTS m_raepa.ft_m_geo_v_raepa_ouvrass_p();
+DROP FUNCTION IF EXISTS m_raepa.ft_m_log_audit_raepa();
 
 -- fkey
 -- implémentation arc
@@ -106,7 +107,7 @@ DROP TABLE IF EXISTS m_raepa.lt_raepa_forme_canal;
 -- implementation arc
 DROP SEQUENCE IF EXISTS m_raepa.raepa_idraepa_seq;
 DROP SEQUENCE IF EXISTS m_raepa.raepa_idrepar_seq;
-DROP SEQUENCE IF EXISTS m_raepa.raepa_idlog_seq;
+DROP SEQUENCE IF EXISTS m_raepa.raepa_idaudit_seq;
 
 
 -- schema
