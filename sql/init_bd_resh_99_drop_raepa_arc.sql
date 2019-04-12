@@ -26,15 +26,22 @@ DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_ouvraep_p;
 DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_ouvrass_p;
 DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_reparaep_p;
 DROP VIEW IF EXISTS x_opendata.xopendata_geo_v_raepa_reparass_p;
+
 -- vue de gestion
 DROP VIEW IF EXISTS m_raepa.geo_v_raepa_canalaep_l;
 DROP VIEW IF EXISTS m_raepa.geo_v_raepa_canalass_l;
-
+DROP VIEW IF EXISTS m_raepa.geo_v_raepa_apparaep_p;
+DROP VIEW IF EXISTS m_raepa.geo_v_raepa_apparass_p;
+DROP VIEW IF EXISTS m_raepa.geo_v_raepa_ouvraep_p;
+DROP VIEW IF EXISTS m_raepa.geo_v_raepa_ouvrass_p;
 
 -- fonction trigger
 DROP FUNCTION IF EXISTS m_raepa.ft_m_geo_v_raepa_canalaep_l();
 DROP FUNCTION IF EXISTS m_raepa.ft_m_geo_v_raepa_canalass_l();
-
+DROP FUNCTION IF EXISTS m_raepa.ft_m_geo_v_raepa_apparaep_p();
+DROP FUNCTION IF EXISTS m_raepa.ft_m_geo_v_raepa_apparass_p();
+DROP FUNCTION IF EXISTS m_raepa.ft_m_geo_v_raepa_ouvraep_p();
+DROP FUNCTION IF EXISTS m_raepa.ft_m_geo_v_raepa_ouvrass_p();
 
 -- fkey
 -- implémentation arc
@@ -71,6 +78,8 @@ DROP TABLE IF EXISTS m_raepa.an_raepa_ouvr;
 DROP TABLE IF EXISTS m_raepa.an_raepa_ouvraep;
 DROP TABLE IF EXISTS m_raepa.an_raepa_ouvrass;
 DROP TABLE IF EXISTS m_raepa.geo_raepa_repar;
+DROP TABLE IF EXISTS m_raepa.log_audit_raepa;
+
 
 -- domaine de valeur
 -- implementation arc
@@ -97,6 +106,8 @@ DROP TABLE IF EXISTS m_raepa.lt_raepa_forme_canal;
 -- implementation arc
 DROP SEQUENCE IF EXISTS m_raepa.raepa_idraepa_seq;
 DROP SEQUENCE IF EXISTS m_raepa.raepa_idrepar_seq;
+DROP SEQUENCE IF EXISTS m_raepa.raepa_idlog_seq;
+
 
 -- schema
 -- implementation arc
