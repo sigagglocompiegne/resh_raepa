@@ -98,7 +98,7 @@ SELECT
 v_idaudit,
 v_idraepa,
 'INSERT',
-NEW.ope_sai, -- voir si équivalence avec sourmaj
+NEW.sourmaj, -- voir si équivalence avec sourmaj
 now();
 RETURN NEW;
 
@@ -110,10 +110,9 @@ v_idaudit := nextval('m_raepa.raepa_idaudit_seq'::regclass);
 INSERT INTO m_raepa.log_audit_raepa (idaudit, idraepa, type_ope, ope_sai, date_maj)
 SELECT
 v_idaudit,
-(SELECT idraepa FROM m_raepa.an_raepa_metadonnees m WHERE NEW.materiau2 = m.code), -- voir attribut à supprimer et gérer ceci uniquement en export dans vue opendata
-NEW.idraepa, -- problèmes compte tenu des différents "nom" des attributs idcana,idouvr,idappar ... on devrait unifier les noms dans le resh_20 et revoir les vues opendata pour retrouver le bon nom d'attribut pour les échanges. Sinon contrainte de faire autant de fonction que de type de classe (cana, repar, appar, ouvr)
+NEW.idcana, -- problèmes compte tenu des différents "nom" des attributs idcana,idouvr,idappar ... on devrait unifier les noms dans le resh_20 et revoir les vues opendata pour retrouver le bon nom d'attribut pour les échanges. Sinon contrainte de faire autant de fonction que de type de classe (cana, repar, appar, ouvr)
 'UPDATE',
-NEW.ope_sai, -- voir si équivalence avec sourmaj
+NEW.sourmaj, -- voir si équivalence avec sourmaj
 now();
 RETURN NEW;
 
@@ -124,10 +123,10 @@ ELSIF (TG_OP = 'DELETE') THEN
 v_idaudit := nextval('m_raepa.raepa_idaudit_seq'::regclass);
 INSERT INTO m_raepa.log_audit_raepa (idaudit, idraepa, type_ope, ope_sai, date_maj)
 SELECT
-v_id_audit,
-NEW.idraepa,
+v_idaudit,
+NEW.idcana, -- problèmes compte tenu des différents "nom" des attributs idcana,idouvr,idappar ... on devrait unifier les noms dans le resh_20 et revoir les vues opendata pour retrouver le bon nom d'attribut pour les échanges. Sinon contrainte de faire autant de fonction que de type de classe (cana, repar, appar, ouvr)
 'DELETE',
-NEW.ope_sai, -- voir si équivalence avec sourmaj
+NEW.sourmaj, -- voir si équivalence avec sourmaj
 now();
 RETURN NEW;
 
