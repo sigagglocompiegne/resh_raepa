@@ -16,11 +16,11 @@
 -- ####################################################################################################################################################
 
 
--- Sequence: m_raepa.raepa_idlog_seq
+-- Sequence: m_raepa.raepa_idaudit_seq
 
--- DROP SEQUENCE m_raepa.raepa_idlog_seq;
+-- DROP SEQUENCE m_raepa.raepa_idaudit_seq;
 
-CREATE SEQUENCE m_raepa.raepa_idlog_seq
+CREATE SEQUENCE m_raepa.raepa_idaudit_seq
   INCREMENT 1
   MINVALUE 0
   MAXVALUE 9223372036854775807
@@ -44,12 +44,12 @@ CREATE SEQUENCE m_raepa.raepa_idlog_seq
 
 CREATE TABLE m_raepa.log_audit_raepa
 (
-  idlog character varying(254) NOT NULL,
+  idaudit integer NOT NULL,
   idraepa character varying(254) NOT NULL,
   type_ope text NOT NULL,
   ope_sai character varying(254),
   date_maj timestamp without time zone,
-  CONSTRAINT log_audit_raepa_pkey PRIMARY KEY (idlog)  
+  CONSTRAINT log_audit_raepa_pkey PRIMARY KEY (idaudit)  
 )
 WITH (
   OIDS=FALSE
@@ -57,9 +57,97 @@ WITH (
 
 COMMENT ON TABLE m_raepa.log_audit_raepa
   IS 'Table d''audit des opérations sur la base de données RAEPA';
-COMMENT ON COLUMN m_raepa.log_audit_raepa.idlog IS 'Identifiant unique de l''opération de la base RAEPA';
+COMMENT ON COLUMN m_raepa.log_audit_raepa.idaudit IS 'Identifiant unique de l''opération de la base RAEPA';
 COMMENT ON COLUMN m_raepa.log_audit_raepa.idraepa IS 'Identifiant de l''entité concernée par l''opération sur la base RAEPA';
 COMMENT ON COLUMN m_raepa.log_audit_raepa.type_ope IS 'Type d''opération intervenue sur la base RAEPA';
 COMMENT ON COLUMN m_raepa.log_audit_raepa.ope_sai IS 'Utilisateur ayant effectuée l''opération sur la base RAEPA';
 COMMENT ON COLUMN m_raepa.log_audit_raepa.date_maj IS 'Horodatage de l''opération sur la base RAEPA';
 
+
+
+-- ####################################################################################################################################################
+-- ###                                                                                                                                              ###
+-- ###                                                                      TRIGGER                                                                 ###
+-- ###                                                                                                                                              ###
+-- ####################################################################################################################################################
+
+
+
+-- #################################################################### FONCTION TRIGGER - LOG_RAEPA ###################################################
+
+-- Function: m_raepa.ft_m_log_audit_raepa()
+
+-- DROP FUNCTION m_raepa.ft_m_log_audit_raepa();
+
+CREATE OR REPLACE FUNCTION m_raepa.ft_m_log_audit_raepa()
+  RETURNS trigger AS
+$BODY$
+
+DECLARE v_idaudit integer;
+DECLARE v_idraepa character varying(254);
+
+BEGIN
+
+-- INSERT
+IF (TG_OP = 'INSERT') THEN
+
+v_idaudit := nextval('m_raepa.raepa_idaudit_seq'::regclass);
+v_idraepa := currval('m_raepa.raepa_idraepa_seq'::regclass);
+INSERT INTO m_raepa.log_audit_raepa (idaudit, idraepa, type_ope, ope_sai, date_maj)
+SELECT
+v_idaudit,
+v_idraepa,
+'INSERT',
+NEW.ope_sai, -- voir si équivalence avec sourmaj
+now();
+RETURN NEW;
+
+
+-- UPDATE
+ELSIF (TG_OP = 'UPDATE') THEN
+
+v_idaudit := nextval('m_raepa.raepa_idaudit_seq'::regclass);
+INSERT INTO m_raepa.log_audit_raepa (idaudit, idraepa, type_ope, ope_sai, date_maj)
+SELECT
+v_idaudit,
+(SELECT idraepa FROM m_raepa.an_raepa_metadonnees m WHERE NEW.materiau2 = m.code), -- voir attribut à supprimer et gérer ceci uniquement en export dans vue opendata
+NEW.idraepa, -- problèmes compte tenu des différents "nom" des attributs idcana,idouvr,idappar ... on devrait unifier les noms dans le resh_20 et revoir les vues opendata pour retrouver le bon nom d'attribut pour les échanges. Sinon contrainte de faire autant de fonction que de type de classe (cana, repar, appar, ouvr)
+'UPDATE',
+NEW.ope_sai, -- voir si équivalence avec sourmaj
+now();
+RETURN NEW;
+
+
+-- DELETE
+ELSIF (TG_OP = 'DELETE') THEN
+
+v_idaudit := nextval('m_raepa.raepa_idaudit_seq'::regclass);
+INSERT INTO m_raepa.log_audit_raepa (idaudit, idraepa, type_ope, ope_sai, date_maj)
+SELECT
+v_id_audit,
+NEW.idraepa,
+'DELETE',
+NEW.ope_sai, -- voir si équivalence avec sourmaj
+now();
+RETURN NEW;
+
+END IF;
+
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+
+COMMENT ON FUNCTION m_raepa.ft_m_log_audit_raepa() IS 'audit';
+
+
+
+-- Trigger: t_t2_log_audit_raepa on m_raepa.geo_v_raepa_canalaep_l
+
+-- DROP TRIGGER t_t2_log_audit_raepa ON m_raepa.geo_v_raepa_canalaep_l;
+
+CREATE TRIGGER t_t2_log_audit_raepa
+  INSTEAD OF INSERT OR UPDATE OR DELETE
+  ON m_raepa.geo_v_raepa_canalaep_l
+  FOR EACH ROW
+  EXECUTE PROCEDURE m_raepa.ft_m_log_audit_raepa();
