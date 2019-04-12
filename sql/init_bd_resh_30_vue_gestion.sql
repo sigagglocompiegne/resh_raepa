@@ -285,11 +285,11 @@ $BODY$
 COMMENT ON FUNCTION m_raepa.ft_m_geo_v_raepa_canalaep_l() IS 'Fonction trigger pour mise à jour des entités depuis la vue de gestion des canalisations d''eau potable';
 
 
--- Trigger: t_geo_v_raepa_canalaep_l on m_raepa.geo_v_raepa_canalaep_l
+-- Trigger: t_t1_geo_v_raepa_canalaep_l on m_raepa.geo_v_raepa_canalaep_l
 
--- DROP TRIGGER t_geo_v_raepa_canalaep_l ON m_raepa.geo_v_raepa_canalaep_l;
+-- DROP TRIGGER t_t1_geo_v_raepa_canalaep_l ON m_raepa.geo_v_raepa_canalaep_l;
 
-CREATE TRIGGER t_geo_v_raepa_canalaep_l
+CREATE TRIGGER t_t1_geo_v_raepa_canalaep_l
   INSTEAD OF INSERT OR UPDATE OR DELETE
   ON m_raepa.geo_v_raepa_canalaep_l
   FOR EACH ROW
