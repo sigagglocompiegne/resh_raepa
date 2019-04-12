@@ -250,6 +250,8 @@ INSERT INTO m_raepa.lt_raepa_forme_canal(
 
 
 
+
+
 -- ####################################################################################################################################################
 -- ###                                                                                                                                              ###
 -- ###                                                                  CLASSE OBJET                                                                ###
@@ -300,8 +302,20 @@ COMMENT ON COLUMN m_raepa.geo_raepa_noeud.angle IS 'Angle en degré décimaux ut
 
 
 
+
+
+
 /*
 
+*/
+
+
+
+
+/*
+
+
+-- prévoir extension RAEPA classe alphanumérique (regard, avaloir etc ...)
 
 
 */
