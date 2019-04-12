@@ -8,7 +8,6 @@
 
 
 
-
 -- ####################################################################################################################################################
 -- ###                                                                                                                                              ###
 -- ###                                                                        VUES                                                                  ###
@@ -120,7 +119,9 @@ ORDER BY g.idcana;
 COMMENT ON VIEW m_raepa.geo_v_raepa_canalass_l
   IS 'Canalisation d''assainissement collectif';
   
-  
+
+
+ 
   
 -- ####################################################################################################################################################
 -- ###                                                                                                                                              ###
@@ -168,11 +169,11 @@ NEW.idexploit;
 -- geo_raepa_canal
 INSERT INTO m_raepa.geo_raepa_canal (idcana, mouvrage, gexploit, enservice, branchemnt, materiau, materiau2, diametre, forme, anfinpose, modecircu, idnini, idnterm, idcanppale, zgensup, andebpose, longcana, nbranche, geom)
 SELECT v_idcana,
-NEW.mouvrage,
-NEW.gexploit, 
+NEW.mouvrage, -- voir pour domaine de valeur, voir classe de gestion/contrat
+NEW.gexploit, -- voir pour domaine de valeur, voir classe de gestion/contrat 
 NEW.enservice,
-NEW.branchemnt,
-(SELECT code_open FROM m_raepa.lt_raepa_materiau2 m WHERE NEW.materiau2 = m.code),
+NEW.branchemnt, -- voir pour domaine de valeur ajouté de NR
+(SELECT code_open FROM m_raepa.lt_raepa_materiau2 m WHERE NEW.materiau2 = m.code), -- voir attribut à supprimer et gérer ceci uniquement en export dans vue opendata
 CASE WHEN NEW.materiau2 IS NULL THEN '00-00' ELSE NEW.materiau2 END,
 NEW.diametre,
 CASE WHEN NEW.forme IS NULL THEN '00' ELSE NEW.forme END,
@@ -208,7 +209,7 @@ SET
 idraepa=OLD.idcana,
 qualglocxy=CASE WHEN NEW.qualglocxy IS NULL THEN '03' ELSE NEW.qualglocxy END,
 qualglocz=CASE WHEN NEW.qualglocz IS NULL THEN '03' ELSE NEW.qualglocz END,
--- datesau=OLD.datesai, -- datesai
+-- datesai=OLD.datesai, -- datesai
 datemaj=now(),
 sourmaj=CASE WHEN NEW.sourmaj IS NULL THEN 'Non renseigné' ELSE NEW.sourmaj END,
 dategeoloc=NEW.dategeoloc,
@@ -223,11 +224,11 @@ UPDATE
 m_raepa.geo_raepa_canal
 SET
 idcana=OLD.idcana,
-mouvrage=NEW.mouvrage,
-gexploit=NEW.gexploit, 
-enservice=NEW.enservice,
-branchemnt=NEW.branchemnt,
-materiau=(SELECT code_open FROM m_raepa.lt_raepa_materiau2 m WHERE NEW.materiau2 = m.code),
+mouvrage=NEW.mouvrage, -- voir pour domaine de valeur, voir classe de gestion/contrat
+gexploit=NEW.gexploit, -- voir pour domaine de valeur, voir classe de gestion/contrat
+enservice=NEW.enservice, 
+branchemnt=NEW.branchemnt, -- voir pour domaine de valeur ajouté de NR
+materiau=(SELECT code_open FROM m_raepa.lt_raepa_materiau2 m WHERE NEW.materiau2 = m.code), -- voir attribut à supprimer et gérer ceci uniquement en export dans vue opendata
 materiau2=CASE WHEN NEW.materiau2 IS NULL THEN '00-00' ELSE NEW.materiau2 END,
 diametre=NEW.diametre,
 forme=CASE WHEN NEW.forme IS NULL THEN '00' ELSE NEW.forme END,
@@ -284,11 +285,11 @@ $BODY$
 COMMENT ON FUNCTION m_raepa.ft_m_geo_v_raepa_canalaep_l() IS 'Fonction trigger pour mise à jour des entités depuis la vue de gestion des canalisations d''eau potable';
 
 
--- Trigger: t_t1_geo_v_raepa_canalaep_l on m_raepa.geo_v_raepa_canalaep_l
+-- Trigger: t_geo_v_raepa_canalaep_l on m_raepa.geo_v_raepa_canalaep_l
 
--- DROP TRIGGER t_t1_geo_v_raepa_canalaep_l ON m_raepa.geo_v_raepa_canalaep_l;
+-- DROP TRIGGER t_geo_v_raepa_canalaep_l ON m_raepa.geo_v_raepa_canalaep_l;
 
-CREATE TRIGGER t_t1_geo_v_raepa_canalaep_l
+CREATE TRIGGER t_geo_v_raepa_canalaep_l
   INSTEAD OF INSERT OR UPDATE OR DELETE
   ON m_raepa.geo_v_raepa_canalaep_l
   FOR EACH ROW
