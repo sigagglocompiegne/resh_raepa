@@ -214,7 +214,7 @@ COMMENT ON VIEW m_raepa.geo_v_raepa_ouvrass_p
 -- ####################################################################################################################################################
 
 
--- !!!! pour les canalisations, prévoir de vérifier des contraintes topologiques (noeud, cana sécante ...) et métiers (incompatibilité de valeur d'attribut)
+-- !!!! pour les canalisations, prévoir de vérifier des contraintes topologiques (noeud, sens écoulement/sens saisie, cana sécante ...) et métiers (incompatibilité de valeur d'attribut)
 
 -- #################################################################### FONCTION TRIGGER - GEO_V_CANALAEP_L ###################################################
 
@@ -263,8 +263,8 @@ NEW.diametre,
 CASE WHEN NEW.forme IS NULL THEN '00' ELSE NEW.forme END,
 CASE WHEN (TO_DATE(NEW.anfinpose,'YYYY') > now()) THEN NULL ELSE NEW.anfinpose END, -- vérifier que l'annnée de fin n'est pas supérieure à date du jour
 CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.modecircu END, 
-NEW.idnini,
-NEW.idnterm,
+CASE WHEN (SELECT idnoeud FROM m_raepa.geo_raepa_noeud n WHERE ST_equals(n.geom,ST_StartPoint(NEW.geom)) IS TRUE) IS NOT NULL THEN (SELECT idnoeud FROM m_raepa.geo_raepa_noeud n WHERE ST_equals(n.geom,ST_StartPoint(NEW.geom))) ELSE NEW.idnini END,
+CASE WHEN (SELECT idnoeud FROM m_raepa.geo_raepa_noeud n WHERE ST_equals(n.geom,ST_EndPoint(NEW.geom)) IS TRUE) IS NOT NULL THEN (SELECT idnoeud FROM m_raepa.geo_raepa_noeud n WHERE ST_equals(n.geom,ST_EndPoint(NEW.geom))) ELSE NEW.idnterm END,
 NEW.idcanppale,
 NEW.zgensup,
 CASE WHEN ((TO_DATE(NEW.andebpose,'YYYY') > now()) OR (TO_DATE(NEW.andebpose,'YYYY') > TO_DATE(NEW.anfinpose,'YYYY'))) THEN NULL ELSE NEW.andebpose END, -- vérifier que l'année de début n'est pas supérieure à l'année de fin ou à la date du jour
@@ -318,8 +318,8 @@ diametre=NEW.diametre,
 forme=CASE WHEN NEW.forme IS NULL THEN '00' ELSE NEW.forme END,
 anfinpose=CASE WHEN (TO_DATE(NEW.anfinpose,'YYYY') > now()) THEN NULL ELSE NEW.anfinpose END, -- vérifier que l'annnée de fin n'est pas supérieure à date du jour
 modecircu=CASE WHEN NEW.modecircu IS NULL THEN '00' ELSE NEW.modecircu END, 
-idnini=NEW.idnini,
-idnterm=NEW.idnterm,
+idnini=CASE WHEN (SELECT idnoeud FROM m_raepa.geo_raepa_noeud n WHERE ST_equals(n.geom,ST_StartPoint(NEW.geom)) IS TRUE) IS NOT NULL THEN (SELECT idnoeud FROM m_raepa.geo_raepa_noeud n WHERE ST_equals(n.geom,ST_StartPoint(NEW.geom))) ELSE NEW.idnini END,
+idnterm=CASE WHEN (SELECT idnoeud FROM m_raepa.geo_raepa_noeud n WHERE ST_equals(n.geom,ST_EndPoint(NEW.geom)) IS TRUE) IS NOT NULL THEN (SELECT idnoeud FROM m_raepa.geo_raepa_noeud n WHERE ST_equals(n.geom,ST_EndPoint(NEW.geom))) ELSE NEW.idnterm END,
 idcanppale=NEW.idcanppale,
 zgensup=NEW.zgensup,
 andebpose=CASE WHEN ((TO_DATE(NEW.andebpose,'YYYY') > now()) OR (TO_DATE(NEW.andebpose,'YYYY') > TO_DATE(NEW.anfinpose,'YYYY'))) THEN NULL ELSE NEW.andebpose END, -- vérifier que l'année de début n'est pas supérieure à l'année de fin ou à la date du jour
