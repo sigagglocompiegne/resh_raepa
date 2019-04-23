@@ -98,7 +98,7 @@ SELECT
 v_idaudit,
 v_idraepa,
 'INSERT',
-NEW.sourmaj, -- voir si équivalence avec sourmaj
+CASE WHEN NEW.sourmaj IS NULL THEN 'Non renseigné' ELSE NEW.sourmaj END, -- voir si équivalence avec sourmaj
 now();
 RETURN NEW;
 
@@ -112,7 +112,7 @@ SELECT
 v_idaudit,
 NEW.idcana, -- problèmes compte tenu des différents "nom" des attributs idcana,idouvr,idappar ... on devrait unifier les noms dans le resh_20 et revoir les vues opendata pour retrouver le bon nom d'attribut pour les échanges. Sinon contrainte de faire autant de fonction que de type de classe (cana, repar, appar, ouvr)
 'UPDATE',
-NEW.sourmaj, -- voir si équivalence avec sourmaj
+CASE WHEN NEW.sourmaj IS NULL THEN 'Non renseigné' ELSE NEW.sourmaj END, -- voir si équivalence avec sourmaj
 now();
 RETURN NEW;
 
