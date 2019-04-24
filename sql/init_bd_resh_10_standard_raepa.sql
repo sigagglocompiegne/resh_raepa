@@ -765,7 +765,8 @@ CREATE TABLE raepa.raepa_canalaep
   idcana character varying(254) NOT NULL, -- fkey vers attribut idcana de la classe canalisation
   contcanaep character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
   fonccanaep character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
-  profgen numeric (3,2) -- !!!!!! usage pour le DT-DICT qui n'a pas sa spécificité sur un réseau d'ae. L'emploi de la profondeur par rapport à la cote NGF est par ailleurs dangereuse et il aurait été plus pertinent d'utiliser la côte de la génératrice supérieure
+  profgen numeric (3,2), -- !!!!!! usage pour le DT-DICT qui n'a pas sa spécificité sur un réseau d'ae. L'emploi de la profondeur par rapport à la cote NGF est par ailleurs dangereuse et il aurait été plus pertinent d'utiliser la côte de la génératrice supérieure
+  CONSTRAINT raepa_canalaep_pkey PRIMARY KEY (idcana)  
 )
 WITH (
   OIDS=FALSE
@@ -793,7 +794,8 @@ CREATE TABLE raepa.raepa_canalass
   fonccanass character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
   zamont numeric (6,2),
   zaval numeric (6,2),
-  sensecoul character varying(1) -- !!!!!! existe dans le modèle implementé en fichier mais absent du MCD RAEPA
+  sensecoul character varying(1), -- !!!!!! existe dans le modèle implementé en fichier mais absent du MCD RAEPA
+  CONSTRAINT raepa_canalass_pkey PRIMARY KEY (idcana)  
 )
 WITH (
   OIDS=FALSE
@@ -885,7 +887,8 @@ COMMENT ON COLUMN raepa.raepa_appar.z IS 'Altitude du noeud (en mètres, Référ
 CREATE TABLE raepa.raepa_apparaep
 (
   idappareil character varying(254) NOT NULL, -- fkey vers attribut idappareil de la classe appareillage
-  fnappaep character varying(2) NOT NULL DEFAULT '00' -- fkey vers domaine de valeur
+  fnappaep character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
+  CONSTRAINT raepa_apparaep_pkey PRIMARY KEY (idappareil) 
 )
 WITH (
   OIDS=FALSE
@@ -907,7 +910,8 @@ CREATE TABLE raepa.raepa_apparass
 (
   idappareil character varying(254) NOT NULL, -- fkey vers attribut idappareil de la classe appareillage
   typreseau character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
-  fnappass character varying(2) NOT NULL DEFAULT '00' -- fkey vers domaine de valeur
+  fnappass character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
+  CONSTRAINT raepa_apparass_pkey PRIMARY KEY (idappareil)  
 )
 WITH (
   OIDS=FALSE
@@ -954,7 +958,8 @@ COMMENT ON COLUMN raepa.raepa_ouvr.z IS 'Altitude radier de l''ouvrage (en mètr
 CREATE TABLE raepa.raepa_ouvraep
 (
   idouvrage character varying(254) NOT NULL, -- fkey vers attribut idouvrage de la classe ouvrage
-  fnouvaep character varying(2) NOT NULL DEFAULT '00' -- fkey vers domaine de valeur
+  fnouvaep character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
+  CONSTRAINT raepa_ouvraep_pkey PRIMARY KEY (idouvrage) 
 )
 WITH (
   OIDS=FALSE
@@ -976,7 +981,8 @@ CREATE TABLE raepa.raepa_ouvrass
 (
   idouvrage character varying(254) NOT NULL, -- fkey vers attribut idouvrage de la classe ouvrage
   typreseau character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
-  fnouvass character varying(2) NOT NULL DEFAULT '00' -- fkey vers domaine de valeur
+  fnouvass character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
+  CONSTRAINT raepa_ouvrass_pkey PRIMARY KEY (idouvrage) 
 )
 WITH (
   OIDS=FALSE
