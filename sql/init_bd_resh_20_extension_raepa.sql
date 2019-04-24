@@ -248,6 +248,38 @@ INSERT INTO m_raepa.lt_raepa_forme_canal(
 ('03','Dalot','Forme de la section de la canalisation en dalot'),
 ('99','Autre','Forme de la section de la canalisation dont le type ne figure pas dans la liste ci-dessus');
 
+-- création d'un nouveau domaine de valeur pour gérer les types d'avaloir
+
+-- Table: m_raepa.lt_raepa_cat_avaloir_ass
+
+-- DROP TABLE m_raepa.lt_raepa_cat_avaloir_ass;
+
+CREATE TABLE m_raepa.lt_raepa_cat_avaloir_ass
+(
+  code character varying(2) NOT NULL,
+  valeur character varying(80) NOT NULL,
+  definition character varying(255),
+  CONSTRAINT raepa_cat_avaloir_ass_pkey PRIMARY KEY (code)
+)
+WITH (
+  OIDS=FALSE
+);
+
+COMMENT ON TABLE m_raepa.lt_raepa_cat_avaloir_ass
+  IS 'Type d''avaloir d''assainissement collectif';
+COMMENT ON COLUMN m_raepa.lt_raepa_cat_avaloir_ass.code IS 'Code de la liste énumérée relative au type d''avaloir d''assainissement collectif';
+COMMENT ON COLUMN m_raepa.lt_raepa_cat_avaloir_ass.valeur IS 'Valeur de la liste énumérée relative au type d''avaloir d''assainissement collectif';
+COMMENT ON COLUMN m_raepa.lt_raepa_cat_avaloir_ass.definition IS 'Définition de la liste énumérée relative au type d''avaloir d''assainissement collectif';
+
+INSERT INTO m_raepa.lt_raepa_cat_avaloir_ass(
+            code, valeur, definition)
+    VALUES
+('00','Indéterminé','Type d''avaloir inconnu'),
+('01','Avaloir simple',''),
+('02','Avaloir à grille',''),
+('03','Grille avaloir',''),
+('99','Autre','Avaloir dont le type ne figure pas dans la liste ci-dessus');
+
 
 
 
@@ -272,12 +304,10 @@ COMMENT ON COLUMN m_raepa.an_raepa_metadonnees.idexploit IS 'Identifiant de l''e
 -- #################################################################### CLASSE CANALISATION ###############################################
 
 ALTER TABLE m_raepa.geo_raepa_canal
---  ADD COLUMN etat character varying NOT NULL DEFAULT '00', -- ajout attribut et domaine de valeur pour géré les suppressions
   ADD COLUMN materiau2 character varying(5) NOT NULL DEFAULT '00-00', -- nouveau domaine de valeur adapté pour une saisie d'un type et d'un sous-type de matériau,
   ADD COLUMN forme character varying(2) NOT NULL DEFAULT '00', -- ajout d'un attribut commun AEP/ASS pour décrire la forme de la section d'une canalisation
   ADD COLUMN zgensup numeric(6,2); -- ajout d'un attribut commun AEP/ASS pour obtenir la cote NGF moyenne sur le troncon de canalisation de la génératrice supérieure (idéalement, il faudrait plutôt des points de détection sur une longueur importante du segment de canalisation)
 
--- COMMENT ON COLUMN m_raepa.geo_raepa_canal.etat IS 'Etat d''actualité'
 COMMENT ON COLUMN m_raepa.geo_raepa_canal.materiau2 IS 'Matériau de la canalisation';  
 COMMENT ON COLUMN m_raepa.geo_raepa_canal.forme IS 'Forme de la section de la canalisation';  
 COMMENT ON COLUMN m_raepa.geo_raepa_canal.zgensup IS 'Cote NGF moyennne de la génératrice supérieure';
@@ -295,9 +325,60 @@ COMMENT ON COLUMN m_raepa.geo_raepa_noeud.angle IS 'Angle en degré décimaux ut
 
 
 
+-- #################################################################### SSCLASSE avaloir OUVRAGE ASS ###############################################
+
+-- Table: m_raepa.an_raepa_ouvrass_avaloir
+
+-- DROP TABLE m_raepa.an_raepa_ouvrass_avaloir;
+
+CREATE TABLE m_raepa.an_raepa_ouvrass_avaloir
+(
+  idouvrage character varying(254) NOT NULL, -- fkey vers attribut idouvrage de la classe ouvrage
+  typavaloir character varying(2) NOT NULL DEFAULT '00', -- fkey vers domaine de valeur
+  decant character varying(1), -- fkey vers domaine de valeur faux booléen
+  zrad numeric(6,2),
+  prad numeric(4,2), 
+  CONSTRAINT raepa_ouvrass_avaloir_pkey PRIMARY KEY (idouvrage)  
+)
+WITH (
+  OIDS=FALSE
+);
+
+COMMENT ON TABLE m_raepa.an_raepa_ouvrass_avaloir
+  IS 'Avaloir d''assainissement collectif';
+COMMENT ON COLUMN m_raepa.an_raepa_ouvrass_avaloir.idouvrage IS 'Identifiant de l''ouvrage';
+COMMENT ON COLUMN m_raepa.an_raepa_ouvrass_avaloir.typavaloir IS 'Type du avaloir d''assainissement collectif';
+COMMENT ON COLUMN m_raepa.an_raepa_ouvrass_avaloir.decant IS 'Avaloir à décantation (O/N)';
+COMMENT ON COLUMN m_raepa.an_raepa_ouvrass_avaloir.zrad IS 'Cote NGF du radier';
+COMMENT ON COLUMN m_raepa.an_raepa_ouvrass_avaloir.prad IS 'Profondeur radier';
+
+
+
+-- ####################################################################################################################################################
+-- ###                                                                                                                                              ###
+-- ###                                                           FKEY (clé étrangère)                                                               ###
+-- ###                                                                                                                                              ###
+-- ####################################################################################################################################################
+
+
+-- DOMAINE DE VALEUR
+
+-- ############ OUVRAGE ############
+
+-- ************ RAEPA_OUVR_ASS ************  
+
+-- ++++++++++++ AVALOIR +++++++++++++++
+
+ALTER TABLE m_raepa.an_raepa_ouvrass_avaloir
+
+  ADD CONSTRAINT lt_raepa_cat_avaloir_ass_fkey FOREIGN KEY (typavaloir)
+      REFERENCES m_raepa.lt_raepa_cat_avaloir_ass (code) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION;  
+
+
 /*
 
-
+-- prévoir attribut pour gérer historique de l'entité
 -- prévoir extension RAEPA classe alphanumérique (regard, avaloir etc ...)
 
 
