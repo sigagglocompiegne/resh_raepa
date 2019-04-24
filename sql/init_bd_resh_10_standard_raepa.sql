@@ -824,7 +824,7 @@ CREATE TABLE raepa.raepa_noeud
   mouvrage character varying(100),
   gexploit character varying(100),
   anfinpose character varying(4),
-  idcanppale character varying(254), -- fkey vers attribut idcana de la classe canalisation. Valeur NULL admise car ne sert à renseigner la cana principale pour noeud de raccord avec un branchement
+  idcanppale character varying(254), -- fkey vers attribut idcana de la classe canalisation. Valeur NULL admise car ne sert à renseigner la cana principale pour un noeud de raccord (piquage) du branchement sur une canalisation principale
   andebpose character varying(4),
   geom geometry(Point,2154),
   CONSTRAINT raepa_noeud_pkey PRIMARY KEY (idnoeud) 
@@ -873,6 +873,7 @@ COMMENT ON TABLE raepa.raepa_appar
 COMMENT ON COLUMN raepa.raepa_appar.idappareil IS 'Identifiant de l''appareillage';
 -- COMMENT ON COLUMN raepa.raepa_appar.idnoeud IS 'Identifiant du noeud';
 -- COMMENT ON COLUMN raepa.raepa_appar.idouvrage IS 'Identifiant de l''éventuel ouvrage d''accueil';
+-- COMMENT ON COLUMN raepa.raepa_appar.diametre IS 'Diamètre nominal de l''appareillage (en millimètres)';
 COMMENT ON COLUMN raepa.raepa_appar.z IS 'Altitude du noeud (en mètres, Référentiel NGFIGN69)';  
   
 -- #################################################################### SSCLASSE APPAREILLAGE AEP ###############################################
@@ -1167,7 +1168,7 @@ ALTER TABLE raepa.raepa_repar
 
 CREATE OR REPLACE VIEW raepa.raepa_canalaep_l AS 
  SELECT 
-  g.idcana,
+  a.idcana,
   g.mouvrage,
   g.gexploit, 
   g.enservice,
@@ -1195,10 +1196,10 @@ CREATE OR REPLACE VIEW raepa.raepa_canalaep_l AS
   m.sourattrib,
   g.geom
   
-FROM raepa.raepa_canal g
-INNER JOIN raepa.raepa_canalaep a ON g.idcana = a.idcana
-INNER JOIN raepa.raepa_metadonnees m ON g.idcana = m.idraepa
-ORDER BY g.idcana;
+FROM raepa.raepa_canalaep a
+LEFT JOIN raepa.raepa_canal g ON g.idcana = a.idcana
+LEFT JOIN raepa.raepa_metadonnees m ON a.idcana = m.idraepa
+ORDER BY a.idcana;
 
 COMMENT ON VIEW raepa.raepa_canalaep_l
   IS 'Canalisation d''adduction d''eau';
@@ -1212,7 +1213,7 @@ COMMENT ON VIEW raepa.raepa_canalaep_l
 
 CREATE OR REPLACE VIEW raepa.raepa_canalass_l AS 
  SELECT 
-  g.idcana,
+  a.idcana,
   g.mouvrage,
   g.gexploit, 
   g.enservice,
@@ -1243,10 +1244,10 @@ CREATE OR REPLACE VIEW raepa.raepa_canalass_l AS
   m.sourattrib,
   g.geom
   
-FROM raepa.raepa_canal g
-INNER JOIN raepa.raepa_canalass a ON g.idcana = a.idcana
-INNER JOIN raepa.raepa_metadonnees m ON g.idcana = m.idraepa
-ORDER BY g.idcana;
+FROM raepa.raepa_canalass a
+LEFT JOIN raepa.raepa_canal g ON g.idcana = a.idcana
+LEFT JOIN raepa.raepa_metadonnees m ON a.idcana = m.idraepa
+ORDER BY a.idcana;
 
 COMMENT ON VIEW raepa.raepa_canalass_l
   IS 'Canalisation d''assainissement collectif';
@@ -1261,12 +1262,12 @@ COMMENT ON VIEW raepa.raepa_canalass_l
 
 CREATE OR REPLACE VIEW raepa.raepa_apparaep_p AS 
  SELECT
-  g.idnoeud as idappareil,
+  ab.idappareil,
   g.x,
   g.y,
   g.mouvrage,
   g.gexploit,
-  p.fnappaep,
+  ab.fnappaep,
   g.anfinpose,
 -- diametre integer, -- A PRIORI soit : attribut manquant dans la modélisation à ce niveau car présent dans les gabarits des livrables d'appareillage ae et ass et absent pour les ouvrages / soit : attribut implémenté et qui ne devrait pas l'être / MCD
 -- idcanamont,
@@ -1285,11 +1286,11 @@ CREATE OR REPLACE VIEW raepa.raepa_apparaep_p AS
   m.sourattrib,
   g.geom
 
-FROM raepa.raepa_noeud g
-INNER JOIN raepa.raepa_appar a ON g.idnoeud = a.idappareil
-INNER JOIN raepa.raepa_apparaep p ON p.idappareil = a.idappareil
-INNER JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
-ORDER BY g.idnoeud;
+FROM raepa.raepa_apparaep ab
+LEFT JOIN raepa.raepa_noeud g ON g.idnoeud = ab.idappareil
+LEFT JOIN raepa.raepa_appar a ON a.idappareil = ab.idappareil
+LEFT JOIN raepa.raepa_metadonnees m ON ab.idappareil = m.idraepa
+ORDER BY ab.idappareil;
 
 COMMENT ON VIEW raepa.raepa_apparaep_p
   IS 'Appareillage d''adduction d''eau';
@@ -1304,13 +1305,13 @@ COMMENT ON VIEW raepa.raepa_apparaep_p
 
 CREATE OR REPLACE VIEW raepa.raepa_apparass_p AS 
  SELECT
-  g.idnoeud as idappareil,
+  ab.idappareil,
   g.x,
   g.y,
   g.mouvrage,
   g.gexploit,
-  p.typreseau,
-  p.fnappass,
+  ab.typreseau,
+  ab.fnappass,
   g.anfinpose,
 -- diametre integer, -- A PRIORI soit : attribut manquant dans la modélisation à ce niveau car présent dans les tables implémentées d'appareillage ae et ass et absent pour les ouvrages / soit : attribut implémenté et qui ne devrait pas l'être / MCD
 -- idcanamont,
@@ -1329,11 +1330,11 @@ CREATE OR REPLACE VIEW raepa.raepa_apparass_p AS
   m.sourattrib,
   g.geom
 
-FROM raepa.raepa_noeud g
-INNER JOIN raepa.raepa_appar a ON g.idnoeud = a.idappareil
-INNER JOIN raepa.raepa_apparass p ON p.idappareil = a.idappareil
-INNER JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
-ORDER BY g.idnoeud;
+FROM raepa.raepa_apparass ab
+LEFT JOIN raepa.raepa_noeud g ON g.idnoeud = ab.idappareil
+LEFT JOIN raepa.raepa_appar a ON a.idappareil = ab.idappareil
+LEFT JOIN raepa.raepa_metadonnees m ON ab.idappareil = m.idraepa
+ORDER BY ab.idappareil;
 
 COMMENT ON VIEW raepa.raepa_apparass_p
   IS 'Appareillage d''assanissement collectif';
@@ -1348,12 +1349,12 @@ COMMENT ON VIEW raepa.raepa_apparass_p
 
 CREATE OR REPLACE VIEW raepa.raepa_ouvraep_p AS 
  SELECT
-  g.idnoeud as idouvrage,
+  ab.idouvrage,
   g.x,
   g.y,
   g.mouvrage,
   g.gexploit,
-  p.fnouvaep,
+  ab.fnouvaep,
   g.anfinpose,
 -- idcanamont,
 -- idcanaval,  
@@ -1370,11 +1371,11 @@ CREATE OR REPLACE VIEW raepa.raepa_ouvraep_p AS
   m.sourattrib,
   g.geom
 
-FROM raepa.raepa_noeud g
-INNER JOIN raepa.raepa_ouvr a ON g.idnoeud = a.idouvrage
-INNER JOIN raepa.raepa_ouvraep p ON p.idouvrage = a.idouvrage
-INNER JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
-ORDER BY g.idnoeud;
+FROM raepa.raepa_ouvraep ab
+LEFT JOIN raepa.raepa_noeud g ON g.idnoeud = ab.idouvrage
+LEFT JOIN raepa.raepa_ouvr a ON a.idouvrage = ab.idouvrage
+LEFT JOIN raepa.raepa_metadonnees m ON ab.idouvrage = m.idraepa
+ORDER BY ab.idouvrage;
 
 COMMENT ON VIEW raepa.raepa_ouvraep_p
   IS 'Ouvrage d''adduction d''eau';
@@ -1388,13 +1389,13 @@ COMMENT ON VIEW raepa.raepa_ouvraep_p
 
 CREATE OR REPLACE VIEW raepa.raepa_ouvrass_p AS 
  SELECT
-  g.idnoeud as idouvrage,
+  ab.idouvrage,
   g.x,
   g.y,
   g.mouvrage,
   g.gexploit,
-  p.typreseau,
-  p.fnouvass,
+  ab.typreseau,
+  ab.fnouvass,
   g.anfinpose,
 -- idcanamont,
 -- idcanaval,  
@@ -1411,11 +1412,11 @@ CREATE OR REPLACE VIEW raepa.raepa_ouvrass_p AS
   m.sourattrib,
   g.geom
 
-FROM raepa.raepa_noeud g
-INNER JOIN raepa.raepa_ouvr a ON g.idnoeud = a.idouvrage
-INNER JOIN raepa.raepa_ouvrass p ON p.idouvrage = a.idouvrage
-INNER JOIN raepa.raepa_metadonnees m ON g.idnoeud = m.idraepa
-ORDER BY g.idnoeud;
+FROM raepa.raepa_ouvrass ab
+LEFT JOIN raepa.raepa_noeud g ON g.idnoeud = ab.idouvrage
+LEFT JOIN raepa.raepa_ouvr a ON a.idouvrage = ab.idouvrage
+LEFT JOIN raepa.raepa_metadonnees m ON ab.idouvrage = m.idraepa
+ORDER BY ab.idouvrage;
 
 COMMENT ON VIEW raepa.raepa_ouvrass_p
   IS 'Ouvrage d''assainissement collectif';
