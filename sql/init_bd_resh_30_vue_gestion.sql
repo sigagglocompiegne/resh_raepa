@@ -215,6 +215,7 @@ COMMENT ON VIEW m_raepa.geo_v_raepa_ouvrass_p
 
 
 -- !!!! pour les canalisations, prévoir de vérifier des contraintes topologiques (noeud, sens écoulement/sens saisie, cana sécante ...) et métiers (incompatibilité de valeur d'attribut)
+-- imaginer que lors d'une saisie de point (ouvrage ou appar), vérifier si il existe déjà un noeud, si oui, reprise des attributs de la classe noeud, sinon création d'un nouveau
 
 -- #################################################################### FONCTION TRIGGER - GEO_V_CANALAEP_L ###################################################
 
