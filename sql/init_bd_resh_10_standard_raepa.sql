@@ -1125,7 +1125,7 @@ ALTER TABLE raepa.raepa_ouvraep
       REFERENCES raepa.val_raepa_cat_ouv_ae (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION;   
 
--- ************ RAEPA_APPAR_ASS ************  
+-- ************ RAEPA_OUVR_ASS ************  
 
 ALTER TABLE raepa.raepa_ouvrass
 
