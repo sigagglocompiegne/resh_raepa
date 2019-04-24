@@ -64,6 +64,8 @@ ALTER TABLE IF EXISTS m_raepa.an_raepa_ouvrass DROP CONSTRAINT IF EXISTS lt_raep
 ALTER TABLE IF EXISTS m_raepa.an_raepa_ouvrass DROP CONSTRAINT IF EXISTS lt_raepa_cat_ouv_ass_fkey;
 ALTER TABLE IF EXISTS m_raepa.geo_raepa_repar DROP CONSTRAINT IF EXISTS lt_raepa_support_incident_fkey;
 ALTER TABLE IF EXISTS m_raepa.geo_raepa_repar DROP CONSTRAINT IF EXISTS lt_raepa_defaillance_fkey;
+-- extension arc
+ALTER TABLE IF EXISTS m_raepa.an_raepa_ouvrass_avaloir DROP CONSTRAINT IF EXISTS lt_raepa_cat_avaloir_ass_fkey;
 
 -- classe
 -- implementation arc
@@ -80,6 +82,8 @@ DROP TABLE IF EXISTS m_raepa.an_raepa_ouvraep;
 DROP TABLE IF EXISTS m_raepa.an_raepa_ouvrass;
 DROP TABLE IF EXISTS m_raepa.geo_raepa_repar;
 DROP TABLE IF EXISTS m_raepa.log_audit_raepa;
+-- extension arc
+DROP TABLE IF EXISTS m_raepa.an_raepa_ouvrass_avaloir;
 
 
 -- domaine de valeur
@@ -102,6 +106,8 @@ DROP TABLE IF EXISTS m_raepa.lt_raepa_cat_ouv_ass;
 -- extention arc
 DROP TABLE IF EXISTS m_raepa.lt_raepa_materiau2;
 DROP TABLE IF EXISTS m_raepa.lt_raepa_forme_canal;
+DROP TABLE IF EXISTS m_raepa.lt_raepa_cat_avaloir_ass;
+
 
 -- sequence
 -- implementation arc
