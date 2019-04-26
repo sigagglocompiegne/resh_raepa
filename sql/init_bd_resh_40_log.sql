@@ -17,6 +17,7 @@
 
 -- trigger
 DROP TRIGGER IF EXISTS t_t2_log_audit_raepa ON m_raepa.geo_v_raepa_canalaep_l;
+DROP TRIGGER IF EXISTS t_t2_log_audit_raepa ON m_raepa.geo_v_raepa_ouvraep_p;
 -- fonction trigger
 DROP FUNCTION IF EXISTS m_raepa.ft_m_log_audit_raepa();
 -- classe
@@ -188,3 +189,15 @@ CREATE TRIGGER t_t2_log_audit_raepa
   ON m_raepa.geo_v_raepa_canalaep_l
   FOR EACH ROW
   EXECUTE PROCEDURE m_raepa.ft_m_log_audit_raepa();
+  
+  
+-- Trigger: t_t2_log_audit_raepa on m_raepa.geo_v_raepa_ouvraep_p
+
+-- DROP TRIGGER t_t2_log_audit_raepa ON m_raepa.geo_v_raepa_ouvraep_p;
+
+CREATE TRIGGER t_t2_log_audit_raepa
+  INSTEAD OF INSERT OR UPDATE OR DELETE
+  ON m_raepa.geo_v_raepa_ouvraep_p
+  FOR EACH ROW
+  EXECUTE PROCEDURE m_raepa.ft_m_log_audit_raepa();
+  
