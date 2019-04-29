@@ -8,7 +8,7 @@
 
 * pour les exploitants, généraliser les processus d'échanges des données vers les collectivités à partir du standard national RAEPA
 * pour les collectivités,
-  * disposer d'une vision cohérente et commune du patrimoine indépendamment de l'exploitant
+  * disposer d'une vision cohérente et unifier du patrimoine réseau à l'échelle du territoire
   * mettre en place des processus d'import de données
 
 ### Principes
