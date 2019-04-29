@@ -10,5 +10,5 @@
 ## Principes
 
 les échanges entre les exploitants et la collectivité sont constitués :
-* des données selon les livrables définis par le standard RAEPA
+* des données selon les livrables normalisés définis par le standard RAEPA
 * des **informations riches** complémentaires selon des livrables définis localement comme des extensions au pivot RAEPA
