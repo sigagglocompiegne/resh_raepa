@@ -13,4 +13,4 @@
 
 Les échanges entre les exploitants et la collectivité sont constitués :
 * des données selon les livrables normalisés définis par le standard RAEPA
-* des données complémentaires selon des livrables définis localement comme des extensions au pivot RAEPA. Ces données doivent garantir l'échange d'**informations riches** détenues par les exploitants et que ne saurait retranscrire le standard national.
+* des données complémentaires selon des livrables définis localement comme des extensions au pivot RAEPA. Ces données doivent garantir l'échange d'**informations riches** détenues par les exploitants et que le standard national ne saurait retranscrire .
