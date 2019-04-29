@@ -7,7 +7,9 @@
 ### Objectifs
 
 * pour les exploitants, généraliser les processus d'échanges des données vers les collectivités à partir du standard national RAEPA
-* pour les collectivités, disposer d'une vision cohérente et commune du patrimoine indépendamment de l'exploitant et mettre en place des processus d'import de données
+* pour les collectivités,
+  * disposer d'une vision cohérente et commune du patrimoine indépendamment de l'exploitant
+  * mettre en place des processus d'import de données
 
 ### Principes
 
