@@ -1,8 +1,36 @@
 # Analyse du géostandard et problématiques d'implémentation locale
 
-## Analyse geostandard RAEPA 1.2
+## Analyse geostandard RAEPA 1.2 (en complément de l'analyse de la version 1.1)
 
-test
+### partie B - Modèle conceptuel de données
+
+#### Général
+
+- Aucune spécification au niveau le plus fin. Pas de classes de regard, ou de STEP par exemple, avec des informations propres au type d'objet. Exemple : capacité équivalent habitant dans le cas d'une STEP (ouvrage).
+- Domaine des matériaux : liste non pertinente qui ne gère pas les types de matériaux génériques. Exemple : un béton sera codé 99 comme un fibre. Nous perderons donc la valeur de l'information alors que nous l'avions initialement. Nécessite de revoir cette liste, probablement avec un double code (10 béton, 11 béton armé, 12 béton fibré, etc.)
+
+#### Classe de noeud
+
+- anMESSup et anMESInf nommés différemment dans la partie C
+- anMESSup et anMESInf sont présents sur la classe noeud. Dans les associations, nous sommes en cardinalités 1. On ne peut avoir qu'un ouvrage ou un appareillage par noeud. Sur une extremité de linéaire avec un ouvrage et un ou plusieurs appareillages, cela implique la duplication d'autant de noeud que d'objets ? Cela ne correspond pas à l'aspect d'un réseau de topologie...
+
+
+#### Canalisation
+
+- Précision de la longueur de canalisation en décimal, alors que de type entier dans la partie C.
+- longueur est elle réelle ou mesurée ? Un attribut portant l'origine de l'information serait pertinent.
+
+### partie C - Structure des données
+
+- D'une manière générale, les types de sont pas correctement définis. Un entier (4) n'existe pas. De plus, un décimal (1,2) semble techniquement impossible, si l'on considère la définition de ce type pour un SGBD, où la première valeur correspond au nombre totaux de nombres, et la seconde aux nombres définit après la virgule.
+
+#### Fichiers de ponctuels (ouvrage et appareillage de tout réseau)
+
+- andebpose et anfinpose nommés différemment dans la partie B. Ces deux attributs sont nommés de manière identique que les fichiers de linéaires, mais la définition n'est pas la même. On parle, d'un côté, de la date de début et fin de pose, puis, de l'autre, de la date de mise en service et de mise hors service.
+De plus, l'attribut anfinpose est obligatoire. Pour les appareils et ouvrages, toujours en service, on remplit quoi ?
+Il y a ici un incohérence. Soit, nous parlons de mise en service pour les ponctuels, avec un nom d'attribut tel que définit dans la partie B (anMESInf et anMESSup) et l'on rend obligatoire anMESInf et non pas anMESSUp, soit on estime que ce sont des années de début et fin de pose, et dans ce cas, on peut rattacher ces informations à la super classe d'obejt de réseau. 
+On pourrait aussi imaginer mettre l'attribut enservice O/N de canalisation à la superclasse. Nous aurions donc l'information sur les années de début et fin de pose d'un ouvrage ou appareillage, et la connaissance de son fonctionnement ou non.
+
 
 ## Analyse geostandard RAEPA 1.1
 
