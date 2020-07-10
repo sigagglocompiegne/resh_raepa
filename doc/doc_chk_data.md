@@ -1,6 +1,6 @@
 ![picto](/doc/img/Logo_web-GeoCompiegnois.png)
 
-# Documentation de contrôle des données de production
+# Documentation des contrôles des données de production
 
 |Nom attribut | Définition | Type | 
 |:---|:---|:---|
