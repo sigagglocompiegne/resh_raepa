@@ -1,6 +1,6 @@
 ![picto](/doc/img/Logo_web-GeoCompiegnois.png)
 
-# Documentation d'administration pour la validation des données de production
+# Documentation de contrôle des données de production
 
 chk list d'interdit
 * superposition d'ouvrage entre eux
