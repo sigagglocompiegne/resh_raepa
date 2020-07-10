@@ -25,12 +25,15 @@
 - D'une manière générale, les types de sont pas correctement définis. Un entier (4) n'existe pas. De plus, un décimal (1,2) semble techniquement impossible, si l'on considère la définition de ce type pour un SGBD, où la première valeur correspond au nombre totaux de nombres, et la seconde aux nombres définit après la virgule.
 -Sur le fichier raepa_ouvraep_p, les attributs dategeoloc et sourgeoloc sont respectivement de type caractère(2) et date(10). Il y a une coquille. De plus il manque le type de l'attribut qualannee, que l'on retrouve sur les autres fichiers.
 
+
 #### Fichiers de ponctuels (ouvrage et appareillage de tout réseau)
 
 - andebpose et anfinpose nommés différemment dans la partie B. Ces deux attributs sont nommés de manière identique que les fichiers de linéaires, mais la définition n'est pas la même. On parle, d'un côté, de la date de début et fin de pose, puis, de l'autre, de la date de mise en service et de mise hors service.
 De plus, l'attribut anfinpose est obligatoire. Pour les appareils et ouvrages, toujours en service, on remplit quoi ?
 Il y a ici un incohérence. Soit, nous parlons de mise en service pour les ponctuels, avec un nom d'attribut tel que définit dans la partie B (anMESInf et anMESSup) et l'on rend obligatoire anMESInf et non pas anMESSUp, soit on estime que ce sont des années de début et fin de pose, et dans ce cas, on peut rattacher ces informations à la super classe d'obejt de réseau. 
 On pourrait aussi imaginer mettre l'attribut enservice O/N de canalisation à la superclasse. Nous aurions donc l'information sur les années de début et fin de pose d'un ouvrage ou appareillage, et la connaissance de son fonctionnement ou non.
+
+-idcanamont et idcanaval obligatoire. Dans le cas d'une fin de réseau, ou d'un linéaire de branchement, il n'y a pas de idcanaval. Si ouvrage = captage, pas de canalisation en amont non plus.
 
 ### partie Gabarit shp
 
