@@ -25,7 +25,7 @@ Dans une optique de rendre péréenne la qualité des informations que nous rece
 Selon la norme ISO 19157 ainsi que les différents protocoles de contrôle de la qualité des données disponibles, nous appliquerons la directive suivante :
 
 |FICHIER DE TRAITEMENT|CONTROLE|TYPE DE CONTROLE|COMMENTAIRES|
-|:---|:---|:---|
+|:---|:---|:---|:---|
 |rapea_controle|GENERAL|général|Script permettant de lancer tous les traitements en une seule manipulation|
 |raepa_controle_proprietes_fichiers|PROPRIETE||
 |raepa_controle_proprietes_fichiers|PROPRIETE||
