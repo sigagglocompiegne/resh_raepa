@@ -2,12 +2,6 @@
 
 # Documentation des contrôles des données de production
 
-|Nom attribut | Définition | Type | 
-|:---|:---|:---|
-|code|Code de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation|character varying(2)|
-|valeur|Valeur de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation|character varying(80)|
-|definition|Définition de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation|character varying(255)|
-
 chk list d'interdit
 * superposition d'ouvrage entre eux
 * superposition d'appareillage entre eux
@@ -23,3 +17,17 @@ chk list d'interdit
 * de base, le sens d'écoulement dans une canalisation correspond au noeud amont pour le point de départ et au noeud aval pour le point d'arrivée, éventuellement au cas inverse si le sens d'écoulement de la canalisation le précise (attribut sensecoul=0)
 * canalisation de branchement sur un ouvrage autre qu'un regard (avaloir ?, NR et autre)
 * canalisation de refoulement dont le point terminal est une station de pompage
+
+# Mise en place d'un contrôle qualité des fichiers au standard RAEPA
+
+Dans une optique de rendre péréenne la qualité des informations que nous recevrons de nos prestataires extérieurs, la mise en place d'un traitement via un ETL pour la conformité de la donnée semble idéale.
+
+Selon la norme ISO 19157 ainsi que les différents protocoles de contrôle de la qualité des données disponibles, nous appliquerons la directive suivante :
+
+|FICHIER DE TRAITEMENT|CONTROLE|TYPE DE CONTROLE|COMMENTAIRES|
+|:---|:---|:---|
+|rapea_controle|GENERAL|général|Script permettant de lancer tous les traitements en une seule manipulation|
+|raepa_controle_proprietes_fichiers|PROPRIETE||
+|raepa_controle_proprietes_fichiers|PROPRIETE||
+|raepa_controle_proprietes_fichiers|PROPRIETE||
+
