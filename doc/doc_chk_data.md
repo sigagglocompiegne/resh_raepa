@@ -2,6 +2,12 @@
 
 # Documentation de contrôle des données de production
 
+|Nom attribut | Définition | Type | 
+|:---|:---|:---|
+|code|Code de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation|character varying(2)|
+|valeur|Valeur de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation|character varying(80)|
+|definition|Définition de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation|character varying(255)|
+
 chk list d'interdit
 * superposition d'ouvrage entre eux
 * superposition d'appareillage entre eux
