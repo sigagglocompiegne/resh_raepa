@@ -5,7 +5,7 @@
 chk list d'interdit
 * superposition d'ouvrage entre eux
 * erreur de topologie intraclasse pour les canalisation (papillon etc ...)
-* corrélation entre la géométrie et les coordonnées attributaires (app,ouv,cana)
+* corrélation entre la géométrie et les coordonnées attributaires (app,ouv)
 * noeud (ouv/app) non connecté à au moins une canalisation
 * canalisation non connectée à des noeuds
   * 2 noeuds dans le cas d'une canalisation principale
