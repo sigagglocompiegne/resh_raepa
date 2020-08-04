@@ -25,7 +25,8 @@ Après analyses et mise en place d'un diagnostic entre les différents standards
 
 La base de données RAEPA s'appuie sur des référentiels préexistants constituant autant de dépendances que nécessaires pour l'implémentation de certaines informations dans la BdD.
 
-|schéma| table| description|usage|
+|SCHEMA|TABLE|DESCRIPTION|USAGE|
+|:---|:---|:---|:---|
 |||| Détermine le code INSEE des objets du réseau par jointure spatiale |
 ||||Détermine le domaine Privée ou Public de l'objet du réseau par rapport au référentiel cadastral |
 ||||Détermine l'adresse de localisation de l'objet à partir de jointure spatiale du référentiel des voies et adresses |
