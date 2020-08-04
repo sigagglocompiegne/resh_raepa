@@ -43,7 +43,7 @@ Afin de pouvoir identifier les informations qui sont issues du standard national
 `an_raepal_objet_reseau` : Superclasse regroupant les informations communes à tous types d'objet du réseau
 
 |Nom attribut|Définition|Type|Valeurs|
-|:---|:---|:---|:---|:---|
+|:---|:---|:---|:---|
 |||||
 |||||
 |||||
