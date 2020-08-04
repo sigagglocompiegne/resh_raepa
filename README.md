@@ -1,4 +1,4 @@
-![picto](/doc/img/Logo_web-GeoCompiegnois.png)
+![picto](/doc/img/new_logo_geocompiegnois.png )
 
 # Base de données des réseaux humides
 
