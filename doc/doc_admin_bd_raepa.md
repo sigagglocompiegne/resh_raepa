@@ -1,7 +1,9 @@
-![GeoCompiegnois](img/)
+![GeoCompiegnois](img/new_logo_geocompiegnois.png )
+
 CREATION : 04-08-20
 DATE MISE A JOUR : 04-08-20
 AUTEUR : Léandre BÉRON
+STATUT : En Cours
 
 # Principes
 
