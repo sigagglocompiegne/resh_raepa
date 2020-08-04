@@ -31,6 +31,16 @@ La base de données RAEPA s'appuie sur des référentiels préexistants constitu
 ||||Détermine le domaine Privée ou Public de l'objet du réseau par rapport au référentiel cadastral |
 ||||Détermine l'adresse de localisation de l'objet à partir de jointure spatiale du référentiel des voies et adresses |
 
+# Séquences
+
+De façon général, nous avons entendu la création d'une séquence pour les objets du réseau, quelqu'il soit, ainsi que la génération d'une séquence pour chaque compléments d'informations. Il a été convenu que les géométries sont des informations complémentaires au patrimoine du réseau. Par conséquent, nous générerons 3 séquences : 
+
+* raepa_id_objet_reseau_seq : Séquence permettant de générer un numéro unique pour un objet de réseau.
+* raepa_id_noeud_seq : Séquence permettant de générer un numéro unique par noeud de réseau.
+* raepap_id_tronc_seq : Séquence permettant de générer un numéro unique par tronçon de réseau.
+
+En conséquence, ces choix permettent de pouvoir identifier un objet de réseau, quelque soit ce réseau, de manière unique. Nous aurions très bien pu générer une séquence par réseau ou encore par type d'objet, ou encore de manière combinée, mais cela aura pour conséquence des doublons d'identifiants dans la superclasse d'objets de réseau, évoquée ci-après.
+
 # Collecte du patrimoine
 
 Afin de pouvoir identifier les informations qui sont issues du standard national ou des extensions locales, nous utiliserons la codification suivante :
@@ -42,10 +52,27 @@ Afin de pouvoir identifier les informations qui sont issues du standard national
 ### Niveau 0 - Superclasse Objet de Réseau
 `an_raepal_objet_reseau` : Superclasse regroupant les informations communes à tous types d'objet du réseau
 
-|Nom attribut|Définition|Type|Valeurs|
-|:---|:---|:---|:---|
-|||||
-|||||
-|||||
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau|bigint|Primary Key||
+|idprest|Identifiant du prestataire de l'objet|Caractères (254)|Obligatoire||
+|l_reseau|Définit le type de réseau de l'objet selon la convention DT-DICT|Caractères (4)|Obligatoire|ASS/AEP|
+|l_typobjet|Définit le type d'objet du réseau|Caractères (20)|Obligatoire|Canalisation/Ouvrage/Appareillage|
+|mouvrage|
+|gexploit|
+|l_typimplt|
+|enservice|
+|l_insee|
+|l_domaine|
+|l_entrpose|
+|l_propdata|
+|qualglocxy|
+|qualglocz|
+|dategeoloc|
+|sourgeoloc|
+|autattrib|
+|datemaj|
+|sourmaj|
+|qualanne|
 
 ## Définition des listes de domaines
