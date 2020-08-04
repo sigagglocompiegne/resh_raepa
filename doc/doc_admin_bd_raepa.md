@@ -40,9 +40,8 @@ Afin de pouvoir identifier les informations qui sont issues du standard national
 
 ## Définition des classes
 ### Niveau 0 - Superclasse Objet de Réseau
-|SCHEMA|
-|:---|
-|an_raepal_objet_reseau|
+`an_raepal_objet_reseau` : Superclasse regroupant les informations communes à tous types d'objet du réseau
+
 |Nom attribut|Définition|Type|Valeurs|
 |:---|:---|:---|:---|:---|
 |||||
