@@ -35,7 +35,7 @@ La base de données RAEPA s'appuie sur des référentiels préexistants constitu
 
 De façon général, nous avons entendu la création d'une séquence pour les objets du réseau, quelqu'il soit, ainsi que la génération d'une séquence pour chaque compléments d'informations. Il a été convenu que les géométries sont des informations complémentaires au patrimoine du réseau. Par conséquent, nous générerons 3 séquences : 
 
-* raepa_id_objet_reseau_seq : Séquence permettant de générer un numéro unique pour un objet de réseau.
+* raepa_id_obj_reseau_seq : Séquence permettant de générer un numéro unique pour un objet de réseau.
 * raepa_id_noeud_seq : Séquence permettant de générer un numéro unique par noeud de réseau.
 * raepap_id_tronc_seq : Séquence permettant de générer un numéro unique par tronçon de réseau.
 
@@ -54,7 +54,7 @@ Afin de pouvoir identifier les informations qui sont issues du standard national
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
-|idobjet|Identifiant unique de l'objet du réseau|bigint|Primary Key||
+|idobjet|Identifiant unique de l'objet du réseau|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|Caractères (254)|Obligatoire||
 |l_reseau|Définit le type de réseau de l'objet selon la convention DT-DICT|Caractères (4)|Obligatoire|ASS/AEP|
 |l_typobjet|Définit le type d'objet du réseau|Caractères (20)|Obligatoire|Canalisation/Ouvrage/Appareillage|
