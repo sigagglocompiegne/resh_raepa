@@ -39,5 +39,14 @@ Afin de pouvoir identifier les informations qui sont issues du standard national
 * Nomenclature des attributs : Ajout du préfixe "l_" devant chaque attribut issu de l'extension locale.
 
 ## Définition des classes
+### Niveau 0 - Superclasse Objet de Réseau
+|SCHEMA|
+|:---|
+|an_raepal_objet_reseau|
+|Nom attribut|Définition|Type|Valeurs|
+|:---|:---|:---|:---|:---|
+|||||
+|||||
+|||||
 
 ## Définition des listes de domaines
