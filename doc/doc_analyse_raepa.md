@@ -1,3 +1,5 @@
+!(img/new_logo_geocompiegnois.png)
+
 # Analyse du géostandard et problématiques d'implémentation locale
 
 ## Analyse geostandard RAEPA 1.2 (en complément de l'analyse de la version 1.1)
