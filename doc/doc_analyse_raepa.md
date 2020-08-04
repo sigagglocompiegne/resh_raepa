@@ -1,4 +1,4 @@
-!(img/new_logo_geocompiegnois.png)
+![GeoCompiegnois](img/new_logo_geocompiegnois.png)
 
 # Analyse du géostandard et problématiques d'implémentation locale
 
