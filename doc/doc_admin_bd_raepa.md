@@ -1,7 +1,7 @@
 ![GeoCompiegnois](img/new_logo_geocompiegnois.png )
 
 CREATION : 04-08-20.
-DATE MISE A JOUR : 04-08-20.
+DATE MISE A JOUR : 05-08-20.
 AUTEUR : Léandre BÉRON.
 STATUT : En Cours.
 
@@ -49,6 +49,9 @@ Afin de pouvoir identifier les informations qui sont issues du standard national
 * Nomenclature des attributs : Ajout du préfixe "l_" devant chaque attribut issu de l'extension locale.
 
 ## Définition des classes
+
+Certains attributs présents dans la modélisation du standard national ont été déplacé dans une autre classe. Leur définition est donc adapté au circonstance (exemple attribut `enservice`)
+
 ### Niveau 0 - Superclasse Objet de Réseau
 `an_raepal_objet_reseau` : Superclasse regroupant les informations communes à tous types d'objet du réseau
 
@@ -58,21 +61,21 @@ Afin de pouvoir identifier les informations qui sont issues du standard national
 |idprest|Identifiant du prestataire de l'objet|Caractères (254)|Obligatoire||
 |l_reseau|Définit le type de réseau de l'objet selon la convention DT-DICT|Caractères (4)|Obligatoire|ASS/AEP|
 |l_typobjet|Définit le type d'objet du réseau|Caractères (20)|Obligatoire|Canalisation/Ouvrage/Appareillage|
-|mouvrage|
-|gexploit|
-|l_typimplt|
-|enservice|
-|l_insee|
-|l_domaine|
-|l_entrpose|
-|l_propdata|
-|qualglocxy|
-|qualglocz|
-|dategeoloc|
-|sourgeoloc|
-|autattrib|
-|datemaj|
-|sourmaj|
-|qualanne|
+|mouvrage|Maître d'ouvrage du réseau|Caractère (100)|Obligatoire||
+|gexploit|Gestionnaire exploitant du réseau|Caractère (100)|Obligatoire||
+|l_typimplt|Type d'implantation de l'objet du réseau|Caractère (2)||lt_raepal_type_implantation|
+|enservice|Objet en service ou non (abandonné)|Caractère (1)||O/N|
+|l_insee|Code INSEE de la commune de localisation de l'objet du réseau|Caractère (5)|Obligatoire||
+|l_domaine|Domaine auquel appartient l'objet du réseau|Caractère (2)||lt_raepal_domaine|
+|l_entrpose|Entreprise ayant réalisée la pose de l'objet de réseau|Caractère (100)|||
+|l_propdata|Propriétaire de la donnée de l'objet du réseau|Caractère (100)|||
+|qualglocxy|Qualité de la géolocalisation planimétrique (XY)|Caractère (2)|Obligatoire|lt_raepa_qualite_geoloc|
+|qualglocz|Qualité de la géolocalisation altimétrique (Z)|Caractère (2)|Obligatoire|lt_raepa_qualite_geoloc|
+|dategeoloc|Date de la géolocalisation|Timestamp without time zone|||
+|sourgeoloc|Auteur de la géolocalisation|Caractère (100)|||
+|autattrib|Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation)|Caractère (100)|||
+|datemaj|Date de la dernière mise à jour des informations|Timestamp without time zone|Obligatoire||
+|sourmaj|Source de la mise à jour|Caractère (100)|Obligatoire||
+|qualanne|Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de pose|Caractère (2)|||
 
 ## Définition des listes de domaines
