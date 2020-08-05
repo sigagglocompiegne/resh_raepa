@@ -21,6 +21,31 @@ Après analyses et mise en place d'un diagnostic entre les différents standards
 
 ![Picto](img/logicogramme_infra_base.png)
 
+### Cardinalités
+
+|TABLE DEPART|CARDINALITE DEPART|TABLE DESTINATION|CARDINALITE ARRIVE|
+|:---|:---|:---|:---|
+|an_raepal_objet_reseau|(0,1)|an_raepa_canal|(1,1)|
+|an_raepal_objet_reseau|(0,1)|an_raepa_app|(1,1)|
+|an_raepal_objet_reseau|(0,1)|an_raepa_ouv|(1,1)|
+|geo_raepal_troncon|(0,1)|an_raepa_canal|(1,1)|
+|geo_raepa_noeud|(0,1)|an_raepa_app|(1,1)|
+|geo_raepa_noeud|(0,1)|an_raepa_ouv|(1,1)|
+|an_raepa_app|(0,1)|an_raepa_ouv|(0,1)|
+|geo_raepa_noeud|(0,1)|an_raepa_app|(1,1)|
+|an_raepa_canal|(0,1)|an_raepa_canalass|(1,1)|
+|an_raepa_canal|(0,1)|an_raepa_canalae|(1,1)|
+|an_raepa_app|(0,1)|an_raepa_appass|(1,1)|
+|an_raepa_app|(0,1)|an_raepa_appae|(1,1)|
+|an_raepa_ouv|(0,1)|an_raepa_ouvass|(1,1)|
+|an_raepa_ouv|(0,1)|an_raepa_ouvae|(1,1)|
+
+Remarque : Concernant la table geo_raepal_troncon, la cardinalité de départ est de 0,1. En effet, En prenant en compte la disponibilité de cette modélisation pour tous réseaux, on peut imaginer greffer ultérieurement les écoulements de surfaces, ou encore les réseaux éléctriques. Le tronçon sera donc rattaché à l'un des réseau et non uniquement pour une canalisation.
+
+
+
+
+
 # Dépendances
 
 La base de données RAEPA s'appuie sur des référentiels préexistants constituant autant de dépendances que nécessaires pour l'implémentation de certaines informations dans la BdD.
