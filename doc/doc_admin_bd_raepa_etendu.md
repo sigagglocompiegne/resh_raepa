@@ -43,14 +43,11 @@ Après analyses et mise en place d'un diagnostic entre les différents standards
 Remarque : Concernant la table geo_raepal_troncon, la cardinalité de départ est de 0,1. En effet, En prenant en compte la disponibilité de cette modélisation pour tous réseaux, on peut imaginer greffer ultérieurement les écoulements de surfaces, ou encore les réseaux éléctriques. Le tronçon sera donc rattaché à l'un des réseau et non uniquement pour une canalisation.
 
 
-
-
-
 # Dépendances
 
 La base de données RAEPA s'appuie sur des référentiels préexistants constituant autant de dépendances que nécessaires pour l'implémentation de certaines informations dans la BdD.
 
-|SCHEMA|TABLE|DESCRIPTION|USAGE|
+|SCHEMA|TABLE/VUE|DESCRIPTION|USAGE|
 |:---|:---|:---|:---|
 |A COMPLETER||| Détermine le code INSEE des objets du réseau par jointure spatiale |
 |A COMPLETER|||Détermine le domaine Privée ou Public de l'objet du réseau par rapport au référentiel cadastral |
@@ -86,6 +83,7 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
 |l_reseau|Définit le type de réseau de l'objet selon la convention DT-DICT.|character varying  (4)|Obligatoire|ASS/AEP|
 |l_typobjet|Définit le type d'objet du réseau.|character varying  (20)|Obligatoire|Canalisation/Ouvrage/Appareillage|
+|l_sandre|Code SANDRE.|character varying (254)|||
 |l_insee|Code INSEE de la commune de localisation de l'objet du réseau.|character varying  (5)|Obligatoire||
 |l_nom_rue|Adressage du nom de la rue où est positionné l'objet.|character varying  (254)|Olibgatoire|Jointure spatiale avec le référentiel Voies et Adresses| 
 |l_domaine|Domaine auquel appartient l'objet du réseau.|character varying  (2)||lt_raepal_domaine|
@@ -93,6 +91,7 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 |gexploit|Gestionnaire exploitant du réseau.|character varying  (100)|Obligatoire||
 |andebpose|Année marquant le début de pose de l'objet de réseau.|character varying  (4)|||
 |anfinpose|Année marquant la fin de pose de l'objet de réseau.|character varying  (4)|||
+|l_marque|Marque commerciale de l'objet|character varying (100)|||
 |enservice|Objet en service ou non (abandonné).|character varying  (1)||O,N|
 |l_entrpose|Entreprise ayant réalisée la pose de l'objet de réseau.|character varying  (100)|||
 |(l_propdata)|Propriétaire de la donnée de l'objet du réseau.|character varying  (100)|||
@@ -182,6 +181,68 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |z|Altitude (en mètres, référentiel NGF-IGN69).|Decimal (6,3)|||
 |idouvrage|Identifiant de l'ouvrage dans lequel se situe l'appareil.|Bigint|Foreign Key||
 |idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
+
+
+### Niveau 3 - Classes d'objets métiers
+`an_raepa_canalass` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254)|Obligatoire||
+|typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typ_reseau|
+|l_forme|Forme (Section) de la canalisation d'Assainissement collectif.|character varying (2)||lt_raepal_forme_canal|
+|contcanass|Catégorie de la canalisation d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_cat_canalass|
+|fonccannass|Fonction de la canalisation d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_fonc_canalass|
+|l_dimension|Dimensions de la canalisation lorsque forme non circulaire, en mètres.|character varying (20)|||
+|zamont|Altitude à l'extrémité amont (en mètres, Référentiel NGFIGN69).|Decimal (6,3)|||
+|zaval|Altitude à l'extrémité aval (en mètres, Référentiel NGF-IGN69).|Decimal (6,3)|||
+|l_file_amt|Fil eau à l'extrémité amont (en mètres, Référentiel NGFIGN69).|Decimal (6,3)|||
+|l_file_avl|Fil eau à l'extrémité aval (en mètres, Référentiel NGFIGN69).|Decimal (6,3)|||
+|l_pente|Pente, exprimée en %.|Decimal (3,1)|||
+|l_penter|Contre pente, exprimée en %.|Decimal (3,1)|||
+
+`an_raepa_canalae` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+
+
+`an_raepa_appass` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+
+
+`an_raepa_appae` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+
+
+`an_raepa_ouvass` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+
+
+`an_raepa_ouvae` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+
+
+
 
 ## Définition des listes de domaines
 ### Niveau 0
