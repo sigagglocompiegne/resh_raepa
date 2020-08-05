@@ -24,7 +24,7 @@ Après analyses et mise en place d'un diagnostic entre les différents standards
 ### Cardinalités
 
 |TABLE DEPART|CARDINALITE DEPART|TABLE DESTINATION|CARDINALITE ARRIVE|
-|:---|:---|:---|:---|
+|:---|:-|:---|:-|
 |an_raepal_objet_reseau|(0,1)|an_raepa_canal|(1,1)|
 |an_raepal_objet_reseau|(0,1)|an_raepa_app|(1,1)|
 |an_raepal_objet_reseau|(0,1)|an_raepa_ouv|(1,1)|
