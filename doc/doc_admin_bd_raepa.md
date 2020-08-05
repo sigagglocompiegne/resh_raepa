@@ -21,6 +21,8 @@ Après analyses et mise en place d'un diagnostic entre les différents standards
 
 ![picto](/doc/img/logicogramme_infra_base.png)
 
+![picto](/doc/img/logicogramme_infra_base.png)
+
 # Dépendances
 
 La base de données RAEPA s'appuie sur des référentiels préexistants constituant autant de dépendances que nécessaires pour l'implémentation de certaines informations dans la BdD.
