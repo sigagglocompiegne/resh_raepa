@@ -57,42 +57,90 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
-|idobjet|Identifiant unique de l'objet du réseau|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|Caractères (254)|Obligatoire||
-|l_reseau|Définit le type de réseau de l'objet selon la convention DT-DICT|Caractères (4)|Obligatoire|ASS/AEP|
-|l_typobjet|Définit le type d'objet du réseau|Caractères (20)|Obligatoire|Canalisation/Ouvrage/Appareillage|
-|l_insee|Code INSEE de la commune de localisation de l'objet du réseau|Caractère (5)|Obligatoire||
-|l_domaine|Domaine auquel appartient l'objet du réseau|Caractère (2)||lt_raepal_domaine|
-|mouvrage|Maître d'ouvrage du réseau|Caractère (100)|Obligatoire||
-|gexploit|Gestionnaire exploitant du réseau|Caractère (100)|Obligatoire||
-|l_typimplt|Type d'implantation de l'objet du réseau|Caractère (2)||lt_raepal_type_implantation|
-|enservice|Objet en service ou non (abandonné)|Caractère (1)||O,N|
-|l_entrpose|Entreprise ayant réalisée la pose de l'objet de réseau|Caractère (100)|||
-|l_propdata|Propriétaire de la donnée de l'objet du réseau|Caractère (100)|||
-|qualglocxy|Qualité de la géolocalisation planimétrique (XY)|Caractère (2)|Obligatoire|lt_raepa_qualite_geoloc|
-|qualglocz|Qualité de la géolocalisation altimétrique (Z)|Caractère (2)|Obligatoire|lt_raepa_qualite_geoloc|
-|datemaj|Date de la dernière mise à jour des informations|Timestamp without time zone|Obligatoire||
-|sourmaj|Source de la mise à jour|Caractère (100)|Obligatoire||
-|qualanne|Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de pose|Caractère (2)|||
-|dategeoloc|Date de la géolocalisation|Timestamp without time zone|||
-|sourgeoloc|Auteur de la géolocalisation|Caractère (100)|||
-|autattrib|Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation)|Caractère (100)|||
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|Caractères (254).|Obligatoire||
+|l_reseau|Définit le type de réseau de l'objet selon la convention DT-DICT.|Caractères (4)|Obligatoire|ASS/AEP|
+|l_typobjet|Définit le type d'objet du réseau.|Caractères (20)|Obligatoire|Canalisation/Ouvrage/Appareillage|
+|l_insee|Code INSEE de la commune de localisation de l'objet du réseau.|Caractère (5)|Obligatoire||
+|l_nom_rue|Adressage du nom de la rue où est positionné l'objet.|Caractère (254)|Olibgatoire|Jointure spatiale avec le référentiel Voies et Adresses| 
+|l_domaine|Domaine auquel appartient l'objet du réseau.|Caractère (2)||lt_raepal_domaine|
+|mouvrage|Maître d'ouvrage du réseau.|Caractère (100)|Obligatoire||
+|gexploit|Gestionnaire exploitant du réseau.|Caractère (100)|Obligatoire||
+|l_typimplt|Type d'implantation de l'objet du réseau.|Caractère (2)||lt_raepal_type_implantation|
+|andebpose|Année marquant le début de pose de l'objet de réseau.|Caractère (4)|||
+|anfinpose|Année marquant la fin de pose de l'objet de réseau.|Caractère (4)|||
+|enservice|Objet en service ou non (abandonné).|Caractère (1)||O,N|
+|l_entrpose|Entreprise ayant réalisée la pose de l'objet de réseau.|Caractère (100)|||
+|l_propdata|Propriétaire de la donnée de l'objet du réseau.|Caractère (100)|||
+|qualglocxy|Qualité de la géolocalisation planimétrique (XY).|Caractère (2)|Obligatoire|lt_raepa_qualite_geoloc|
+|qualglocz|Qualité de la géolocalisation altimétrique (Z).|Caractère (2)|Obligatoire|lt_raepa_qualite_geoloc|
+|datemaj|Date de la dernière mise à jour des informations.|Timestamp without time zone|Obligatoire||
+|sourmaj|Source de la mise à jour.|Caractère (100)|Obligatoire||
+|qualanne|Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de pose.|Caractère (2)|||
+|dategeoloc|Date de la géolocalisation.|Timestamp without time zone|||
+|sourgeoloc|Auteur de la géolocalisation.|Caractère (100)|||
+|autattrib|Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation).|Caractère (100)|||
+|l_comment|Commentaire sur l'objet du réseau.|Caractère (254)|||
 
 ### Niveau 1 - Classes géométriques
 `geo_raepal_tronc` : Classe géométrique portant les informations communes d'un tronçon de réseau
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
-|idtronc|Identifiant unique du tronçon de réseau|Bigint|Primary Key|nextval('m_raepa.raepa_id_tronc_seq'::regclass)|
-|materiau|
+|idtronc|Identifiant unique du tronçon de réseau.|Bigint|Primary Key|nextval('m_raepa.raepa_id_tronc_seq'::regclass)|
+|materiau|Matériau du tronçon.|Caractère (2)|Obligatoire|lt_raepal_materiau
 |long_mes|Longueur mesurée du tronçon, en mètre.|Entier|||
 |l_long_cal|Longueur calculée du tronçon, en mètre.|Entier|||
-|branchmnt|Tronçon de branchement individuel : O Tronçon de transport ou de distribution : N|Caractère (1)|Obligatoire|O,N|
-|idnini|Identifiant du noeud de début de tronçon|Bigint|Foreign Key, Obligatoire||
-|idnterm|Identifiant du noeud de fin de tronçon|Bigint|Foreign Key, Obligatoire||
-|idtrppal|Identifiant du tronçon principal|Bigint|Foreign Key||
-|geom|Attribut portant la géométrie du tronçon|Linestring,2154|Obligatoire||
+|branchmnt|Tronçon de branchement individuel : O Tronçon de transport ou de distribution : N.|Caractère (1)|Obligatoire|O,N|
+|idnini|Identifiant du noeud initial du tronçon.|Bigint|Foreign Key, Obligatoire||
+|idnterm|Identifiant du noeud terminal du tronçon.|Bigint|Foreign Key, Obligatoire||
+|idtrppal|Identifiant du tronçon principal.|Bigint|Foreign Key||
+|geom|Attribut portant la géométrie du tronçon, RGF93.|Linestring,2154|Obligatoire||
 
-Remarque : L'attribut "longueur" du standard RAEPA a été renommé par "long_mes" pour cohérence avec l'ajout de l'attribut de la longueur calculée nommé "l_long_cal"
+Remarque : L'attribut "longcana" du standard RAEPA a été renommé par "long_mes" pour cohérence avec l'ajout de l'attribut de la longueur calculée nommé "l_long_cal"
 De plus, en cohérence avec le choix du type Entier du modèle RAEPA, la longueur calculée sera du même type, soit Entier.
+
+`geo_raepa_noeud` : Classe géométrique portant les informations communes d'un noeud de réseau
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idnoeud|Identifiant unique d'un nœud de réseau.|Bigint|Primary Key|nextval('m_raepa.raepa_id_noeud_seq'::regclass)|
+|x|Coordonnée X Lambert 93 (en mètres)|Decimal (10,3)|Obligatoire||
+|y|Coordonnée X Lambert 93 (en mètres)|Decimal (10,3)|Obligatoire||
+|idtramont|Identifiant du tronçon amont du noeud|Bigint||null
+|idtraval|Identifiant du tronçon aval du noeud|Bigint||null
+|itrppal|Identifiant du tronçon principal du noeud|Bigint||null
+|geom|Attribut portant la géométrie du noeud, RGF93.|Point,2154|Obligatoire||
+
+### Niveau 2 - Classes d'objet
+`an_raepa_canal` : Classe alphanumérique portant les informations génériques d'une canalisation.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|Caractères (254).|Obligatoire||
+|sensecoul|Sens de l'écoulement dans la canalisation d'assainissement collectif 0 (noeud terminal → noeud initial) • 1 (noeud initial → noeud terminal)|Caractère (1)||0,1|
+|l_aerien|
+|l_nivtrafi|
+|diametre|
+|modecirc|
+|z|
+|l_cote_gs|
+|profondeur|
+|nbranche|
+|l_aut_pass|
+|idtronc|
+
+Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisations. Il sera demandé en extension locale pour le réseau d'Adduction d'Eau Potable.
+
+`an_raepa_ouv` : Classe alphanumérique portant les informations génériques d'un ouvrage de réseau.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+
+`an_raepa_app` : Classe alphanumérique portant les informations génériques d'un appareillage de réseau.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+
 ## Définition des listes de domaines
