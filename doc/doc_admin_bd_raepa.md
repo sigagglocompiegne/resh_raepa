@@ -91,21 +91,21 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 |l_domaine|Domaine auquel appartient l'objet du réseau.|character varying  (2)||lt_raepal_domaine|
 |mouvrage|Maître d'ouvrage du réseau.|character varying  (100)|Obligatoire||
 |gexploit|Gestionnaire exploitant du réseau.|character varying  (100)|Obligatoire||
-|l_typimplt|Type d'implantation de l'objet du réseau.|character varying  (2)||lt_raepal_type_implantation|
+|(l_typimplt)|Type d'implantation de l'objet du réseau.|character varying  (2)||lt_raepal_type_implantation|
 |andebpose|Année marquant le début de pose de l'objet de réseau.|character varying  (4)|||
 |anfinpose|Année marquant la fin de pose de l'objet de réseau.|character varying  (4)|||
 |enservice|Objet en service ou non (abandonné).|character varying  (1)||O,N|
 |l_entrpose|Entreprise ayant réalisée la pose de l'objet de réseau.|character varying  (100)|||
-|l_propdata|Propriétaire de la donnée de l'objet du réseau.|character varying  (100)|||
+|(l_propdata)|Propriétaire de la donnée de l'objet du réseau.|character varying  (100)|||
 |qualglocxy|Qualité de la géolocalisation planimétrique (XY).|character varying  (2)|Obligatoire|lt_raepa_qualite_geoloc|
 |qualglocz|Qualité de la géolocalisation altimétrique (Z).|character varying  (2)|Obligatoire|lt_raepa_qualite_geoloc|
 |datemaj|Date de la dernière mise à jour des informations.|Timestamp without time zone|Obligatoire||
 |sourmaj|Source de la mise à jour.|character varying  (100)|Obligatoire||
-|qualanne|Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de pose.|character varying  (2)|||
+|qualannee|Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de pose.|character varying  (2)|||
 |dategeoloc|Date de la géolocalisation.|Timestamp without time zone|||
 |sourgeoloc|Auteur de la géolocalisation.|character varying  (100)|||
 |autattrib|Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation).|character varying  (100)|||
-|l_comment|Commentaire sur l'objet du réseau.|character varying  (254)|||
+|(l_comment)|Commentaire sur l'objet du réseau.|character varying  (254)|||
 
 ### Niveau 1 - Classes géométriques
 `geo_raepal_tronc` : Classe géométrique portant les informations communes d'un tronçon de réseau
