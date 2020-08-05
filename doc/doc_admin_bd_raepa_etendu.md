@@ -91,7 +91,6 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 |l_domaine|Domaine auquel appartient l'objet du réseau.|character varying  (2)||lt_raepal_domaine|
 |mouvrage|Maître d'ouvrage du réseau.|character varying  (100)|Obligatoire||
 |gexploit|Gestionnaire exploitant du réseau.|character varying  (100)|Obligatoire||
-|(l_typimplt)|Type d'implantation de l'objet du réseau.|character varying  (2)||lt_raepal_type_implantation|
 |andebpose|Année marquant le début de pose de l'objet de réseau.|character varying  (4)|||
 |anfinpose|Année marquant la fin de pose de l'objet de réseau.|character varying  (4)|||
 |enservice|Objet en service ou non (abandonné).|character varying  (1)||O,N|
@@ -114,9 +113,9 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 |:---|:---|:---|:---|:---|
 |idtronc|Identifiant unique du tronçon de réseau.|Bigint|Primary Key|nextval('m_raepa.raepa_id_tronc_seq'::regclass)|
 |materiau|Matériau du tronçon.|character varying  (2)|Obligatoire|lt_raepal_materiau
+|sensecoul|Sens de l'écoulement dans la canalisation d'assainissement collectif 0 (noeud terminal → noeud initial) • 1 (noeud initial → noeud terminal)|character varying  (1)||0,1|
 |long_mes|Longueur mesurée du tronçon, en mètre.|Integer|||
 |l_long_cal|Longueur calculée du tronçon, en mètre.|Integer|||
-|branchmnt|Tronçon de branchement individuel : O Tronçon de transport ou de distribution : N.|character varying  (1)|Obligatoire|O,N|
 |idnini|Identifiant du noeud initial du tronçon.|Bigint|Foreign Key, Obligatoire||
 |idnterm|Identifiant du noeud terminal du tronçon.|Bigint|Foreign Key, Obligatoire||
 |idtrppal|Identifiant du tronçon principal.|Bigint|Foreign Key||
@@ -144,7 +143,7 @@ De plus, en cohérence avec le choix du type Entier du modèle RAEPA, la longueu
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|sensecoul|Sens de l'écoulement dans la canalisation d'assainissement collectif 0 (noeud terminal → noeud initial) • 1 (noeud initial → noeud terminal)|character varying  (1)||0,1|
+|branchmnt|Tronçon de branchement individuel : O Tronçon de transport ou de distribution : N.|character varying  (1)|Obligatoire|O,N|
 |l_aerien|Définit si la canalisation est aerienne ou enterré|character varying  (2)||lt_raepal_booleen|
 |diametre|Diamètre nominal de la canalisation (en millimètres)|Interger|Obligatoire||
 |l_protext|Protection extérieur potentiellement associé à la canalisation|character varying  (2)||lt_raepal_protection_ext|
@@ -185,6 +184,127 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
 
 ## Définition des listes de domaines
+### Niveau 0
+`lt_raepal_domaine` : Liste décrivant le domaine d'appartenance du réseau.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|10|Privé|
+|20|Public|
+|99|Autre|
+
+
+
+`lt_raepa_qualite_geoloc` : Liste décrivant la qualité de géolocalisation.
+|Code|Valeur|
+|:---|:---|
+|01|Classe A|
+|02|Classe B|
+|03|Classe C|
+
+`lt_raepa_qualite_annee` : Liste décrivant la fiabilité de lorsque ANDEBPOSE = ANFINPOSE.
+|Code|Valeur|
+|:---|:---|
+|00|Indéterminée|
+|01|Certaines|
+|02|Récolement|
+|03|Projet|
+|04|Mémoire|
+|05|Déduite|
+
+### Niveau 1
+`lt_raepal_materiau` : Liste décrivant le type de matériau (utilisée également dans d'autres niveaux).
+|Code ARC|Code RAEPA|Valeur|
+|:---|:---|:---|
+Code ARC
+|00-00|00|Non renseigné
+|01-00|01|Acier
+|02-00|02|Amiante ciment
+|03-00|99|Béton
+|03-01|03|Béton âme tôle
+|03-02|04|Béton armé
+|03-03|05|Béton fibré
+|03-04|06|Béton non armé
+|03-99|99|Béton autre
+|04-00|07|Cuivre
+|05-00|99|Fibre
+|05-01|08|Fibre ciment
+|05-02|09|Fibre de verre
+|05-03|10|Fibrociment
+|05-99|99|Fibre autre
+|06-00|99|Fonte
+|06-01|11|Fonte ductile
+|06-02|12|Fonte grise
+|06-99|99|Fonte autre
+|07-00|13|Grès
+|08-00|14|Maçonnerie
+|09-00|15|Meulière
+|10-00|99|PE
+|10-10|16|PEBD
+|10-20|99|PEHD
+|10-21|17|PEHD annelé
+|10-22|18|PEHD lisse
+|10-99|99|PE autre
+|11-00|19|Plomb
+|12-00|99|PP
+|12-01|20|PP annelé
+|12-02|21|PP lisse
+|12-99|99|PP autre
+|13-00|99|PRV
+|13-01|22|PRV A
+|13-02|23|PRV B
+|13-99|99|PRV autre
+|14-00|99|PVC
+|14-10|24|PVC ancien
+|14-20|25|PVC BO
+|14-30|99|PVC U
+|14-31|26|PVC U annelé
+|14-32|27|PVC U lisse
+|14-99|99|PVC autre
+|15-00|99|Tôle
+|15-01|28|Tôle galvanisée
+|15-99|99|Tôle autre
+|99-00|99|Autre
+
+
+### Niveau 2
+`lt_raepal_protection_ext` : Liste décrivant le type de protection extérieur de la canalisation.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Aucune|
+|02|Polyéthylène|
+|03|Polypropylène|
+|04|Zinc|
+|05|Bitumeux|
+|99|Autre|
+
+`lt_raepal_booleen` : Liste de faux booléen (utilisée également dans d'autres niveaux).
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Oui|
+|02|Non|
+
+`lt_raepa_mode_circulation` : Liste décrivant les différents modes de circulation.
+|Code|Valeur|
+|:---|:---|
+|00|Indéterminé|
+|01|Gravitaire|
+|02|Forcé|
+|03|Sous-vide|
+|99|Autre|
+
+`lt_raepal_etat_ouvrage` : Liste décrivant les différents état.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Très mauvais état|
+|02|Mauvais état|
+|03|Bon état|
+|04|Très bon état|
+|05|Etat neuf|
+|99|Autre|
 
 
 # Collecte d'informations non patrimoniales
@@ -200,4 +320,16 @@ Non rattaché au patrimoine, ils sont office d'une prochaine étape de modélisa
 |AEP et ASS|Canalisation|l_nappe|Présence d'une nappe aux abords de la canalisation|Couche spatiale de l'emprise des nappes. Qui a cette donnée ?|
 |AEP et ASS|Canalisation|l_recolemt|Lien vers le plan de récolement||
 |AEP et ASS|Canalisation|l_nivtrafi|Niveau de trafic à proximité de la canalisation.| Qui détient l'information ? Information contextuelle.
+|AEP et ASS|TOUT||| Information accès sur un état après travaux d'un objet de réseau. lt_raepal_type_origine.
 
+
+
+`lt_raepal_type_origine` : Définit l'origine de cet objet sur le réseau.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Création|
+|02|Réhabilitation|
+|03|Renouvellement|
+|04|Renforcement|
+|99|Autre|
