@@ -121,7 +121,6 @@ De plus, en cohérence avec le choix du type Entier du modèle RAEPA, la longueu
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
 |sensecoul|Sens de l'écoulement dans la canalisation d'assainissement collectif 0 (noeud terminal → noeud initial) • 1 (noeud initial → noeud terminal)|character varying  (1)||0,1|
 |l_aerien|Définit si la canalisation est aerienne ou enterré|character varying  (2)||lt_raepal_booleen|
-|l_nivtrafi|Niveau de trafic à proximité de la canalisation|character varying  (2)||lt_raepal_quantifiant|
 |diametre|Diamètre nominal de la canalisation (en millimètres)|Interger|Obligatoire||
 |l_protext|Protection extérieur potentiellement associé à la canalisation|character varying  (2)||lt_raepal_protection_ext|
 |modecirc|Mode de circulation de l'eau à l'intérieur de la canalisation|character varying  (2)|Obligatoire|lt_raepa_mode_circultation|
@@ -159,3 +158,5 @@ Non rattaché au patrimoine, ils sont office d'une prochaine étape de modélisa
 |AEP et ASS|Canalisation|l_env_elec|Présence d'un réseau éléctrique à proximité|Possibilité de croiser avec le réseau électrique quand nous le détiendrons, ou obligation de connaître la maîtrise de cette information chez nos concessionnaires|
 |AEP et ASS|Canalisation|l_nappe|Présence d'une nappe aux abords de la canalisation|Couche spatiale de l'emprise des nappes. Qui a cette donnée ?|
 |AEP et ASS|Canalisation|l_recolemt|Lien vers le plan de récolement||
+|AEP et ASS|Canalisation|l_nivtrafi|Niveau de trafic à proximité de la canalisation.| Qui détient l'information ? Information contextuelle.
+
