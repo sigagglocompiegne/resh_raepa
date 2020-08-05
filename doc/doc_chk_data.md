@@ -34,7 +34,7 @@ Dans cette partie, nous checkerons la géométrie des objets et nous veillerons 
 * erreur de topologie intraclasse pour les canalisation (papillon etc ...)
 * corrélation entre la géométrie et les coordonnées attributaires (app,ouv)
 * noeud (ouv/app) non connecté à au moins une canalisation
-* canalisation non connectée à 2 noeuds
+* canalisation non connectée à 2 noeuds (sauf cas de branchement)
 * de base, le sens d'écoulement dans une canalisation correspond au noeud amont pour le point de départ et au noeud aval pour le point d'arrivée, éventuellement au cas inverse (uniquement pour assainissement) si le sens d'écoulement de la canalisation le précise (attribut sensecoul=0)
 
 Nous ne rentrerons pas dans un contrôle de topologie très fin, qui serait plutôt engagé au sein d'un service SIG métiers. 
