@@ -129,7 +129,7 @@ De plus, en cohérence avec le choix du type Entier du modèle RAEPA, la longueu
 |profgen|Profondeur moyenne de la génératrice supérieure de la canalisation|Decimal (3,2)|||
 |nbranche|Nombre de branchements individuels sur la canalisation.|Integer|||
 |l_aut_pass|Définit s'il existe un droit de servitude ou non|character varying (2)||lt_raepal_booleen|
-|idtronc|Identifiant unique du tronçon d'un réseau.|Bigint|Foreign Key||
+|idtronc|Identifiant unique du tronçon d'un réseau.|Bigint|Foreign Key, Obligatoire||
 
 Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisations. Il sera demandé en extension locale pour le réseau d'Adduction d'Eau Potable.
 
@@ -139,15 +139,25 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-
-
-
+|l_nom|Nom de l'ouvrage.|character varying (254)|||
+|l_etat|Etat de l'ouvrage.|character varying (2)||lt_raepal_etat_ouvrage|
+|z|Altitude (en mètres, référentiel NGF-IGN69).|Decimal (6,3)|||
+|l_cote_tn|Côte du terrain naturel en mètre (Référentiel NGF IGN69).|Decimal (5,2)|||
+|l_cote_rad|Côte du radier en mètre (Référentiel NGF IGN69).|Decimal (5,2)|||
+|l_profond|Prondeur de l'ouvrage|Decimal (5,2)||Différence entre cote_tn - cote_rad
+|idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
 
 
 `an_raepa_app` : Classe alphanumérique portant les informations génériques d'un appareillage de réseau.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|diametre|Diamètre nominal de l'appareillage (en millimètres).|Integer|Obligatoire||
+|z|Altitude (en mètres, référentiel NGF-IGN69).|Decimal (6,3)|||
+|idouvrage|Identifiant de l'ouvrage dans lequel se situe l'appareil.|Bigint|Foreign Key||
+|idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
 
 ## Définition des listes de domaines
 
