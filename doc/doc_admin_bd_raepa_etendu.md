@@ -144,6 +144,8 @@ De plus, en cohérence avec le choix du type Entier du modèle RAEPA, la longueu
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
 |materiau|Matériau du tronçon.|character varying  (2)|Obligatoire|lt_raepal_materiau
+|l_forme|Forme (Section) de la canalisation d'Assainissement collectif.|character varying (2)||lt_raepal_forme_canal_ass|
+|l_dimension|Dimensions de la canalisation lorsque forme non circulaire, en mètres.|character varying (20)|||
 |branchmnt|Tronçon de branchement individuel : O Tronçon de transport ou de distribution : N.|character varying  (1)|Obligatoire|O,N|
 |l_aerien|Définit si la canalisation est aerienne ou enterré|character varying  (2)||lt_raepal_booleen|
 |diametre|Diamètre nominal de la canalisation (en millimètres)|Interger|Obligatoire||
@@ -192,10 +194,8 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254)|Obligatoire||
 |typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typ_reseau|
-|l_forme|Forme (Section) de la canalisation d'Assainissement collectif.|character varying (2)||lt_raepal_forme_canal|
 |contcanass|Catégorie de la canalisation d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_cat_canal_ass|
 |fonccannass|Fonction de la canalisation d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_fonc_canal_ass|
-|l_dimension|Dimensions de la canalisation lorsque forme non circulaire, en mètres.|character varying (20)|||
 |zamont|Altitude à l'extrémité amont (en mètres, Référentiel NGFIGN69).|Decimal (6,3)|||
 |zaval|Altitude à l'extrémité aval (en mètres, Référentiel NGF-IGN69).|Decimal (6,3)|||
 |l_file_amt|Fil eau à l'extrémité amont (en mètres, Référentiel NGFIGN69).|Decimal (6,3)|||
@@ -224,6 +224,10 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typ_reseau|
+|fnpappass|Types d'un appareillage d'assainissement collectif.|Obligatoire|lt_raepal_fonc_app_ass|
+|l_acces|Définit si l'appareillage d'assainissement collectif est accessible ou non.|character varying (2)||lt_raepal_booleen|
+|l_autpass|Définit si il y a servitude ou non.|character varying (2)||lt_raepal_booleen|
 
 
 `an_raepa_appae` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
@@ -232,7 +236,8 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-
+|fnappaep|Fonction de l'appareillage d'adduction d'eau potable.|character varying (2)|Obligatoire|lt_raepa_fonc_app_ae|
+|l_debit|Débit nominal de l'appareillage d'eau potable en m3/h.|Decimal (5,2)|||
 
 `an_raepa_ouvass` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
 
@@ -263,21 +268,21 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |99|Autre|
 
 `lt_raepa_qualite_geoloc` : Liste décrivant la qualité de géolocalisation.
-|Code|Valeur|
-|:---|:---|
-|01|Classe A|
-|02|Classe B|
-|03|Classe C|
+|Code|Valeur|Définition|
+|:---|:---|:---|
+|01|Classe A|Classe de précision inférieure 40 cm|
+|02|Classe B|Classe de précision supérieure à 40 cm et inférieure à 1,50 m|
+|03|Classe C|Classe de précision supérieure à 1,50 m|
 
 `lt_raepa_qualite_annee` : Liste décrivant la fiabilité de lorsque ANDEBPOSE = ANFINPOSE.
-|Code|Valeur|
-|:---|:---|
-|00|Indéterminée|
-|01|Certaines|
-|02|Récolement|
-|03|Projet|
-|04|Mémoire|
-|05|Déduite|
+|Code|Valeur|Définition|
+|:---|:---|:---|
+|00|Indéterminée|Information ou qualité de l'information inconnue|
+|01|Certaines|Année constatée durant les travaux de pose|
+|02|Récolement|Année reprise sur plans de récolement|
+|03|Projet|Année reprise sur plans de projet|
+|04|Mémoire|Année issue de souvenir(s) individuel(s)|
+|05|Déduite|Année déduite du matériau ou de l'état de l'équipement|
 
 `lt_raepal_etat` : Liste décrivant l'état d'un objet.
 |Code|Valeur|
@@ -348,6 +353,15 @@ Aucune liste de valeurs pour ce niveau.
 |15-99|99|Tôle autre
 |99-00|99|Autre
 
+`lt_raepal_forme_canal` : Liste décrivant la forme de la canalisation.
+|Code|Valeur|
+|:---|:---|
+|00|Indéterminée|
+|01|Circulaire|
+|02|Ovoïde|
+|03|Dallot|
+|99|Autre|
+
 `lt_raepal_protection_ext` : Liste décrivant le type de protection extérieur de la canalisation.
 |Code|Valeur|
 |:---|:---|
@@ -367,43 +381,97 @@ Aucune liste de valeurs pour ce niveau.
 |02|Non|
 
 `lt_raepa_mode_circulation` : Liste décrivant les différents modes de circulation.
-|Code|Valeur|
-|:---|:---|
-|00|Indéterminé|
-|01|Gravitaire|
-|02|Forcé|
-|03|Sous-vide|
-|99|Autre|
+|Code|Valeur|Définition|
+|:---|:---|:---|
+|00|Indéterminé|Mode de circulation inconnu|
+|01|Gravitaire|L'eau s'écoule par l'effet de la pesanteur dans la canalisation en pente|
+|02|Forcé|L'eau circule sous pression dans la canalisation grâce à un système de pompage|
+|03|Sous-vide|L'eau circule par l'effet de la mise sous vide de la canalisation par une centrale d'aspiration|
+|99|Autre|L'eau circule tantôt dans un des modes ci-dessus tantôt dans un autre|
 
 ### Niveau 3
 
 `lt_raepa_typ_reseau` : Liste décrivant le type de réseau d'assainissement collectif.
-|Code|Valeur|
-|:---|:---|
+|Code|Valeur|Définition|
+|:---|:---|:---|
+|01|Pluvial|Réseau de collecte de seules eaux pluviales|
+|02|Eaux usées|Réseau de collecte de seules eaux usées|
+|03|Unitaire|Réseau de collecte des eaux usées et des eaux pluviales|
 
-`lt_raepal_forme_canal` : Liste décrivant la forme de la canalisation d'assainissement collectif.
-|Code|Valeur|
-|:---|:---|
 
 `lt_raepa_cat_canal_ass` : Liste décrivant la nature des eaux véhiculées par une canalisation d'assainissement collectif.
-|Code|Valeur|
-|:---|:---|
+|Code|Valeur|Définition|
+|:---|:---|:---|
+|00|Indéterminée|Nature des eaux véhiculées par la canalisation inconnue
+|01|Pluvial|Canalisation véhiculant des eaux pluviales|
+|02|Eaux usées|Canalisation véhiculant des eaux usées|
+|03|Unitaire|Canalisation véhiculant des eaux usées et pluviales en fonctionnement normal|
+|99|Autre|Canalisation véhiculant tantôt des eaux pluviales, tantôt des eaux usées|
+
 
 `lt_raepa_fonc_canal_ass` : Liste décrivant la fonction dans le réseau d'une canalisation d'assainissement collectif.
-|Code|Valeur|
-|:---|:---|
+|Code|Valeur|Définition|
+|:---|:---|:---|
+|00|Indéterminée|Fonction de la canalisation dans le réseau inconnue
+|01|Transport|Canalisation de transport
+|02|Collecte|Canalisation de collecte
+|99|Autre|Canalisation dont la fonction dans le réseau ne figure pas dans la liste ci-dessus|
 
 `lt_raepa_cat_canal_ae` : Liste décrivant la nature des eaux véhiculées par une canalisation d'adduction d'eau.
-|Code|Valeur|
-|:---|:---|
+|Code|Valeur|Définition|
+|:---|:---|:---|
+|00|Indéterminée|Nature des eaux véhiculées par la canalisation inconnue
+|01|Eau brute|Canalisation véhiculant de l'eau brute|
+|02|Eau potable|Canalisation véhiculant de l'eau potable|
+|99|Autre|Canalisation véhiculant tantôt de l'eau brute, tantôt de l'eau potable|
 
 `lt_raepa_fonc_canal_ae` : Liste décrivant la fonction dans le réseau d'une canalisation d'adduction d'eau.
-|Code|Valeur|
-|:---|:---|
+|Code|Valeur|Définition|
+|:---|:---|:---|
+|00|Indéterminée|Fonction de la canalisation dans le réseau inconnue|
+|01|Transport|Canalisation de transport|
+|02|Distribution|Canalisation de distribution|
+|99|Autre|Canalisation dont la fonction dans le réseau ne figure pas dans la liste ci-dessus|
+
 
 `lt_raepal_protection_int` : Liste décrivant le type de protection interne d'une canalisation d'eau potable.
 |Code|Valeur|
 |:---|:---|
+|00|Non renseignée|
+|01|Aucune|
+|02|Ciment|
+|03|Époxy|
+|04|Bitumeux|
+|99|Autre|
+
+`lt_raepal_fonc_app_ass` : Liste décrivant le type d'un appareillage d'assainissement collectif.
+|Code|Valeur|Définition|
+|:---|:---|:---|
+|00|Indéterminée|Type d'appareillage inconnu|
+|01|Point de branchement|Piquage de branchement individuel|
+|02|Ventouse|Ventouse d'assainissement|
+|03|Vanne|Vanne d'assainissement|
+|04|Débitmètre|Appareil de mesure des débits transités|
+|50|Point métrologique|Point métrologique|
+|60|Batardeau|Batardeau|
+|70|Chasse|Chasse|
+|80|Exutoire eaux pluviales|Exutoire eaux pluviales|
+|99|Autre|Appareillage dont le type ne figure pas dans la liste ci-dessus|
+
+`lt_raepa_fonc_app_ae` : Liste décrivant le type d'un appareillage d'adduction d'eau|
+|Code|Valeur|Définition|
+|:---|:---|:---|
+|00|Indéterminée|Type d'appareillage inconnu|
+|01|Point de branchement|Piquage de branchement individuel|
+|02|Ventouse|Ventouse d'adduction d'eau|
+|03|Vanne|Vanne d'adduction d'eau|
+|04|Vidange|Vidange d'adduction d'eau|
+|05|Régulateur de pression|Régulateur de pression|
+|06|Hydrant|Poteau de défense contre l'incendie|
+|07|Compteur|Appareil de mesure des volumes transités|
+|08|Débitmètre|Appareil de mesure des débits transités|
+|99|Autre|Appareillage dont le type ne figure pas dans la liste ci-dessus|
+
 
 # Collecte d'informations non patrimoniales
 
