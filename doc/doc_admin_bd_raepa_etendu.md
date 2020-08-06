@@ -260,7 +260,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 ### Niveau 4 - Classes spécialisées d'objets de réseau
 
 #### Canalisation
-Aucune classe spécialisée concernant les canalisations
+Aucune classe spécialisée concernant les canalisations.
 
 #### Ouvrages
 
@@ -396,7 +396,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_booleen` : Liste de faux booléen (utilisée également dans d'autres niveaux).
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Non renseignée|
 |01|Oui|
 |02|Non|
 
