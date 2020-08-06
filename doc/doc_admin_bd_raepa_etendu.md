@@ -291,6 +291,8 @@ Aucune classe spécialisée concernant les canalisations.
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|l_position|Position de l'appareillage de vidange.|character varying (2)||lt_raepal_position|
+|l_exutoire|Type d'éxutoire.|character varying (2)||lt_raepal_typ_exutoire|
 
 ## Définition des listes de domaines
 ### Niveau 0
@@ -334,54 +336,54 @@ Aucune classe spécialisée concernant les canalisations.
 `lt_raepal_materiau` : Liste décrivant le type de matériau (utilisée également dans d'autres niveaux).
 |Code ARC|Code RAEPA|Valeur|
 |:---|:---|:---|
-|00-00|00|Non renseigné
-|01-00|01|Acier
-|02-00|02|Amiante ciment
-|03-00|99|Béton
-|03-01|03|Béton âme tôle
-|03-02|04|Béton armé
-|03-03|05|Béton fibré
-|03-04|06|Béton non armé
-|03-99|99|Béton autre
-|04-00|07|Cuivre
-|05-00|99|Fibre
-|05-01|08|Fibre ciment
-|05-02|09|Fibre de verre
-|05-03|10|Fibrociment
-|05-99|99|Fibre autre
-|06-00|99|Fonte
-|06-01|11|Fonte ductile
-|06-02|12|Fonte grise
-|06-99|99|Fonte autre
-|07-00|13|Grès
-|08-00|14|Maçonnerie
-|09-00|15|Meulière
-|10-00|99|PE
-|10-10|16|PEBD
-|10-20|99|PEHD
-|10-21|17|PEHD annelé
-|10-22|18|PEHD lisse
-|10-99|99|PE autre
-|11-00|19|Plomb
-|12-00|99|PP
-|12-01|20|PP annelé
-|12-02|21|PP lisse
-|12-99|99|PP autre
-|13-00|99|PRV
-|13-01|22|PRV A
-|13-02|23|PRV B
-|13-99|99|PRV autre
-|14-00|99|PVC
-|14-10|24|PVC ancien
-|14-20|25|PVC BO
-|14-30|99|PVC U
-|14-31|26|PVC U annelé
-|14-32|27|PVC U lisse
-|14-99|99|PVC autre
-|15-00|99|Tôle
-|15-01|28|Tôle galvanisée
-|15-99|99|Tôle autre
-|99-00|99|Autre
+|00-00|00|Non renseigné|
+|01-00|01|Acier|
+|02-00|02|Amiante ciment|
+|03-00|99|Béton|
+|03-01|03|Béton âme tôle|
+|03-02|04|Béton armé|
+|03-03|05|Béton fibré|
+|03-04|06|Béton non armé|
+|03-99|99|Béton autre|
+|04-00|07|Cuivre|
+|05-00|99|Fibre|
+|05-01|08|Fibre ciment|
+|05-02|09|Fibre de verre|
+|05-03|10|Fibrociment|
+|05-99|99|Fibre autre|
+|06-00|99|Fonte|
+|06-01|11|Fonte ductile|
+|06-02|12|Fonte grise|
+|06-99|99|Fonte autre|
+|07-00|13|Grès|
+|08-00|14|Maçonnerie|
+|09-00|15|Meulière|
+|10-00|99|PE|
+|10-10|16|PEBD|
+|10-20|99|PEHD|
+|10-21|17|PEHD annelé|
+|10-22|18|PEHD lisse|
+|10-99|99|PE autre|
+|11-00|19|Plomb|
+|12-00|99|PP|
+|12-01|20|PP annelé|
+|12-02|21|PP lisse|
+|12-99|99|PP autre|
+|13-00|99|PRV|
+|13-01|22|PRV A|
+|13-02|23|PRV B|
+|13-99|99|PRV autre|
+|14-00|99|PVC|
+|14-10|24|PVC ancien|
+|14-20|25|PVC BO|
+|14-30|99|PVC U|
+|14-31|26|PVC U annelé|
+|14-32|27|PVC U lisse|
+|14-99|99|PVC autre|
+|15-00|99|Tôle|
+|15-01|28|Tôle galvanisée|
+|15-99|99|Tôle autre|
+|99-00|99|Autre|
 
 
 ### Niveau 1
@@ -557,6 +559,23 @@ Aucune liste de valeurs pour ce niveau.
 |01|Boîte de raccordement à passage direct|
 |02|Boîte de raccordement à passage siphoïde|
 |03|Boîte de raccordement multidirectionnel|
+|99|Autre|
+
+
+`lt_raepal_typ_exutoire` : Liste décrivant le type d'éxutoire de l'appareillage de vidange d'Adduction d'eau potable.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Milieu naturel|
+|02|Pluvial|
+|99|Autre|
+
+`lt_raepal_position` : Liste décrivant la position de l'appareillage de vidange d'Adduction d'eau potable.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|En regard|
+|02|Sous bouche à clé|
 |99|Autre|
 
 # Collecte d'informations non patrimoniales
