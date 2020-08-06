@@ -257,7 +257,25 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
 |fnouvaep|Fonction de l'ouvrage d'adduction d'eau potable.|character varying (2)|Obligatoire|lt_raepal_fonc_ouv_ae|
 
+### Niveau 4 - Classes spécialisées d'objets de réseau
 
+#### Canalisation
+Aucune classe spécialisée concernant les canalisations
+
+#### Ouvrages
+
+#### Appareillages
+`an_raepal_pt_brcht_ass` : Classe alphanumérique portant les informations génériques d'un point de branchement de réseau d'Assainissement collectif.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|l_typ_racc|Type de raccord de branchement|character varying (2)||lt_raepal_typ_raccord_ass|
+|l_boitbrt|Présence d'une boîte de branchement|character varynig (2)||lt_raepal_booleen|
+|l_materiau|Matériau constitutif de la boîte de branchement|character varying (2)|lt_raepal_materiau|
+|l_usager|Type d'usager relié au point de branchement d'Assainissement collectif|character varying (2)|lt_raepal_typ_usager|
+|l_conform|Définit si le branchement d'Assainissement collectif est conforme.|character varying (2)||lt_raepal_booleen|
 
 ## Définition des listes de domaines
 ### Niveau 0
@@ -502,6 +520,27 @@ Aucune liste de valeurs pour ce niveau.
 |06-01|06|Chambre de comptage|Chambre de comptage|
 |07-00|07|Captage|Captage|
 |99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus|
+
+### Niveau 4
+
+`lt_raepal_typ_usager` : Liste décrivant le type d'usager raccordé à l'appareillage de point de branchement d'Assainissement collectif.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Domestique|
+|02|Industriel|
+|03|Collectif|
+|04|Agricole|
+|99|Autre|
+
+`lt_raepal_typ_raccord_ass` : Liste décrivant le type de raccord du point de branchement d'Assainissement collectif.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Boîte de raccordement à passage direct|
+|02|Boîte de raccordement à passage siphoïde|
+|03|Boîte de raccordement multidirectionnel|
+|99|Autre|
 
 # Collecte d'informations non patrimoniales
 
