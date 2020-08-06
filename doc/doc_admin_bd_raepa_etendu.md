@@ -136,7 +136,7 @@ De plus, en cohérence avec le choix du type Entier du modèle RAEPA, la longueu
 |itrppal|Identifiant du tronçon principal du noeud|Bigint||null
 |geom|Attribut portant la géométrie du noeud, RGF93.|Point,2154|Obligatoire||
 
-### Niveau 2 - Classes d'objet
+### Niveau 2 - Classes d'objets
 `an_raepa_canal` : Classe alphanumérique portant les informations génériques d'une canalisation.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
@@ -299,7 +299,6 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_materiau` : Liste décrivant le type de matériau (utilisée également dans d'autres niveaux).
 |Code ARC|Code RAEPA|Valeur|
 |:---|:---|:---|
-Code ARC
 |00-00|00|Non renseigné
 |01-00|01|Acier
 |02-00|02|Amiante ciment
