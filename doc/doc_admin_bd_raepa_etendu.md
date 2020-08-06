@@ -172,7 +172,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |l_cote_rad|Côte du radier en mètre (Référentiel NGF IGN69).|Decimal (5,2)|||
 |l_profond|Prondeur de l'ouvrage|Decimal (5,2)||Différence entre cote_tn - cote_rad|
 |l_acces|Ouvrage accessible (Oui/Non)|character varying (2)||lt_raepal_booleen|
-|l_nb_app|Nombre d'appareils positionnés sur l'ouvrage.|Integer|Obligatoire||
+|l_nb_app|Nombre d'appareils positionnés sur l'ouvrage.|Integer|||
 |idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
 
 
@@ -364,20 +364,13 @@ Aucune classe spécialisée concernant les canalisations.
 |l_deb_j|Débit nominal en m3/jour.|Integer|||
 |l_deb_a|Débit nominal en m3/an.|Integer|||
 
-`an_raepal_chambr_ae` : Classe alphanumérique portant les informations génériques d'une Chambre d'eau potable.
+`an_raepal_chambr_ae` : Classe alphanumérique portant les informations génériques d'une Chambre d'Adduction d'eau potable.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_type|Type de captage d'Adduction d'eau potable.|character varying (2)||lt_raepal_type_capt_ae|
-|l_idpteau|Identifiant du point d'eau (Code BSS)|character varying (100)|||
-|l_deb_h|Débit nominal en m3/h.|Integer|||
-|l_deb_j|Débit nominal en m3/jour.|Integer|||
-|l_deb_a|Débit nominal en m3/an.|Integer|||
-
-
-
+|l_dimensio|Dimension de la chambre.|character varying (20)|||
 
 -----------------------------
 
@@ -435,14 +428,16 @@ Aucune classe spécialisée concernant les canalisations.
 |l_consamt|Consigne Amont en bars.|Décimal (5,2)|||
 |l_consavl|Consigne Aval en bars.|Decimal (5,2)|||
 
-`an_raepal_chambr_ae` : Classe alphanumérique portant les informations génériques d'une Chambre d'Adduction d'eau potable.
+`an_raepal_compt_ae` : Classe alphanumérique portant les informations génériques d'un Compteur d'Adduction d'eau potable.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_dimensio|Dimension de la chambre|character varying (20|||
-
+|l_typcompt|Type de compteur.|character varying (2)||lt_raepal_typ_compt_ae|
+|l_fonction|Fonction du compteur|character varying (2)||lt_raepal_fonc_compt_ae|
+|l_diametre|Diamètre nominal du compteur, UNITE ?|TYPE?||
+|l_an_etal|Année étalonnage compteur|character varying (4)|||
 
 
 ## Définition des listes de domaines
@@ -774,6 +769,27 @@ Aucune liste de valeurs pour ce niveau.
 |09|Soupape de décharge|
 |10|Réducteur de pression|
 |99|Autre|
+
+
+`lt_raepal_fonc_compt_ae` : Liste décrivant la fonction du compteur d'Adduction d'eau potable.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseignée|
+|01|Achat|
+|02|Vente|
+|03|Sectorisation|
+|99|Autre
+
+`lt_raepal_typ_compt_ae` : Liste décrivant le type de compteur d'Adduction d'eau potable.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Compteur volume|
+|02|Electromagnétique|
+|03|Ultrasons|
+|99|Autre|
+
+
 
 `lt_raepal_type_stat_pomp_ass` : Liste décrivant le type de station de pompage d'assainissement collectif.
 |Code ARC|Code RAEPA|Valeur|
