@@ -1,7 +1,7 @@
 ![GeoCompiegnois](img/new_logo_geocompiegnois.png )
 
 CREATION : 04-08-20.
-DATE MISE A JOUR : 05-08-20.
+DATE MISE A JOUR : 06-08-20.
 AUTEUR : Léandre BÉRON.
 STATUT : En Cours.
 
@@ -203,7 +203,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |l_pente|Pente, exprimée en %.|Decimal (3,1)|||
 |l_penter|Contre pente, exprimée en %.|Decimal (3,1)|||
 
-`an_raepa_canalae` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
+`an_raepa_canalae` : Classe alphanumérique portant les informations génériques d'une canalisation d'Adduction d'eau potable.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
@@ -218,7 +218,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |l_indperte|Indice linéaire de perte|?|||
 
 
-`an_raepa_appass` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
+`an_raepa_appass` : Classe alphanumérique portant les informations génériques d'un appareillage d'Assainissement collectif.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
@@ -230,7 +230,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |l_autpass|Définit si il y a servitude ou non.|character varying (2)||lt_raepal_booleen|
 
 
-`an_raepa_appae` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
+`an_raepa_appae` : Classe alphanumérique portant les informations génériques d'une appareillage d'Adduction d'eau potable.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
@@ -239,21 +239,23 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |fnappaep|Fonction de l'appareillage d'adduction d'eau potable.|character varying (2)|Obligatoire|lt_raepa_fonc_app_ae|
 |l_debit|Débit nominal de l'appareillage d'eau potable en m3/h.|Decimal (5,2)|||
 
-`an_raepa_ouvass` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
+`an_raepa_ouvass` : Classe alphanumérique portant les informations génériques d'un ouvrage d'Assainissement collectif.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typ_reseau|
+|fnouvass|Type d'un ouvrage d'assainissement collectif|character varying (2)|Obligatoire|lt_raepal_fonc_ouv_ass|
 
 
-`an_raepa_ouvae` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
+`an_raepa_ouvae` : Classe alphanumérique portant les informations génériques d'un ouvrage d'Adduction d'eau potable.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-
+|fnouvaep|Fonction de l'ouvrage d'adduction d'eau potable.|character varying (2)|Obligatoire|lt_raepal_fonc_ouv_ae|
 
 
 
@@ -437,7 +439,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_protection_int` : Liste décrivant le type de protection interne d'une canalisation d'eau potable.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseignée|
+|00|Non renseigné|
 |01|Aucune|
 |02|Ciment|
 |03|Époxy|
@@ -445,23 +447,23 @@ Aucune liste de valeurs pour ce niveau.
 |99|Autre|
 
 `lt_raepal_fonc_app_ass` : Liste décrivant le type d'un appareillage d'assainissement collectif.
-|Code|Valeur|Définition|
-|:---|:---|:---|
-|00|Indéterminée|Type d'appareillage inconnu|
-|01|Point de branchement|Piquage de branchement individuel|
-|02|Ventouse|Ventouse d'assainissement|
-|03|Vanne|Vanne d'assainissement|
-|04|Débitmètre|Appareil de mesure des débits transités|
-|50|Point métrologique|Point métrologique|
-|60|Batardeau|Batardeau|
-|70|Chasse|Chasse|
-|80|Exutoire eaux pluviales|Exutoire eaux pluviales|
+|Code ARC|Code RAEPA|Valeur|Définition|
+|:---|:---|:---|:---|
+|00|00|Indéterminé|Type d'appareillage inconnu|
+|01|01|Point de branchement|Piquage de branchement individuel|
+|02|02|Ventouse|Ventouse d'assainissement|
+|03|03|Vanne|Vanne d'assainissement|
+|04|04|Débitmètre|Appareil de mesure des débits transités|
+|05|99|Point métrologique|Point métrologique|
+|06|99|Batardeau|Batardeau|
+|07|99|Chasse|Chasse|
+|08|99|Exutoire eaux pluviales|Exutoire eaux pluviales|
 |99|Autre|Appareillage dont le type ne figure pas dans la liste ci-dessus|
 
 `lt_raepa_fonc_app_ae` : Liste décrivant le type d'un appareillage d'adduction d'eau|
 |Code|Valeur|Définition|
 |:---|:---|:---|
-|00|Indéterminée|Type d'appareillage inconnu|
+|00|Indéterminé|Type d'appareillage inconnu|
 |01|Point de branchement|Piquage de branchement individuel|
 |02|Ventouse|Ventouse d'adduction d'eau|
 |03|Vanne|Vanne d'adduction d'eau|
@@ -472,6 +474,34 @@ Aucune liste de valeurs pour ce niveau.
 |08|Débitmètre|Appareil de mesure des débits transités|
 |99|Autre|Appareillage dont le type ne figure pas dans la liste ci-dessus|
 
+`lt_raepal_fonc_ouv_ass` : Liste décrivant le type d'ouvrage d'assainissement collectif|
+|Code ARC|Code RAEPA|Valeur|Définition|
+|:---|:---|:---|:---|
+|00|00|Indéterminé|Type d'ouvrage inconnu|
+|01|01|Station de pompage|Station de pompage d'eaux usées et/ou pluviales|
+|02|02|Station d'épuration|Station de traitement d'eaux usées|
+|03|03|Bassin de stockage|Ouvrage de stockage d'eaux usées et/ou pluviales|
+|04|04|Déversoir d'orage|Ouvrage de décharge du trop-plein d'effluents d'une canalisation d'assainissement collectif vers un milieu naturel récepteur|
+|05|05|Rejet|Rejet (exutoire) dans le milieu naturel d'eaux usées ou pluviales|
+|06|06|Regard|Regard|
+|07|07|Avaloir|Avaloir|
+|08|99|Station sous-vide|
+|09|99|Chambre à sable|
+|99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus|
+
+
+`lt_raepal_fonc_ouv_ae` : Liste décrivant le type d'ouvrage d'Adduction d'eau potable|
+|Code ARC|Code RAEPA|Valeur|Définition|
+|:---|:---|:---|:---|
+|00-00|00|Indéterminé|Type d'ouvrage inconnu|
+|01-00|01|Station de pompage|Station de pompage d'eau potable|
+|02-00|02|Station de traitement|Station de traitement d'eau potable|
+|03-00|03|Réservoir|Réservoir d'eau potable|
+|04-00|04|Déversoir d'orage|
+|05-00|05|Rejet|Rejet (exutoire) dans le milieu naturel d'eaux usées ou pluviales|
+|06-01|06|Chambre de comptage|Chambre de comptage|
+|07-00|07|Captage|Captage|
+|99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus|
 
 # Collecte d'informations non patrimoniales
 
