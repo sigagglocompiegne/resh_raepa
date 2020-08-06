@@ -912,7 +912,9 @@ Non rattaché au patrimoine, ils sont office d'une prochaine étape de modélisa
 |AEP et ASS|Canalisation|l_recolemt|Lien vers le plan de récolement||
 |AEP et ASS|Canalisation|l_nivtrafi|Niveau de trafic à proximité de la canalisation.| Qui détient l'information ? Information contextuelle.
 |AEP et ASS|TOUT||| Information accès sur un état après travaux d'un objet de réseau. lt_raepal_type_origine.
-
+|ASS|Canalisation|ITV|Besoin de date de l'itv, le lien vers celle ci|
+|AEP et ASS|Canalisation|?|Souhait de positionner des points noirs sur les linéaires de canalisations|
+|?|?|?|Dernière intervention de curage|
 
 
 `lt_raepal_type_origine` : Définit l'origine de cet objet sur le réseau.
