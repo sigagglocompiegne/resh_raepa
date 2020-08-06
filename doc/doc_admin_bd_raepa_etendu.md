@@ -172,6 +172,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |l_cote_rad|Côte du radier en mètre (Référentiel NGF IGN69).|Decimal (5,2)|||
 |l_profond|Prondeur de l'ouvrage|Decimal (5,2)||Différence entre cote_tn - cote_rad|
 |l_acces|Ouvrage accessible (Oui/Non)|character varying (2)||lt_raepal_booleen|
+|l_nb_app|Nombre d'appareils positionnés sur l'ouvrage.|Integer|Obligatoire||
 |idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
 
 
@@ -351,7 +352,29 @@ Aucune classe spécialisée concernant les canalisations.
 |l_nbcuve|Nombre de cuves|Integer|||
 |l_anmescuv|Année de mise en service de la première cuve|character varying (4)|||
 
+`an_raepal_captage_ae` : Classe alphanumérique portant les informations génériques d'un Captage d'Adduction d'eau potable.
 
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|l_type|Type de captage d'Adduction d'eau potable.|character varying (2)||lt_raepal_type_capt_ae|
+|l_idpteau|Identifiant du point d'eau (Code BSS)|character varying (100)|||
+|l_deb_h|Débit nominal en m3/h.|Integer|||
+|l_deb_j|Débit nominal en m3/jour.|Integer|||
+|l_deb_a|Débit nominal en m3/an.|Integer|||
+
+`an_raepal_chambr_ae` : Classe alphanumérique portant les informations génériques d'une Chambre d'eau potable.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|l_type|Type de captage d'Adduction d'eau potable.|character varying (2)||lt_raepal_type_capt_ae|
+|l_idpteau|Identifiant du point d'eau (Code BSS)|character varying (100)|||
+|l_deb_h|Débit nominal en m3/h.|Integer|||
+|l_deb_j|Débit nominal en m3/jour.|Integer|||
+|l_deb_a|Débit nominal en m3/an.|Integer|||
 
 
 
@@ -412,7 +435,13 @@ Aucune classe spécialisée concernant les canalisations.
 |l_consamt|Consigne Amont en bars.|Décimal (5,2)|||
 |l_consavl|Consigne Aval en bars.|Decimal (5,2)|||
 
+`an_raepal_chambr_ae` : Classe alphanumérique portant les informations génériques d'une Chambre d'Adduction d'eau potable.
 
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|l_dimensio|Dimension de la chambre|character varying (20|||
 
 
 
@@ -650,17 +679,17 @@ Aucune liste de valeurs pour ce niveau.
 
 
 `lt_raepal_fonc_ouv_ae` : Liste décrivant le type d'ouvrage d'Adduction d'eau potable|
-|Code ARC|Code RAEPA|Valeur|Définition|
+|Code ARC|Code RAEPA|Valeur|Définition|Commentaire|
 |:---|:---|:---|:---|
-|00-00|00|Indéterminé|Type d'ouvrage inconnu|
-|01-00|01|Station de pompage|Station de pompage d'eau potable|
-|02-00|02|Station de traitement|Station de traitement d'eau potable|
-|03-00|03|Réservoir|Réservoir d'eau potable|
-|04-00|04|Déversoir d'orage|
-|05-00|05|Rejet|Rejet (exutoire) dans le milieu naturel d'eaux usées ou pluviales|
-|06-01|06|Chambre de comptage|Chambre de comptage|
-|07-00|07|Captage|Captage|
-|99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus|
+|00-00|00|Indéterminé|Type d'ouvrage inconnu||
+|01-00|01|Station de pompage|Station de pompage d'eau potable||
+|02-00|02|Station de traitement|Station de traitement d'eau potable||
+|03-00|03|Réservoir|Réservoir d'eau potable||
+|04-00|04|Déversoir d'orage||
+|05-00|05|Rejet|Rejet (exutoire) dans le milieu naturel d'eaux usées ou pluviales||
+|06-01|06|Chambre de comptage|Chambre de comptage|Valeur conservée car présente dans le standard, mais c'est un ouvrage où est associé des appareillages de type chambre. Nous traiterons par la valeur "Chambre".|
+|07-00|07|Captage|Captage||
+|99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus||
 
 ### Niveau 4
 
@@ -844,6 +873,13 @@ Aucune liste de valeurs pour ce niveau.
 |03|Sur tour|
 |99|Autre|
 
+`lt_raepal_type_capt_ae` : Liste décrivant le type de Captage d'Adduction d'eau potable.
+|Code RAEPA|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Captage source|
+|02|Puit, Forage|
+|99|Autre|
 
 
 # Collecte d'informations non patrimoniales
