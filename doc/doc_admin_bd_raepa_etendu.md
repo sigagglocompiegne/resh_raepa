@@ -93,6 +93,8 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 |anfinpose|Année marquant la fin de pose de l'objet de réseau.|character varying  (4)|||
 |l_marque|Marque commerciale de l'objet|character varying (100)|||
 |enservice|Objet en service ou non (abandonné).|character varying  (1)||O,N|
+|l_criticit|Objet en criticité ou non.|character varying  (1)||O,N|
+|l_etat|Etat de l'objet.|character varying  (2)||lt_raepal_etat|
 |l_entrpose|Entreprise ayant réalisée la pose de l'objet de réseau.|character varying  (100)|||
 |(l_propdata)|Propriétaire de la donnée de l'objet du réseau.|character varying  (100)|||
 |qualglocxy|Qualité de la géolocalisation planimétrique (XY).|character varying  (2)|Obligatoire|lt_raepa_qualite_geoloc|
@@ -111,7 +113,6 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idtronc|Identifiant unique du tronçon de réseau.|Bigint|Primary Key|nextval('m_raepa.raepa_id_tronc_seq'::regclass)|
-|materiau|Matériau du tronçon.|character varying  (2)|Obligatoire|lt_raepal_materiau
 |sensecoul|Sens de l'écoulement dans la canalisation d'assainissement collectif 0 (noeud terminal → noeud initial) • 1 (noeud initial → noeud terminal)|character varying  (1)||0,1|
 |long_mes|Longueur mesurée du tronçon, en mètre.|Integer|||
 |l_long_cal|Longueur calculée du tronçon, en mètre.|Integer|||
@@ -142,6 +143,7 @@ De plus, en cohérence avec le choix du type Entier du modèle RAEPA, la longueu
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|materiau|Matériau du tronçon.|character varying  (2)|Obligatoire|lt_raepal_materiau
 |branchmnt|Tronçon de branchement individuel : O Tronçon de transport ou de distribution : N.|character varying  (1)|Obligatoire|O,N|
 |l_aerien|Définit si la canalisation est aerienne ou enterré|character varying  (2)||lt_raepal_booleen|
 |diametre|Diamètre nominal de la canalisation (en millimètres)|Interger|Obligatoire||
@@ -163,7 +165,6 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
 |l_nom|Nom de l'ouvrage.|character varying (254)|||
-|l_etat|Etat de l'ouvrage.|character varying (2)||lt_raepal_etat_ouvrage|
 |z|Altitude (en mètres, référentiel NGF-IGN69).|Decimal (6,3)|||
 |l_cote_tn|Côte du terrain naturel en mètre (Référentiel NGF IGN69).|Decimal (5,2)|||
 |l_cote_rad|Côte du radier en mètre (Référentiel NGF IGN69).|Decimal (5,2)|||
@@ -192,8 +193,8 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idprest|Identifiant du prestataire de l'objet|character varying  (254)|Obligatoire||
 |typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typ_reseau|
 |l_forme|Forme (Section) de la canalisation d'Assainissement collectif.|character varying (2)||lt_raepal_forme_canal|
-|contcanass|Catégorie de la canalisation d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_cat_canalass|
-|fonccannass|Fonction de la canalisation d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_fonc_canalass|
+|contcanass|Catégorie de la canalisation d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_cat_canal_ass|
+|fonccannass|Fonction de la canalisation d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_fonc_canal_ass|
 |l_dimension|Dimensions de la canalisation lorsque forme non circulaire, en mètres.|character varying (20)|||
 |zamont|Altitude à l'extrémité amont (en mètres, Référentiel NGFIGN69).|Decimal (6,3)|||
 |zaval|Altitude à l'extrémité aval (en mètres, Référentiel NGF-IGN69).|Decimal (6,3)|||
@@ -208,6 +209,13 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|contcanaep|Catégorie de la canalisation d'adduction d'eau potable|character varying (2)|Obligatoire|lt_raepa_cat_canal_ae|
+|foncanaep|Fonction de la canalisation d'adduction d'eau potable|character varying (2)|Obligatoire|lt_raepa_fonc_canal_ae|
+|l_fileau|Altitude fil d'eau ou charge en mètres.|Decimal (6,3)|||
+|l_pression|Pression moyenne dans la canalisation, en bars.|Decimal (6,3)|||
+|l_protcath|Existence d'une protection cathodique.|character varying (2)||lt_raepal_booleen|
+|l_protint|Type de protection interne de la canalisation d'assainissement collectif.|character varying (2)||lt_raepal_protection_int|
+|l_indperte|Indice linéaire de perte|?|||
 
 
 `an_raepa_appass` : Classe alphanumérique portant les informations génériques d'une canalisation d'Assainissement collectif.
@@ -254,8 +262,6 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |20|Public|
 |99|Autre|
 
-
-
 `lt_raepa_qualite_geoloc` : Liste décrivant la qualité de géolocalisation.
 |Code|Valeur|
 |:---|:---|
@@ -273,7 +279,23 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |04|Mémoire|
 |05|Déduite|
 
+`lt_raepal_etat` : Liste décrivant l'état d'un objet.
+|Code|Valeur|
+|:---|:---|
+|00|Indéterminée|
+|01|Très mauvais état|
+|02|Mauvais état|
+|03|Bon état|
+|04|Très bon état|
+|05|Etat neuf|
+|99|Autre|
+
 ### Niveau 1
+
+Aucune liste de valeurs pour ce niveau.
+
+### Niveau 2
+
 `lt_raepal_materiau` : Liste décrivant le type de matériau (utilisée également dans d'autres niveaux).
 |Code ARC|Code RAEPA|Valeur|
 |:---|:---|:---|
@@ -327,8 +349,6 @@ Code ARC
 |15-99|99|Tôle autre
 |99-00|99|Autre
 
-
-### Niveau 2
 `lt_raepal_protection_ext` : Liste décrivant le type de protection extérieur de la canalisation.
 |Code|Valeur|
 |:---|:---|
@@ -356,17 +376,35 @@ Code ARC
 |03|Sous-vide|
 |99|Autre|
 
-`lt_raepal_etat_ouvrage` : Liste décrivant les différents état.
+### Niveau 3
+
+`lt_raepa_typ_reseau` : Liste décrivant le type de réseau d'assainissement collectif.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
-|01|Très mauvais état|
-|02|Mauvais état|
-|03|Bon état|
-|04|Très bon état|
-|05|Etat neuf|
-|99|Autre|
 
+`lt_raepal_forme_canal` : Liste décrivant la forme de la canalisation d'assainissement collectif.
+|Code|Valeur|
+|:---|:---|
+
+`lt_raepa_cat_canal_ass` : Liste décrivant la nature des eaux véhiculées par une canalisation d'assainissement collectif.
+|Code|Valeur|
+|:---|:---|
+
+`lt_raepa_fonc_canal_ass` : Liste décrivant la fonction dans le réseau d'une canalisation d'assainissement collectif.
+|Code|Valeur|
+|:---|:---|
+
+`lt_raepa_cat_canal_ae` : Liste décrivant la nature des eaux véhiculées par une canalisation d'adduction d'eau.
+|Code|Valeur|
+|:---|:---|
+
+`lt_raepa_fonc_canal_ae` : Liste décrivant la fonction dans le réseau d'une canalisation d'adduction d'eau.
+|Code|Valeur|
+|:---|:---|
+
+`lt_raepal_protection_int` : Liste décrivant le type de protection interne d'une canalisation d'eau potable.
+|Code|Valeur|
+|:---|:---|
 
 # Collecte d'informations non patrimoniales
 
