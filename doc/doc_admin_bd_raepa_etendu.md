@@ -318,6 +318,43 @@ Aucune classe spécialisée concernant les canalisations.
 |l_dimgrill|Dimension de la grille, en cm.|Decimal (5,2)|||
 |l_modpass|Mode de passage.|character varying (2)||lt_raepal_typ_raccord_ass|
 
+`an_raepal_stat_pomp_ae` : Classe alphanumérique portant les informations génériques d'une station de pompage d'Adduction d'eau potable.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|l_type|Type de station de pompage d'Adduction d'eau potable.|character varying (2)||lt_raepal_type_stat_pomp_ae|
+|l_debit|Débit nominal de la station de pompage en m3/h.|Integer|||
+|l_h_mano|Hauteur manométrique totale en mètre. Correspond à la différence de presssion du liquide franchissant la pompe|Decimal (5,2)|||
+
+`an_raepal_stat_trait_ae` : Classe alphanumérique portant les informations génériques d'une station de traitement d'Adduction d'eau potable.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|l_id_ars|Identifiant de l'Agence Régionale de Santé|character varying (100).|||
+|l_trait|Type de traitement de la station d'Adduction d'eau potable.|character varying (2)||lt_raepal_type_stat_trait_ae|
+|l_capacite|Capacité de traitement en m3/h.|Integer|||
+
+
+`an_raepal_reservoir_ae` : Classe alphanumérique portant les informations génériques d'un Réservoir d'Adduction d'eau potable.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|l_type|Type de réservoir d'Adduction d'eau potable.|character varying (2)||lt_raepal_type_reserv_ae|
+|l_volume|Volume du réservoir en m3.|Integer|||
+|l_cote_tp|Côte NGF du trop plein, en mètres.|Decimal (5,2)|||
+|l_nbcuve|Nombre de cuves|Integer|||
+|l_anmescuv|Année de mise en service de la première cuve|character varying (4)|||
+
+
+
+
+
 
 -----------------------------
 
@@ -779,6 +816,33 @@ Aucune liste de valeurs pour ce niveau.
 |03|Tampon|
 |99|Autre|
 
+`lt_raepal_type_stat_pomp_ae` : Liste décrivant le type de station de pompage d'Adduction d'eau potable.
+|Code RAEPA|Valeur|
+|:---|:---|
+|00|Non renseignée|
+|01|Surpression|
+|02|Reprise|
+|03|Accélérateur|
+|99|Autre|
+
+`lt_raepal_type_stat_trait_ae` : Liste décrivant le type de traitement de la station de traitement d'Adduction d'eau potable.
+|Code RAEPA|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Javel liquide|
+|02|Chlore gazeux|
+|03|Charbon actif|
+|04|Fer|
+|99|Autre|
+
+`lt_raepal_type_reserv_ae` : Liste décrivant le type de réservoir d'Adduction d'eau potable.
+|Code RAEPA|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Semi enterré|
+|02|Bâche|
+|03|Sur tour|
+|99|Autre|
 
 
 
