@@ -296,6 +296,28 @@ Aucune classe spécialisée concernant les canalisations.
 |l_telegest|Télégestion (Oui/Non).|character varying (2)||lt_raepal_booleen|
 |l_cotesurv|Côte de la surverse, en mètres.|Decimal (5,2)|||
 
+`an_raepal_regard_ass` : Classe alphanumérique portant les informations génériques d'un Regard d'Assainissement collectif.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|l_type|lt_raepal_typ_reg_ass
+|l_borgne|
+|l_forme|lt_raepal_forme_reg_ass
+
+`an_raepal_avaloir_ass` : Classe alphanumérique portant les informations génériques d'un Avaloir d'Assainissement collectif.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|l_type|Type d'avaloir.|character varying (2)||lt_raepal_typ_aval_ass|
+|l_cotevoi|Mise à côte voirie (Oui/Non)|character varying (2)||lt_raepal_booleen|
+|l_decant|Décantation (Oui/Non)|character varying (2)||lt_raepal_booleen|
+|l_dimgrill|Dimension de la grille, en cm.|Decimal (5,2)|||
+|l_modpass|Mode de passage.|character varying (2)||lt_raepal_typ_raccord_ass|
+
 
 -----------------------------
 
@@ -654,7 +676,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_typ_vanne_ae` : Liste décrivant le type de vanne d'Adduction d'eau potable.
 |Code|Valeur|
 |:---|:---|
-|00|Indéterminé|
+|00|Non renseigné|
 |01|Opercule|
 |02|Papillon|
 |03|Monovar|
@@ -666,7 +688,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_position_vanne_ae` : Liste décrivant la position de la vanne d'Adduction d'eau potable.
 |Code|Valeur|
 |:---|:---|
-|00|Indéterminé|
+|00|Non renseigné|
 |01|Ouverte|
 |02|Fermée|
 |99|Autre|
@@ -674,7 +696,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_typ_reg_press_ae` : Liste décrivant le type de régulateur de pression.
 |Code|Valeur|
 |:---|:---|
-|00|Indéterminé|
+|00|Non renseigné|
 |01|Stabilisateur Amont|
 |02|Stabilisateur Aval|
 |03|Stabilisateur Amont - Aval|
@@ -700,7 +722,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_step_charge_ass` : Liste décrivant la capacite de charge de la STEP d'assainissement collectif.
 |Code|Valeur|
 |:---|:---|
-|00|Indéterminé|
+|00|Non renseignée|
 |01|Faible charge|
 |02|Moyenne charge|
 |03|Forte charge|
@@ -709,7 +731,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_trait_step_ass` : Liste décrivant la nature du traitement de la STEP d'assainissement collectif.
 |Code|Valeur|
 |:---|:---|
-|00|Indéterminé|
+|00|Non renseigné|
 |01|Lits bactériens|
 |02|Filtres biologiques|
 |03|Disques biologiques|
@@ -722,12 +744,43 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_typ_bass_stock_ass`: Liste décrivant le type de Bassin de Sockage d'Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
-|00|Indéterminé|
+|00|Non renseigné|
 |01|Bassin tampon|
 |02|Bassin d'orage|
 |03|Bassin de rétention|
 |04|Déssableur|
 |99|Autre|
+
+
+`lt_raepal_forme_reg_ass`: Liste décrivant la forme du Regard d'Assainissement collectif.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseignée|
+|01|Rond|
+|02|Carré|
+|99|Autre|
+
+
+`lt_raepal_typ_reg_ass` : Liste décrivant le type de Regard d'Assainissement collectif.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseignée|
+|01|Visite|
+|02|Bâche|
+|03|Boîte de branchement|
+|99|Autre|
+
+`lt_raepal_typ_aval_ass` : Liste décrivant le type d'Avaloir d'Assainissement collectif.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseignée|
+|01|Simple|
+|02|A grille|
+|03|Tampon|
+|99|Autre|
+
+
+
 
 # Collecte d'informations non patrimoniales
 
