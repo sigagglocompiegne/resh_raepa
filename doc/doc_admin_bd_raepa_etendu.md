@@ -92,6 +92,7 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 |andebpose|Année marquant le début de pose de l'objet de réseau.|character varying  (4)|||
 |anfinpose|Année marquant la fin de pose de l'objet de réseau.|character varying  (4)|||
 |l_marque|Marque commerciale de l'objet|character varying (100)|||
+|materiau|Matériau du tronçon.|character varying  (2)|Obligatoire|lt_raepal_materiau
 |enservice|Objet en service ou non (abandonné).|character varying  (1)||O,N|
 |l_criticit|Objet en criticité ou non.|character varying  (1)||O,N|
 |l_etat|Etat de l'objet.|character varying  (2)||lt_raepal_etat|
@@ -143,7 +144,6 @@ De plus, en cohérence avec le choix du type Entier du modèle RAEPA, la longueu
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|materiau|Matériau du tronçon.|character varying  (2)|Obligatoire|lt_raepal_materiau
 |l_forme|Forme (Section) de la canalisation d'Assainissement collectif.|character varying (2)||lt_raepal_forme_canal_ass|
 |l_dimension|Dimensions de la canalisation lorsque forme non circulaire, en mètres.|character varying (20)|||
 |branchmnt|Tronçon de branchement individuel : O Tronçon de transport ou de distribution : N.|character varying  (1)|Obligatoire|O,N|
@@ -273,9 +273,24 @@ Aucune classe spécialisée concernant les canalisations.
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
 |l_typ_racc|Type de raccord de branchement|character varying (2)||lt_raepal_typ_raccord_ass|
 |l_boitbrt|Présence d'une boîte de branchement|character varynig (2)||lt_raepal_booleen|
-|l_materiau|Matériau constitutif de la boîte de branchement|character varying (2)|lt_raepal_materiau|
 |l_usager|Type d'usager relié au point de branchement d'Assainissement collectif|character varying (2)|lt_raepal_typ_usager|
 |l_conform|Définit si le branchement d'Assainissement collectif est conforme.|character varying (2)||lt_raepal_booleen|
+
+`an_raepal_pt_brcht_ae` : Classe alphanumérique portant les informations génériques d'un point de branchement de réseau d'Adduction d'eau potable.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|l_usager|Type d'usager relié au point de branchement d'Assainissement collectif|character varying (2)|lt_raepal_typ_usager|
+|l_nb_compt|Nombre de compteur sur le point de branchement d'Adduction d'eau potable.|Integer|||
+
+`an_raepal_vidange_ae` : Classe alphanumérique portant les informations génériques d'un appareillage d'Adduction d'eau potablede type vidange.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
 
 ## Définition des listes de domaines
 ### Niveau 0
@@ -315,11 +330,6 @@ Aucune classe spécialisée concernant les canalisations.
 |05|Etat neuf|
 |99|Autre|
 
-### Niveau 1
-
-Aucune liste de valeurs pour ce niveau.
-
-### Niveau 2
 
 `lt_raepal_materiau` : Liste décrivant le type de matériau (utilisée également dans d'autres niveaux).
 |Code ARC|Code RAEPA|Valeur|
@@ -372,6 +382,13 @@ Aucune liste de valeurs pour ce niveau.
 |15-01|28|Tôle galvanisée
 |15-99|99|Tôle autre
 |99-00|99|Autre
+
+
+### Niveau 1
+
+Aucune liste de valeurs pour ce niveau.
+
+### Niveau 2
 
 `lt_raepal_forme_canal` : Liste décrivant la forme de la canalisation.
 |Code|Valeur|
