@@ -80,11 +80,11 @@ Au cours de notre analyse, nous avons observé un certains nombre d'anomalies du
 |enservice| Extension de cet attribut pour les ouvrages et appareillages. Déplacé à la superclasse an_raepal_objet_reseau.|
 |andebpose/anfinpose|Décision de la définition comme tel : Date de début (ou fin) de pose de l'objet du réseau. Choix réalisé suite à la définition différente entre une canalisation et un appareille ou ouvrage.|
 |sensecoul|Extension de l'attribut pour les canalisation d'AEP également. Attribut déplacé à la classe géométrique geo_raepal_tronc|
-|longcana|Attribut renommé en longmes.|
+|longcana|Attribut renommé en "longmes".|
 |idnini/idnterm| Attributs déplacés à la classe géométrique geo_raepal_tronc.|
 |zamont/zaval|Décision de la précision de la définition. Ces attributs correspondront donc à l'altitude fil d'eau. Attributs déplacé sur an_raepa_canal pour tout type de réseau d'eau (non uniquement pour ASS).|
-|profgen|Attribut renommé pour distgen, permettant d'être cohérent en cas de canalisation suspendu (distance et non profondeur). Attributs déplacé sur an_raepa_canal pour tout type de réseau d'eau (non uniquement pour AEP).|
-|z|Attributs renommé respectivement par zradapp et zradouv pour les ouvrages et appareillages. Précision de la définition : correspond à altitude radier.|
+|profgen|Attribut renommé pour "distgen", permettant d'être cohérent en cas de canalisation suspendue (distance et non profondeur). Attribut déplacé sur an_raepa_canal pour tout type de réseau d'eau (non uniquement pour AEP).|
+|z|Attributs renommé respectivement par "zradapp" et "zradouv" pour les ouvrages et appareillages. Précision de la définition : correspond à l'altitude radier.|
 |fnouvass| Extension de la liste de valeurs.|
 |fnouvaep| Extension de la liste de valeurs.|
 
