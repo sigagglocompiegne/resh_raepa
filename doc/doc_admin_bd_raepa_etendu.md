@@ -70,6 +70,24 @@ Afin de pouvoir identifier les informations qui sont issues du standard national
 * Nomenclature des classes : raepa_[nom_classe] pour les informations issues du RAEPA et raepal_[nom_classe] pour les informations issues d'extension locale
 * Nomenclature des attributs : Ajout du préfixe "l_" devant chaque attribut issus de l'extension locale.
 
+## Adaptation de contenu du standard RAEPA
+
+Au cours de notre analyse, nous avons observé un certains nombre d'anomalies du standard, ou de manque de richesse de certaines listes de valeurs. Nous avons alors adapté celles-ci selon nos propres besoins. Ces évolutions sont décrites ci-dessous :
+
+|attribut/liste|adaptation|
+|:----|:----|
+|materiau| Attribut déplacé à la superclasse an_raepal_objet_reseau. Extension de la liste de domaines|
+|enservice| Extension de cet attribut pour les ouvrages et appareillages. Déplacé à la superclasse an_raepal_objet_reseau.|
+|andebpose/anfinpose|Décision de la définition comme tel : Date de début (ou fin) de pose de l'objet du réseau. Choix réalisé suite à la définition différente entre une canalisation et un appareille ou ouvrage.|
+|sensecoul|Extension de l'attribut pour les canalisation d'AEP également. Attribut déplacé à la classe géométrique geo_raepal_tronc|
+|longcana|Attribut renommé en longmes.|
+|idnini/idnterm| Attributs déplacés à la classe géométrique geo_raepal_tronc.|
+|zamont/zaval|Décision de la précision de la définition. Ces attributs correspondront donc à l'altitude fil d'eau. Attributs déplacé sur an_raepa_canal pour tout type de réseau d'eau (non uniquement pour ASS).|
+|profgen|Attribut renommé pour distgen, permettant d'être cohérent en cas de canalisation suspendu (distance et non profondeur). Attributs déplacé sur an_raepa_canal pour tout type de réseau d'eau (non uniquement pour AEP).|
+|z|Attributs renommé respectivement par zradapp et zradouv pour les ouvrages et appareillages. Précision de la définition : correspond à altitude radier.|
+|fnouvass| Extension de la liste de valeurs.|
+|fnouvaep| Extension de la liste de valeurs.|
+
 ## Définition des classes
 
 Certains attributs présents dans la modélisation du standard national ont été déplacé dans une autre classe. Leur définition est donc adapté au circonstance (exemple attribut `enservice`)
