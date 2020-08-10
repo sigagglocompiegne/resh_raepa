@@ -1,7 +1,7 @@
 ![GeoCompiegnois](img/new_logo_geocompiegnois.png )
 
 CREATION : 04-08-20.
-DATE MISE A JOUR : 06-08-20.
+DATE MISE A JOUR : 10-08-20.
 AUTEUR : Léandre BÉRON.
 STATUT : En Cours.
 
@@ -80,33 +80,33 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_reseau|Définit le type de réseau de l'objet selon la convention DT-DICT.|character varying  (4)|Obligatoire|ASS/AEP|
-|l_typobjet|Définit le type d'objet du réseau.|character varying  (20)|Obligatoire|Canalisation/Ouvrage/Appareillage|
-|l_sandre|Code SANDRE.|character varying (254)|||
+|idpod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_insee|Code INSEE de la commune de localisation de l'objet du réseau.|character varying  (5)|Obligatoire||
-|l_nom_rue|Adressage du nom de la rue où est positionné l'objet.|character varying  (254)|Olibgatoire|Jointure spatiale avec le référentiel Voies et Adresses| 
-|l_domaine|Domaine auquel appartient l'objet du réseau.|character varying  (2)||lt_raepal_domaine|
+|materiau|Matériau du tronçon.|character varying  (2)|Obligatoire|lt_raepal_materiau
 |mouvrage|Maître d'ouvrage du réseau.|character varying  (100)|Obligatoire||
 |gexploit|Gestionnaire exploitant du réseau.|character varying  (100)|Obligatoire||
 |andebpose|Année marquant le début de pose de l'objet de réseau.|character varying  (4)|||
 |anfinpose|Année marquant la fin de pose de l'objet de réseau.|character varying  (4)|||
-|l_marque|Marque commerciale de l'objet|character varying (100)|||
-|materiau|Matériau du tronçon.|character varying  (2)|Obligatoire|lt_raepal_materiau
-|enservice|Objet en service ou non (abandonné).|character varying  (1)||O,N|
-|l_criticit|Objet en criticité ou non.|character varying  (1)||O,N|
-|l_etat|Etat de l'objet.|character varying  (2)||lt_raepal_etat|
 |l_entrpose|Entreprise ayant réalisée la pose de l'objet de réseau.|character varying  (100)|||
-|(l_propdata)|Propriétaire de la donnée de l'objet du réseau.|character varying  (100)|||
-|qualglocxy|Qualité de la géolocalisation planimétrique (XY).|character varying  (2)|Obligatoire|lt_raepa_qualite_geoloc|
-|qualglocz|Qualité de la géolocalisation altimétrique (Z).|character varying  (2)|Obligatoire|lt_raepa_qualite_geoloc|
+|l_marque|Marque commerciale de l'objet|character varying (100)|||
+|l_modele|Modèle de l'objet|character varying (100)|||
+|enservice|Objet en service ou non (abandonné).|character varying  (1)||O,N|
+|l_etat|Etat de l'objet.|character varying  (2)||lt_raepal_etat|
+|l_criticit|Objet en criticité ou non.|character varying  (1)||lt_raepal_boolean|
+|l_domaine|Domaine auquel appartient l'objet du réseau.|character varying  (2)||lt_raepal_domaine|
+|l_libvoie|Adressage du nom de la rue où est positionné l'objet.|character varying  (254)|Olibgatoire|Jointure spatiale avec le référentiel Voies et Adresses| 
+|l_reseau|Définit le type de réseau de l'objet selon la convention DT-DICT.|character varying  (4)|Obligatoire|ASS/AEP|
+|l_typobjet|Définit le type d'objet du réseau.|character varying  (20)|Obligatoire|Canalisation/Ouvrage/Appareillage|
+|l_idsandre|Code SANDRE.|character varying (254)|||
+|l_observ|Compléments d'informations, observations.|character varying (500)|||
+|qualglocxy|Qualité de la géolocalisation planimétrique (XY).|character varying  (2)|Obligatoire|lt_raepa_qualgloc|
+|qualglocz|Qualité de la géolocalisation altimétrique (Z).|character varying  (2)|Obligatoire|lt_raepa_qualgloc|
 |datemaj|Date de la dernière mise à jour des informations.|Timestamp without time zone|Obligatoire||
 |sourmaj|Source de la mise à jour.|character varying  (100)|Obligatoire||
-|qualannee|Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de pose.|character varying  (2)|||
+|qualannee|Fiabilité, lorsque ANDEBPOSE = ANFINPOSE, de l'année de pose.|character varying  (2)||lt_raepa_qualannee|
 |dategeoloc|Date de la géolocalisation.|Timestamp without time zone|||
 |sourgeoloc|Auteur de la géolocalisation.|character varying  (100)|||
-|autattrib|Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation).|character varying  (100)|||
-|(l_comment)|Commentaire sur l'objet du réseau.|character varying  (254)|||
+|sourattrib|Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation).|character varying  (100)|||
 
 ### Niveau 1 - Classes géométriques
 `geo_raepal_tronc` : Classe géométrique portant les informations communes d'un tronçon de réseau
@@ -114,16 +114,16 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idtronc|Identifiant unique du tronçon de réseau.|Bigint|Primary Key|nextval('m_raepa.raepa_id_tronc_seq'::regclass)|
-|sensecoul|Sens de l'écoulement dans la canalisation d'assainissement collectif 0 (noeud terminal → noeud initial) • 1 (noeud initial → noeud terminal)|character varying  (1)||0,1|
-|long_mes|Longueur mesurée du tronçon, en mètre.|Integer|||
-|l_long_cal|Longueur calculée du tronçon, en mètre.|Integer|||
+|sensecoul|Sens de l'écoulement dans la canalisation d'assainissement collectif i (noeud terminal → noeud initial) • d (noeud initial → noeud terminal)|character varying  (1)||lt_raepal_sensecoul|
+|longmes|Longueur mesurée du tronçon, en mètre.|Integer|||
+|l_longcalc|Longueur calculée du tronçon, en mètre.|Integer|||
 |idnini|Identifiant du noeud initial du tronçon.|Bigint|Foreign Key, Obligatoire||
 |idnterm|Identifiant du noeud terminal du tronçon.|Bigint|Foreign Key, Obligatoire||
-|idtrppal|Identifiant du tronçon principal.|Bigint|Foreign Key||
 |geom|Attribut portant la géométrie du tronçon, RGF93.|Linestring,2154|Obligatoire||
 
-Remarque : L'attribut "longcana" du standard RAEPA a été renommé par "long_mes" pour cohérence avec l'ajout de l'attribut de la longueur calculée nommé "l_long_cal"
+Remarque : L'attribut "longcana" du standard RAEPA a été renommé par "longmes" pour cohérence avec l'ajout de l'attribut de la longueur calculée nommé "l_long_cal"
 De plus, en cohérence avec le choix du type Entier du modèle RAEPA, la longueur calculée sera du même type, soit Entier.
+L'attribut idcanppal n'est pas conservé, en raison de son usage douteux (Qui est la canalisation principal lors d'un branchement sécant sur une canalisation ?)
 
 `geo_raepa_noeud` : Classe géométrique portant les informations communes d'un noeud de réseau
 
@@ -131,11 +131,12 @@ De plus, en cohérence avec le choix du type Entier du modèle RAEPA, la longueu
 |:---|:---|:---|:---|:---|
 |idnoeud|Identifiant unique d'un nœud de réseau.|Bigint|Primary Key|nextval('m_raepa.raepa_id_noeud_seq'::regclass)|
 |x|Coordonnée X Lambert 93 (en mètres)|Decimal (10,3)|Obligatoire||
-|y|Coordonnée X Lambert 93 (en mètres)|Decimal (10,3)|Obligatoire||
-|idtramont|Identifiant du tronçon amont du noeud|Bigint||null
-|idtraval|Identifiant du tronçon aval du noeud|Bigint||null
-|itrppal|Identifiant du tronçon principal du noeud|Bigint||null
+|l_xreel|Coordonnée X réelle Lambert 93 (en mètres)|Decimal (10,3)|Obligatoire||
+|y|Coordonnée Y Lambert 93 (en mètres)|Decimal (10,3)|Obligatoire||
+|l_yreel|Coordonnée Y réelle Lambert 93 (en mètres)|Decimal (10,3)|Obligatoire||
 |geom|Attribut portant la géométrie du noeud, RGF93.|Point,2154|Obligatoire||
+
+Remarque : Les attributs idcanamont, idcanaval et idcanppal ne sont pas conservés, de part leur usage douteux (Un noeud avec plus de deux canalisations, qui est qui ?).
 
 ### Niveau 2 - Classes d'objets
 `an_raepa_canal` : Classe alphanumérique portant les informations génériques d'une canalisation.
@@ -450,14 +451,14 @@ Aucune classe spécialisée concernant les canalisations.
 |20|Public|
 |99|Autre|
 
-`lt_raepa_qualite_geoloc` : Liste décrivant la qualité de géolocalisation.
+`lt_raepa_qualgloc` : Liste décrivant la qualité de géolocalisation.
 |Code|Valeur|Définition|
 |:---|:---|:---|
 |01|Classe A|Classe de précision inférieure 40 cm|
 |02|Classe B|Classe de précision supérieure à 40 cm et inférieure à 1,50 m|
 |03|Classe C|Classe de précision supérieure à 1,50 m|
 
-`lt_raepa_qualite_annee` : Liste décrivant la fiabilité de lorsque ANDEBPOSE = ANFINPOSE.
+`lt_raepa_qualannee` : Liste décrivant la fiabilité de lorsque ANDEBPOSE = ANFINPOSE.
 |Code|Valeur|Définition|
 |:---|:---|:---|
 |00|Indéterminée|Information ou qualité de l'information inconnue|
@@ -532,6 +533,13 @@ Aucune classe spécialisée concernant les canalisations.
 |99-00|99|Autre|
 
 
+`lt_raepal_boolean` : Liste de faux booléen (utilisée également dans d'autres niveaux).
+|Code|Valeur|
+|:---|:---|
+|0|Non renseignée|
+|t|Oui|
+|f|Non|
+
 ### Niveau 1
 
 Aucune liste de valeurs pour ce niveau.
@@ -558,12 +566,6 @@ Aucune liste de valeurs pour ce niveau.
 |05|Bitumeux|
 |99|Autre|
 
-`lt_raepal_booleen` : Liste de faux booléen (utilisée également dans d'autres niveaux).
-|Code|Valeur|
-|:---|:---|
-|00|Non renseignée|
-|01|Oui|
-|02|Non|
 
 `lt_raepa_mode_circulation` : Liste décrivant les différents modes de circulation.
 |Code|Valeur|Définition|
