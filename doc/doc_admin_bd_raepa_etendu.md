@@ -68,7 +68,7 @@ En conséquence, ces choix permettent de pouvoir identifier un objet de réseau,
 Afin de pouvoir identifier les informations qui sont issues du standard national ou des extensions locales, nous utiliserons la codification suivante :
 
 * Nomenclature des classes : raepa_[nom_classe] pour les informations issues du RAEPA et raepal_[nom_classe] pour les informations issues d'extension locale
-* Nomenclature des attributs : Ajout du préfixe "l_" devant chaque attribut issu de l'extension locale.
+* Nomenclature des attributs : Ajout du préfixe "l_" devant chaque attribut issus de l'extension locale.
 
 ## Définition des classes
 
@@ -144,19 +144,24 @@ Remarque : Les attributs idcanamont, idcanaval et idcanppal ne sont pas conserv�
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_forme|Forme (Section) de la canalisation d'Assainissement collectif.|character varying (2)||lt_raepal_forme_canal_ass|
-|l_dimension|Dimensions de la canalisation lorsque forme non circulaire, en mètres.|character varying (20)|||
-|branchmnt|Tronçon de branchement individuel : O Tronçon de transport ou de distribution : N.|character varying  (1)|Obligatoire|O,N|
-|l_aerien|Définit si la canalisation est aerienne ou enterré|character varying  (2)||lt_raepal_booleen|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_formcana|Forme (Section) de la canalisation d'Assainissement collectif.|character varying (2)||lt_raepal_forme_canal_ass|
+|l_dim|Dimensions de la canalisation lorsque forme non circulaire, en mètres (longueur x largeur).|character varying (20)|||
+|l_aerien|Définit si la canalisation est aerienne ou enterré|character varying  (2)||lt_raepal_boolean|
 |diametre|Diamètre nominal de la canalisation (en millimètres)|Interger|Obligatoire||
-|l_protext|Protection extérieur potentiellement associé à la canalisation|character varying  (2)||lt_raepal_protection_ext|
-|modecirc|Mode de circulation de l'eau à l'intérieur de la canalisation|character varying  (2)|Obligatoire|lt_raepa_mode_circultation|
-|l_cote_tn|Côte du terrain naturel en mètre (Référentiel NGF IGN69).|Decimal (5,2)|||
-|l_cote_gs|Côte de la génératrice supérieure en mètre (Référentiel NGF IGN69).|Decimal (5,2)|||
-|profgen|Profondeur moyenne de la génératrice supérieure de la canalisation|Decimal (3,2)|||
+|l_protext|Protection extérieur potentiellement associé à la canalisation|character varying  (2)||lt_raepal_typprot|
+|l_protint|Type de protection interne de la canalisation d'assainissement collectif.|character varying (2)||lt_raepal_typrot|
+|modecirc|Mode de circulation de l'eau à l'intérieur de la canalisation|character varying  (2)|Obligatoire|lt_raepa_modecirc|
+|l_ztn|Côte du terrain naturel en mètre (Référentiel NGF IGN69).|Decimal (5,2)|||
+|l_zgen|Côte de la génératrice supérieure en mètre (ou inférieure dans le cas de canalisations aériennes) (Référentiel NGF IGN69).|Decimal (5,2)|||
+|zamont|Altitude fil eau à l'extrémité amont (en mètres, Référentiel NGFIGN69).|Decimal (6,3)|||
+|zaval|Altitude fil eau à l'extrémité aval (en mètres, Référentiel NGF-IGN69).|Decimal (6,3)|||
+|l_pente|Pente, exprimée en %.|Decimal (3,1)|||
+|l_penter|Contre pente, exprimée en %.|Decimal (3,1)|||
+|distgen|Distance moyenne de la génératrice de la canalisation|Decimal (3,2)|||
+|branchmnt|Tronçon de branchement individuel : O Tronçon de transport ou de distribution : N.|character varying  (1)|Obligatoire|O,N|
 |nbranche|Nombre de branchements individuels sur la canalisation.|Integer|||
-|l_aut_pass|Définit s'il existe un droit de servitude ou non|character varying (2)||lt_raepal_booleen|
+|l_autpass|Définit s'il existe un droit de servitude ou non|character varying (2)||lt_raepal_boolean|
 |idtronc|Identifiant unique du tronçon d'un réseau.|Bigint|Foreign Key, Obligatoire||
 
 Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisations. Il sera demandé en extension locale pour le réseau d'Adduction d'Eau Potable.
@@ -195,29 +200,22 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254)|Obligatoire||
-|typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typ_reseau|
-|contcanass|Catégorie de la canalisation d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_cat_canal_ass|
-|fonccannass|Fonction de la canalisation d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_fonc_canal_ass|
-|zamont|Altitude à l'extrémité amont (en mètres, Référentiel NGFIGN69).|Decimal (6,3)|||
-|zaval|Altitude à l'extrémité aval (en mètres, Référentiel NGF-IGN69).|Decimal (6,3)|||
-|l_file_amt|Fil eau à l'extrémité amont (en mètres, Référentiel NGFIGN69).|Decimal (6,3)|||
-|l_file_avl|Fil eau à l'extrémité aval (en mètres, Référentiel NGFIGN69).|Decimal (6,3)|||
-|l_pente|Pente, exprimée en %.|Decimal (3,1)|||
-|l_penter|Contre pente, exprimée en %.|Decimal (3,1)|||
+|idprod|Identifiant du producteur de l'objet|character varying  (254)|Obligatoire||
+|typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typreseau|
+|contcanass|Catégorie de la canalisation d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_contcanass|
+|fonccannass|Fonction de la canalisation d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_fonccanass|
+
 
 `an_raepa_canalae` : Classe alphanumérique portant les informations génériques d'une canalisation d'Adduction d'eau potable.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|contcanaep|Catégorie de la canalisation d'adduction d'eau potable|character varying (2)|Obligatoire|lt_raepa_cat_canal_ae|
-|foncanaep|Fonction de la canalisation d'adduction d'eau potable|character varying (2)|Obligatoire|lt_raepa_fonc_canal_ae|
-|l_fileau|Altitude fil d'eau ou charge en mètres.|Decimal (6,3)|||
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|contcanaep|Catégorie de la canalisation d'adduction d'eau potable|character varying (2)|Obligatoire|lt_raepa_contcanaep|
+|fonccanaep|Fonction de la canalisation d'adduction d'eau potable|character varying (2)|Obligatoire|lt_raepa_fonccanaep|
 |l_pression|Pression moyenne dans la canalisation, en bars.|Decimal (6,3)|||
 |l_protcath|Existence d'une protection cathodique.|character varying (2)||lt_raepal_booleen|
-|l_protint|Type de protection interne de la canalisation d'assainissement collectif.|character varying (2)||lt_raepal_protection_int|
 |l_indperte|Indice linéaire de perte|?|||
 
 
@@ -546,7 +544,7 @@ Aucune liste de valeurs pour ce niveau.
 
 ### Niveau 2
 
-`lt_raepal_forme_canal` : Liste décrivant la forme de la canalisation.
+`lt_raepal_formecana` : Liste décrivant la forme de la canalisation.
 |Code|Valeur|
 |:---|:---|
 |00|Indéterminée|
@@ -555,19 +553,21 @@ Aucune liste de valeurs pour ce niveau.
 |03|Dallot|
 |99|Autre|
 
-`lt_raepal_protection_ext` : Liste décrivant le type de protection extérieur de la canalisation.
+`lt_raepal_typprot` : Liste décrivant le type de matériau de protection de la canalisation.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseigné|
 |01|Aucune|
-|02|Polyéthylène|
-|03|Polypropylène|
-|04|Zinc|
-|05|Bitumeux|
+|02|Ciment|
+|03|Époxy|
+|04|Bitumeux|
+|05|Polyéthylène|
+|06|Polypropylène|
+|07|Zinc|
 |99|Autre|
 
 
-`lt_raepa_mode_circulation` : Liste décrivant les différents modes de circulation.
+`lt_raepa_modecirc` : Liste décrivant les différents modes de circulation.
 |Code|Valeur|Définition|
 |:---|:---|:---|
 |00|Indéterminé|Mode de circulation inconnu|
@@ -578,7 +578,7 @@ Aucune liste de valeurs pour ce niveau.
 
 ### Niveau 3
 
-`lt_raepa_typ_reseau` : Liste décrivant le type de réseau d'assainissement collectif.
+`lt_raepa_typreseau` : Liste décrivant le type de réseau d'assainissement collectif.
 |Code|Valeur|Définition|
 |:---|:---|:---|
 |01|Pluvial|Réseau de collecte de seules eaux pluviales|
@@ -586,7 +586,7 @@ Aucune liste de valeurs pour ce niveau.
 |03|Unitaire|Réseau de collecte des eaux usées et des eaux pluviales|
 
 
-`lt_raepa_cat_canal_ass` : Liste décrivant la nature des eaux véhiculées par une canalisation d'assainissement collectif.
+`lt_raepa_contcanass` : Liste décrivant la nature des eaux véhiculées par une canalisation d'assainissement collectif.
 |Code|Valeur|Définition|
 |:---|:---|:---|
 |00|Indéterminée|Nature des eaux véhiculées par la canalisation inconnue
@@ -596,7 +596,7 @@ Aucune liste de valeurs pour ce niveau.
 |99|Autre|Canalisation véhiculant tantôt des eaux pluviales, tantôt des eaux usées|
 
 
-`lt_raepa_fonc_canal_ass` : Liste décrivant la fonction dans le réseau d'une canalisation d'assainissement collectif.
+`lt_raepa_fonccanass` : Liste décrivant la fonction dans le réseau d'une canalisation d'assainissement collectif.
 |Code|Valeur|Définition|
 |:---|:---|:---|
 |00|Indéterminée|Fonction de la canalisation dans le réseau inconnue
@@ -604,7 +604,7 @@ Aucune liste de valeurs pour ce niveau.
 |02|Collecte|Canalisation de collecte
 |99|Autre|Canalisation dont la fonction dans le réseau ne figure pas dans la liste ci-dessus|
 
-`lt_raepa_cat_canal_ae` : Liste décrivant la nature des eaux véhiculées par une canalisation d'adduction d'eau.
+`lt_raepa_contcanaep` : Liste décrivant la nature des eaux véhiculées par une canalisation d'adduction d'eau.
 |Code|Valeur|Définition|
 |:---|:---|:---|
 |00|Indéterminée|Nature des eaux véhiculées par la canalisation inconnue
@@ -612,7 +612,7 @@ Aucune liste de valeurs pour ce niveau.
 |02|Eau potable|Canalisation véhiculant de l'eau potable|
 |99|Autre|Canalisation véhiculant tantôt de l'eau brute, tantôt de l'eau potable|
 
-`lt_raepa_fonc_canal_ae` : Liste décrivant la fonction dans le réseau d'une canalisation d'adduction d'eau.
+`lt_raepa_fonccanaep` : Liste décrivant la fonction dans le réseau d'une canalisation d'adduction d'eau.
 |Code|Valeur|Définition|
 |:---|:---|:---|
 |00|Indéterminée|Fonction de la canalisation dans le réseau inconnue|
@@ -620,16 +620,6 @@ Aucune liste de valeurs pour ce niveau.
 |02|Distribution|Canalisation de distribution|
 |99|Autre|Canalisation dont la fonction dans le réseau ne figure pas dans la liste ci-dessus|
 
-
-`lt_raepal_protection_int` : Liste décrivant le type de protection interne d'une canalisation d'eau potable.
-|Code|Valeur|
-|:---|:---|
-|00|Non renseigné|
-|01|Aucune|
-|02|Ciment|
-|03|Époxy|
-|04|Bitumeux|
-|99|Autre|
 
 `lt_raepal_fonc_app_ass` : Liste décrivant le type d'un appareillage d'assainissement collectif.
 |Code ARC|Code RAEPA|Valeur|Définition|
