@@ -226,7 +226,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typreseau|
-|fnpappass|Types d'un appareillage d'assainissement collectif.|Obligatoire|lt_raepal_fnappass|
+|fnappass|Types d'un appareillage d'assainissement collectif.|Obligatoire||lt_raepal_fnappass|
 |l_acces|Définit si l'appareillage d'assainissement collectif est accessible ou non.|character varying (2)||lt_raepal_boolean|
 |l_autpass|Définit si il y a servitude ou non.|character varying (2)||lt_raepal_boolean|
 
@@ -384,7 +384,7 @@ Aucune classe spécialisée concernant les canalisations.
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_typracc|Type de raccord de branchement|character varying (2)||lt_raepal_typracc|
 |l_boitbrt|Présence d'une boîte de branchement|character varynig (2)||lt_raepal_boolean|
-|l_typusager|Type d'usager relié au point de branchement d'Assainissement collectif|character varying (2)|lt_raepal_typusager|
+|l_typusager|Type d'usager relié au point de branchement d'Assainissement collectif|character varying (2)||lt_raepal_typusager|
 |l_conform|Définit si le branchement d'Assainissement collectif est conforme.|character varying (2)||lt_raepal_boolean|
 
 `an_raepal_pt_brcht_ae` : Classe alphanumérique portant les informations génériques d'un point de branchement de réseau d'Adduction d'eau potable.
@@ -393,7 +393,7 @@ Aucune classe spécialisée concernant les canalisations.
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|l_typusager|Type d'usager relié au point de branchement d'Assainissement collectif|character varying (2)|lt_raepal_typusager|
+|l_typusager|Type d'usager relié au point de branchement d'Assainissement collectif|character varying (2)||lt_raepal_typusager|
 |l_nbcompt|Nombre de compteur sur le point de branchement d'Adduction d'eau potable.|Integer|||
 
 `an_raepal_vidange_ae` : Classe alphanumérique portant les informations génériques d'un appareillage d'Adduction d'eau potable de type vidange.
@@ -413,7 +413,7 @@ Aucune classe spécialisée concernant les canalisations.
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_typvanne|Type de Vanne.|character varying (2)||lt_raepal_typvanne|
-|l_etatvan|Postion de la vanne (Ouverte ou Fermée)|character varying (2)|lt_raepal_etatvan|
+|l_etatvan|Postion de la vanne (Ouverte ou Fermée)|character varying (2)||lt_raepal_etatvan|
 |l_prtcharg|Perte de charge, en mètre.|Decimal(5,2)|||
   
 
