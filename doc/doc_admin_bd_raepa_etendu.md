@@ -325,19 +325,19 @@ Aucune classe spécialisée concernant les canalisations.
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_type|Type de station de pompage d'Adduction d'eau potable.|character varying (2)||lt_raepal_type_stat_pomp_ae|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_typpomp|Type de station de pompage d'Adduction d'eau potable.|character varying (2)||lt_raepal_typpompe|
 |l_debit|Débit nominal de la station de pompage en m3/h.|Integer|||
-|l_h_mano|Hauteur manométrique totale en mètre. Correspond à la différence de presssion du liquide franchissant la pompe|Decimal (5,2)|||
+|l_hmano|Hauteur manométrique totale en mètre. Correspond à la différence de presssion du liquide franchissant la pompe|Decimal (5,2)|||
 
 `an_raepal_stat_trait_ae` : Classe alphanumérique portant les informations génériques d'une station de traitement d'Adduction d'eau potable.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_id_ars|Identifiant de l'Agence Régionale de Santé|character varying (100).|||
-|l_trait|Type de traitement de la station d'Adduction d'eau potable.|character varying (2)||lt_raepal_type_stat_trait_ae|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_idars|Identifiant de l'Agence Régionale de Santé|character varying (100).|||
+|l_typtrait|Type de traitement de la station d'Adduction d'eau potable.|character varying (2)||lt_raepal_typtrait|
 |l_capacite|Capacité de traitement en m3/h.|Integer|||
 
 
@@ -346,32 +346,31 @@ Aucune classe spécialisée concernant les canalisations.
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_type|Type de réservoir d'Adduction d'eau potable.|character varying (2)||lt_raepal_type_reserv_ae|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_typres|Type de réservoir d'Adduction d'eau potable.|character varying (2)||lt_raepal_typres|
 |l_volume|Volume du réservoir en m3.|Integer|||
-|l_cote_tp|Côte NGF du trop plein, en mètres.|Decimal (5,2)|||
+|l_ztp|Côte NGF du trop plein, en mètres.|Decimal (5,2)|||
 |l_nbcuve|Nombre de cuves|Integer|||
-|l_anmescuv|Année de mise en service de la première cuve|character varying (4)|||
 
 `an_raepal_captage_ae` : Classe alphanumérique portant les informations génériques d'un Captage d'Adduction d'eau potable.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_type|Type de captage d'Adduction d'eau potable.|character varying (2)||lt_raepal_type_capt_ae|
-|l_idpteau|Identifiant du point d'eau (Code BSS)|character varying (100)|||
-|l_deb_h|Débit nominal en m3/h.|Integer|||
-|l_deb_j|Débit nominal en m3/jour.|Integer|||
-|l_deb_a|Débit nominal en m3/an.|Integer|||
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_typcapt|Type de captage d'Adduction d'eau potable.|character varying (2)||lt_raepal_typcapt|
+|l_idbss|Identifiant du point d'eau (Code BSS)|character varying (100)|||
+|l_debh|Débit nominal en m3/h.|Integer|||
+|l_debj|Débit nominal en m3/jour.|Integer|||
+|l_deba|Débit nominal en m3/an.|Integer|||
 
 `an_raepal_chambr_ae` : Classe alphanumérique portant les informations génériques d'une Chambre d'Adduction d'eau potable.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_dimensio|Dimension de la chambre.|character varying (20)|||
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_dim|Dimension de la chambre (longueur x largeur), en mètre.|character varying (20)|||
 
 -----------------------------
 
@@ -856,7 +855,7 @@ Aucune liste de valeurs pour ce niveau.
 |03|Tampon|
 |99|Autre|
 
-`lt_raepal_type_stat_pomp_ae` : Liste décrivant le type de station de pompage d'Adduction d'eau potable.
+`lt_raepal_typpompe` : Liste décrivant le type de station de pompage d'Adduction d'eau potable.
 |Code RAEPA|Valeur|
 |:---|:---|
 |00|Non renseignée|
@@ -865,7 +864,7 @@ Aucune liste de valeurs pour ce niveau.
 |03|Accélérateur|
 |99|Autre|
 
-`lt_raepal_type_stat_trait_ae` : Liste décrivant le type de traitement de la station de traitement d'Adduction d'eau potable.
+`lt_raepal_typtrait` : Liste décrivant le type de traitement de la station de traitement d'Adduction d'eau potable.
 |Code RAEPA|Valeur|
 |:---|:---|
 |00|Non renseigné|
@@ -875,7 +874,7 @@ Aucune liste de valeurs pour ce niveau.
 |04|Fer|
 |99|Autre|
 
-`lt_raepal_type_reserv_ae` : Liste décrivant le type de réservoir d'Adduction d'eau potable.
+`lt_raepal_typres` : Liste décrivant le type de réservoir d'Adduction d'eau potable.
 |Code RAEPA|Valeur|
 |:---|:---|
 |00|Non renseigné|
@@ -884,7 +883,7 @@ Aucune liste de valeurs pour ce niveau.
 |03|Sur tour|
 |99|Autre|
 
-`lt_raepal_type_capt_ae` : Liste décrivant le type de Captage d'Adduction d'eau potable.
+`lt_raepal_typcapt` : Liste décrivant le type de Captage d'Adduction d'eau potable.
 |Code RAEPA|Valeur|
 |:---|:---|
 |00|Non renseigné|
