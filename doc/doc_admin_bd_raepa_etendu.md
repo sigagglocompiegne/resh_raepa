@@ -171,14 +171,13 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_nom|Nom de l'ouvrage.|character varying (254)|||
-|z|Altitude (en mètres, référentiel NGF-IGN69).|Decimal (6,3)|||
-|l_cote_tn|Côte du terrain naturel en mètre (Référentiel NGF IGN69).|Decimal (5,2)|||
-|l_cote_rad|Côte du radier en mètre (Référentiel NGF IGN69).|Decimal (5,2)|||
-|l_profond|Prondeur de l'ouvrage|Decimal (5,2)||Différence entre cote_tn - cote_rad|
-|l_acces|Ouvrage accessible (Oui/Non)|character varying (2)||lt_raepal_booleen|
-|l_nb_app|Nombre d'appareils positionnés sur l'ouvrage.|Integer|||
+|zradouv|Côte radier, en mètres (Référentiel NGF-IGN69).|Decimal (6,3)|||
+|l_ztn|Côte du terrain naturel en mètre (Référentiel NGF IGN69).|Decimal (6,3)|||
+|l_profond|Prondeur de l'ouvrage|Decimal (6,3)||Différence entre ztn - zradouv|
+|l_acces|Ouvrage accessible (Oui/Non)|character varying (2)||lt_raepal_boolean|
+|l_nbapp|Nombre d'appareils positionnés sur l'ouvrage. Généré automatiquement lors de l'intégration des données.|Integer|||
 |idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
 
 
@@ -245,9 +244,10 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typ_reseau|
-|fnouvass|Type d'un ouvrage d'assainissement collectif|character varying (2)|Obligatoire|lt_raepal_fonc_ouv_ass|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typreseau|
+|l_typimpl|Type d'implantation de l'ouvrage d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typimpl|
+|fnouvass|Type d'un ouvrage d'assainissement collectif|character varying (2)|Obligatoire|lt_raepal_fnouvass|
 
 
 `an_raepa_ouvae` : Classe alphanumérique portant les informations génériques d'un ouvrage d'Adduction d'eau potable.
@@ -269,21 +269,20 @@ Aucune classe spécialisée concernant les canalisations.
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_type|Type de station de pompage.|character varying (2)||lt_raepal_type_stat_pomp_ass|
-|l_trai_h2s|Traitement de l'Hydrogène sulfuré (Oui/Non).|character varying (2)||lt_raepal_booleen|
-|l_troplein|Présence trop plein (Oui/Non).|character varying (2)||lt_raepal_booleen|
-|l_position|Position de la station de pompage|character varying (2)||lt_raepal_position|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_typpompa|Type de station de pompage.|character varying (2)||lt_raepal_typpompa|
+|l_traith2s|Traitement de l'Hydrogène sulfuré (Oui/Non).|character varying (2)||lt_raepal_boolean|
+|l_troplein|Présence trop plein (Oui/Non).|character varying (2)||lt_raepal_boolean|
 
 `an_raepal_step_ass` : Classe alphanumérique portant les informations génériques d'une STEP d'Assainissement collectif.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_typtrait|Type de traiment de la STEP.|character varying (2)||lt_raepal_trait_step_ass|
-|l_charge|Capacité de charge de la STEP.|character varying (2)||lt_raepal_step_charge_ass|
-|l_cap_nomi|Capacité nominale de la STEP en équivalent habitant.|Integer|||
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_typstep|Type de traiment de la STEP.|character varying (2)||lt_raepal_typstep|
+|l_charge|Capacité de charge de la STEP.|character varying (2)||lt_raepal_charge|
+|l_capnomi|Capacité nominale de la STEP en équivalent habitant.|Integer|||
 
 
 `an_raepal_bass_stock_ass` : Classe alphanumérique portant les informations génériques d'un Bassin de Stockage d'Assainissement collectif.
@@ -291,10 +290,10 @@ Aucune classe spécialisée concernant les canalisations.
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_type|Type de bassin de stockage d'Assainissement collectif.|character varying (2)||lt_raepal_typ_bass_stock_ass|
-|l_telegest|Télégestion (Oui/Non).|character varying (2)||lt_raepal_booleen|
-|l_cotesurv|Côte de la surverse, en mètres.|Decimal (5,2)|||
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_typbass|Type de bassin de stockage d'Assainissement collectif.|character varying (2)||lt_raepal_typbass|
+|l_telegest|Télégestion (Oui/Non).|character varying (2)||lt_raepal_boolean|
+|l_zsurv|Côte de la surverse, en mètres (Référentiel NGF - IGN69).|Decimal (6,3)|||
 
 `an_raepal_regard_ass` : Classe alphanumérique portant les informations génériques d'un Regard d'Assainissement collectif.
 
@@ -302,21 +301,24 @@ Aucune classe spécialisée concernant les canalisations.
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_type|lt_raepal_typ_reg_ass
-|l_borgne|
-|l_forme|lt_raepal_forme_reg_ass
+|l_typreg|Type de regard d'Assainissement collectif.|character varying (2)||lt_raepal_typreg|
+|l_visit|Regard visitable, ou non (borgne)|character varying (2)||lt_raepal_boolean|
+|l_formreg|Forme du regard d'Assainissement collectif.|character varying (2)||lt_raepal_formreg|
+|l_decant|Regard d'Assainissement collectif à décantation ou non.|character varying (2)||lt_raepal_boolean|
+|l_tampon|Regard d'Assainissement collectif avec tampon ou non.|character varying (2)||lt_raepal_boolean|
+|l_grille|Regard d'Assainissement collectif avec grille ou non.|character varying (2)||lt_raepal_boolean|
 
 `an_raepal_avaloir_ass` : Classe alphanumérique portant les informations génériques d'un Avaloir d'Assainissement collectif.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
-|l_type|Type d'avaloir.|character varying (2)||lt_raepal_typ_aval_ass|
-|l_cotevoi|Mise à côte voirie (Oui/Non)|character varying (2)||lt_raepal_booleen|
-|l_decant|Décantation (Oui/Non)|character varying (2)||lt_raepal_booleen|
-|l_dimgrill|Dimension de la grille, en cm.|Decimal (5,2)|||
-|l_modpass|Mode de passage.|character varying (2)||lt_raepal_typ_raccord_ass|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_typaval|Type d'avaloir.|character varying (2)||lt_raepal_typaval|
+|l_nivvoiri|Mise à côte voirie (Oui/Non)|character varying (2)||lt_raepal_boolean|
+|l_decant|Décantation (Oui/Non)|character varying (2)||lt_raepal_boolean|
+|l_dimgrill|Dimension de la grille, en cm.|character varying (20)|||
+|l_modpass|Mode de passage.|character varying (2)||lt_raepal_typracc|
 
 `an_raepal_stat_pomp_ae` : Classe alphanumérique portant les informations génériques d'une station de pompage d'Adduction d'eau potable.
 
@@ -649,7 +651,7 @@ Aucune liste de valeurs pour ce niveau.
 |08|Débitmètre|Appareil de mesure des débits transités|
 |99|Autre|Appareillage dont le type ne figure pas dans la liste ci-dessus|
 
-`lt_raepal_fonc_ouv_ass` : Liste décrivant le type d'ouvrage d'assainissement collectif|
+`lt_raepal_fnouvass` : Liste décrivant le type d'ouvrage d'assainissement collectif|
 |Code ARC|Code RAEPA|Valeur|Définition|
 |:---|:---|:---|:---|
 |00|00|Indéterminé|Type d'ouvrage inconnu|
@@ -664,6 +666,15 @@ Aucune liste de valeurs pour ce niveau.
 |09|99|Chambre à sable|
 |99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus|
 
+`lt_raepal_typimpl`: Liste décrivant la position de la station de pompage ou du regard d'Assainissement collectif.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Sous chaussée|
+|02|Sous trottoir|
+|03|Bas côté|
+|04|En privée|
+|99|Autre|
 
 `lt_raepal_fonc_ouv_ae` : Liste décrivant le type d'ouvrage d'Adduction d'eau potable|
 |Code ARC|Code RAEPA|Valeur|Définition|Commentaire|
@@ -690,7 +701,7 @@ Aucune liste de valeurs pour ce niveau.
 |04|Agricole|
 |99|Autre|
 
-`lt_raepal_typ_raccord_ass` : Liste décrivant le type de raccord du point de branchement d'Assainissement collectif.
+`lt_raepal_typracc` : Liste décrivant le type de raccord d'Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseigné|
@@ -708,15 +719,7 @@ Aucune liste de valeurs pour ce niveau.
 |02|Pluvial|
 |99|Autre|
 
-`lt_raepal_position`: Liste décrivant la position de la station de pompage ou du regard d'Assainissement collectif.
-|Code|Valeur|
-|:---|:---|
-|00|Non renseigné|
-|01|Sous chaussée|
-|02|Sous trottoir|
-|03|Bas côté|
-|04|En privée|
-|99|Autre|
+
 
 `lt_raepal_position_vidange` : Liste décrivant la position de l'appareillage de vidange d'Adduction d'eau potable.
 |Code|Valeur|
@@ -783,7 +786,7 @@ Aucune liste de valeurs pour ce niveau.
 
 
 
-`lt_raepal_type_stat_pomp_ass` : Liste décrivant le type de station de pompage d'assainissement collectif.
+`lt_raepal_typpompa` : Liste décrivant le type de station de pompage d'assainissement collectif.
 |Code ARC|Code RAEPA|Valeur|
 |:---|:---|:---|
 |00|00|Indéterminé|
@@ -793,7 +796,7 @@ Aucune liste de valeurs pour ce niveau.
 |04|99|Centrale sous vide|
 |99|99|Autre|
 
-`lt_raepal_step_charge_ass` : Liste décrivant la capacite de charge de la STEP d'assainissement collectif.
+`lt_raepal_charge` : Liste décrivant la capacite de charge de la STEP d'assainissement collectif.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseignée|
@@ -802,7 +805,7 @@ Aucune liste de valeurs pour ce niveau.
 |03|Forte charge|
 |99|Autre|
 
-`lt_raepal_trait_step_ass` : Liste décrivant la nature du traitement de la STEP d'assainissement collectif.
+`lt_raepal_typstep` : Liste décrivant la nature du traitement de la STEP d'assainissement collectif.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseigné|
@@ -815,7 +818,7 @@ Aucune liste de valeurs pour ce niveau.
 |07|Boues activées|
 |99|Autre|
 
-`lt_raepal_typ_bass_stock_ass`: Liste décrivant le type de Bassin de Sockage d'Assainissement collectif.
+`lt_raepal_typbass`: Liste décrivant le type de Bassin de Sockage d'Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseigné|
@@ -826,16 +829,16 @@ Aucune liste de valeurs pour ce niveau.
 |99|Autre|
 
 
-`lt_raepal_forme_reg_ass`: Liste décrivant la forme du Regard d'Assainissement collectif.
+`lt_raepal_formreg`: Liste décrivant la forme du Regard d'Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseignée|
-|01|Rond|
-|02|Carré|
+|01|Carré|
+|02|Rond|
 |99|Autre|
 
 
-`lt_raepal_typ_reg_ass` : Liste décrivant le type de Regard d'Assainissement collectif.
+`lt_raepal_typreg` : Liste décrivant le type de Regard d'Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseignée|
@@ -844,7 +847,7 @@ Aucune liste de valeurs pour ce niveau.
 |03|Boîte de branchement|
 |99|Autre|
 
-`lt_raepal_typ_aval_ass` : Liste décrivant le type d'Avaloir d'Assainissement collectif.
+`lt_raepal_typaval` : Liste décrivant le type d'Avaloir d'Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseignée|
