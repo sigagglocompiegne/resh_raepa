@@ -19,7 +19,7 @@ La première étape de ce projet est de s'orienter sur la modélisation des info
 ## Architecture de base
 Après analyses et mise en place d'un diagnostic entre les différents standards (national et locaux) ainsi que des expériences du service sur d'autres projets de réseaux, l'architecture des classes a été définie dans un premier temps afin de stocker les informations patrimoniales des réseaux.
 
-![Picto](img/logicogramme_infra_base.png)
+![Picto](img/dth)
 
 ### Cardinalités
 
@@ -29,12 +29,12 @@ Après analyses et mise en place d'un diagnostic entre les différents standards
 |an_raepal_objet_reseau|(0,1)|an_raepa_app|(1,1)|
 |an_raepal_objet_reseau|(0,1)|an_raepa_ouv|(1,1)|
 |geo_raepal_troncon|(0,1)|an_raepa_canal|(1,1)|
-|geo_raepa_noeud|(0,1)|an_raepa_app|(1,1)|
+|geo_raepa_noeud|(0,N)|an_raepa_app|(1,1)|
 |geo_raepa_noeud|(0,1)|an_raepa_ouv|(1,1)|
-|an_raepa_app|(0,1)|an_raepa_ouv|(0,1)|
 |geo_raepa_noeud|(0,1)|an_raepa_app|(1,1)|
 |an_raepa_canal|(0,1)|an_raepa_canalass|(1,1)|
 |an_raepa_canal|(0,1)|an_raepa_canalae|(1,1)|
+|an_raepa_app|(0,1)|an_raepa_ouv|(0,1)|
 |an_raepa_app|(0,1)|an_raepa_appass|(1,1)|
 |an_raepa_app|(0,1)|an_raepa_appae|(1,1)|
 |an_raepa_ouv|(0,1)|an_raepa_ouvass|(1,1)|
@@ -49,9 +49,9 @@ La base de données RAEPA s'appuie sur des référentiels préexistants constitu
 
 |SCHEMA|TABLE/VUE|DESCRIPTION|USAGE|
 |:---|:---|:---|:---|
-|A COMPLETER||| Détermine le code INSEE des objets du réseau par jointure spatiale |
-|A COMPLETER|||Détermine le domaine Privée ou Public de l'objet du réseau par rapport au référentiel cadastral |
-|A COMPLETER|||Détermine l'adresse de localisation de l'objet à partir de jointure spatiale du référentiel des voies et adresses |
+|A COMPLETER||| Détermine le code INSEE des objets du réseau par jointure spatiale. |
+|A COMPLETER|||Détermine le domaine Privée ou Public de l'objet du réseau par rapport au référentiel cadastral. |
+|A COMPLETER|||Détermine l'adresse de localisation de l'objet à partir de jointure spatiale du référentiel des voies et adresses. |
 
 # Séquences
 
@@ -61,7 +61,7 @@ De façon général, nous avons entendu la création d'une séquence pour les ob
 * raepa_id_noeud_seq : Séquence permettant de générer un numéro unique par noeud de réseau.
 * raepap_id_tronc_seq : Séquence permettant de générer un numéro unique par tronçon de réseau.
 
-En conséquence, ces choix permettent de pouvoir identifier un objet de réseau, quelque soit ce réseau, de manière unique. Nous aurions très bien pu générer une séquence par réseau ou encore par type d'objet, ou encore de manière combinée, mais cela aura pour conséquence des doublons d'identifiants dans la superclasse d'objets de réseau, évoquée ci-après.
+En conséquence, ces choix permettent de pouvoir identifier un objet de réseau, quelque soit ce réseau, de manière unique. Nous aurions très bien pu générer une séquence par réseau ou encore par type d'objet, ou encore de manière combinée, mais cela aurait pour conséquence des doublons d'identifiants dans la superclasse d'objets de réseau, évoquée ci-après.
 
 # Collecte du patrimoine
 
@@ -79,10 +79,10 @@ Au cours de notre analyse, nous avons observé un certains nombre d'anomalies du
 |materiau| Attribut déplacé à la superclasse an_raepal_objet_reseau. Extension de la liste de domaines|
 |enservice| Extension de cet attribut pour les ouvrages et appareillages. Déplacé à la superclasse an_raepal_objet_reseau.|
 |andebpose/anfinpose|Décision de la définition comme tel : Date de début (ou fin) de pose de l'objet du réseau. Choix réalisé suite à la définition différente entre une canalisation et un appareille ou ouvrage.|
-|sensecoul|Extension de l'attribut pour les canalisation d'AEP également. Attribut déplacé à la classe géométrique geo_raepal_tronc|
+|sensecoul|Extension de l'attribut pour les canalisation d'AEP également. Attribut déplacé à la classe géométrique geo_raepal_tronc.Utilisation d'une liste de domaine pour être en cohérence avec des proejts déjà réalisés par le service.|
 |longcana|Attribut renommé en "longmes".|
 |idnini/idnterm| Attributs déplacés à la classe géométrique geo_raepal_tronc.|
-|zamont/zaval|Décision de la précision de la définition. Ces attributs correspondront donc à l'altitude fil d'eau. Attributs déplacé sur an_raepa_canal pour tout type de réseau d'eau (non uniquement pour ASS).|
+|zamont/zaval|Décision de la précision de la définition. Ces attributs correspondront donc à l'altitude fil d'eau. Attributs déplacés sur an_raepa_canal pour tout type de réseau d'eau (non uniquement pour ASS).|
 |profgen|Attribut renommé pour "distgen", permettant d'être cohérent en cas de canalisation suspendue (distance et non profondeur). Attribut déplacé sur an_raepa_canal pour tout type de réseau d'eau (non uniquement pour AEP).|
 |z|Attributs renommé respectivement par "zradapp" et "zradouv" pour les ouvrages et appareillages. Précision de la définition : correspond à l'altitude radier.|
 |fnouvass| Extension de la liste de valeurs.|
@@ -90,15 +90,13 @@ Au cours de notre analyse, nous avons observé un certains nombre d'anomalies du
 
 ## Définition des classes
 
-Certains attributs présents dans la modélisation du standard national ont été déplacé dans une autre classe. Leur définition est donc adapté au circonstance (exemple attribut `enservice`)
-
 ### Niveau 0 - Superclasse Objet de Réseau
 `an_raepal_objet_reseau` : Superclasse regroupant les informations communes à tous types d'objet du réseau
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idpod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_insee|Code INSEE de la commune de localisation de l'objet du réseau.|character varying  (5)|Obligatoire||
 |l_positver|Position verticale de l'objet de réseau|character varying (2)||lt_raepal_positver|
 |materiau|Matériau du tronçon.|character varying  (2)|Obligatoire|lt_raepal_materiau
@@ -128,7 +126,7 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 |sourattrib|Auteur de la saisie des données attributaires (lorsque différent de l'auteur de la géolocalisation).|character varying  (100)|||
 
 ### Niveau 1 - Classes géométriques
-`geo_raepal_tronc` : Classe géométrique portant les informations communes d'un tronçon de réseau
+`geo_raepal_tronc` : Classe géométrique portant les informations communes d'un tronçon de réseau.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
@@ -142,9 +140,9 @@ Certains attributs présents dans la modélisation du standard national ont ét�
 
 Remarque : L'attribut "longcana" du standard RAEPA a été renommé par "longmes" pour cohérence avec l'ajout de l'attribut de la longueur calculée nommé "l_long_cal"
 De plus, en cohérence avec le choix du type Entier du modèle RAEPA, la longueur calculée sera du même type, soit Entier.
-L'attribut idcanppal n'est pas conservé, en raison de son usage douteux (Qui est la canalisation principal lors d'un branchement sécant sur une canalisation ?)
+L'attribut idcanppal n'est pas conservé, en raison de son usage douteux (Qui est la canalisation principale lors d'un branchement sécant sur une canalisation ?)
 
-`geo_raepa_noeud` : Classe géométrique portant les informations communes d'un noeud de réseau
+`geo_raepa_noeud` : Classe géométrique portant les informations communes d'un noeud de réseau.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
@@ -164,23 +162,22 @@ Remarque : Les attributs idcanamont, idcanaval et idcanppal ne sont pas conserv�
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|l_formcana|Forme (Section) de la canalisation d'Assainissement collectif.|character varying (2)||lt_raepal_forme_canal_ass|
+|l_formcana|Forme (Section) de la canalisation d'Assainissement collectif.|character varying (2)||lt_raepal_form_canal_ass|
 |l_dim|Dimensions de la canalisation lorsque forme non circulaire, en mètres (longueur x largeur).|character varying (20)|||
-|l_aerien|Définit si la canalisation est aerienne ou enterré|character varying  (2)||lt_raepal_boolean|
 |diametre|Diamètre nominal de la canalisation (en millimètres)|Interger|Obligatoire||
 |l_protext|Protection extérieur potentiellement associé à la canalisation|character varying  (2)||lt_raepal_typprot|
 |l_protint|Type de protection interne de la canalisation d'assainissement collectif.|character varying (2)||lt_raepal_typrot|
 |modecirc|Mode de circulation de l'eau à l'intérieur de la canalisation|character varying  (2)|Obligatoire|lt_raepa_modecirc|
-|l_ztn|Côte du terrain naturel en mètre (Référentiel NGF IGN69).|Decimal (5,2)|||
-|l_zgen|Côte de la génératrice supérieure en mètre (ou inférieure dans le cas de canalisations aériennes) (Référentiel NGF IGN69).|Decimal (5,2)|||
+|l_ztn|Côte du terrain naturel en mètre (Référentiel NGF IGN69).|Decimal (6,3)|||
+|l_zgen|Côte de la génératrice supérieure en mètre (ou inférieure dans le cas de canalisations aériennes) (Référentiel NGF IGN69).|Decimal (6,3)|||
 |zamont|Altitude fil eau à l'extrémité amont (en mètres, Référentiel NGFIGN69).|Decimal (6,3)|||
 |zaval|Altitude fil eau à l'extrémité aval (en mètres, Référentiel NGF-IGN69).|Decimal (6,3)|||
 |l_pente|Pente, exprimée en %.|Decimal (3,1)|||
 |l_penter|Contre pente, exprimée en %.|Decimal (3,1)|||
-|distgen|Distance moyenne de la génératrice de la canalisation|Decimal (3,2)|||
+|distgen|Distance moyenne de la génératrice de la canalisation|Decimal (6,3)|||
 |branchmnt|Tronçon de branchement individuel : O Tronçon de transport ou de distribution : N.|character varying  (1)|Obligatoire|O,N|
 |nbranche|Nombre de branchements individuels sur la canalisation.|Integer|||
-|l_autpass|Définit s'il y a une autorisation de passage de la canalisation||lt_raepal_boolean|
+|l_autpass|Définit s'il y a une autorisation de passage de la canalisation|character varying (1)|lt_raepal_boolean|
 |idtronc|Identifiant unique du tronçon d'un réseau.|Bigint|Foreign Key, Obligatoire||
 
 Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisations. Il sera demandé en extension locale pour le réseau d'Adduction d'Eau Potable.
@@ -192,10 +189,11 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_nom|Nom de l'ouvrage.|character varying (254)|||
+|l_typimpl|Type d'implantation de l'ouvrage.|character varying (2)|Obligatoire|lt_raepa_typimpl|
 |zradouv|Côte radier, en mètres (Référentiel NGF-IGN69).|Decimal (6,3)|||
 |l_ztn|Côte du terrain naturel en mètre (Référentiel NGF IGN69).|Decimal (6,3)|||
 |l_profond|Prondeur de l'ouvrage|Decimal (6,3)||Différence entre ztn - zradouv|
-|l_acces|Ouvrage accessible (Oui/Non)|character varying (2)||lt_raepal_boolean|
+|l_acces|Ouvrage accessible (Oui/Non)|character varying (1)||lt_raepal_boolean|
 |l_nbapp|Nombre d'appareils positionnés sur l'ouvrage. Généré automatiquement lors de l'intégration des données.|Integer|||
 |idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
 
@@ -205,10 +203,10 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |diametre|Diamètre nominal de l'appareillage (en millimètres).|Integer|Obligatoire||
-|l_acces|Définit si l'appareillage d'assainissement collectif est accessible ou non.|character varying (2)||lt_raepal_boolean|
-|z|Altitude (en mètres, référentiel NGF-IGN69).|Decimal (6,3)|||
+|l_acces|Définit si l'appareillage d'assainissement collectif est accessible ou non.|character varying (1)||lt_raepal_boolean|
+|zradapp|Altitude (en mètres, référentiel NGF-IGN69).|Decimal (6,3)|||
 |idouvrage|Identifiant de l'ouvrage dans lequel se situe l'appareil.|Bigint|Foreign Key||
 |idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
 
@@ -234,7 +232,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |contcanaep|Catégorie de la canalisation d'adduction d'eau potable|character varying (2)|Obligatoire|lt_raepa_contcanaep|
 |fonccanaep|Fonction de la canalisation d'adduction d'eau potable|character varying (2)|Obligatoire|lt_raepa_fonccanaep|
 |l_pression|Pression moyenne dans la canalisation, en bars.|Decimal (6,3)|||
-|l_protcath|Existence d'une protection cathodique.|character varying (2)||lt_raepal_booleen|
+|l_protcath|Existence d'une protection cathodique.|character varying (1)||lt_raepal_booleen|
 |l_indperte|Indice linéaire de perte, en m3/km/j|Decimal (6,2)|||
 
 
@@ -245,7 +243,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typreseau|
-|fnappass|Types d'un appareillage d'assainissement collectif.|Obligatoire||lt_raepal_fnappass|
+|fnappass|Types d'un appareillage d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepal_fnappass|
 
 
 `an_raepa_appae` : Classe alphanumérique portant les informations génériques d'une appareillage d'Adduction d'eau potable.
@@ -264,7 +262,6 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typreseau|
-|l_typimpl|Type d'implantation de l'ouvrage d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typimpl|
 |fnouvass|Type d'un ouvrage d'assainissement collectif|character varying (2)|Obligatoire|lt_raepal_fnouvass|
 
 
@@ -279,14 +276,14 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 ### Niveau 4 - Classes spécialisées d'objets de réseau
 
 #### Canalisation
-`an_raepal_pt_brcht_ass` : Classe alphanumérique portant les informations génériques d'un point de branchement de réseau d'Assainissement collectif.
+`an_raepal_brcht_ass` : Classe alphanumérique portant les informations génériques d'une canalisation de branchement de réseau d'Assainissement collectif.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_typracc|Type de raccord de branchement|character varying (2)||lt_raepal_typracc|
-|l_conform|Définit si le branchement d'Assainissement collectif est conforme.|character varying (2)||lt_raepal_boolean|
+|l_conform|Définit si le branchement d'Assainissement collectif est conforme.|character varying (1)||lt_raepal_boolean|
 
 
 #### Ouvrages
@@ -297,8 +294,8 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_typpompa|Type de station de pompage.|character varying (2)||lt_raepal_typpompa|
-|l_traith2s|Traitement de l'Hydrogène sulfuré (Oui/Non).|character varying (2)||lt_raepal_boolean|
-|l_troplein|Présence trop plein (Oui/Non).|character varying (2)||lt_raepal_boolean|
+|l_traith2s|Traitement de l'Hydrogène sulfuré (Oui/Non).|character varying (1)||lt_raepal_boolean|
+|l_troplein|Présence trop plein (Oui/Non).|character varying (1)||lt_raepal_boolean|
 
 `an_raepal_step_ass` : Classe alphanumérique portant les informations génériques d'une STEP d'Assainissement collectif.
 
@@ -318,7 +315,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_typbass|Type de bassin de stockage d'Assainissement collectif.|character varying (2)||lt_raepal_typbass|
-|l_telegest|Télégestion (Oui/Non).|character varying (2)||lt_raepal_boolean|
+|l_telegest|Télégestion (Oui/Non).|character varying (1)||lt_raepal_boolean|
 |l_zsurv|Côte de la surverse, en mètres (Référentiel NGF - IGN69).|Decimal (6,3)|||
 
 `an_raepal_regard_ass` : Classe alphanumérique portant les informations génériques d'un Regard d'Assainissement collectif.
@@ -326,7 +323,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_typreg|Type de regard d'Assainissement collectif.|character varying (2)||lt_raepal_typreg|
 |l_visit|Regard visitable, ou non (borgne)|character varying (2)||lt_raepal_boolean|
 |l_formreg|Forme du regard d'Assainissement collectif.|character varying (2)||lt_raepal_formreg|
@@ -342,8 +339,8 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_typaval|Type d'avaloir.|character varying (2)||lt_raepal_typaval|
-|l_nivvoiri|Mise à côte voirie (Oui/Non)|character varying (2)||lt_raepal_boolean|
-|l_decant|Décantation (Oui/Non)|character varying (2)||lt_raepal_boolean|
+|l_nivvoiri|Mise à côte voirie (Oui/Non)|character varying (1)||lt_raepal_boolean|
+|l_decant|Décantation (Oui/Non)|character varying (1)||lt_raepal_boolean|
 |l_dimgrill|Dimension de la grille, en cm.|character varying (20)|||
 |l_modpass|Mode de passage.|character varying (2)||lt_raepal_typracc|
 
@@ -376,7 +373,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_typres|Type de réservoir d'Adduction d'eau potable.|character varying (2)||lt_raepal_typres|
 |l_volume|Volume du réservoir en m3.|Integer|||
-|l_ztp|Côte NGF du trop plein, en mètres.|Decimal (5,2)|||
+|l_ztp|Côte NGF du trop plein, en mètres.|Decimal (6,3)|||
 |l_nbcuve|Nombre de cuves|Integer|||
 
 `an_raepal_captage_ae` : Classe alphanumérique portant les informations génériques d'un Captage d'Adduction d'eau potable.
@@ -386,7 +383,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_typcapt|Type de captage d'Adduction d'eau potable.|character varying (2)||lt_raepal_typcapt|
-|l_idbss|Identifiant du point d'eau (Code BSS)|character varying (100)|||
+|l_idbss|Identifiant du point d'eau (Code BSS)|character varying (254)|||
 |l_debh|Débit nominal en m3/h.|Integer|||
 |l_debj|Débit nominal en m3/jour.|Integer|||
 |l_deba|Débit nominal en m3/an.|Integer|||
@@ -398,6 +395,15 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_dim|Dimension de la chambre (longueur x largeur), en mètre.|character varying (20)|||
+
+`an_raepal_citerneau_ae` : Classe alphanumérique portant les informations génériques d'un citerneau.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_nbcompt|Nombre de compteur présent|Integer|||
+|l_typusage|Type d'usager|character varying (2)||lt_raepal_typusage_ae|
 
 -----------------------------
 
@@ -446,7 +452,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |l_anetal|Année étalonnage compteur|character varying (4)|||
 
 ### Niveau 5 - Classes sous-spécialisées d'objets de réseau
-`an_raepal_reg_bt_brchmt_ass` : Classe alphanumérique portant les informations génériques d'un regard de boîte de branchement.
+`an_raepal_reg_bt_brchmt_ass` : Classe alphanumérique portant les informations génériques d'un regard de boîte de branchement d'assainissement collectif.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
@@ -462,24 +468,17 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_nbcompt|Nombre de compteur présent|Integer|||
 
-`an_raepal_citerneau_ae` : Classe alphanumérique portant les informations génériques d'un citerneau.
 
-|Nom attribut|Définition|Type|Contrainte|Valeurs|
-|:---|:---|:---|:---|:---|
-|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|l_nbcompt|Nombre de compteur présent|Integer|||
-|l_typusage|Type d'usager|character varying (2)||lt_raepal_typusage_ae|
 
 ## Définition des listes de domaines
 ### Niveau 0
 `lt_raepal_positver` : Position verticale de l'objet du réseau.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminée|
 |01|Surface|
-|02|Suspendu|
-|03|Enterré|
+|02|Suspendue|
+|03|Enterrée|
 
 
 
@@ -502,7 +501,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |Code|Valeur|Définition|
 |:---|:---|:---|
 |00|Indéterminée|Information ou qualité de l'information inconnue|
-|01|Certaines|Année constatée durant les travaux de pose|
+|01|Certaine|Année constatée durant les travaux de pose|
 |02|Récolement|Année reprise sur plans de récolement|
 |03|Projet|Année reprise sur plans de projet|
 |04|Mémoire|Année issue de souvenir(s) individuel(s)|
@@ -512,11 +511,9 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |Code|Valeur|
 |:---|:---|
 |00|Indéterminée|
-|01|Très mauvais état|
-|02|Mauvais état|
-|03|Bon état|
-|04|Très bon état|
-|05|Etat neuf|
+|01|Bon|
+|02|Moyen|
+|03|Mauvais|
 |99|Autre|
 
 
@@ -582,11 +579,18 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 
 ### Niveau 1
 
-Aucune liste de valeurs pour ce niveau.
+`lt_raepal_sensecoul` : Liste décrivant le sens d'écoulement.
+|Code|Valeur|
+|:---|:---|
+|0|Indéterminée|
+|d|Direct|
+|i|Inverse|
+
+
 
 ### Niveau 2
 
-`lt_raepal_formecana` : Liste décrivant la forme de la canalisation.
+`lt_raepal_formcana` : Liste décrivant la forme de la canalisation.
 |Code|Valeur|
 |:---|:---|
 |00|Indéterminée|
@@ -606,7 +610,7 @@ Aucune liste de valeurs pour ce niveau.
 |05|Polyéthylène|
 |06|Polypropylène|
 |07|Zinc|
-|08|Alliage Zinc alluminium|
+|08|Alliage Zinc aluminium|
 |09|Alliage Zinc cuivré|
 |99|Autre|
 
@@ -625,7 +629,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepa_typreseau` : Liste décrivant le type de réseau d'assainissement collectif.
 |Code|Valeur|Définition|
 |:---|:---|:---|
-|01|Pluvial|Réseau de collecte de seules eaux pluviales|
+|01|Eaux Pluviales|Réseau de collecte de seules eaux pluviales|
 |02|Eaux usées|Réseau de collecte de seules eaux usées|
 |03|Unitaire|Réseau de collecte des eaux usées et des eaux pluviales|
 
@@ -677,7 +681,6 @@ Aucune liste de valeurs pour ce niveau.
 |04-99|99|Autre point métrologique|Point métrologique autre que la liste énumérée|
 |06-00|99|Batardeau|Batardeau|
 |07-00|99|Chasse|Chasse|
-|08-00|99|Exutoire eaux pluviales|Exutoire eaux pluviales|
 |99-99|99|Autre|Appareillage dont le type ne figure pas dans la liste ci-dessus|
 
 `lt_raepa_fnappaep` : Liste décrivant le type d'un appareillage d'adduction d'eau|
@@ -703,8 +706,8 @@ Aucune liste de valeurs pour ce niveau.
 |03-00|03|Bassin de stockage|Ouvrage de stockage d'eaux usées et/ou pluviales|
 |04-00|04|Déversoir d'orage|Ouvrage de décharge du trop-plein d'effluents d'une canalisation d'assainissement collectif vers un milieu naturel récepteur|
 |05-00|05|Rejet|Rejet (exutoire) dans le milieu naturel d'eaux usées ou pluviales|
-|05-01|99|Rejet d'eau pluviale|
-|05-02|99|Rejet d'eau usées|
+|05-01|99|Rejet eaux pluviales|
+|05-02|99|Rejet eaux usées|
 |05-99|99|Rejet Autre|
 |06-00|06|Regard|Regard|
 |07-00|07|Avaloir|Avaloir|
@@ -712,7 +715,7 @@ Aucune liste de valeurs pour ce niveau.
 |09-00|99|Chambre à sable|
 |99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus|
 
-`lt_raepal_typimpl`: Liste décrivant la position de la station de pompage ou du regard d'Assainissement collectif.
+`lt_raepal_typimpl`: Liste décrivant le type d'implantation de l'ouvrage.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseigné|
@@ -731,6 +734,7 @@ Aucune liste de valeurs pour ce niveau.
 |03-00|03|Réservoir|Réservoir d'eau potable||
 |04-00|04|Déversoir d'orage||
 |05-00|05|Rejet|Rejet (exutoire) dans le milieu naturel d'eaux usées ou pluviales||
+|06-00|99|Chambre|Chambre||
 |06-01|06|Chambre de comptage|Chambre de comptage|Valeur conservée car présente dans le standard, mais c'est un ouvrage où est associé des appareillages de type chambre. Nous traiterons par la valeur "Chambre".|
 |07-00|07|Captage|Captage||
 |99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus||
@@ -798,7 +802,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_etatvan` : Liste décrivant la position de la vanne d'Adduction d'eau potable.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Ouverte|
 |02|Fermée|
 |99|Autre|
@@ -833,7 +837,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_typcompt` : Liste décrivant le type de compteur d'Adduction d'eau potable.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Compteur volume|
 |02|Electromagnétique|
 |03|Ultrasons|
@@ -854,7 +858,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_charge` : Liste décrivant la capacite de charge de la STEP d'assainissement collectif.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseignée|
+|00|Indéterminée|
 |01|Faible charge|
 |02|Moyenne charge|
 |03|Forte charge|
@@ -863,7 +867,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_typstep` : Liste décrivant la nature du traitement de la STEP d'assainissement collectif.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Lits bactériens|
 |02|Filtres biologiques|
 |03|Disques biologiques|
@@ -876,7 +880,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_typbass`: Liste décrivant le type de Bassin de Sockage d'Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Bassin tampon|
 |02|Bassin d'orage|
 |03|Bassin de rétention|
@@ -887,7 +891,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_formreg`: Liste décrivant la forme du Regard d'Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseignée|
+|00|Indéterminée|
 |01|Carré|
 |02|Rond|
 |99|Autre|
@@ -896,7 +900,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_typreg` : Liste décrivant le type de Regard d'Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseignée|
+|00|Indéterminé|
 |01|Visite|
 |02|Bâche|
 |03|Boîte de branchement|
@@ -905,7 +909,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_typaval` : Liste décrivant le type d'Avaloir d'Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseignée|
+|00|Indéterminé|
 |01|Avaloir Simple|
 |02|Avaloir à grille|
 |03|Grille Avaloir|
@@ -915,7 +919,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_typpompe` : Liste décrivant le type de station de pompage d'Adduction d'eau potable.
 |Code RAEPA|Valeur|
 |:---|:---|
-|00|Non renseignée|
+|00|Indéterminé|
 |01|Surpression|
 |02|Reprise|
 |03|Accélérateur|
@@ -924,7 +928,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_typtrait` : Liste décrivant le type de traitement de la station de traitement d'Adduction d'eau potable.
 |Code RAEPA|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Javel liquide|
 |02|Chlore gazeux|
 |03|Charbon actif|
@@ -934,7 +938,7 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_typres` : Liste décrivant le type de réservoir d'Adduction d'eau potable.
 |Code RAEPA|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Semi enterré|
 |02|Bâche|
 |03|Sur tour|
@@ -943,8 +947,8 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_typcapt` : Liste décrivant le type de Captage d'Adduction d'eau potable.
 |Code RAEPA|Valeur|
 |:---|:---|
-|00|Non renseigné|
-|01|Captage source|
+|00|Indéterminé|
+|01|Source|
 |02|Puit, Forage|
 |99|Autre|
 
