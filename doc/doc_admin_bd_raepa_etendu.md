@@ -180,7 +180,7 @@ Remarque : Les attributs idcanamont, idcanaval et idcanppal ne sont pas conserv�
 |distgen|Distance moyenne de la génératrice de la canalisation|Decimal (3,2)|||
 |branchmnt|Tronçon de branchement individuel : O Tronçon de transport ou de distribution : N.|character varying  (1)|Obligatoire|O,N|
 |nbranche|Nombre de branchements individuels sur la canalisation.|Integer|||
-|l_autpass|Définit s'il existe un droit de servitude ou non|character varying (2)||lt_raepal_boolean|
+|l_autpass|Définit s'il y a une autorisation de passage de la canalisation||lt_raepal_boolean|
 |idtronc|Identifiant unique du tronçon d'un réseau.|Bigint|Foreign Key, Obligatoire||
 
 Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisations. Il sera demandé en extension locale pour le réseau d'Adduction d'Eau Potable.
@@ -207,6 +207,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprest|Identifiant du prestataire de l'objet|character varying  (254).|Obligatoire||
 |diametre|Diamètre nominal de l'appareillage (en millimètres).|Integer|Obligatoire||
+|l_acces|Définit si l'appareillage d'assainissement collectif est accessible ou non.|character varying (2)||lt_raepal_boolean|
 |z|Altitude (en mètres, référentiel NGF-IGN69).|Decimal (6,3)|||
 |idouvrage|Identifiant de l'ouvrage dans lequel se situe l'appareil.|Bigint|Foreign Key||
 |idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
@@ -234,7 +235,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |fonccanaep|Fonction de la canalisation d'adduction d'eau potable|character varying (2)|Obligatoire|lt_raepa_fonccanaep|
 |l_pression|Pression moyenne dans la canalisation, en bars.|Decimal (6,3)|||
 |l_protcath|Existence d'une protection cathodique.|character varying (2)||lt_raepal_booleen|
-|l_indperte|Indice linéaire de perte|?|||
+|l_indperte|Indice linéaire de perte, en m3/km/j|Decimal (6,2)|||
 
 
 `an_raepa_appass` : Classe alphanumérique portant les informations génériques d'un appareillage d'Assainissement collectif.
@@ -245,8 +246,6 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typreseau|
 |fnappass|Types d'un appareillage d'assainissement collectif.|Obligatoire||lt_raepal_fnappass|
-|l_acces|Définit si l'appareillage d'assainissement collectif est accessible ou non.|character varying (2)||lt_raepal_boolean|
-|l_autpass|Définit si il y a servitude ou non.|character varying (2)||lt_raepal_boolean|
 
 
 `an_raepa_appae` : Classe alphanumérique portant les informations génériques d'une appareillage d'Adduction d'eau potable.
@@ -280,7 +279,15 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 ### Niveau 4 - Classes spécialisées d'objets de réseau
 
 #### Canalisation
-Aucune classe spécialisée concernant les canalisations.
+`an_raepal_pt_brcht_ass` : Classe alphanumérique portant les informations génériques d'un point de branchement de réseau d'Assainissement collectif.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_typracc|Type de raccord de branchement|character varying (2)||lt_raepal_typracc|
+|l_conform|Définit si le branchement d'Assainissement collectif est conforme.|character varying (2)||lt_raepal_boolean|
+
 
 #### Ouvrages
 `an_raepal_stat_pomp_ass` : Classe alphanumérique portant les informations génériques d'une station de pompage d'Assainissement collectif.
@@ -326,6 +333,7 @@ Aucune classe spécialisée concernant les canalisations.
 |l_decant|Regard d'Assainissement collectif à décantation ou non.|character varying (2)||lt_raepal_boolean|
 |l_tampon|Regard d'Assainissement collectif avec tampon ou non.|character varying (2)||lt_raepal_boolean|
 |l_grille|Regard d'Assainissement collectif avec grille ou non.|character varying (2)||lt_raepal_boolean|
+|l_dimgrill|Dimension de la grille, en cm.|character varying (20)|||
 
 `an_raepal_avaloir_ass` : Classe alphanumérique portant les informations génériques d'un Avaloir d'Assainissement collectif.
 
@@ -394,25 +402,6 @@ Aucune classe spécialisée concernant les canalisations.
 -----------------------------
 
 #### Appareillages
-`an_raepal_pt_brcht_ass` : Classe alphanumérique portant les informations génériques d'un point de branchement de réseau d'Assainissement collectif.
-
-|Nom attribut|Définition|Type|Contrainte|Valeurs|
-|:---|:---|:---|:---|:---|
-|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|l_typracc|Type de raccord de branchement|character varying (2)||lt_raepal_typracc|
-|l_boitbrt|Présence d'une boîte de branchement|character varynig (2)||lt_raepal_boolean|
-|l_typusager|Type d'usager relié au point de branchement d'Assainissement collectif|character varying (2)||lt_raepal_typusager|
-|l_conform|Définit si le branchement d'Assainissement collectif est conforme.|character varying (2)||lt_raepal_boolean|
-
-`an_raepal_pt_brcht_ae` : Classe alphanumérique portant les informations génériques d'un point de branchement de réseau d'Adduction d'eau potable.
-
-|Nom attribut|Définition|Type|Contrainte|Valeurs|
-|:---|:---|:---|:---|:---|
-|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
-|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|l_typusager|Type d'usager relié au point de branchement d'Assainissement collectif|character varying (2)||lt_raepal_typusager|
-|l_nbcompt|Nombre de compteur sur le point de branchement d'Adduction d'eau potable.|Integer|||
 
 `an_raepal_vidange_ae` : Classe alphanumérique portant les informations génériques d'un appareillage d'Adduction d'eau potable de type vidange.
 
@@ -453,9 +442,34 @@ Aucune classe spécialisée concernant les canalisations.
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_typcompt|Type de compteur.|character varying (2)||lt_raepal_typcompt|
 |l_foncompt|Fonction du compteur|character varying (2)||lt_raepal_foncompt|
-|l_diametre|Diamètre nominal du compteur, UNITE ?|TYPE?||
+|l_diametre|Diamètre nominal du compteur, en millimètres|Integer||
 |l_anetal|Année étalonnage compteur|character varying (4)|||
 
+### Niveau 5 - Classes sous-spécialisées d'objets de réseau
+`an_raepal_reg_bt_brchmt_ass` : Classe alphanumérique portant les informations génériques d'un regard de boîte de branchement.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_typusage|Type d'usager|character varying (2)||lt_raepal_typusage_ass|
+
+`an_raepal_chambr_compt_ae` : Classe alphanumérique portant les informations génériques d'une chambre de comptage.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_nbcompt|Nombre de compteur présent|Integer|||
+
+`an_raepal_citerneau_ae` : Classe alphanumérique portant les informations génériques d'un citerneau.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_nbcompt|Nombre de compteur présent|Integer|||
+|l_typusage|Type d'usager|character varying (2)||lt_raepal_typusage_ae|
 
 ## Définition des listes de domaines
 ### Niveau 0
@@ -592,6 +606,8 @@ Aucune liste de valeurs pour ce niveau.
 |05|Polyéthylène|
 |06|Polypropylène|
 |07|Zinc|
+|08|Alliage Zinc alluminium|
+|09|Alliage Zinc cuivré|
 |99|Autre|
 
 
@@ -652,16 +668,17 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_fnappass` : Liste décrivant le type d'un appareillage d'assainissement collectif.
 |Code ARC|Code RAEPA|Valeur|Définition|
 |:---|:---|:---|:---|
-|00|00|Indéterminé|Type d'appareillage inconnu|
-|01|01|Point de branchement|Piquage de branchement individuel|
-|02|02|Ventouse|Ventouse d'assainissement|
-|03|03|Vanne|Vanne d'assainissement|
-|04|04|Débitmètre|Appareil de mesure des débits transités|
-|05|99|Point métrologique|Point métrologique|
-|06|99|Batardeau|Batardeau|
-|07|99|Chasse|Chasse|
-|08|99|Exutoire eaux pluviales|Exutoire eaux pluviales|
-|99|99|Autre|Appareillage dont le type ne figure pas dans la liste ci-dessus|
+|00-00|00|Indéterminé|Type d'appareillage inconnu|
+|01-00|01|Point de branchement|Piquage de branchement individuel|
+|02-00|02|Ventouse|Ventouse d'assainissement|
+|03-00|03|Vanne|Vanne d'assainissement|
+|04-00|99|Point métrologique|Point métrologique|
+|04-01|04|Débitmètre|Appareil de mesure des débits transités|
+|04-99|99|Autre point métrologique|Point métrologique autre que la liste énumérée|
+|06-00|99|Batardeau|Batardeau|
+|07-00|99|Chasse|Chasse|
+|08-00|99|Exutoire eaux pluviales|Exutoire eaux pluviales|
+|99-99|99|Autre|Appareillage dont le type ne figure pas dans la liste ci-dessus|
 
 `lt_raepa_fnappaep` : Liste décrivant le type d'un appareillage d'adduction d'eau|
 |Code|Valeur|Définition|
@@ -680,17 +697,20 @@ Aucune liste de valeurs pour ce niveau.
 `lt_raepal_fnouvass` : Liste décrivant le type d'ouvrage d'assainissement collectif|
 |Code ARC|Code RAEPA|Valeur|Définition|
 |:---|:---|:---|:---|
-|00|00|Indéterminé|Type d'ouvrage inconnu|
-|01|01|Station de pompage|Station de pompage d'eaux usées et/ou pluviales|
-|02|02|Station d'épuration|Station de traitement d'eaux usées|
-|03|03|Bassin de stockage|Ouvrage de stockage d'eaux usées et/ou pluviales|
-|04|04|Déversoir d'orage|Ouvrage de décharge du trop-plein d'effluents d'une canalisation d'assainissement collectif vers un milieu naturel récepteur|
-|05|05|Rejet|Rejet (exutoire) dans le milieu naturel d'eaux usées ou pluviales|
-|06|06|Regard|Regard|
-|07|07|Avaloir|Avaloir|
-|08|99|Station sous-vide|
-|09|99|Chambre à sable|
-|99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus|
+|00-00|00|Indéterminé|Type d'ouvrage inconnu|
+|01-00|01|Station de pompage|Station de pompage d'eaux usées et/ou pluviales|
+|02-00|02|Station d'épuration|Station de traitement d'eaux usées|
+|03-00|03|Bassin de stockage|Ouvrage de stockage d'eaux usées et/ou pluviales|
+|04-00|04|Déversoir d'orage|Ouvrage de décharge du trop-plein d'effluents d'une canalisation d'assainissement collectif vers un milieu naturel récepteur|
+|05-00|05|Rejet|Rejet (exutoire) dans le milieu naturel d'eaux usées ou pluviales|
+|05-01|99|Rejet d'eau pluviale|
+|05-02|99|Rejet d'eau usées|
+|05-99|99|Rejet Autre|
+|06-00|06|Regard|Regard|
+|07-00|07|Avaloir|Avaloir|
+|08-00|99|Station sous-vide|
+|09-00|99|Chambre à sable|
+|99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus|
 
 `lt_raepal_typimpl`: Liste décrivant la position de la station de pompage ou du regard d'Assainissement collectif.
 |Code|Valeur|
@@ -717,13 +737,21 @@ Aucune liste de valeurs pour ce niveau.
 
 ### Niveau 4
 
-`lt_raepal_typusager` : Liste décrivant le type d'usager raccordé à l'appareillage de point de branchement d'Assainissement collectif.
+`lt_raepal_typusage_ass` : Liste décrivant le type d'usager raccordé à l'appareillage de point de branchement d'Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseigné|
 |01|Domestique|
-|02|Industriel|
-|03|Collectif|
+|02|Assimilé domestique|
+|03|Industriel|
+|99|Autre|
+
+`lt_raepal_typusage_ae` : Liste décrivant le type d'usager raccordé à l'appareillage de point de branchement d'Eau potable.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Domestique|
+|03|Industriel|
 |04|Agricole|
 |99|Autre|
 
@@ -799,6 +827,7 @@ Aucune liste de valeurs pour ce niveau.
 |01|Achat|
 |02|Vente|
 |03|Sectorisation|
+|04|Achat/Vente|
 |99|Autre
 
 `lt_raepal_typcompt` : Liste décrivant le type de compteur d'Adduction d'eau potable.
@@ -877,9 +906,10 @@ Aucune liste de valeurs pour ce niveau.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseignée|
-|01|Simple|
-|02|A grille|
-|03|Tampon|
+|01|Avaloir Simple|
+|02|Avaloir à grille|
+|03|Grille Avaloir|
+|04|Avaloir Tampon|
 |99|Autre|
 
 `lt_raepal_typpompe` : Liste décrivant le type de station de pompage d'Adduction d'eau potable.
