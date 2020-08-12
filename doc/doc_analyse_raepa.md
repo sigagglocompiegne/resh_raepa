@@ -24,17 +24,17 @@
 
 #### Canalisation
 
--idCanalisation nommé idcana dans la partie C.
--diametreNominal nommé diametre dans la partie C.
--anPoseSup nommé anfinpose dans la partie C.
--anPoseInf nommé andebpose dans la partie C.
--exploitant nommé gexploit dans la partie C.
--maitreOuvrage nommé mouvrage dans la partie C et définition différente.
--branchement nommé branchmt dans la partie C.
--modeCirculation nommé modecirc dans la partie C.
--longueur nommé longcana dans la partie C.
--manque attribut nbranche qui est présent partie C.
--Type booléen pour enservice et branchement alors que character varying (1) partie C.
+- idCanalisation nommé idcana dans la partie C.
+- diametreNominal nommé diametre dans la partie C.
+- anPoseSup nommé anfinpose dans la partie C.
+- anPoseInf nommé andebpose dans la partie C.
+- exploitant nommé gexploit dans la partie C.
+- maitreOuvrage nommé mouvrage dans la partie C et définition différente.
+- branchement nommé branchmt dans la partie C.
+- modeCirculation nommé modecirc dans la partie C.
+- longueur nommé longcana dans la partie C.
+- manque attribut nbranche qui est présent partie C.
+- Type booléen pour enservice et branchement alors que character varying (1) partie C.
 - Précision de la longueur de canalisation en décimal, alors que de type entier dans la partie C.
 
 
