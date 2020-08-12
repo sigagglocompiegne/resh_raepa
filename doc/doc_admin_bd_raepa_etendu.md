@@ -848,14 +848,14 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 
 
 `lt_raepal_typpompa` : Liste décrivant le type de station de pompage d'assainissement collectif.
-|Code ARC|Code RAEPA|Valeur|
-|:---|:---|:---|
-|00|00|Indéterminé|
-|01|01|Poste de Refoulement|
-|02|02|Poste de Relèvement|
-|03|03|Poste Aspiration|
-|04|99|Centrale sous vide|
-|99|99|Autre|
+|Code|Valeur|
+|:---|:---|
+|00|Indéterminé|
+|01|Poste de Refoulement|
+|02|Poste de Relèvement|
+|03|Poste Aspiration|
+|04|Centrale sous vide|
+|99|Autre|
 
 `lt_raepal_charge` : Liste décrivant la capacite de charge de la STEP d'assainissement collectif.
 |Code|Valeur|
