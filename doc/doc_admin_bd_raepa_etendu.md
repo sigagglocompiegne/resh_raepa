@@ -741,7 +741,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 
 ### Niveau 4
 
-`lt_raepal_typusage_ass` : Liste décrivant le type d'usager raccordé à l'appareillage de point de branchement d'Assainissement collectif.
+`lt_raepal_typusage_ass` : Liste décrivant le type d''usager raccordé au regard de boîte de branchement d''Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseigné|
@@ -750,7 +750,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |03|Industriel|
 |99|Autre|
 
-`lt_raepal_typusage_ae` : Liste décrivant le type d'usager raccordé à l'appareillage de point de branchement d'Eau potable.
+`lt_raepal_typusage_ae` : Liste décrivant le type d'usager raccordé au citerneau d'Adduction d'eau potable.
 |Code|Valeur|
 |:---|:---|
 |00|Non renseigné|
