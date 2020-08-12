@@ -10,6 +10,8 @@
 
 - Aucune spécification au niveau le plus fin. Pas de classes de regard, ou de STEP par exemple, avec des informations propres au type d'objet. Exemple : capacité équivalent habitant dans le cas d'une STEP (ouvrage).
 - Domaine des matériaux : liste non pertinente qui ne gère pas les types de matériaux génériques. Exemple : un béton sera codé 99 comme un fibre. Nous perderons donc la valeur de l'information alors que nous l'avions initialement. Nécessite de revoir cette liste, probablement avec un double code (10 béton, 11 béton armé, 12 béton fibré, etc.)
+- Définitions non identiques avec la partie C.
+- propMD nommé autattrib dans le MCD et dans la Partie C, mais pas dans la définition des attributs partie B.
 
 #### Classe de noeud
 
