@@ -624,6 +624,16 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |03|Sous-vide|L'eau circule par l'effet de la mise sous vide de la canalisation par une centrale d'aspiration|
 |99|Autre|L'eau circule tantôt dans un des modes ci-dessus tantôt dans un autre|
 
+`lt_raepal_typimpl`: Liste décrivant le type d'implantation de l'ouvrage.
+|Code|Valeur|
+|:---|:---|
+|00|Non renseigné|
+|01|Sous chaussée|
+|02|Sous trottoir|
+|03|Bas côté|
+|04|En privée|
+|99|Autre|
+
 ### Niveau 3
 
 `lt_raepa_typreseau` : Liste décrivant le type de réseau d'assainissement collectif.
@@ -714,16 +724,6 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |08-00|99|Station sous-vide|
 |09-00|99|Chambre à sable|
 |99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus|
-
-`lt_raepal_typimpl`: Liste décrivant le type d'implantation de l'ouvrage.
-|Code|Valeur|
-|:---|:---|
-|00|Non renseigné|
-|01|Sous chaussée|
-|02|Sous trottoir|
-|03|Bas côté|
-|04|En privée|
-|99|Autre|
 
 `lt_raepal_fnouvaep` : Liste décrivant le type d'ouvrage d'Adduction d'eau potable|
 |Code ARC|Code RAEPA|Valeur|Définition|Commentaire|
