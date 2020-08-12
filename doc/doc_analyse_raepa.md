@@ -10,11 +10,11 @@
 
 - Aucune spécification au niveau le plus fin. Pas de classes de regard, ou de STEP par exemple, avec des informations propres au type d'objet. Exemple : capacité équivalent habitant dans le cas d'une STEP (ouvrage).
 - Domaine des matériaux : liste non pertinente qui ne gère pas les types de matériaux génériques. Exemple : un béton sera codé 99 comme un fibre. Nous perderons donc la valeur de l'information alors que nous l'avions initialement. Nécessite de revoir cette liste, probablement avec un double code (10 béton, 11 béton armé, 12 béton fibré, etc.)
-- Définitions non identiques avec la partie C.
+- Définitions non identiques entre les parties B et C.
 
 #### Classe de métadonnées
 
-- propMD nommé autattrib dans le MCD et dans la Partie C, mais pas dans la définition des attributs partie B.
+- propMD nommé autattrib dans le MCD et dans la Partie C, mais pas dans la définition des classes partie B.
 
 #### Classe de noeud
 
@@ -37,7 +37,61 @@
 - Type booléen pour enservice et branchement alors que character varying (1) partie C.
 - Précision de la longueur de canalisation en décimal, alors que de type entier dans la partie C.
 
+#### Canalisation AE
 
+- contCanAE nommé contcanaep partie C.
+- fonctionCanAE nommé fonccanaep partie C.
+- filGen nommé profgen partie C. Usage pour le DT-DICT qui n'a pas sa spécificité sur un réseau d'ae. L'emploi de la profondeur par rapport à la cote NGF est par ailleurs dangereuse et il aurait été plus pertinent d'utiliser la côte de la génératrice supérieure
+
+#### Canalisation ASS
+
+- fonctionCanAss nommé fonccanass partie C.
+- typeReseau nommé typreseau partie C.
+- altamont nommé zamont partie C.
+- altaval nommé zaval partie C.
+- sensecoul non présent alors que présent dans la partie C.
+
+#### Noeud
+
+- On retrouve maitreOuvrage et exploitant alors que déjà dans la classe métadonnées.
+- anMESSUP nommé anfinpose dans la partie C.
+- anMESInf nommé andebpose dans la partie C.
+- Absence des attributs idcanamont et idcanaval présents dans la partie C pour les ouvrages et appareillages. Usage non pertinent dans le cas de noeuds joints par plusieurs canalisations (supérieur à 2).
+
+#### Appareillage
+
+- Absence de attribut diametre présent dans la partie C.
+
+#### Appareillage AE
+
+- typAppAE nommé fnappaep dans partie C.
+
+#### Appareillage ASS
+
+- typeReseau nommé typreseau partie C.
+- typAppAss nommé fnappass partie C.
+
+#### Ouvrage
+
+- altRadierOuvrage nommé z partie C et définition non précise dans la partie C.
+
+#### Ouvrage AE
+
+- typOuvrageAE nommé fnouvaep dans partie C.
+
+#### Ouvrage ASS
+
+- typeReseau nommé typreseau partie C.
+-typOuvrageAss nommé fnouvass partie C.
+
+#### Réparation
+
+- idReparation nommé idrepar partie C.
+- supportIncident nommé supprepar partie C.
+- typeDefaillance nommé defreparee partie C.
+- dateIntervention nommé daterepar partie C.
+- maitreOuvrage nommé mouvrage partie C.
+- Absence des attributs X et Y présents partie C. Possibilité de les générer avant export au standard raepa.
 
 ### partie C - Structure des données
 
