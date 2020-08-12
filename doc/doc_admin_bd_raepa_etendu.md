@@ -727,7 +727,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 
 `lt_raepal_fnouvaep` : Liste décrivant le type d'ouvrage d'Adduction d'eau potable|
 |Code ARC|Code RAEPA|Valeur|Définition|Commentaire|
-|:---|:---|:---|:---|
+|:---|:---|:---|:---|:---|
 |00-00|00|Indéterminé|Type d'ouvrage inconnu||
 |01-00|01|Station de pompage|Station de pompage d'eau potable||
 |02-00|02|Station de traitement|Station de traitement d'eau potable||
