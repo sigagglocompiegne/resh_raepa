@@ -11,6 +11,9 @@
 - Aucune spécification au niveau le plus fin. Pas de classes de regard, ou de STEP par exemple, avec des informations propres au type d'objet. Exemple : capacité équivalent habitant dans le cas d'une STEP (ouvrage).
 - Domaine des matériaux : liste non pertinente qui ne gère pas les types de matériaux génériques. Exemple : un béton sera codé 99 comme un fibre. Nous perderons donc la valeur de l'information alors que nous l'avions initialement. Nécessite de revoir cette liste, probablement avec un double code (10 béton, 11 béton armé, 12 béton fibré, etc.)
 - Définitions non identiques avec la partie C.
+
+#### Classe de métadonnées
+
 - propMD nommé autattrib dans le MCD et dans la Partie C, mais pas dans la définition des attributs partie B.
 
 #### Classe de noeud
@@ -21,8 +24,20 @@
 
 #### Canalisation
 
+-idCanalisation nommé idcana dans la partie C.
+-diametreNominal nommé diametre dans la partie C.
+-anPoseSup nommé anfinpose dans la partie C.
+-anPoseInf nommé andebpose dans la partie C.
+-exploitant nommé gexploit dans la partie C.
+-maitreOuvrage nommé mouvrage dans la partie C et définition différente.
+-branchement nommé branchmt dans la partie C.
+-modeCirculation nommé modecirc dans la partie C.
+-longueur nommé longcana dans la partie C.
+-manque attribut nbranche qui est présent partie C.
+-Type booléen pour enservice et branchement alors que character varying (1) partie C.
 - Précision de la longueur de canalisation en décimal, alors que de type entier dans la partie C.
-- longueur est elle réelle ou mesurée ? Un attribut portant l'origine de l'information serait pertinent.
+
+
 
 ### partie C - Structure des données
 
