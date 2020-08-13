@@ -162,7 +162,7 @@ Remarque : Les attributs idcanamont, idcanaval et idcanppal ne sont pas conserv�
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|l_formcana|Forme (Section) de la canalisation d'Assainissement collectif.|character varying (2)||lt_raepal_form_canal_ass|
+|l_formcana|Forme (Section) de la canalisation.|character varying (2)||lt_raepal_form_canal_ass|
 |l_dim|Dimensions de la canalisation lorsque forme non circulaire, en mètres (longueur x largeur).|character varying (20)|||
 |diametre|Diamètre nominal de la canalisation (en millimètres)|Interger|Obligatoire||
 |l_protext|Protection extérieur potentiellement associé à la canalisation|character varying  (2)||lt_raepal_typprot|
