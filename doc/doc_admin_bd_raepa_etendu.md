@@ -99,7 +99,7 @@ Au cours de notre analyse, nous avons observé un certains nombre d'anomalies du
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_insee|Code INSEE de la commune de localisation de l'objet du réseau.|character varying  (5)|Obligatoire||
 |l_positver|Position verticale de l'objet de réseau|character varying (2)||lt_raepal_positver|
-|materiau|Matériau du tronçon.|character varying  (2)|Obligatoire|lt_raepal_materiau
+|materiau|Matériau du tronçon.|character varying  (5)|Obligatoire|lt_raepal_materiau
 |mouvrage|Maître d'ouvrage du réseau.|character varying  (100)|Obligatoire||
 |gexploit|Gestionnaire exploitant du réseau.|character varying  (100)|Obligatoire||
 |andebpose|Année marquant le début de pose de l'objet de réseau.|character varying  (4)|||
