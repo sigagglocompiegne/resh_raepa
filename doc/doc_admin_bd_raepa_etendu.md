@@ -192,7 +192,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |l_typimpl|Type d'implantation de l'ouvrage.|character varying (2)|Obligatoire|lt_raepa_typimpl|
 |zradouv|Côte radier, en mètres (Référentiel NGF-IGN69).|Decimal (6,3)|||
 |l_ztn|Côte du terrain naturel en mètre (Référentiel NGF IGN69).|Decimal (6,3)|||
-|l_profond|Prondeur de l'ouvrage|Decimal (6,3)||Différence entre ztn - zradouv|
+|l_profond|Profondeur de l'ouvrage|Decimal (6,3)||Différence entre ztn - zradouv|
 |l_acces|Ouvrage accessible (Oui/Non)|character varying (1)||lt_raepal_boolean|
 |l_nbapp|Nombre d'appareils positionnés sur l'ouvrage. Généré automatiquement lors de l'intégration des données.|Integer|||
 |idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
