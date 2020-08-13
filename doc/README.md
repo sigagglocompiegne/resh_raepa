@@ -1,6 +1,6 @@
 ![picto](img/new_logo_geocompiegnois.png)
 
-Documentation du projet RAEPA de la collectivité.
+# Documentation du projet RAEPA de la collectivité.
 
 Description :
 
