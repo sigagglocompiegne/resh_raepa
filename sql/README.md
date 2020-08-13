@@ -4,8 +4,8 @@ Scripts SQL pour l'implémentation du standard RAEPA et de ses extensions locale
 
 Description :
 
-* [Script d'initialisation de la base de données RAEPA](sql/init_bd_resh_00_raepa.sql)
-* [Script d'extension locale de la base de données RAEPA](sql/init_bd_resh_10_raepa_extension.sql)
-* [Script des vues applicatives pour l'application de consultation](sql/init_bd_resh_20_raepa_vues_applicatives) (A VENIR)
-* [Script de destruction de la base RAEPA étendue](sql/init_bd_resh_30_drop_base_etendue)
+* [Script d'initialisation de la base de données RAEPA](init_bd_resh_00_raepa.sql)
+* [Script d'extension locale de la base de données RAEPA](init_bd_resh_10_raepa_extension.sql)
+* [Script des vues applicatives pour l'application de consultation](init_bd_resh_20_raepa_vues_applicatives) (A VENIR)
+* [Script de destruction de la base RAEPA étendue](init_bd_resh_30_drop_base_etendue)
 
