@@ -89,6 +89,19 @@ Au cours de notre analyse, nous avons observé un certains nombre d'anomalies du
 |fnouvaep| Extension de la liste de valeurs.|
 
 ## Définition des classes
+`geo_raepal_comparateur` : Classe d'indicateur stockant les ajouts et suppressions d'objets entre deux versions d'intégration (rappel : délégation de compétence, nous ne produisons pas les données.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|reseau|Réseau concerné|character varying  (7)|Obligatoire||
+|typcomp| Type de comparaison (ajout/suppression)|character varying (20)|Obligatoire||
+|typeobjet|Type d'objet du réseau|character varying (20)|Obligatoire||
+|concess| Définit le concessionnaire de l'objet|character varying (20)|Obligatoire||
+|date_liv|date de livraison du jeu de données|date|Obligatoire||
+|geom| Geometry|GEOMETRY, 2154|Obligatoire||
+
 
 ### Niveau 0 - Superclasse Objet de Réseau
 `an_raepal_objet_reseau` : Superclasse regroupant les informations communes à tous types d'objet du réseau
@@ -99,7 +112,7 @@ Au cours de notre analyse, nous avons observé un certains nombre d'anomalies du
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_insee|Code INSEE de la commune de localisation de l'objet du réseau.|character varying  (5)|Obligatoire||
 |l_positver|Position verticale de l'objet de réseau|character varying (2)||lt_raepal_positver|
-|materiau|Matériau constitutif de l'objet du réseau.|character varying  (5)|Obligatoire|lt_raepal_materiau
+|materiau|Matériau constitutif de l'objet du réseau.|character varying  (5)|Obligatoire|lt_raepal_materiau|
 |mouvrage|Maître d'ouvrage du réseau.|character varying  (100)|Obligatoire||
 |gexploit|Gestionnaire exploitant du réseau.|character varying  (100)|Obligatoire||
 |andebpose|Année marquant le début de pose de l'objet de réseau.|character varying  (4)|||
