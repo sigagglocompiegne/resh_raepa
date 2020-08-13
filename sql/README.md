@@ -1,8 +1,8 @@
 ![picto](/doc/img/new_logo_geocompiegnois.png)
 
-Scripts SQL pour l'implémentation du standard RAEPA et de ses extensions locales dans un SGBD spatial Postgres/Postgis
+# Scripts SQL pour l'implémentation du standard RAEPA et de ses extensions locales dans un SGBD spatial Postgres/Postgis
 
-Description :
+## Description :
 
 * [Script d'initialisation de la base de données RAEPA](init_bd_resh_00_raepa.sql)
 * [Script d'extension locale de la base de données RAEPA](init_bd_resh_10_raepa_extension.sql)
