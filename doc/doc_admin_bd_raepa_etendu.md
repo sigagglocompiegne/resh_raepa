@@ -166,7 +166,7 @@ Remarque : Les attributs idcanamont, idcanaval et idcanppal ne sont pas conserv�
 |l_dim|Dimensions de la canalisation lorsque forme non circulaire, en mètres (longueur x largeur).|character varying (20)|||
 |diametre|Diamètre nominal de la canalisation (en millimètres)|Interger|Obligatoire||
 |l_protext|Protection extérieur potentiellement associé à la canalisation|character varying  (2)||lt_raepal_typprot|
-|l_protint|Type de protection interne de la canalisation d'assainissement collectif.|character varying (2)||lt_raepal_typrot|
+|l_protint|Type de protection interne de la canalisation.|character varying (2)||lt_raepal_typrot|
 |modecirc|Mode de circulation de l'eau à l'intérieur de la canalisation|character varying  (2)|Obligatoire|lt_raepa_modecirc|
 |l_ztn|Côte du terrain naturel en mètre (Référentiel NGF IGN69).|Decimal (6,3)|||
 |l_zgen|Côte de la génératrice supérieure en mètre (ou inférieure dans le cas de canalisations aériennes) (Référentiel NGF IGN69).|Decimal (6,3)|||
