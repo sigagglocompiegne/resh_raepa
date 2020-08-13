@@ -1,10 +1,5 @@
 ![GeoCompiegnois](img/new_logo_geocompiegnois.png )
 
-CREATION : 04-08-20.
-DATE MISE A JOUR : 10-08-20.
-AUTEUR : Léandre BÉRON.
-STATUT : En Cours.
-
 # Principes
 
 Dans le cadre du projet sur les réseaux d'Eau et d'Assainissement ainsi que du standard national RAEPA, la collectivité souhaite prendre connaissance du patrimoine de ces réseaux à l'échelle du territoire auprès de ces concessionnaires auxquels elle délègue la compétence. 
