@@ -493,10 +493,10 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_domaine` : Liste décrivant le domaine d'appartenance du réseau.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
-|10|Privé|
-|20|Public|
-|99|Autre|
+|00|Indéterminé|
+|01|Public|
+|02|Privé|
+|ZZ|Non concerné|
 
 `lt_raepa_qualgloc` : Liste décrivant la qualité de géolocalisation.
 |Code|Valeur|Définition|
@@ -528,7 +528,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_materiau` : Liste décrivant le type de matériau (utilisée également dans d'autres niveaux).
 |Code ARC|Code RAEPA|Valeur|
 |:---|:---|:---|
-|00-00|00|Non renseigné|
+|00-00|00|Indéterminé|
 |01-00|01|Acier|
 |02-00|02|Amiante ciment|
 |03-00|99|Béton|
@@ -581,7 +581,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_boolean` : Liste de faux booléen (utilisée également dans d'autres niveaux).
 |Code|Valeur|
 |:---|:---|
-|0|Non renseignée|
+|0|I8ndéterminé|
 |t|Oui|
 |f|Non|
 
@@ -610,7 +610,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_typprot` : Liste décrivant le type de matériau de protection de la canalisation.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Aucune|
 |02|Ciment|
 |03|Époxy|
@@ -635,7 +635,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_typimpl`: Liste décrivant le type d'implantation de l'ouvrage.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Sous chaussée|
 |02|Sous trottoir|
 |03|Bas côté|
@@ -754,7 +754,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_typusage_ass` : Liste décrivant le type d''usager raccordé au regard de boîte de branchement d''Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Domestique|
 |02|Assimilé domestique|
 |03|Industriel|
@@ -763,7 +763,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_typusage_ae` : Liste décrivant le type d'usager raccordé au citerneau d'Adduction d'eau potable.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Domestique|
 |03|Industriel|
 |04|Agricole|
@@ -772,7 +772,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_typracc` : Liste décrivant le type de raccord d'Assainissement collectif.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Boîte de raccordement à passage direct|
 |02|Boîte de raccordement à passage siphoïde|
 |03|Boîte de raccordement multidirectionnel|
@@ -782,7 +782,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_typexut` : Liste décrivant le type d'éxutoire de l'appareillage de vidange d'Adduction d'eau potable.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Milieu naturel|
 |02|Pluvial|
 |99|Autre|
@@ -792,7 +792,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_positvid` : Liste décrivant la position de l'appareillage de vidange d'Adduction d'eau potable.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|En regard|
 |02|Sous bouche à clé|
 |99|Autre|
@@ -800,7 +800,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_typvanne` : Liste décrivant le type de vanne d'Adduction d'eau potable.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Opercule|
 |02|Papillon|
 |03|Monovar|
@@ -820,7 +820,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_typregul` : Liste décrivant le type de régulateur de pression.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Stabilisateur Amont|
 |02|Stabilisateur Aval|
 |03|Stabilisateur Amont - Aval|
@@ -837,7 +837,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_foncompt` : Liste décrivant la fonction du compteur d'Adduction d'eau potable.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseignée|
+|00|Indéterminé|
 |01|Achat|
 |02|Vente|
 |03|Sectorisation|
@@ -985,7 +985,7 @@ Non rattaché au patrimoine, ils sont office d'une prochaine étape de modélisa
 `lt_raepal_type_origine` : Définit l'origine de cet objet sur le réseau.
 |Code|Valeur|
 |:---|:---|
-|00|Non renseigné|
+|00|Indéterminé|
 |01|Création|
 |02|Réhabilitation|
 |03|Renouvellement|
