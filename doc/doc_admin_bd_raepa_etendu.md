@@ -213,7 +213,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |diametre|Diamètre nominal de l'appareillage (en millimètres).|Integer|Obligatoire||
-|l_acces|Définit si l'appareillage d'assainissement collectif est accessible ou non.|character varying (1)||lt_raepal_boolean|
+|l_acces|Définit si l'appareillage est accessible ou non.|character varying (1)||lt_raepal_boolean|
 |zradapp|Altitude (en mètres, référentiel NGF-IGN69).|Decimal (6,3)|||
 |idouvrage|Identifiant de l'ouvrage dans lequel se situe l'appareil.|Bigint|Foreign Key||
 |idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
