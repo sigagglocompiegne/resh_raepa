@@ -606,7 +606,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |00|Indéterminée|
 |01|Circulaire|
 |02|Ovoïde|
-|03|Dallot|
+|03|Dalot|
 |99|Autre|
 
 `lt_raepal_typprot` : Liste décrivant le type de matériau de protection de la canalisation.
