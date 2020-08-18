@@ -23,13 +23,29 @@ Les données au standard RAEPA (v1.2) et au format ESRI Shape (SHP) :
 Des données complémentaires enrichies, au format (? tabulaire à définir txt, dbf, cvs, json ?), afin de maintenir l'exhaustivité et la précision de l'état de connaissance patrimoniale entre intervenants (exploitant, collectivité ...).
 
 * Adduction d'eau
+  * Canalisation
+    * ext_canalae
+  * Ouvrage
+    * ext_station_pomp_aep
+    * ext_sration_trait_aep
+    * ext_reservoir_aep
+    * ext_captage_aep
+    * ext_chambre_aep
+    * ext_citerneau_aep
   * Appareillage
-    * raepal_compteur_aep
-    * raepal_regulateur_pression_aep
-    * raepal_vanne_aep
-    * raepal_vidange_aep
+    * ext_compteur_aep
+    * ext_regul_press_aep
+    * ext_vanne_aep
+    * ext_vidange_aep
 
 * Assainissement
-  * ext_raepa_regardass
-  * ext_raepa_avaloirass
-  * ... 
+  * Canalisation
+    * ext_canal_ass 
+  * Ouvrage
+    * ext_station_pomp_ass
+    * ext_step_ass
+    * ext_bassin_stock_ass
+    * ext_regard_ass
+    * ext_avaloir_ass
+  * Appareillage
+    * ext_app_ass
