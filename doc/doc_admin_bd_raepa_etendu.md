@@ -82,6 +82,7 @@ Au cours de notre analyse, nous avons observé un certains nombre d'anomalies du
 |z|Attributs renommé respectivement par "zradapp" et "zradouv" pour les ouvrages et appareillages. Précision de la définition : correspond à l'altitude radier.|
 |fnouvass| Extension de la liste de valeurs.|
 |fnouvaep| Extension de la liste de valeurs.|
+|contcanaep|Extension de la liste de valeurs.|
 
 ## Définition des classes
 `geo_raepal_comparateur` : Classe d'indicateur stockant les ajouts et suppressions d'objets entre deux versions d'intégration (rappel : délégation de compétence, nous ne produisons pas les données.
@@ -671,12 +672,14 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |99|Autre|Canalisation dont la fonction dans le réseau ne figure pas dans la liste ci-dessus|
 
 `lt_raepa_contcanaep` : Liste décrivant la nature des eaux véhiculées par une canalisation d'adduction d'eau.
-|Code|Valeur|Définition|
-|:---|:---|:---|
-|00|Indéterminée|Nature des eaux véhiculées par la canalisation inconnue
-|01|Eau brute|Canalisation véhiculant de l'eau brute|
-|02|Eau potable|Canalisation véhiculant de l'eau potable|
-|99|Autre|Canalisation véhiculant tantôt de l'eau brute, tantôt de l'eau potable|
+|Code ARC|Code RAEPA|Valeur|Définition|
+|:---|:---|:---|:---|
+|00-00|00|Indéterminée|Nature des eaux véhiculées par la canalisation inconnue|
+|01-00|01|Eau brute|Canalisation véhiculant de l'eau brute|
+|02-00|02|Eau potable|Canalisation véhiculant de l'eau potable|
+|03-00|99|Eau de lavage|Canalisation véhiculant des eaux de lavage|
+|04-00|99|Eau traitée|Canalisation véhiculant des eaux traitées|
+|99-99|99|Autre|Canalisation véhiculant tantôt de l'eau brute, tantôt de l'eau potable|
 
 `lt_raepa_fonccanaep` : Liste décrivant la fonction dans le réseau d'une canalisation d'adduction d'eau.
 |Code|Valeur|Définition|
@@ -942,7 +945,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |01|Javel liquide|
 |02|Chlore gazeux|
 |03|Charbon actif|
-|04|Fer|
+|04|Sable|
 |99|Autre|
 
 `lt_raepal_typres` : Liste décrivant le type de réservoir d'Adduction d'eau potable.
