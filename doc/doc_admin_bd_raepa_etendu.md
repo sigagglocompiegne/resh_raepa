@@ -238,7 +238,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|contcanaep|Catégorie de la canalisation d'adduction d'eau potable|character varying (2)|Obligatoire|lt_raepa_contcanaep|
+|contcanaep|Catégorie de la canalisation d'adduction d'eau potable|character varying (5)|Obligatoire|lt_raepal_contcanaep|
 |fonccanaep|Fonction de la canalisation d'adduction d'eau potable|character varying (2)|Obligatoire|lt_raepa_fonccanaep|
 |l_pression|Pression moyenne dans la canalisation, en bars.|Decimal (6,3)|||
 |l_protcath|Existence d'une protection cathodique.|character varying (1)||lt_raepal_booleen|
@@ -671,7 +671,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |02|Collecte|Canalisation de collecte
 |99|Autre|Canalisation dont la fonction dans le réseau ne figure pas dans la liste ci-dessus|
 
-`lt_raepa_contcanaep` : Liste décrivant la nature des eaux véhiculées par une canalisation d'adduction d'eau.
+`lt_raepal_contcanaep` : Liste décrivant la nature des eaux véhiculées par une canalisation d'adduction d'eau.
 |Code ARC|Code RAEPA|Valeur|Définition|
 |:---|:---|:---|:---|
 |00-00|00|Indéterminée|Nature des eaux véhiculées par la canalisation inconnue|
