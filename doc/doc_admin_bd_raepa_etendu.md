@@ -521,8 +521,9 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |:---|:---|
 |00|Indéterminée|
 |01|Bon|
-|02|Moyen|
-|03|Mauvais|
+|02|Défectueux|
+|03|Travaux à envisager|
+|04|Travaux programmés|
 |99|Autre|
 
 
