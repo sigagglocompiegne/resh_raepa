@@ -700,6 +700,8 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |03-00|03|Vanne|Vanne d'assainissement|
 |04-00|99|Point métrologique|Point métrologique|
 |04-01|04|Débitmètre|Appareil de mesure des débits transités|
+|04-02|99|Limnimètre|Appareil de mesure de la hauteur d'eau|
+|04-03|99|Pluviomètre|Appareil de mesure des quantités de précipitation|
 |04-99|99|Autre point métrologique|Point métrologique autre que la liste énumérée|
 |06-00|99|Batardeau|Batardeau|
 |07-00|99|Chasse|Chasse|
