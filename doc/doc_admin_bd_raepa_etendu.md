@@ -753,7 +753,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |07-00|07|Captage|Captage||
 |08-00|99|Citerneau|Petit regard où sont positionné le ou les compteurs individuels||
 
-|99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus||
+|99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus|
 
 ### Niveau 4
 
