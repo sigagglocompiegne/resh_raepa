@@ -773,12 +773,12 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |99|Autre|
 
 `lt_raepal_typracc` : Liste décrivant le type de raccord d'Assainissement collectif.
-|Code|Valeur|
-|:---|:---|
+|Code|Valeur|Definition|
+|:---|:---|:---|
 |00|Indéterminé|
-|01|Boîte de raccordement à passage direct|
-|02|Boîte de raccordement à passage siphoïde|
-|03|Boîte de raccordement multidirectionnel|
+|01|Direct|Boîte de raccordement à passage direct|
+|02|Siphoïde|Boîte de raccordement à passage siphoïde|
+|03|Multidirectionnel|Boîte de raccordement multidirectionnel|
 |99|Autre|
 
 
