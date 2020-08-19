@@ -746,12 +746,10 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |01-00|01|Station de pompage|Station de pompage d'eau potable||
 |02-00|02|Station de traitement|Station de traitement d'eau potable||
 |03-00|03|Réservoir|Réservoir d'eau potable||
-|04-00|04|Déversoir d'orage||
-|05-00|05|Rejet|Rejet (exutoire) dans le milieu naturel d'eaux usées ou pluviales||
-|06-00|99|Chambre|Chambre||
-|06-01|06|Chambre de comptage|Chambre de comptage|Valeur conservée car présente dans le standard, mais c'est un ouvrage où est associé des appareillages de type chambre. Nous traiterons par la valeur "Chambre".|
-|07-00|07|Captage|Captage||
-|08-00|99|Citerneau|Petit regard où sont positionné le ou les compteurs individuels||
+|04-00|99|Chambre|Chambre||
+|04-01|04|Chambre de comptage|Chambre de comptage|Valeur conservée car présente dans le standard, mais c'est un ouvrage où est associé des appareillages de type chambre. Nous traiterons par la valeur "Chambre".|
+|05-00|05|Captage|Captage||
+|06-00|99|Citerneau|Petit regard où sont positionné le ou les compteurs individuels||
 |99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus||
 
 ### Niveau 4
