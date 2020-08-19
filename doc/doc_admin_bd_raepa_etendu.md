@@ -339,7 +339,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |l_decant|Regard d'Assainissement collectif à décantation ou non.|character varying (2)||lt_raepal_boolean|
 |l_tampon|Regard d'Assainissement collectif avec tampon ou non.|character varying (2)||lt_raepal_boolean|
 |l_grille|Regard d'Assainissement collectif avec grille ou non.|character varying (2)||lt_raepal_boolean|
-|l_dimgrill|Dimension de la grille, en cm.|character varying (20)|||
+|l_dimgrill|Dimension de la grille, en mètre. (longueur x largeur)|character varying (20)|||
 
 `an_raepal_avaloir_ass` : Classe alphanumérique portant les informations génériques d'un Avaloir d'Assainissement collectif.
 
@@ -350,7 +350,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |l_typaval|Type d'avaloir.|character varying (2)||lt_raepal_typaval|
 |l_nivvoiri|Mise à côte voirie (Oui/Non)|character varying (1)||lt_raepal_boolean|
 |l_decant|Décantation (Oui/Non)|character varying (1)||lt_raepal_boolean|
-|l_dimgrill|Dimension de la grille, en cm.|character varying (20)|||
+|l_dimgrill|Dimension de la grille, en mètre. (longueur x largeur).|character varying (20)|||
 |l_modpass|Mode de passage.|character varying (2)||lt_raepal_typracc|
 
 `an_raepal_stat_pomp_ae` : Classe alphanumérique portant les informations génériques d'une station de pompage d'Adduction d'eau potable.
