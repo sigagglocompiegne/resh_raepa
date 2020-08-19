@@ -140,7 +140,7 @@ Au cours de notre analyse, nous avons observé un certains nombre d'anomalies du
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idtronc|Identifiant unique du tronçon de réseau.|Bigint|Primary Key|nextval('m_raepa.raepa_id_tronc_seq'::regclass)|
-|sensecoul|Sens de l'écoulement dans la canalisation d'assainissement collectif i (noeud terminal → noeud initial) • d (noeud initial → noeud terminal)|character varying  (1)||lt_raepal_sensecoul|
+|sensecoul|Sens de l'écoulement dans la canalisation i (noeud terminal → noeud initial) • d (noeud initial → noeud terminal)|character varying  (1)||lt_raepal_sensecoul|
 |longmes|Longueur mesurée du tronçon, en mètre.|Integer|||
 |l_longcalc|Longueur calculée du tronçon, en mètre.|Integer|||
 |idnini|Identifiant du noeud initial du tronçon.|Bigint|Foreign Key, Obligatoire||
