@@ -280,7 +280,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|fnouvaep|Fonction de l'ouvrage d'adduction d'eau potable.|character varying (2)|Obligatoire|lt_raepal_fnouvaep|
+|fnouvaep|Fonction de l'ouvrage d'adduction d'eau potable.|character varying (5)|Obligatoire|lt_raepal_fnouvaep|
 
 ### Niveau 4 - Classes spécialisées d'objets de réseau
 
