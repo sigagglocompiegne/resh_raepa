@@ -749,7 +749,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |04-00|99|Chambre|Chambre||
 |04-01|04|Chambre de comptage|Chambre de comptage|Valeur conservée car présente dans le standard, mais c'est un ouvrage où est associé des appareillages de type chambre. Nous traiterons par la valeur "Chambre".|
 |05-00|05|Captage|Captage||
-|06-00|99|Citerneau|Petit regard où sont positionné le ou les compteurs individuels||
+|06-00|99|Citerneau|Petit regard où sont positionnés le ou les compteurs individuels||
 |99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus||
 
 ### Niveau 4
