@@ -186,7 +186,7 @@ Remarque : Les attributs idcanamont, idcanaval et idcanppal ne sont pas conserv�
 |distgen|Distance moyenne de la génératrice de la canalisation|Decimal (6,3)|||
 |branchmnt|Tronçon de branchement individuel : O Tronçon de transport ou de distribution : N.|character varying  (1)|Obligatoire|O,N|
 |nbranche|Nombre de branchements individuels sur la canalisation.|Integer|||
-|l_autpass|Définit s'il y a une autorisation de passage de la canalisation|character varying (1)|lt_raepal_boolean|
+|l_autpass|Définit s'il y a une autorisation de passage de la canalisation|character varying (1)||lt_raepal_boolean|
 |idtronc|Identifiant unique du tronçon d'un réseau.|Bigint|Foreign Key, Obligatoire||
 
 Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisations. Il sera demandé en extension locale pour le réseau d'Adduction d'Eau Potable.
