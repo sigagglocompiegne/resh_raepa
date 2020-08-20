@@ -261,7 +261,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|fnappaep|Fonction de l'appareillage d'adduction d'eau potable.|character varying (2)|Obligatoire|lt_raepa_fnappaep|
+|fnappaep|Fonction de l'appareillage d'adduction d'eau potable.|character varying (2)|Obligatoire|lt_raepal_fnappaep|
 |l_debit|Débit nominal de l'appareillage d'eau potable en m3/h.|Decimal (5,2)|||
 
 `an_raepa_ouvass` : Classe alphanumérique portant les informations génériques d'un ouvrage d'Assainissement collectif.
@@ -707,19 +707,22 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |07-00|99|Chasse|Chasse|
 |99-99|99|Autre|Appareillage dont le type ne figure pas dans la liste ci-dessus|
 
-`lt_raepa_fnappaep` : Liste décrivant le type d'un appareillage d'adduction d'eau|
-|Code|Valeur|Définition|
-|:---|:---|:---|
-|00|Indéterminé|Type d'appareillage inconnu|
-|01|Point de branchement|Piquage de branchement individuel|
-|02|Ventouse|Ventouse d'adduction d'eau|
-|03|Vanne|Vanne d'adduction d'eau|
-|04|Vidange|Vidange d'adduction d'eau|
-|05|Régulateur de pression|Régulateur de pression|
-|06|Hydrant|Poteau de défense contre l'incendie|
-|07|Compteur|Appareil de mesure des volumes transités|
-|08|Débitmètre|Appareil de mesure des débits transités|
-|99|Autre|Appareillage dont le type ne figure pas dans la liste ci-dessus|
+`lt_raepal_fnappaep` : Liste décrivant le type d'un appareillage d'adduction d'eau|
+|Code ARC|Code RAEPA|Valeur|Définition|
+|:---|:---|:---|:---|
+|00-00|00|Indéterminé|Type d'appareillage inconnu|
+|01-00|01|Point de branchement|Piquage de branchement individuel|
+|02-00|02|Ventouse|Ventouse d'adduction d'eau|
+|03-00|03|Vanne|Vanne d'adduction d'eau|
+|04-00|04|Vidange|Vidange d'adduction d'eau|
+|05-00|05|Régulateur de pression|Régulateur de pression|
+|06-00|06|Hydrant|Poteau de défense contre l'incendie|
+|07-00|99|Point métrologoque|Appareil de mesure|
+|07-01|07|Compteur|Appareil de mesure des volumes transités|
+|07-02|08|Débitmètre|Appareil de mesure des débits transités|
+|07-03|99|Capteur de pression|Appareil de mesure de pression|
+|07-99|99|Autre point métrologique|Point métrologique autre que la liste énumérée|
+|99-99|99|Autre|Appareillage dont le type ne figure pas dans la liste ci-dessus|
 
 `lt_raepal_fnouvass` : Liste décrivant le type d'ouvrage d'assainissement collectif|
 |Code ARC|Code RAEPA|Valeur|Définition|
