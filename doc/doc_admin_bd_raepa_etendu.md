@@ -417,6 +417,13 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 -----------------------------
 
 #### Appareillages
+`an_raepal_deb_ae` : Classe alphanumérique portant les informations génériques d'un débitmètre d'Adduction d'eau potable.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
+|l_positdeb|Position du débitmètre.|character varying (2)||lt_raepal_position|
 
 `an_raepal_vidange_ae` : Classe alphanumérique portant les informations génériques d'un appareillage d'Adduction d'eau potable de type vidange.
 
@@ -424,7 +431,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|l_positvid|Position de l'appareillage de vidange.|character varying (2)||lt_raepal_positvid|
+|l_positvid|Position de l'appareillage de vidange.|character varying (2)||lt_raepal_position|
 |l_typexut|Type d'éxutoire.|character varying (2)||lt_raepal_typexut|
 
 
@@ -435,7 +442,8 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_typvanne|Type de Vanne.|character varying (2)||lt_raepal_typvanne|
-|l_etatvan|Postion de la vanne (Ouverte ou Fermée)|character varying (2)||lt_raepal_etatvan|
+|l_positvan|Position de la vanne.|character varying (2)||lt_raepal_position|
+|l_etatvan|Etat de la vanne (Ouverte ou Fermée)|character varying (2)||lt_raepal_etatvan|
 |l_prtcharg|Perte de charge, en mètre.|Decimal(5,2)|||
   
 
@@ -794,7 +802,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 
 
 
-`lt_raepal_positvid` : Liste décrivant la position de l'appareillage de vidange d'Adduction d'eau potable.
+`lt_raepal_position` : Liste décrivant la position de l'appareillage d'Adduction d'eau potable.
 |Code|Valeur|
 |:---|:---|
 |00|Indéterminé|
