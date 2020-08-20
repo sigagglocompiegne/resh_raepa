@@ -702,8 +702,8 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |04-01|04|Débitmètre|Appareil de mesure des débits transités|
 |04-03|99|Pluviomètre|Appareil de mesure des quantités de précipitation|
 |04-99|99|Autre point métrologique|Point métrologique autre que la liste énumérée|
-|06-00|99|Batardeau|Batardeau|
-|07-00|99|Chasse|Chasse|
+|05-00|99|Batardeau|Batardeau|
+|06-00|99|Chasse|Chasse|
 |99-99|99|Autre|Appareillage dont le type ne figure pas dans la liste ci-dessus|
 
 `lt_raepal_fnappaep` : Liste décrivant le type d'un appareillage d'adduction d'eau|
