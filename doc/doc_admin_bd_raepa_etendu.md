@@ -58,6 +58,17 @@ De façon général, nous avons entendu la création d'une séquence pour les ob
 
 En conséquence, ces choix permettent de pouvoir identifier un objet de réseau, quelque soit ce réseau, de manière unique. Nous aurions très bien pu générer une séquence par réseau ou encore par type d'objet, ou encore de manière combinée, mais cela aurait pour conséquence des doublons d'identifiants dans la superclasse d'objets de réseau, évoquée ci-après.
 
+# Vues matérialisées d'export RAEPA
+
+Les vues matérialisées permettant la reconstitution des informations du standard national RAEPA.
+
+* x_opendata.x_opendata_geo_vmr_raepa_canalaep_l : Vue matérialisée contenant les informations RAEPA du fichier des canalisations d'adduction d'eau potable.
+* x_opendata.x_opendata_geo_vmr_raepa_canalass_l : Vue matérialisée contenant les informations RAEPA du fichier des canalisations d'assainissement collectif.
+* x_opendata.x_opendata_geo_vmr_raepa_apparaep_p : Vue matérialisée contenant les informations RAEPA du fichier des appareillages d'adduction d'eau potable.
+* x_opendata.x_opendata_geo_vmr_raepa_apparass_p : Vue matérialisée contenant les informations RAEPA du fichier des appareillages d'assainissement collectif.
+* x_opendata.x_opendata_geo_vmr_raepa_ouvrass_p : Vue matérialisée contenant les informations RAEPA du fichier des ouvrages d'assainissement collectif.
+* x_opendata.x_opendata_geo_vmr_raepa_ouvraep_p : Vue matérialisée contenant les informations RAEPA du fichier des ouvrages d'adduction d'eau potable.
+
 # Collecte du patrimoine
 
 Afin de pouvoir identifier les informations qui sont issues du standard national ou des extensions locales, nous utiliserons la codification suivante :
