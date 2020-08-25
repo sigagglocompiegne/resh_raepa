@@ -1,3 +1,5 @@
+![GeoCompiegnois](img/new_logo_geocompiegnois.png )
+
 # Initialisation de la base de données et première intégration
 
 Pour réinitialiser la base, lancez les scripts suivants dans l'ordre respectif :
