@@ -110,6 +110,15 @@ Au cours de notre analyse, nous avons observé un certains nombre d'anomalies du
 |geom| Geometry|GEOMETRY, 2154|Obligatoire||
 
 
+`an_raepal_correspondance` : Classe de correspondance entre les ID producteurs des noeuds avec nos identifiants internes.
+
+|Nom attribut|Définition|Type|Contrainte|Valeurs|
+|:---|:---|:---|:---|:---|
+|idprod|Identifiant du producteur de l'objet|character varying  (254).|Primary key||
+|idnoeud|Identifiant du noeud interne|Bigint|Obligatoire||
+
+Remarque : Cette classe permet de pouvoir récupérer nos identifiants de noeud lors d'insertion de nos objets, en fonction de l'identifiant du producteur. En effet, le standard national duplique les noeuds sur une même position lorsque plusieurs objets sont présents, chose que nous traitons avec une seule géométrie dans notre base de données.
+
 ### Niveau 0 - Superclasse Objet de Réseau
 `an_raepal_objet_reseau` : Superclasse regroupant les informations communes à tous types d'objet du réseau
 
