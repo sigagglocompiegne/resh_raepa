@@ -40,7 +40,7 @@ Certains contrôle ne sont pas encore tranché.
 Nous noterons :
 * IDNTERM et IDNINI : Attributs toujours obligatoires dans le RAEPA, mais certaines canalisations n'ont pas de noeuds à l'une des deux extrémités.
   * Pour les branchements, avons-nous toujours un appareillage ou ouvrage avant le domaine privé ? Sur l'extrémité donnant jonction avec la canalisation principale, il y aura dans tous les cas un appareillage de type "Point de branchement" disponible dans le RAEPA.
-   * Pour les canalisations de transport, on remarque que certaines n'ont pa deux noeuds aux extrémités. Pourtant les valeurs IDNINI et IDNTERM sont remplis. Ces objets semblent en limite de contrat, ont-ils donc été coupé à l'export, ce qui expliquerait l'absence de noeud sur une des extrémités ?
+   * Pour les canalisations de transport, on remarque que certaines n'ont pas deux noeuds aux extrémités. Pourtant les valeurs IDNINI et IDNTERM sont remplies. Ces objets semblent en limite de contrat, ont-ils donc été coupés à l'export, ce qui expliquerait l'absence de noeud sur une des extrémités ?
 
 
 
