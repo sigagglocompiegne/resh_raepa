@@ -653,7 +653,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |03|Sous-vide|L'eau circule par l'effet de la mise sous vide de la canalisation par une centrale d'aspiration|
 |99|Autre|L'eau circule tantôt dans un des modes ci-dessus tantôt dans un autre|
 
-`lt_raepal_typimpl`: Liste décrivant le type d'implantation de l'ouvrage.
+`lt_raepal_typimpl`: Liste décrivant le type d'implantation de l'objet.
 |Code|Valeur|
 |:---|:---|
 |00|Indéterminé|
