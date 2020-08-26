@@ -30,11 +30,19 @@ Selon la norme ISO 19157 ainsi que les différents protocoles de contrôle de la
 
 Dans cette partie, nous checkerons la géométrie des objets et nous veillerons à vérifier les aspects suivants :
 
-* aucune superposition d'ouvrage entre eux
-* erreur de topologie intraclasse pour les canalisation (papillon etc ...)
 * corrélation entre la géométrie et les coordonnées attributaires (app,ouv)
 * noeud (ouv/app) non connecté à au moins une canalisation
 * de base, le sens d'écoulement dans une canalisation correspond au noeud amont pour le point de départ et au noeud aval pour le point d'arrivée, éventuellement au cas inverse (uniquement pour assainissement) si le sens d'écoulement de la canalisation le précise (attribut sensecoul=0)
+
+## Questionnement sans réponse actuellement
+
+Certains contrôle ne sont pas encore tranché.
+Nous noterons :
+* IDNTERM et IDNINI : Attributs toujours obligatoires dans le RAEPA, mais certaines canalisations n'ont pas de noeuds à l'une des deux extrémités.
+ ** Pour les branchements, avons-nous toujours un appareillage ou ouvrage avant le domaine privé ? Sur l'extrémité donnant jonction avec la canalisation principale, il y aura dans tous les cas un appareillage de type "Point de branchement" disponible dans le RAEPA.
+ ** Pour les canalisations de transport, on remarque que certaines n'ont pa deux noeuds aux extrémités. Pourtant les valeurs IDNINI et IDNTERM sont remplis. Ces objets semblent en limite de contrat, ont-ils donc été coupé à l'export, ce qui expliquerait l'absence de noeud sur une des extrémités ?
+
+
 
 Nous ne rentrerons pas dans un contrôle de topologie très fin, qui serait plutôt engagé au sein d'un service SIG métiers. 
 Dans notre cas, il s'agit uniquement d'acquérir une vision globale du réseau sur le territoire.
