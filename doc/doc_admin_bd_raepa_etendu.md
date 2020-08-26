@@ -791,6 +791,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |01|Domestique|
 |02|Assimilé domestique|
 |03|Industriel|
+|04|Industriel/Assimilé domestique|
 |99|Autre|
 
 `lt_raepal_typusage_ae` : Liste décrivant le type d'usager raccordé au citerneau d'Adduction d'eau potable.
