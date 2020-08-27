@@ -145,6 +145,7 @@ Remarque : Cette classe permet de pouvoir récupérer nos identifiants de noeud 
 |l_typobjet|Définit le type d'objet du réseau.|character varying  (20)|Obligatoire|Canalisation/Ouvrage/Appareillage|
 |l_idsandre|Code SANDRE.|character varying (254)|||
 |l_observ|Compléments d'informations, observations.|character varying (500)|||
+|l_datext|Date extraction de la donnée chez le producteur.|timestamp without time zone|Obligatoire||
 |qualglocxy|Qualité de la géolocalisation planimétrique (XY).|character varying  (2)|Obligatoire|lt_raepa_qualgloc|
 |qualglocz|Qualité de la géolocalisation altimétrique (Z).|character varying  (2)|Obligatoire|lt_raepa_qualgloc|
 |datemaj|Date de la dernière mise à jour des informations.|Timestamp without time zone|Obligatoire||
