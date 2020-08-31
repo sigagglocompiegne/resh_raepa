@@ -6,6 +6,7 @@
 
 * [Script d'initialisation de la base de données RAEPA](init_bd_resh_00_raepa.sql)
 * [Script d'extension locale de la base de données RAEPA](init_bd_resh_10_raepa_extension.sql)
-* [Script des vues applicatives pour l'application de consultation](init_bd_resh_20_raepa_vues_applicatives) (A VENIR)
+* [Script des vues applicatives pour l'application de consultation](init_bd_resh_21_xapps) (A VENIR)
+* [Script des vues de reconstitution du standard RAEPA](init_bd_resh_22_xopendata)
 * [Script de destruction de la base RAEPA étendue](init_bd_resh_30_drop_base_etendue)
 
