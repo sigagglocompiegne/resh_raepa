@@ -44,9 +44,9 @@ La base de données RAEPA s'appuie sur des référentiels préexistants constitu
 
 |SCHEMA|TABLE/VUE|DESCRIPTION|USAGE|
 |:---|:---|:---|:---|
-|A COMPLETER||| Détermine le code INSEE des objets du réseau par jointure spatiale. |
-|A COMPLETER|||Détermine le domaine Privée ou Public de l'objet du réseau par rapport au référentiel cadastral. |
-|A COMPLETER|||Détermine l'adresse de localisation de l'objet à partir de jointure spatiale du référentiel des voies et adresses. |
+|r_cadastre|geo_parcelle|| Détermine le code INSEE des objets du réseau par jointure spatiale. |
+|r_osm|geo_vm_osm_commune_oise||Détermine le domaine Privée ou Public de l'objet du réseau par rapport au référentiel cadastral. |
+|r_voie|geo_v_troncon_voie||Détermine l'adresse de localisation de l'objet à partir de jointure spatiale du référentiel des voies et adresses. |
 
 # Séquences
 
