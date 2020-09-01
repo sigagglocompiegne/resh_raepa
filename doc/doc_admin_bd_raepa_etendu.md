@@ -42,7 +42,7 @@ Remarque : Concernant la table geo_raepal_troncon, la cardinalité de départ es
 
 La base de données RAEPA s'appuie sur des référentiels préexistants constituant autant de dépendances que nécessaires pour l'implémentation de certaines informations dans la BdD.
 
-|SCHEMA|TABLE/VUE|DESCRIPTION|USAGE|
+|SCHEMA|TABLE/VUE|USAGE|
 |:---|:---|:---|
 |r_cadastre|geo_parcelle|Détermine le code INSEE des objets du réseau par jointure spatiale. |
 |r_osm|geo_vm_osm_commune_oise|Détermine le domaine Privée ou Public de l'objet du réseau par rapport au référentiel cadastral. |
