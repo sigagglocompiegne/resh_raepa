@@ -73,14 +73,14 @@ Les vues matérialisées permettant la reconstitution des informations du standa
 
 Les vues matérialisées permettant la mise en forme de l'application WebSIG de consultation.
 
-* x_apps.x_apps_geo_vmr_canalass : Vue matérialisée contenant les informations patrimoniales d'une canalisation d'assainissement collectif.
-* x_apps.x_apps_geo_vmr_canalae : Vue matérialisée contenant les informations patrimoniales d'une canalisation d'adduction d'eau potable.
-* x_apps.x_apps_geo_vmr_noeud_ass : Vue matérialisée qui prétraite les informations des noeuds d'assainissement, pour pouvoir gérer la symbologie particulière, lorsque plusieurs objets sont sur un même noeud notamment.
-* x_apps.x_apps_geo_vmr_noeud_ae : Vue matérialisée qui prétraite les informations des noeuds d'adduction d'eau potable, pour pouvoir gérer la symbologie particulière, lorsque plusieurs objets sont sur un même noeud notamment.
-* x_apps.x_apps_geo_vmr_ouvae : Vue matérialisée contenant les informations patrimoniales d'un ouvrage d'adduction d'eau potable.
-* x_apps.x_apps_geo_vmr_ouvass : Vue matérialisée contenant les informations patrimoniales d'un ouvrage d'assainissement collectif.
-* x_apps.x_apps_geo_vmr_appae : Vue matérialisée contenant les informations patrimoniales d'un appareillage d'adduction d'eau potable.
-* x_apps.x_apps_geo_vmr_appass : Vue matérialisée contenant les informations patrimoniales d'un appareillage d'assainissement collectif.
+* `x_apps.x_apps_geo_vmr_canalass` : Vue matérialisée contenant les informations patrimoniales d'une canalisation d'assainissement collectif.
+* `x_apps.x_apps_geo_vmr_canalae` : Vue matérialisée contenant les informations patrimoniales d'une canalisation d'adduction d'eau potable.
+* `x_apps.x_apps_geo_vmr_noeud_ass` : Vue matérialisée qui prétraite les informations des noeuds d'assainissement, pour pouvoir gérer la symbologie particulière, lorsque plusieurs objets sont sur un même noeud notamment.
+* `x_apps.x_apps_geo_vmr_noeud_ae` : Vue matérialisée qui prétraite les informations des noeuds d'adduction d'eau potable, pour pouvoir gérer la symbologie particulière, lorsque plusieurs objets sont sur un même noeud notamment.
+* `x_apps.x_apps_geo_vmr_ouvae` : Vue matérialisée contenant les informations patrimoniales d'un ouvrage d'adduction d'eau potable.
+* `x_apps.x_apps_geo_vmr_ouvass` : Vue matérialisée contenant les informations patrimoniales d'un ouvrage d'assainissement collectif.
+* `x_apps.x_apps_geo_vmr_appae` : Vue matérialisée contenant les informations patrimoniales d'un appareillage d'adduction d'eau potable.
+* `x_apps.x_apps_geo_vmr_appass` : Vue matérialisée contenant les informations patrimoniales d'un appareillage d'assainissement collectif.
 
 
 
