@@ -56,7 +56,7 @@ D'une façon générale, nous avons entendu la création d'une séquence pour le
 * `raepa_id_noeud_seq` : Séquence permettant de générer un numéro unique par noeud de réseau.
 * `raepap_id_tronc_seq` : Séquence permettant de générer un numéro unique par tronçon de réseau.
 
-En conséquence, ces choix permettent de pouvoir identifier un objet de réseau, quelque soit ce réseau, de manière unique. Nous aurions très bien pu générer une séquence par réseau ou encore par type d'objet, ou encore de manière combinée, mais cela aurait pour conséquence des doublons d'identifiants dans la superclasse d'objets de réseau, évoquée ci-après.
+Ces choix permettent de pouvoir identifier un objet de réseau, quelque soit ce réseau, de manière unique. Nous aurions très bien pu générer une séquence par réseau ou encore par type d'objet, ou encore de manière combinée, mais cela aurait pour conséquence des doublons d'identifiants dans la superclasse d'objets de réseau, évoquée ci-après.
 
 
 # Collecte du patrimoine
