@@ -158,9 +158,9 @@ Remarque : Cette classe permet de pouvoir récupérer nos identifiants de noeud 
 |idnterm|Identifiant du noeud terminal du tronçon.|Bigint|Foreign Key, Obligatoire||
 |geom|Attribut portant la géométrie du tronçon, RGF93.|Linestring,2154|Obligatoire||
 
-Remarque : L'attribut "longcana" du standard RAEPA a été renommé par "longmes" pour cohérence avec l'ajout de l'attribut de la longueur calculée nommé "l_long_cal"
+Remarque : L'attribut "longcana" du standard RAEPA a été renommé par "longmes" pour cohérence avec l'ajout de l'attribut de la longueur calculée nommé "l_longcalc"
 De plus, en cohérence avec le choix du type Entier du modèle RAEPA, la longueur calculée sera du même type, soit Entier.
-L'attribut idcanppal n'est pas conservé, en raison de son usage douteux (Qui est la canalisation principale lors d'un branchement sécant sur une canalisation ?)
+L'attribut idcanppale n'est pas conservé, en raison de son usage douteux (Qui est la canalisation principale lors d'un branchement sécant sur une canalisation ?)
 
 `geo_raepa_noeud` : Classe géométrique portant les informations communes d'un noeud de réseau.
 
@@ -173,7 +173,7 @@ L'attribut idcanppal n'est pas conservé, en raison de son usage douteux (Qui es
 |l_yreel|Coordonnée Y réelle Lambert 93 (en mètres)|Decimal (10,3)|Obligatoire||
 |geom|Attribut portant la géométrie du noeud, RGF93.|Point,2154|Obligatoire||
 
-Remarque : Les attributs idcanamont, idcanaval et idcanppal ne sont pas conservés, de part leur usage douteux (Un noeud avec plus de deux canalisations, qui est qui ?).
+Remarque : Les attributs idcanamont, idcanaval et idcanppale ne sont pas conservés, de part leur usage douteux (Un noeud avec plus de deux canalisations, qui est qui ?).
 
 ### Niveau 2 - Classes d'objets
 `an_raepa_canal` : Classe alphanumérique portant les informations génériques d'une canalisation.
@@ -185,7 +185,7 @@ Remarque : Les attributs idcanamont, idcanaval et idcanppal ne sont pas conserv�
 |l_formcana|Forme (Section) de la canalisation.|character varying (2)||lt_raepal_formcana|
 |l_dim|Dimensions de la canalisation lorsque forme non circulaire, en mètres (longueur x largeur).|character varying (20)|||
 |diametre|Diamètre nominal de la canalisation (en millimètres)|Interger|Obligatoire||
-|l_protext|Protection extérieur potentiellement associé à la canalisation|character varying  (2)||lt_raepal_typprot|
+|l_protext|Protection extérieure potentiellement associé à la canalisation|character varying  (2)||lt_raepal_typprot|
 |l_protint|Type de protection interne de la canalisation.|character varying (2)||lt_raepal_typprot|
 |modecirc|Mode de circulation de l'eau à l'intérieur de la canalisation|character varying  (2)|Obligatoire|lt_raepa_modecirc|
 |l_ztn|Côte du terrain naturel en mètre (Référentiel NGF IGN69).|Decimal (6,3)|||
@@ -226,7 +226,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |diametre|Diamètre nominal de l'appareillage (en millimètres).|Integer|Obligatoire||
 |l_acces|Définit si l'appareillage est accessible ou non.|character varying (1)||lt_raepal_boolean|
-|zradapp|Altitude (en mètres, référentiel NGF-IGN69).|Decimal (6,3)|||
+|zradapp|Côte radier (en mètres, référentiel NGF-IGN69).|Decimal (6,3)|||
 |idouvrage|Identifiant de l'ouvrage dans lequel se situe l'appareil.|Bigint|Foreign Key||
 |idnoeud|Identifiant unique du noeud de réseau.|Bigint|Foreign Key, Obligatoire||
 
@@ -263,7 +263,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typreseau|
-|fnappass|Types d'un appareillage d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepal_fnappass|
+|fnappass|Fonction d'un appareillage d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepal_fnappass|
 
 
 `an_raepa_appae` : Classe alphanumérique portant les informations génériques d'une appareillage d'Adduction d'eau potable.
@@ -282,7 +282,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |typreseau|Type du réseau d'assainissement collectif.|character varying (2)|Obligatoire|lt_raepa_typreseau|
-|fnouvass|Type d'un ouvrage d'assainissement collectif|character varying (2)|Obligatoire|lt_raepal_fnouvass|
+|fnouvass|Fonction d'un ouvrage d'assainissement collectif|character varying (2)|Obligatoire|lt_raepal_fnouvass|
 
 
 `an_raepa_ouvae` : Classe alphanumérique portant les informations génériques d'un ouvrage d'Adduction d'eau potable.
@@ -323,7 +323,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|l_typstep|Type de traiment de la STEP.|character varying (2)||lt_raepal_typstep|
+|l_typstep|Type de traitement de la STEP.|character varying (2)||lt_raepal_typstep|
 |l_charge|Capacité de charge de la STEP.|character varying (2)||lt_raepal_charge|
 |l_capnomi|Capacité nominale de la STEP en équivalent habitant.|Integer|||
 
@@ -416,13 +416,13 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_dim|Dimension de la chambre (longueur x largeur), en mètre.|character varying (20)|||
 
-`an_raepal_citerneau_ae` : Classe alphanumérique portant les informations génériques d'un citerneau.
+`an_raepal_citerneau_ae` : Classe alphanumérique portant les informations génériques d'un citerneau d'Adduction d'eau potable.
 
 |Nom attribut|Définition|Type|Contrainte|Valeurs|
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|l_nbcompt|Nombre de compteur présent|Integer|||
+|l_nbcompt|Nombre de compteur(s) présent(s)|Integer|||
 |l_typusage|Type d'usager|character varying (2)||lt_raepal_typusage_ae|
 
 -----------------------------
@@ -494,7 +494,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |:---|:---|:---|:---|:---|
 |idobjet|Identifiant unique de l'objet du réseau.|bigint|Primary Key|nextval('m_raepa.raepa_id_obj_reseau_seq'::regclass)|
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
-|l_nbcompt|Nombre de compteur présent|Integer|||
+|l_nbcompt|Nombre de compteur(s) présent(s)|Integer|||
 
 
 
@@ -602,7 +602,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 `lt_raepal_boolean` : Liste de faux booléen (utilisée également dans d'autres niveaux).
 |Code|Valeur|
 |:---|:---|
-|0|I8ndéterminé|
+|0|Indéterminé|
 |t|Oui|
 |f|Non|
 
@@ -768,7 +768,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |02-00|02|Station de traitement|Station de traitement d'eau potable||
 |03-00|03|Réservoir|Réservoir d'eau potable||
 |04-00|99|Chambre|Chambre||
-|04-01|04|Chambre de comptage|Chambre de comptage|Valeur conservée car présente dans le standard, mais c'est un ouvrage où est associé des appareillages de type chambre. Nous traiterons par la valeur "Chambre".|
+|04-01|04|Chambre de comptage|Chambre de comptage|Valeur conservée car présente dans le standard, mais c'est un ouvrage où est associé des appareillages de type chambre.|
 |05-00|05|Captage|Captage||
 |06-00|99|Citerneau|Petit regard où sont positionnés le ou les compteurs individuels||
 |99-99|99|Autre|Ouvrage dont le type ne figure pas dans la liste ci-dessus||
