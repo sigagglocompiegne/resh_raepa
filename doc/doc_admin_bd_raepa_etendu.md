@@ -75,7 +75,7 @@ Au cours de notre analyse, nous avons observé un certains nombre d'anomalies du
 |materiau| Attribut déplacé à la superclasse an_raepal_objet_reseau. Extension de la liste de domaines|
 |enservice| Extension de cet attribut pour les ouvrages et appareillages. Déplacé à la superclasse an_raepal_objet_reseau.|
 |andebpose/anfinpose|Décision de la définition comme tel : Date de début (ou fin) de pose de l'objet du réseau. Choix réalisé suite à la définition différente entre une canalisation et un appareille ou ouvrage.|
-|sensecoul|Extension de l'attribut pour les canalisation d'AEP également. Attribut déplacé à la classe géométrique geo_raepal_tronc.Utilisation d'une liste de domaine pour être en cohérence avec des proejts déjà réalisés par le service.|
+|sensecoul|Extension de l'attribut pour les canalisation d'AEP également. Attribut déplacé à la classe géométrique geo_raepal_tronc.Utilisation d'une liste de domaine pour être en cohérence avec des projets déjà réalisés par le service.|
 |longcana|Attribut renommé en "longmes".|
 |idnini/idnterm| Attributs déplacés à la classe géométrique geo_raepal_tronc.|
 |zamont/zaval|Décision de la précision de la définition. Ces attributs correspondront donc à l'altitude fil d'eau. Attributs déplacés sur an_raepa_canal pour tout type de réseau d'eau (non uniquement pour ASS).|
