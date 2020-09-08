@@ -58,32 +58,6 @@ De façon général, nous avons entendu la création d'une séquence pour les ob
 
 En conséquence, ces choix permettent de pouvoir identifier un objet de réseau, quelque soit ce réseau, de manière unique. Nous aurions très bien pu générer une séquence par réseau ou encore par type d'objet, ou encore de manière combinée, mais cela aurait pour conséquence des doublons d'identifiants dans la superclasse d'objets de réseau, évoquée ci-après.
 
-# Vues matérialisées d'export RAEPA
-
-Les vues matérialisées permettant la reconstitution des informations du standard national RAEPA.
-
-* `x_opendata.x_opendata_geo_vmr_raepa_canalaep_l` : Vue matérialisée contenant les informations RAEPA du fichier des canalisations d'adduction d'eau potable.
-* `x_opendata.x_opendata_geo_vmr_raepa_canalass_l` : Vue matérialisée contenant les informations RAEPA du fichier des canalisations d'assainissement collectif.
-* `x_opendata.x_opendata_geo_vmr_raepa_apparaep_p` : Vue matérialisée contenant les informations RAEPA du fichier des appareillages d'adduction d'eau potable.
-* `x_opendata.x_opendata_geo_vmr_raepa_apparass_p` : Vue matérialisée contenant les informations RAEPA du fichier des appareillages d'assainissement collectif.
-* `x_opendata.x_opendata_geo_vmr_raepa_ouvrass_p` : Vue matérialisée contenant les informations RAEPA du fichier des ouvrages d'assainissement collectif.
-* `x_opendata.x_opendata_geo_vmr_raepa_ouvraep_p` : Vue matérialisée contenant les informations RAEPA du fichier des ouvrages d'adduction d'eau potable.
-
-# Vues matérialisées applicatives
-
-Les vues matérialisées permettant la mise en forme de l'application WebSIG de consultation.
-
-* `x_apps.x_apps_geo_vmr_canalass` : Vue matérialisée contenant les informations patrimoniales d'une canalisation d'assainissement collectif.
-* `x_apps.x_apps_geo_vmr_canalae` : Vue matérialisée contenant les informations patrimoniales d'une canalisation d'adduction d'eau potable.
-* `x_apps.x_apps_geo_vmr_noeud_ass` : Vue matérialisée qui prétraite les informations des noeuds d'assainissement, pour pouvoir gérer la symbologie particulière, lorsque plusieurs objets sont sur un même noeud notamment.
-* `x_apps.x_apps_geo_vmr_noeud_ae` : Vue matérialisée qui prétraite les informations des noeuds d'adduction d'eau potable, pour pouvoir gérer la symbologie particulière, lorsque plusieurs objets sont sur un même noeud notamment.
-* `x_apps.x_apps_geo_vmr_ouvae` : Vue matérialisée contenant les informations patrimoniales d'un ouvrage d'adduction d'eau potable.
-* `x_apps.x_apps_geo_vmr_ouvass` : Vue matérialisée contenant les informations patrimoniales d'un ouvrage d'assainissement collectif.
-* `x_apps.x_apps_geo_vmr_appae` : Vue matérialisée contenant les informations patrimoniales d'un appareillage d'adduction d'eau potable.
-* `x_apps.x_apps_geo_vmr_appass` : Vue matérialisée contenant les informations patrimoniales d'un appareillage d'assainissement collectif.
-
-
-
 
 # Collecte du patrimoine
 
@@ -1012,6 +986,33 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |01|Source|
 |02|Puit, Forage|
 |99|Autre|
+
+# Vues matérialisées d'export RAEPA
+
+Les vues matérialisées permettant la reconstitution des informations du standard national RAEPA.
+
+* `x_opendata.x_opendata_geo_vmr_raepa_canalaep_l` : Vue matérialisée contenant les informations RAEPA du fichier des canalisations d'adduction d'eau potable.
+* `x_opendata.x_opendata_geo_vmr_raepa_canalass_l` : Vue matérialisée contenant les informations RAEPA du fichier des canalisations d'assainissement collectif.
+* `x_opendata.x_opendata_geo_vmr_raepa_apparaep_p` : Vue matérialisée contenant les informations RAEPA du fichier des appareillages d'adduction d'eau potable.
+* `x_opendata.x_opendata_geo_vmr_raepa_apparass_p` : Vue matérialisée contenant les informations RAEPA du fichier des appareillages d'assainissement collectif.
+* `x_opendata.x_opendata_geo_vmr_raepa_ouvrass_p` : Vue matérialisée contenant les informations RAEPA du fichier des ouvrages d'assainissement collectif.
+* `x_opendata.x_opendata_geo_vmr_raepa_ouvraep_p` : Vue matérialisée contenant les informations RAEPA du fichier des ouvrages d'adduction d'eau potable.
+
+# Vues matérialisées applicatives
+
+Les vues matérialisées permettant la mise en forme de l'application WebSIG de consultation.
+
+* `x_apps.x_apps_geo_vmr_canalass` : Vue matérialisée contenant les informations patrimoniales d'une canalisation d'assainissement collectif.
+* `x_apps.x_apps_geo_vmr_canalae` : Vue matérialisée contenant les informations patrimoniales d'une canalisation d'adduction d'eau potable.
+* `x_apps.x_apps_geo_vmr_noeud_ass` : Vue matérialisée qui prétraite les informations des noeuds d'assainissement, pour pouvoir gérer la symbologie particulière, lorsque plusieurs objets sont sur un même noeud notamment.
+* `x_apps.x_apps_geo_vmr_noeud_ae` : Vue matérialisée qui prétraite les informations des noeuds d'adduction d'eau potable, pour pouvoir gérer la symbologie particulière, lorsque plusieurs objets sont sur un même noeud notamment.
+* `x_apps.x_apps_geo_vmr_ouvae` : Vue matérialisée contenant les informations patrimoniales d'un ouvrage d'adduction d'eau potable.
+* `x_apps.x_apps_geo_vmr_ouvass` : Vue matérialisée contenant les informations patrimoniales d'un ouvrage d'assainissement collectif.
+* `x_apps.x_apps_geo_vmr_appae` : Vue matérialisée contenant les informations patrimoniales d'un appareillage d'adduction d'eau potable.
+* `x_apps.x_apps_geo_vmr_appass` : Vue matérialisée contenant les informations patrimoniales d'un appareillage d'assainissement collectif.
+
+
+
 
 
 # Collecte d'informations non patrimoniales
