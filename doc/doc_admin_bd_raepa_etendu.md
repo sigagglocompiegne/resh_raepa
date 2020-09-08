@@ -26,16 +26,16 @@ Après analyses et mise en place d'un diagnostic entre les différents standards
 |geo_raepal_troncon|(0,1)|an_raepa_canal|(1,1)|
 |geo_raepa_noeud|(0,N)|an_raepa_app|(1,1)|
 |geo_raepa_noeud|(0,1)|an_raepa_ouv|(1,1)|
-|geo_raepa_noeud|(0,1)|an_raepa_app|(1,1)|
+|geo_raepa_noeud|(0,N)|an_raepa_app|(1,1)|
 |an_raepa_canal|(0,1)|an_raepa_canalass|(1,1)|
 |an_raepa_canal|(0,1)|an_raepa_canalae|(1,1)|
-|an_raepa_app|(0,1)|an_raepa_ouv|(0,1)|
+|an_raepa_app|(0,1)|an_raepa_ouv|(0,N)|
 |an_raepa_app|(0,1)|an_raepa_appass|(1,1)|
 |an_raepa_app|(0,1)|an_raepa_appae|(1,1)|
 |an_raepa_ouv|(0,1)|an_raepa_ouvass|(1,1)|
 |an_raepa_ouv|(0,1)|an_raepa_ouvae|(1,1)|
 
-Remarque : Concernant la table geo_raepal_troncon, la cardinalité de départ est de 0,1. En effet, En prenant en compte la disponibilité de cette modélisation pour tous réseaux, on peut imaginer greffer ultérieurement les écoulements de surfaces, ou encore les réseaux éléctriques. Le tronçon sera donc rattaché à l'un des réseau et non uniquement pour une canalisation.
+Remarque : Concernant la table geo_raepal_troncon, la cardinalité de départ est de 0,1. En effet, En prenant en compte la disponibilité de cette modélisation pour tous réseaux, on peut imaginer greffer ultérieurement les écoulements de surfaces. Le tronçon sera donc rattaché à l'un des réseau et non uniquement pour une canalisation.
 
 
 # Dépendances
