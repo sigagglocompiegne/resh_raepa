@@ -50,7 +50,7 @@ La base de données RAEPA s'appuie sur des référentiels préexistants constitu
 
 # Séquences
 
-De façon général, nous avons entendu la création d'une séquence pour les objets du réseau, quelqu'il soit, ainsi que la génération d'une séquence pour chaque compléments d'informations. Il a été convenu que les géométries sont des informations complémentaires au patrimoine du réseau. Par conséquent, nous générerons 3 séquences : 
+D'une façon générale, nous avons entendu la création d'une séquence pour les objets du réseau, quelqu'il soit, ainsi que la génération d'une séquence pour chaque compléments d'informations. Il a été convenu que les géométries sont des informations complémentaires au patrimoine du réseau. Par conséquent, nous générerons 3 séquences : 
 
 * `raepa_id_obj_reseau_seq` : Séquence permettant de générer un numéro unique pour un objet de réseau.
 * `raepa_id_noeud_seq` : Séquence permettant de générer un numéro unique par noeud de réseau.
