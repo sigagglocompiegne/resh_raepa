@@ -24,28 +24,38 @@ Des données complémentaires enrichies, au format (? tabulaire à définir txt,
 
 * Adduction d'eau
   * Canalisation
-    * ext_canalae
+    * RAEPAL_CANALAEP
+    
   * Ouvrage
-    * ext_station_pomp_aep
-    * ext_sration_trait_aep
-    * ext_reservoir_aep
-    * ext_captage_aep
-    * ext_chambre_aep
-    * ext_citerneau_aep
+    * RAEPAL_OUVRAEP
+    * RAEPAL_STATPOMP_AEP
+    * RAEPAL_STATTRAIT_AEP
+    * RAEPAL_RESERV_AEP
+    * RAEPAL_CAPTAG_AEP
+    * RAEPAL_CHAMBR_AEP
+    * RAEPAL_CHAMBR_COMPT_AEP
+    * RAEPAL_CITERN_AEP
+    
   * Appareillage
-    * ext_compteur_aep
-    * ext_regul_press_aep
-    * ext_vanne_aep
-    * ext_vidange_aep
+    * RAEPAL_APPARAEP
+    * RAEPAL_VIDANG_AEP
+    * RAEPAL_VENTOUSE_AEP
+    * RAEPAL_VANNE_AEP
+    * RAEPAL_REG_PRESS_AEP
+    * RAEPAL_COMPT_AEP
 
 * Assainissement
   * Canalisation
-    * ext_canal_ass 
+    * RAEPAL_CANALASS
+    * RAEPAL_BRANCHEMNT_ASS
+    
   * Ouvrage
-    * ext_station_pomp_ass
-    * ext_step_ass
-    * ext_bassin_stock_ass
-    * ext_regard_ass
-    * ext_avaloir_ass
+    * RAEPAL_OUVRASS
+    * RAEPAL_STATPOMP_ASS
+    * RAEPAL_STEP_ASS
+    * RAEPAL_BASS_ASS
+    * RAEPAL_REG_ASS
+    * RAEPAL_AVALOIR_ASS
+    
   * Appareillage
-    * ext_app_ass
+    * RAEPAL_APPARASS
