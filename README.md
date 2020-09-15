@@ -1,4 +1,4 @@
-![picto](/doc/img/new_logo_geocompiegnois.png )
+![picto](/doc/img/geocompiegnois_2020_reduit_v2.png)
 
 # Mise à jour : 2020-09-04
 
