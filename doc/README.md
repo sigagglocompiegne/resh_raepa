@@ -1,4 +1,4 @@
-![picto](img/new_logo_geocompiegnois.png)
+![picto](img/geocompiegnois_2020_reduit_v2.png)
 
 # Documentation du projet RAEPA de la collectivité.
 
