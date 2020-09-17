@@ -1,4 +1,4 @@
-![GeoCompiegnois](img/new_logo_geocompiegnois.png )
+![GeoCompiegnois](img/geocompiegnois_2020_reduit_v2.png )
 
 # Principes
 
