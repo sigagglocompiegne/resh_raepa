@@ -955,7 +955,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |99|Autre|
 
 `lt_raepal_typpompe` : Liste décrivant le type de station de pompage d'Adduction d'eau potable.
-|Code RAEPA|Valeur|
+|Code|Valeur|
 |:---|:---|
 |00|Indéterminé|
 |01|Surpression|
@@ -964,7 +964,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |99|Autre|
 
 `lt_raepal_typtrait` : Liste décrivant le type de traitement de la station de traitement d'Adduction d'eau potable.
-|Code RAEPA|Valeur|
+|Code|Valeur|
 |:---|:---|
 |00|Indéterminé|
 |01|Javel liquide|
@@ -974,7 +974,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |99|Autre|
 
 `lt_raepal_typres` : Liste décrivant le type de réservoir d'Adduction d'eau potable.
-|Code RAEPA|Valeur|
+|Code|Valeur|
 |:---|:---|
 |00|Indéterminé|
 |01|Semi enterré|
@@ -983,7 +983,7 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |99|Autre|
 
 `lt_raepal_typcapt` : Liste décrivant le type de Captage d'Adduction d'eau potable.
-|Code RAEPA|Valeur|
+|Code|Valeur|
 |:---|:---|
 |00|Indéterminé|
 |01|Source|
