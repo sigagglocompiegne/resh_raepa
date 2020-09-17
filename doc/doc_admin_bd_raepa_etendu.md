@@ -84,6 +84,9 @@ Au cours de notre analyse, nous avons observé un certains nombre d'anomalies du
 |fnouvass| Extension de la liste de valeurs.|
 |fnouvaep| Extension de la liste de valeurs.|
 |contcanaep|Extension de la liste de valeurs.|
+|fnappass|Extension de la liste de valeurs.|
+|fnappaep|Extension de la liste de valeurs.|
+
 
 ## Définition des classes
 `geo_raepal_comparateur` : Classe d'indicateur stockant les ajouts et suppressions d'objets entre deux versions d'intégration (rappel : délégation de compétence, nous ne produisons pas les données.
