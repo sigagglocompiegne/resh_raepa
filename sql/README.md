@@ -9,4 +9,4 @@
 * [Script des vues applicatives pour l'application de consultation](init_bd_resh_21_xapps.sql)
 * [Script des vues de reconstitution du standard RAEPA](init_bd_resh_22_xopendata.sql)
 * [Script de destruction de la base RAEPA étendue](init_bd_resh_30_drop_base_etendue.sql)
-
+* [Script de préparation de gabarits RAEPA](init_bd_resh_40_raepa_templates.sql) (modèle permettant de générer le gabarit présent dans le répertoire `Gabarit/Raepa`)
