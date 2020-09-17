@@ -1,6 +1,8 @@
 ![picto](/doc/img/geocompiegnois_2020_reduit_v2.png)
 
-# Mise à jour : 2020-09-17
+# Dernière mise à jour : 2020-09-17
+## changelog 
+   * 2020-09-17 : MAJ SQL opendata + Ajout script SQL templates + Ajout répertoire de Gabarit
 
 # Base de données des réseaux humides
 
