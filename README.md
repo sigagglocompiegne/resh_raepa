@@ -1,6 +1,6 @@
 ![picto](/doc/img/geocompiegnois_2020_reduit_v2.png)
 
-# Mise à jour : 2020-09-04
+# Mise à jour : 2020-09-17
 
 # Base de données des réseaux humides
 
