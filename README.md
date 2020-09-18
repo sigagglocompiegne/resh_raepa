@@ -1,7 +1,8 @@
 ![picto](/doc/img/geocompiegnois_2020_reduit_v2.png)
 
-# Dernière mise à jour : 2020-09-17
+# Dernière mise à jour : 2020-09-18
 ## changelog 
+   * 2020-09-18  : Ajout du gabarit RAEPA strict + modification du script templates et du script de destruction de la base
    * 2020-09-17 : MAJ SQL opendata + Ajout script SQL templates + Ajout répertoire de Gabarit
 
 # Base de données des réseaux humides
