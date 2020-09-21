@@ -479,7 +479,6 @@ Remarque : L'attribut "sensecoul" issu du RAEPA a été déplacé aux canalisati
 |idprod|Identifiant du producteur de l'objet|character varying  (254).|Obligatoire||
 |l_typcompt|Type de compteur.|character varying (2)||lt_raepal_typcompt|
 |l_foncompt|Fonction du compteur|character varying (2)||lt_raepal_foncompt|
-|l_diametre|Diamètre nominal du compteur, en millimètres|Integer||
 |l_anetal|Année étalonnage compteur|character varying (4)|||
 
 ### Niveau 5 - Classes sous-spécialisées d'objets de réseau
