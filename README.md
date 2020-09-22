@@ -2,6 +2,7 @@
 
 # Dernière mise à jour : 2020-09-18
 ## changelog 
+   * 2020-09-22 : Modification strucutre du répertoire de gabarit RAEPA + ajout du gabarit RAEPA Étendu. 
    * 2020-09-21 : Suppression de `l_diametre` dans la classe an_raepal_compt_ae car déjà présent dans la classe supérieure an_raepa_app (doublon)
    * 2020-09-18  : Ajout du gabarit RAEPA strict + modification du script templates et du script de destruction de la base
    * 2020-09-17 : MAJ SQL opendata + Ajout script SQL templates + Ajout répertoire de Gabarit
