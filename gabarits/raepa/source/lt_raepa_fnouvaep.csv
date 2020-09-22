@@ -1,0 +1,10 @@
+﻿code,valeur
+00-00,Indéterminé
+01-00,Station de pompage
+02-00,Station de traitement
+03-00,Réservoir
+04-00,Chambre
+04-01,Chambre de comptage
+05-00,Captage
+06-00,Citerneau
+99-99,Autre

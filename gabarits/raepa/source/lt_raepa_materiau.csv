@@ -1,0 +1,32 @@
+﻿code,valeur
+00,Indéterminé
+01,Acier
+02,Amiante-ciment
+03,Béton âme tôle
+04,Béton armé
+05,Béton fibré
+06,Béton non armé
+07,Cuivre
+08,Fibre ciment
+09,Fibre de verre
+10,Fibrociment
+11,Fonte ductile
+12,Fonte grise
+13,Grès
+14,Maçonnerie
+15,Meulière
+16,PEBD
+17,PEHD annelé
+18,PEHD lisse
+19,Plomb
+20,PP annelé
+21,PP lisse
+22,PRV A
+23,PRV B
+18,PRV autre
+24,PVC ancien
+25,PVC BO
+26,PVC U annelé
+27,PVC U lisse
+28,Tôle galvanisée
+99,Autre

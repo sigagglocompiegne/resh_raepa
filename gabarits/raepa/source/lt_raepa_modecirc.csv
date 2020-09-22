@@ -1,0 +1,6 @@
+﻿code,valeur
+00,Indéterminé
+01,Gravitaire
+02,Forcé
+03,Sous-vide
+99,Autre
