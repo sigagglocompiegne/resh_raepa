@@ -21,15 +21,15 @@ Afin de pouvoir utiliser les fonds de plan intégrés dans le gabarit QGis, vous
 
 Les données au standard RAEPA (v1.2) et au format ESRI Shape (SHP) :
 * Adduction d'eau
-  * raepa_canalaep_l
-  * raepa_apparaep_p
-  * raepa_ouvraep_p
-  * raepa_reparaep_p
+  * RAEPA_CANALAEP_L
+  * RAEPA_APPARAEP_P
+  * RAEPA_OUVRAEP_P
+  * RAEPA_REPARAEP_P
 * Assainissement
-  * raepa_canalass_l
-  * raepa_apparass_p
-  * raepa_ouvrass_p
-  * raepa_reparass_p
+  * RAEPA_CANALASS_L
+  * RAEPA_APPARASS_P
+  * RAEPA_OUVRASS_P
+  * RAEPA_REPARASS_P
 
 ## Les données riches issues des extensions locales du RAEPA
 
