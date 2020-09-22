@@ -1,0 +1,6 @@
+﻿code,valeur
+00,Indéterminée
+01,Faible charge
+02,Moyenne charge
+03,Forte charge
+99,Autre

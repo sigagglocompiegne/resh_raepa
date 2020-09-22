@@ -1,0 +1,12 @@
+﻿code,valeur
+00,Indéterminé
+01,Aucune
+02,Ciment
+03,Époxy
+04,Bitumeux
+05,Polyéthylène
+06,Polypropylène
+07,Zinc
+08,Alliage Zinc aluminium
+09,Alliage Zinc cuivré
+99,Autre

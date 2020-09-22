@@ -1,0 +1,12 @@
+﻿code,valeur
+00-00,Indéterminé
+01-00,Point de branchement
+02-00,Ventouse
+03-00,Vanne
+04-00,Point métrologique
+04-01,Débitmètre
+04-03,Pluviometre
+04-99,Autre point métrologique
+05-00,Batardeau
+06-00,Chasse
+99-99,Autre
