@@ -67,6 +67,8 @@ ALTER TABLE raepa.ouvrage_ass RENAME CONSTRAINT val_raepa_typ_reseau_ass_fkey TO
 ALTER TABLE raepa.ouvrage_ass RENAME CONSTRAINT val_raepa_fonc_ouv_ass_fkey TO lt_raepa_fnouvass_fkey;
 ALTER TABLE raepa.reparation RENAME CONSTRAINT val_raepa_support_incident_fkey TO lt_raepa_support_incident_fkey;
 ALTER TABLE raepa.reparation RENAME CONSTRAINT val_raepa_defaillance_fkey TO lt_raepa_defaillance_fkey;
+ALTER TABLE raepa.canalisation RENAME CONSTRAINT val_raepa_enservice_fkey TO lt_raepa_enservice_fkey;
+ALTER TABLE raepa.canalisation RENAME CONSTRAINT val_raepa_branchemnt_fkey TO lt_raepa_branchemnt_fkey;
 
 
 -- classe
@@ -101,7 +103,7 @@ ALTER TABLE IF EXISTS raepa.val_raepa_cat_canal_ass RENAME TO lt_raepa_contcanas
 ALTER TABLE IF EXISTS raepa.val_raepa_fonc_canal_ass RENAME TO lt_raepa_fonccanass;
 ALTER TABLE IF EXISTS raepa.val_raepa_fonc_app_ass RENAME TO lt_raepa_fnappass;
 ALTER TABLE IF EXISTS raepa.val_raepa_fonc_ouv_ass RENAME TO lt_raepa_fnouvass;
-
+ALTER TABLE IF EXISTS raepa.val_raepa_boolean RENAME TO lt_raepa_boolean;
 -- sequence
 
 ALTER SEQUENCE IF EXISTS raepa.raepa_idraepa RENAME TO raepa_id_obj_reseau_seq;
@@ -2013,7 +2015,6 @@ CREATE TABLE m_raepa.an_raepal_compt_ae
   idprod character varying (254) NOT NULL, -- Identifiant du producteur de l'objet
   l_typcompt character varying (2) NOT NULL DEFAULT '00', --Type de compteur.
   l_foncompt character varying (2) NOT NULL DEFAULT '00', -- Fonction du compteur
-  l_diametre integer, -- Diamètre nominal du compteur, en millimètres
   l_anetal character varying (4), -- Année étalonnage compteur 
   CONSTRAINT m_reseau_compt_ae_pkey PRIMARY KEY (idobjet)  
 )
@@ -2400,6 +2401,9 @@ ALTER TABLE m_raepa.an_raepal_objet_reseau
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   ADD CONSTRAINT lt_raepal_domaine_fkey FOREIGN KEY (l_domaine)
       REFERENCES m_raepa.lt_raepal_domaine (code) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  ADD CONSTRAINT lt_raepal_enservice_fkey FOREIGN KEY (enservice)
+      REFERENCES m_raepa.lt_raepa_boolean (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   ADD CONSTRAINT lt_raepal_criticit_fkey FOREIGN KEY (l_criticit)
       REFERENCES m_raepa.lt_raepal_boolean (code) MATCH SIMPLE

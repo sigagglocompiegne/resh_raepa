@@ -54,6 +54,66 @@ DROP VIEW IF EXISTS m_raepa.template_lt_raepa_contcanass;
 DROP VIEW IF EXISTS m_raepa.template_lt_raepa_sensecoul;
 
 
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_CANALAEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_CANALASS;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_OUVRAEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_OUVRASS;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_APPARAEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_APPARASS;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_STATPOMP_AEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_STATTRAIT_AEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_RESERV_AEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_CAPTAG_AEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_CHAMBR_AEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_CHAMBR_COMPT_AEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_CITERN_AEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_DEB_AEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_VIDANG_AEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_VANNE_AEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_REG_PRESS_AEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_COMPT_AEP;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_BRANCHEMNT_ASS;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_STEP_ASS;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_BASS_ASS;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_REG_ASS;
+DROP VIEW IF EXISTS m_raepa.template_RAEPAL_AVALOIR_ASS;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_materiau;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_positver;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_etat;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_boolean;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_formcana;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typprot;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typimpl;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_sensecoul;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_contcanaep;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_fnouvaep;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typpompe;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typtrait;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typres;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typcapt;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typusage_ae;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_fnappaep;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_position;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typexut;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typvanne;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_etatvan;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typregul;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typcompt;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_foncompt;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typracc;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_fnouvass;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typpompa;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_charge;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typbass;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typreg;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_formreg;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typusage_ass;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typaval;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_typstep;
+DROP VIEW IF EXISTS m_raepa.template_lt_raepal_fnappass;
+
+
+
 --------------
 -- ###fkey  --
 --------------

@@ -25,6 +25,8 @@ ALTER TABLE IF EXISTS raepa.metadonnees_raepa DROP CONSTRAINT IF EXISTS val_raep
 ALTER TABLE IF EXISTS raepa.metadonnees_raepa DROP CONSTRAINT IF EXISTS val_raepa_qualite_geoloc_xy_fkey;
 ALTER TABLE IF EXISTS raepa.metadonnees_raepa DROP CONSTRAINT IF EXISTS val_raepa_qualite_geoloc_z_fkey;
 ALTER TABLE IF EXISTS raepa.canalisation DROP CONSTRAINT IF EXISTS val_raepa_materiau_fkey;
+ALTER TABLE IF EXISTS raepa.canalisation DROP CONSTRAINT IF EXISTS val_raepa_enservice_fkey;
+ALTER TABLE IF EXISTS raepa.canalisation DROP CONSTRAINT IF EXISTS val_raepa_branchemnt_fkey;
 ALTER TABLE IF EXISTS raepa.canalisation DROP CONSTRAINT IF EXISTS val_raepa_mode_circulation_fkey;
 ALTER TABLE IF EXISTS raepa.canalisation_ae DROP CONSTRAINT IF EXISTS val_raepa_cat_canal_ae_fkey;
 ALTER TABLE IF EXISTS raepa.canalisation_ae DROP CONSTRAINT IF EXISTS val_raepa_fonc_canal_ae_fkey;
@@ -56,6 +58,7 @@ DROP TABLE IF EXISTS raepa.ouvrage_ass;
 DROP TABLE IF EXISTS raepa.reparation;
 -- domaine de valeur
 DROP TABLE IF EXISTS raepa.val_raepa_materiau;
+DROP TABLE IF EXISTS raepa.val_raepa_boolean;
 DROP TABLE IF EXISTS raepa.val_raepa_mode_circulation;
 DROP TABLE IF EXISTS raepa.val_raepa_qualite_anpose;
 DROP TABLE IF EXISTS raepa.val_raepa_qualite_geoloc;
@@ -92,6 +95,28 @@ COMMENT ON SCHEMA raepa
 -- ###                                                                DOMAINES DE VALEURS                                                           ###
 -- ###                                                                                                                                              ###
 -- ####################################################################################################################################################
+-- Table: raepa.val_raepa_boolean
+-- DROP TABLE raepa.val_raepa_boolean;
+CREATE TABLE raepa.val_raepa_boolean
+(
+  code character varying(1) NOT NULL,
+  valeur character varying(1) NOT NULL,
+  CONSTRAINT raepa_boolean_pkey PRIMARY KEY (code)
+)
+WITH (
+  OIDS=FALSE
+);
+COMMENT ON TABLE raepa.val_raepa_boolean
+  IS 'Liste booléan raepa pour attributs enservice et branchemnt';
+COMMENT ON COLUMN raepa.val_raepa_boolean.code IS 'Code de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
+COMMENT ON COLUMN raepa.val_raepa_boolean.valeur IS 'Valeur de la liste énumérée relative au matériau constitutif des tuyaux composant une canalisation';
+
+INSERT INTO raepa.val_raepa_boolean(
+            code, valeur)
+    VALUES
+('O','O'),
+('N','N');
+	
 -- ###################
 -- ##    AEP/ASS    ##
 -- ################### 
@@ -908,6 +933,12 @@ ALTER TABLE raepa.noeud
 ALTER TABLE raepa.canalisation
   ADD CONSTRAINT val_raepa_materiau_fkey FOREIGN KEY (materiau)
       REFERENCES raepa.val_raepa_materiau (code) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  ADD CONSTRAINT val_raepa_enservice_fkey FOREIGN KEY (enservice)
+      REFERENCES raepa.val_raepa_boolean (code) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  ADD CONSTRAINT val_raepa_branchemnt_fkey FOREIGN KEY (branchemnt)
+      REFERENCES raepa.val_raepa_boolean (code) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   ADD CONSTRAINT val_raepa_mode_circulation_fkey FOREIGN KEY (modecirc)
       REFERENCES raepa.val_raepa_mode_circulation (code) MATCH SIMPLE

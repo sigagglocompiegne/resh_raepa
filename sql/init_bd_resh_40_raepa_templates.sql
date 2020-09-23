@@ -1,13 +1,13 @@
 /*
 Réseau d'eau pluviale
-Creation du des templates pour gabarit RAEPA et extensions
+Creation du des templates pour gabarit RAEPA strict
 init_bd_resh_40_raepa_templates.sql
 PostGIS
 GeoCompiegnois - http://geo.compiegnois.fr/
 Auteur : Léandre Béron
 */
 /****************************************************************************/
-/*                                FICHIERS                                  */
+/*                            FICHIERS RAEPA                                */
 /****************************************************************************/
 -- canalaep_l
 CREATE OR REPLACE VIEW m_raepa.template_RAEPA_CANALAEP_L AS
