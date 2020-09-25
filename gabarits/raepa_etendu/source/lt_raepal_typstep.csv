@@ -1,0 +1,11 @@
+﻿code,valeur
+00,Indéterminée
+01,Lits bactériens
+02,Filtres biologiques
+03,Disques biologiques
+04,Filtres à sable
+05,Filtres plantés
+06,Lagunage naturel
+07,Boues activées
+08,SBR
+99,Autre
