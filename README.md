@@ -2,6 +2,7 @@
 
 # Dernière mise à jour : 2020-09-18
 ## changelog 
+   * 2020-09-25 : Remplacement du gabarit d'extension par des fichiers excel au lieu des CSV (erreur de commit QGIS lors de l'ajout)
    * 2020-09-23 : MAJ des scripts SQL (corrections mineures)
    * 2020-09-22 : Modification de structure du répertoire de gabarit RAEPA + ajout du gabarit RAEPA Étendu. 
    * 2020-09-21 : Suppression de `l_diametre` dans la classe an_raepal_compt_ae car déjà présent dans la classe supérieure an_raepa_app (doublon)
