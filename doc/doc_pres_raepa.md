@@ -19,15 +19,20 @@
 
 ### Usages
 
-* description patrimoniale
+* description patrimoniale du réseau (hors station)
 * gestion et intervention
 
 ## Description de la modélisation
 
-###  Modélisation géo
+###
 
-* Modélisation topologie de réseau (noeud - troncon).
+
+
+###  Modélisation géométrique
+
+* Modélisation classique de topologie de réseau (noeud - troncon).
 * Régime d'exception possible pour traiter les troncons de branchement (non sécant sur la canalisation principale)
+
 
 ## Ressources
 
