@@ -16,7 +16,8 @@
 
 ### Réseaux considérés
 
-* gère les réseaux eau et assainissement **à l'exception du réseau pluvial de surface (fossé, noue, technique alternative, caniveau** 
+* eau potable
+* assainissement **à l'exception du réseau pluvial de surface (fossé, noue, technique alternative, caniveau** 
 
 ### Usages
 
