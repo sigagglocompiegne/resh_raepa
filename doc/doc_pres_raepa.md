@@ -1,6 +1,6 @@
 ![picto](https://github.com/sigagglocompiegne/orga_gest_igeo/blob/master/doc/img/geocompiegnois_2020_reduit_v2.png)
 
-# Présentation du standard RAEPA
+# Présentation du géostandard RAEPA
 
 ## Historique
 
@@ -8,23 +8,26 @@
 
 ### Liens avec d'autre standard
 
-* > PCRS
-* < STAR-DT
+* post- PCRS
+* pré- STAR-DT
 
-## Périmètre de modélisation
+## Périmètre de la modélisation
+
+### Réseaux considérés
 
 * gère les réseaux eau et assainissement à l'exception du réseau pluvial de surface 
+
+### Usages
+
 * description patrimoniale
 * gestion et intervention
 
-## Usages
-
 ## Description de la modélisation
 
-###  modélisation géo
+###  Modélisation géo
 
-Modélisation topologie de réseau (noeud - troncon).
-Régime d'exception possible pour traiter les troncons de branchement (non sécant sur la canalisation principale)
+* Modélisation topologie de réseau (noeud - troncon).
+* Régime d'exception possible pour traiter les troncons de branchement (non sécant sur la canalisation principale)
 
 ## Points forts / faibles
 
