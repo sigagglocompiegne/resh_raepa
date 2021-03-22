@@ -29,5 +29,10 @@
 * Modélisation topologie de réseau (noeud - troncon).
 * Régime d'exception possible pour traiter les troncons de branchement (non sécant sur la canalisation principale)
 
+## Ressources
+
+* géostandard documenté
+* gabarits shape pour les livrables
+
 ## Points forts / faibles
 
