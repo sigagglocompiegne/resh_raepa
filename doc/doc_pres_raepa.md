@@ -31,7 +31,8 @@
 
 ###  Modélisation géométrique
 
-* Modélisation classique de topologie de réseau (noeud - troncon).
+* Modélisation classique de topologie de réseau (noeud - troncon)
+* Modélisation 2D
 * Régime d'exception possible pour traiter les troncons de branchement (non sécant sur la canalisation principale)
 
 
