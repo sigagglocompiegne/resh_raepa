@@ -4,7 +4,7 @@
 
 ## Historique
 
-* démarche 
+* démarche ADT24 
 
 ### Liens avec d'autre standard
 
@@ -15,7 +15,7 @@
 
 ### Réseaux considérés
 
-* gère les réseaux eau et assainissement à l'exception du réseau pluvial de surface 
+* gère les réseaux eau et assainissement **à l'exception du réseau pluvial de surface (fossé, noue, technique alternative, caniveau** 
 
 ### Usages
 
