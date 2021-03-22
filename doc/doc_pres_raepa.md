@@ -2,9 +2,10 @@
 
 # Présentation du géostandard RAEPA
 
-## Historique
+## Historique de la démarche
 
-* démarche ADT24 
+* démarche géoamtique de ATD24 et pigma (partenariat régional sig de l'aquitaine)
+* standardisé par la covadis dont le périmètre correspondait pourtant uniquement aux compétences des services de l'Etat
 
 ### Liens avec d'autre standard
 
