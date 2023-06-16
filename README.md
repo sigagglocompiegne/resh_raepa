@@ -2,6 +2,7 @@
 
 # Dernière mise à jour : 2020-09-18
 ## changelog 
+   * 2023-06-16 : Ajout gabarit de saisie de données RAEPA éténdu
    * 2020-09-25 : Suppression du gabarit d'extension : problème lors de saisie CSV, recherche d'alternatives
    * 2020-09-23 : MAJ des scripts SQL (corrections mineures)
    * 2020-09-22 : Modification de structure du répertoire de gabarit RAEPA + ajout du gabarit RAEPA Étendu. 
