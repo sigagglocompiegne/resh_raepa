@@ -1,0 +1,12 @@
+﻿code_arc,code_raepa,valeur,definition,symbole
+00-00,00,Indéterminé,Type d'appareillage inconnu,A_APP_indetermine.png
+01-00,01,Point de branchement,Piquage de branchement individuel,A_APP_PT_BRANCHEMENT.png
+02-00,02,Ventouse,Ventouse d'assainissement,A_APP_VENTOUSE.png
+03-00,03,Vanne,Vanne d'assainissement,A_APP_VANNE.png
+04-00,99,Point métrologique,Point métrologique,
+04-01,04,Débitmètre,Appareil de mesure des débits transités,A_APP_COMPTEUR_DEBIT.png
+04-03,99,Pluviometre,Appareil de mesure des quantités de précipitation,
+04-99,99,Autre point métrologique,Point métrologique autre que la liste énumérée,
+05-00,99,Batardeau,Batardeau,
+06-00,99,Chasse,Chasse,
+99-99,99,Autre,Appareillage dont le type ne figure pas dans la liste ci-dessus,A_APP_autre.png

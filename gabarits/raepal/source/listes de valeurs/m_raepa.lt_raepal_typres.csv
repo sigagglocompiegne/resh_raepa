@@ -1,0 +1,6 @@
+﻿code,valeur,definition
+00,Indéterminée,Type de réservoir inconnu
+01,Semi entérré,Réservoir semi entérré
+02,Bâche,Réservoir sur bâche
+03,Sur tour,Réservoir sur tour
+99,Autre,Type de réservoir ne figurant pas dans la liste ci-dessus

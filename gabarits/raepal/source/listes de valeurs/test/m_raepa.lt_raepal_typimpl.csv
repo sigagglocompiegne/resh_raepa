@@ -1,0 +1,7 @@
+﻿code,valeur,definition
+00,Indéterminé,Type d'implantation inconnu
+01,Sous chaussée,Ouvrage implanté sous chaussée
+02,Sous trottoir,Ouvrage implanté sous trottoir
+03,Bas côté,Ouvrage implanté sur bas côté
+04,En privé,Ouvrage implanté en privé
+99,Autre,Ouvrage dont le type d'implantation ne figure pas dans la liste ci-dessus

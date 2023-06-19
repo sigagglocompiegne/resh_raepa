@@ -1,0 +1,7 @@
+﻿code,valeur,definition
+00,Indéterminée,Type de regard inconnu
+01,Avaloir simple,Avaloir simple
+02,Avaloir à grille,Avaloir à grille
+03,Grille avaloir,Grille avaloir
+04,Avaloir tampon,Avaloir tampon
+99,Autre,Type d'avaloir ne figurant pas dans la liste ci-dessus

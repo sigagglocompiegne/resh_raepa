@@ -1,0 +1,15 @@
+﻿code_arc,code_raepa,valeur,definition
+00-00,00,Indéterminé,Type d'ouvrage inconnu
+01-00,01,Station de pompage,Station de pompage d'eaux usées et/ou pluviales
+02-00,02,Station d'épuration,Station de traitement d'eaux usées
+03-00,03,Bassin de stockage,Ouvrage de stockage d'eaux usées et/ou pluviales
+04-00,04,Déversoir d'orage,Ouvrage de décharge du trop-plein d'effluents d'une canalisation d'assainissement collectif vers un milieu naturel récepteur
+05-00,05,Rejet,Rejet (exutoire) dans le milieu naturel d'eaux usées ou pluviales
+05-01,99,Rejet eaux pluviales,Rejet (exutoire) dans le milieu d'eaux pluviales
+05-02,99,Rejet eaux usées,Rejet (exutoire) dans le milieu naturel d'eaux usées
+05-99,99,Rejet Autre,Autre type de rejet
+06-00,06,Regard,Ouvrage de regard
+07-00,07,Avaloir,Avaloir
+08-00,99,Station sous-vide,Station sous-vide
+09-00,99,Chambre à sable,Chambre à sable
+99-99,99,Autre,Ouvrage dont le type ne figure pas dans la liste ci-dessus

@@ -1,0 +1,6 @@
+﻿code,valeur,definition
+00,Indéterminé,Mode de circulation inconnu
+01,Gravitaire,L'eau s'écoule par l'effet de la pesanteur dans la canalisation en pente
+02,Forcé,L'eau circule sous pression dans la canalisation grâce à un système de pompage
+03,Sous-vide,L'eau circule par l'effet de la mise sous vide de la canalisation par une centrale d'aspiration
+99,Autre,L'eau circule tantôt dans un des modes ci-dessus tantôt dans un autre

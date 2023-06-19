@@ -1,0 +1,7 @@
+﻿code,valeur,definition
+00,Indéterminée,Type de station de pompage inconnu
+01,Poste de refoulement,Station de pompage de type Poste de refoulement
+02,Poste de relèvement,Station de pompage de type Poste de Relèvement
+03,Poste aspiration,Station de pompage de type Poste Aspiration
+04,Centrale sous vide,Station de pompage de type Centrale sous vide
+99,Autre,Type de de station de pompage ne figurant pas dans la liste ci-dessus

@@ -1,0 +1,6 @@
+﻿code,valeur,definition
+00,Indéterminée,Nature des eaux véhiculées par la canalisation inconnue
+01,Eaux pluviales,Canalisation véhiculant des eaux pluviales
+02,Eaux usées,Canalisation véhiculant des eaux usées
+03,Unitaire,Canalisation véhiculant des eaux usées et pluviales en fonctionnement normal
+99,Autre,"Canalisation véhiculant tantôt des eaux pluviales, tantôt des eaux usées"

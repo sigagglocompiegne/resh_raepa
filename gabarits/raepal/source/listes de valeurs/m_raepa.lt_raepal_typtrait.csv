@@ -1,0 +1,7 @@
+﻿code,valeur,definition
+00,Indéterminée,Type de traitement inconnu
+01,Javel liquide,Traitement à la javel liquide
+02,Chlore gazeux,Traitement au chlore gazeux
+03,Charbon actif,Traitement au charbon actif
+04,Fer,Traitement au fer
+99,Autre,Traitement ne figurant pas dans la liste ci-dessus
