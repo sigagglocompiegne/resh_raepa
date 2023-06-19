@@ -1,6 +1,0 @@
-﻿code,valeur,definition
-00,Indéterminée,Charge inconnu
-01,Faible charge,STEP à faible charge
-02,Moyenne charge,STEP à moyenne charge
-03,Forte charge,STEP à forte charge
-99,Autre,Charge de la STEP autre que les valeurs présentées dans la liste ci-dessus

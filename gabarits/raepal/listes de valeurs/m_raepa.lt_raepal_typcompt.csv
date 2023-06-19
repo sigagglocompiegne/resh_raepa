@@ -1,6 +1,0 @@
-﻿code,valeur,definition
-00,Indéterminée,Type de régulateur de pression inconnu
-01,Compteur volume,Compteur de type compteur volume
-02,Electromagnétique,Compteur électromagnétique
-03,Ultrasons,Compteur à ultrasons
-99,Autre,Type de compteur ne figurant pas dans la liste ci-dessus

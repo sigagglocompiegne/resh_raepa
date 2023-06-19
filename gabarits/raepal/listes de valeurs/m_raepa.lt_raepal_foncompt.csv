@@ -1,7 +1,0 @@
-﻿code,valeur,definition
-00,Indéterminée,Type de régulateur de pression inconnu
-01,Achat,Compteur d'achat
-02,Vente,Compteur de vente
-03,Sectorisation,Compteur de sectorisation
-04,Achat/Vente,Compteur d'achat et de vente
-99,Autre,Fonction du compteur ne figurant pas dans la liste ci-dessus
