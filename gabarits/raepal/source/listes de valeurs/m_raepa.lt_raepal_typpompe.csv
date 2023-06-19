@@ -1,6 +1,0 @@
-﻿code,valeur,definition
-00,Indéterminée,Type de pompe inconnu
-01,Supression,Station de pompage de type surpression
-02,Reprise,Station de pompage de type reprise
-03,Accélérateur,Station de pompage de type accélérateur
-99,Autre,Type de station de pompage ne figurant pas dans la liste ci-dessus

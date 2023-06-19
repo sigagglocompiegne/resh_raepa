@@ -1,5 +1,0 @@
-﻿code,valeur,definition
-00,Indéterminée,Fonction de la canalisation dans le réseau inconnue
-01,Transport,Canalisation de transport
-02,Collecte,Canalisation de collecte
-99,Autre,Canalisation dont la fonction dans le réseau ne figure pas dans la liste ci-dessus

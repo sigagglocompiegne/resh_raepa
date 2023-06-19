@@ -1,8 +1,0 @@
-﻿code,valeur,definition
-00,Indéterminé,Type de vanne inconnu
-01,Opercule,Vanne opercule
-02,Papillon,Vanne papillon
-03,Monovar,Vanne monovar
-04,Guillotine,Vanne guillotine
-05,Pointeau,Vanne pointeau
-99,Autre,Type de vanne figurant pas dans la liste ci-dessus
