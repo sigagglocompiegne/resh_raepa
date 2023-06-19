@@ -1,0 +1,6 @@
+﻿code,valeur,definition
+00,Indéterminé,Type de raccordement inconnu
+01,Direct,Boîte de raccordement à passage direct
+02,Siphoïde,Boîte de raccordement à passage siphoïde
+03,Multidirectionnel,Boîte de raccordement multidirectionnel
+99,Autre,Type de raccordement ne figurant pas dans la liste ci-dessus

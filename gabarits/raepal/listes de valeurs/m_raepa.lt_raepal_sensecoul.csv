@@ -1,0 +1,4 @@
+﻿code,code_raepa,valeur,definition
+0,,Indéterminée,Sens d'écoulement inconnu
+d,1,Direct,L'écoulement s'effectue du noeud initial vers le noeud terminal
+i,0,Inverse,L'écoulement s'effectue du noeud terminal vers le noeud initial
