@@ -1,0 +1,6 @@
+﻿code,valeur,definition
+00,Indéterminé,Forme inconnu
+01,Circulaire,Canalisation de forme circulaire
+02,Ovoïde,Canalisation de forme  ovoïde
+03,Dalot,Canalisation de forme dalot
+99,Autre,Forme de canalisation ne figurant pas dans la liste ci-dessus

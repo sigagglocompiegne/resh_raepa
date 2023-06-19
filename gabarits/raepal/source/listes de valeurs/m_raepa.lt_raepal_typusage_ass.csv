@@ -1,0 +1,7 @@
+﻿code,valeur,definition
+00,Indéterminé,Type d'usager inconnu
+01,Domestique,Type d'usager domestique
+02,Assimilé domestique,"Type d'usager assimilié domestique (boulangerie, boucherie, etc.)"
+03,Industriel,Type d'usager industriel
+04,Industriel/Assimilé Domestique,Type d'usager à la fois industriel et assimilé domestique
+99,Autre,Type d'usager ne figurant pas dans la liste ci-dessus
