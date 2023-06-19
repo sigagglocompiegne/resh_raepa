@@ -1,7 +1,0 @@
-﻿code_arc,code_raepa,valeur,definition
-00-00,00,Indéterminé,Nature des eaux véhiculées par la canalisation inconnue
-01-00,01,Eau brute,Canalisation véhiculant de l'eau brute
-02-00,02,Eau potable,Canalisation véhiculant de l'eau potable
-03-00,99,Eau de lavage,Canalisation véhiculant des eaux de lavage
-04-00,99,Eau traitée,Canalisation véhiculant des eaux traitées
-99-99,99,Autre,"Canalisation véhiculant tantôt de l'eau brute, tantôt de l'eau potable"

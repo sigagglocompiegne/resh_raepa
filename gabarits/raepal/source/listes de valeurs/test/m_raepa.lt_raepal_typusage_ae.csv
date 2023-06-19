@@ -1,6 +1,0 @@
-﻿code,valeur,definition
-00,Indéterminé,Type d'usager inconnu
-01,Domestique,Type d'usager domestique
-03,Industriel,Type d'usager industriel
-04,Agricole,Type d'usager agricole
-99,Autre,Type d'usager ne figurant pas dans la liste ci-dessus

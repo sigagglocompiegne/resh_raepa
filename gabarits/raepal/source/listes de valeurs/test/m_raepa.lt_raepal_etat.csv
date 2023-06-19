@@ -1,7 +1,0 @@
-﻿code,valeur,definition
-00,Indéterminé,Etat inconnu
-01,Bon,Objet en bon état
-02,Défectueux,Objet défectueux
-03,Travaux à envisager,Objet dont des travaux sont à envisager
-04,Travaux programmés,Objet dont des travaux sont programmés
-99,Autre,Objet dont l'état ne figure pas dans la liste ci-dessus
